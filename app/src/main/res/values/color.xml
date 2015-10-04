@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#062925</color>
+
+    <color name="normal_bg">#D9DAD7</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="bright_red">#A51C2D</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_bg">#062925</color>
+    <color name="light_text_gb">#B0A48A</color>
+    <color name="link_text">#044A42</color>
+    <color name="light_divider">#B8E1DD</color>
+
+    <color name="text_grey">#3E4A61</color>
+</resources>

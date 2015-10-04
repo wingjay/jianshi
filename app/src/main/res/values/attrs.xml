@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RedPointView">
+        <attr name="text" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomizeTextView">
+        <attr name="myTextViewFontFamily" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomizeEditText">
+        <attr name="myEditTextFontFamily" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="MultipleRowTextView">
+        <attr name="textSize" format="integer"/>
+    </declare-styleable>
+</resources>

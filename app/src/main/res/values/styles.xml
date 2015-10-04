@@ -1,0 +1,99 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/primary</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:textColor">@color/text_bg</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:textColor">@color/text_grey</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="DayChooserTextStyle" parent="TextStyle">
+        <item name="android:textColor">@color/link_text</item>
+        <item name="android:textSize">@dimen/huge_text_size</item>
+    </style>
+
+    <style name="DayChooserUnitStyle" parent="TextStyle">
+        <item name="android:textSize">@dimen/huge_text_size</item>
+    </style>
+
+    <style name="EditTextStyle" parent="TextStyle">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="EditTextTitleStyle" parent="EditTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/huge_text_size</item>
+    </style>
+
+    <style name="EditTextContentStyle" parent="EditTextStyle">
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <style name="VerticalTextContentStyle">
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="DiaryListTitleStyle" parent="LeftRightPadding">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_bg</item>
+        <item name="android:textSize">@dimen/huge_text_size</item>
+    </style>
+
+    <style name="DiaryListContentStyle" parent="LeftRightPadding">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@color/text_bg</item>
+        <item name="android:lineSpacingExtra">1dp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="DiaryListDateStyle" parent="DiaryListContentStyle">
+        <item name="android:textColor">@color/light_text_gb</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="WriterTextStyle">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="NormalBg" parent="NormalBgColor">
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="NormalBgColor">
+        <item name="android:background">@color/normal_bg</item>
+    </style>
+
+    <style name="NormalBgLeftRightPadding" parent="NormalBgColor">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="NormalBgTopDownPadding" parent="NormalBgColor">
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="LeftRightPadding">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="PressableBg">
+        <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+</resources>

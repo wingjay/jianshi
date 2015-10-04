@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">简诗</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_date_choose">DateChooseActivity</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_diary_list">DiaryListActivity</string>
+    <string name="title_activity_diary_view">DiaryViewActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="logo_name">简诗</string>
+    <string name="logo_slogan">简单的小诗，简单的生活</string>
+    <string name="write">撰</string>
+    <string name="read">阅</string>
+    <string name="setting">置</string>
+    <string name="day">日</string>
+    <string name="month">月</string>
+    <string name="year">年</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="edit_title_hint">标题</string>
+    <string name="edit_content_hint">讲述你的故事&#8230;</string>
+    <string name="edit">辑</string>
+    <string name="edit_save">存</string>
+    <string name="edit_saving">保存中&#8230;</string>
+    <string name="save_success">保存成功!</string>
+    <string name="save_failure">保存失败&#8230;</string>
+    <string name="want_to_save">是否要保存？</string>
+    <string name="edit_content_not_null">抱歉，内容不能为空</string>
+    <string name="title_activity_view">ViewActivity</string>
+    <string name="do_you_want_to_delete_diary">确定要删除？</string>
+    <string name="delete_diary_failure">删除失败，请重试</string>
+    <string name="space_of_date_record">\n\n\n</string>
+    <string name="record">记</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="user_setting">设置</string>
+    <string name="vertical_reading">竖排文字阅读</string>
+    <string name="support_info">支持信息</string>
+    <string name="user_feedback">反馈</string>
+    <string name="feedback_email_subject">关于&lt;简诗&gt;的二三意见</string>
+    <string name="feedback_email_prefix">Hi,亲爱的简诗开发者们!\n&#160;&#160;&#160;&#160;我希望向亲们提出如下意见：</string>
+    <string name="send_email">发送邮件</string>
+    <string name="email_client_no_found">未找到任何邮箱客户端，请安装</string>
+
+
+</resources>
