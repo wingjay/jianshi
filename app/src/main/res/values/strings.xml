@@ -44,5 +44,22 @@
     <string name="send_email">发送邮件</string>
     <string name="email_client_no_found">未找到任何邮箱客户端，请安装</string>
 
+    <string name="edit_content_hint_morning">美好的一天，给自己个微笑吧&#8230;</string>
+    <string name="edit_content_hint_before_noon">给精彩的一天写个计划吧&#8230;</string>
+    <string name="edit_content_hint_noon">宁静的午后，休憩一番&#8230;</string>
+    <string name="edit_content_hint_after_noon">午后，来杯咖啡，写写文字&#8230;</string>
+    <string name="edit_content_hint_night">落日余晖，偶有感慨&#8230;</string>
+    <string name="edit_content_hint_evening">深夜了，简诗伴你&#8230;</string>
+    <string name="edit_content_hint_midnight">亲爱的，明天见&#8230;</string>
+    <string name="edit_content_hint_error">@string/edit_content_hint</string>
+
+    <string name="edit_title_hint_morning">清晨</string>
+    <string name="edit_title_hint_before_noon">上午</string>
+    <string name="edit_title_hint_noon">午间</string>
+    <string name="edit_title_hint_after_noon">午后</string>
+    <string name="edit_title_hint_night">落日</string>
+    <string name="edit_title_hint_evening">夜深</string>
+    <string name="edit_title_hint_midnight">晚安</string>
+    <string name="edit_title_hint_error">@string/edit_title_hint</string>
 
 </resources>

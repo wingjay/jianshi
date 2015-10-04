@@ -20,6 +20,7 @@ import com.wingjay.jianshi.data.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.util.LanguageUtil;
+import com.wingjay.jianshi.util.StringByTime;
 
 import butterknife.InjectView;
 
@@ -89,6 +90,9 @@ public class EditActivity extends BaseActivity {
                 }
             }
         });
+
+        title.setHint(StringByTime.getEditTitleHintByNow(EditActivity.this));
+        content.setHint(StringByTime.getEditContentHintByNow(EditActivity.this));
     }
 
     private void saveDiary() {
@@ -98,8 +102,12 @@ public class EditActivity extends BaseActivity {
             return;
         }
         long saveId = 0;
-        String titleString = title.getText().toString();
-        String contentString = content.getText().toString();
+
+        String titleString = (TextUtils.isEmpty(title.getText().toString()))
+                ? title.getHint().toString() : title.getText().toString();
+        String contentString = (TextUtils.isEmpty(content.getText().toString()))
+                ? content.getHint().toString() : content.getText().toString();
+
         if (dateSeconds == 0 && diaryId > 0) {
             saveId = DbUtil.updateDiary(titleString, contentString, diaryId);
         } else if (dateSeconds > 0 && diaryId == 0) {

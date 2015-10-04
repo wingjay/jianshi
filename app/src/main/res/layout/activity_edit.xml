@@ -10,7 +10,6 @@
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_title_hint"
         android:layout_marginTop="@dimen/normal_text_size"
         style="@style/EditTextTitleStyle"
         />
@@ -28,7 +27,6 @@
             android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_content_hint"
             android:gravity="top"
             style="@style/EditTextContentStyle"
             android:paddingBottom="@dimen/super_huge_text_size"
