@@ -34,14 +34,12 @@ public class DbOpenHepler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.i("test", "create db");
         db.execSQL(CREATE_TABLE_DIARY_1);
         db.execSQL(ADD_COLUMN_DELETE_IN_DIARY_2);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.i("test", "upgrade db");
         if (newVersion == 2) {
             db.execSQL(ADD_COLUMN_DELETE_IN_DIARY_2);
         }

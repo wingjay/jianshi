@@ -111,10 +111,8 @@ public class FullDateManager {
 
     public static long getTodayDateSeconds() {
         DateTime now = new DateTime();
-        Log.i("test", "now millis : " + now.getMillis() / 1000);
         // clear info about hours and seconds, only need year, month and day.
         DateTime today = new DateTime(now.getYear(), now.getMonthOfYear(), now.getDayOfMonth(), 0, 0);
-        Log.i("test", "today millis : " + today.getMillis() / 1000);
         return today.getMillis() / 1000;
     }
 

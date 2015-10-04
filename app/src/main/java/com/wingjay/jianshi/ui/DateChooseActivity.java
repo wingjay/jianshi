@@ -79,7 +79,6 @@ public class DateChooseActivity extends BaseActivity {
                     @Override
                     public void onDayChoosed(DateTime chooseDate) {
                         currentDateTime = chooseDate;
-                        Log.i("test", "choose day :" + chooseDate.getDayOfMonth() + ", and month :" + chooseDate.getMonthOfYear());
                         updateFullDate();
                     }
                 });

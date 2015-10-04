@@ -34,10 +34,6 @@
             android:label="@string/title_activity_diary_list" >
         </activity>
         <activity
-            android:name=".ui.DiaryViewActivity"
-            android:label="@string/title_activity_diary_view" >
-        </activity>
-        <activity
             android:name=".ui.base.BaseActivity"
             android:label="@string/title_activity_base" >
         </activity>
