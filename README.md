@@ -1,5 +1,5 @@
-# jianshi
-a beautiful app for recording anything in your life in traditional Chinese style.
+#  简诗
+a beautiful app 简诗 for recording anything in your life with traditional Chinese style.
 ![介绍页](http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![主界面](http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
