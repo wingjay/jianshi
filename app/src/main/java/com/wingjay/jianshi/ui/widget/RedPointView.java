@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.ui.view;
+package com.wingjay.jianshi.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

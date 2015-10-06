@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.ui.view;
+package com.wingjay.jianshi.ui.widget;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +29,7 @@ public class DayPickDialogFragment extends DialogFragment {
     public final static String CHOOSE_YEAR = "chooseYear";
     public final static String CHOOSE_MONTH = "chooseMonth";
     public final static String CHOOSE_DAY = "chooseDay";
+
     private ListView dayListView;
 
     private List<String> dayList;
@@ -59,13 +59,12 @@ public class DayPickDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_day_pick, container, false);
-        getDialog().setTitle("请选择日期");
+        getDialog().setTitle(getResources().getString(R.string.please_choose_day));
         dayListView = (ListView) root.findViewById(R.id.day_list_view);
         dayListView.setAdapter(new DayPickAdapter(getActivity(), dayList, dayMapToDateTime));
 
         return root;
     }
-
 
     private void constructDayList() {
         dayList = new ArrayList<>();

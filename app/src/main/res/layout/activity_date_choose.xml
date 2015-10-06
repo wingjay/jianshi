@@ -14,7 +14,7 @@
         android:layout_alignParentStart="true"
         >
 
-        <com.wingjay.jianshi.ui.view.RedPointView
+        <com.wingjay.jianshi.ui.widget.RedPointView
             android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                     android:orientation="vertical"
                     >
 
-                    <com.wingjay.jianshi.ui.view.VerticalTextView
+                    <com.wingjay.jianshi.ui.widget.VerticalTextView
                         android:id="@+id/year"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                         android:gravity="center_horizontal"
                         />
 
-                    <com.wingjay.jianshi.ui.view.VerticalTextView
+                    <com.wingjay.jianshi.ui.widget.VerticalTextView
                         android:id="@+id/month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                         android:gravity="center_horizontal"
                         />
 
-                    <com.wingjay.jianshi.ui.view.VerticalTextView
+                    <com.wingjay.jianshi.ui.widget.VerticalTextView
                         android:id="@+id/day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                         android:gravity="center_horizontal"
                         />
 
-                    <com.wingjay.jianshi.ui.view.RedPointView
+                    <com.wingjay.jianshi.ui.widget.RedPointView
                         android:id="@+id/writer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                         app:text="@string/write"
                         />
 
-                    <com.wingjay.jianshi.ui.view.RedPointView
+                    <com.wingjay.jianshi.ui.widget.RedPointView
                         android:id="@+id/reader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -102,8 +102,16 @@
         android:layout_marginRight="@dimen/red_circle_size"
         >
 
-        <com.wingjay.jianshi.ui.view.DayChooser
+        <com.wingjay.jianshi.ui.widget.DayChooser
             android:id="@+id/day_chooser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+
+        <com.wingjay.jianshi.ui.widget.ThreeLinePoemView
+            android:id="@+id/three_line_poem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

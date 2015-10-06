@@ -16,8 +16,8 @@ import com.wingjay.jianshi.data.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.view.MultipleRowTextView;
-import com.wingjay.jianshi.ui.view.RedPointView;
+import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
+import com.wingjay.jianshi.ui.widget.RedPointView;
 
 import butterknife.InjectView;
 

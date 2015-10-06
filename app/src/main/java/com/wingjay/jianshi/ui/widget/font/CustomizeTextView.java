@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.ui.view.font;
+package com.wingjay.jianshi.ui.widget.font;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -2,9 +2,11 @@ package com.wingjay.jianshi.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.global.JianShiApplication;
 
 import org.joda.time.DateTime;
 
@@ -27,13 +29,29 @@ public class StringByTime {
         DEFAULT(-1, -1);
         private int startHour, endHour;
 
+        private static TimeRange[] timeRanges;
+        static {
+            timeRanges = new TimeRange[8];
+            timeRanges[0] = MORNING;
+            timeRanges[1] = BEFORENOON;
+            timeRanges[2] = NOON;
+            timeRanges[3] = AFTERNOON;
+            timeRanges[4] = NIGHT;
+            timeRanges[5] = EVENING;
+            timeRanges[6] = MIDNIGHT;
+            timeRanges[7] = DEFAULT;
+        }
         TimeRange(int startHour, int endHour) {
             this.startHour = startHour;
             this.endHour = endHour;
         }
 
+        public static TimeRange getTypeByIndex(int index) {
+            return timeRanges[index];
+        }
+
         public boolean contains(int currentHour) {
-            return startHour < currentHour && currentHour <= endHour;
+            return startHour <= currentHour && currentHour < endHour;
         }
 
         public static TimeRange getType(int currentHour) {
@@ -56,46 +74,46 @@ public class StringByTime {
         }
     }
 
-    private static Map<TimeRange, Integer> editContentHintdataSet;
-    private static Map<TimeRange, Integer> editTitleHintdataSet;
+    private static Map<TimeRange, String> editContentHintDataSet;
+    private static Map<TimeRange, String> editTitleHintDataSet;
+    private static Map<TimeRange, String> threeLinePoemDataSet;
     static {
-        editContentHintdataSet = new HashMap<>();
-        editContentHintdataSet.put(TimeRange.MORNING, R.string.edit_content_hint_morning);
-        editContentHintdataSet.put(TimeRange.BEFORENOON, R.string.edit_content_hint_before_noon);
-        editContentHintdataSet.put(TimeRange.NOON, R.string.edit_content_hint_noon);
-        editContentHintdataSet.put(TimeRange.AFTERNOON, R.string.edit_content_hint_after_noon);
-        editContentHintdataSet.put(TimeRange.NIGHT, R.string.edit_content_hint_night);
-        editContentHintdataSet.put(TimeRange.EVENING, R.string.edit_content_hint_evening);
-        editContentHintdataSet.put(TimeRange.MIDNIGHT, R.string.edit_content_hint_midnight);
-        editContentHintdataSet.put(TimeRange.DEFAULT, R.string.edit_content_hint);
+        Context context = JianShiApplication.getInstance().getApplicationContext();
+        Resources resources = context.getResources();
 
-        editTitleHintdataSet = new HashMap<>();
-        editTitleHintdataSet.put(TimeRange.MORNING, R.string.edit_title_hint_morning);
-        editTitleHintdataSet.put(TimeRange.BEFORENOON, R.string.edit_title_hint_before_noon);
-        editTitleHintdataSet.put(TimeRange.NOON, R.string.edit_title_hint_noon);
-        editTitleHintdataSet.put(TimeRange.AFTERNOON, R.string.edit_title_hint_after_noon);
-        editTitleHintdataSet.put(TimeRange.NIGHT, R.string.edit_title_hint_night);
-        editTitleHintdataSet.put(TimeRange.EVENING, R.string.edit_title_hint_evening);
-        editTitleHintdataSet.put(TimeRange.MIDNIGHT, R.string.edit_title_hint_midnight);
-        editTitleHintdataSet.put(TimeRange.DEFAULT, R.string.edit_title_hint);
+        editContentHintDataSet = new HashMap<>();
+        String[] editContentHintArray = resources.getStringArray(R.array.edit_content_hint_array);
+
+        editTitleHintDataSet = new HashMap<>();
+        String[] editTitleHintArray = resources.getStringArray(R.array.edit_title_hint_array);
+
+        threeLinePoemDataSet = new HashMap<>();
+        String[] threeLinePoemArray = resources.getStringArray(R.array.three_line_poem_array);
+
+        for (int i=0; i<8; i++) {
+            editContentHintDataSet.put(TimeRange.getTypeByIndex(i), editContentHintArray[i]);
+            editTitleHintDataSet.put(TimeRange.getTypeByIndex(i), editTitleHintArray[i]);
+            threeLinePoemDataSet.put(TimeRange.getTypeByIndex(i), threeLinePoemArray[i]);
+        }
     }
 
-    private static String getStringFromDataset(Map<TimeRange, Integer> dataSet,
-                                               Resources resources) {
+    private static String getStringFromDataset(Map<TimeRange, String> dataSet) {
         DateTime now = new DateTime();
         int currentHour = now.getHourOfDay();
-        return resources.getString(dataSet.get(TimeRange.getType(currentHour)));
+        return dataSet.get(TimeRange.getType(currentHour));
     }
 
-    public static String getEditContentHintByNow(Context context) {
-        Resources resources = context.getResources();
-        return getStringFromDataset(editContentHintdataSet, resources);
+    public static String getEditContentHintByNow() {
+        return getStringFromDataset(editContentHintDataSet);
     }
 
-    public static String getEditTitleHintByNow(Context context) {
-        Resources resources = context.getResources();
-        return getStringFromDataset(editTitleHintdataSet, resources);
+    public static String getEditTitleHintByNow() {
+        return getStringFromDataset(editTitleHintDataSet);
     }
 
-
+    public static String[] getThreeLinePoemArrayByNow() {
+        String poemString = getStringFromDataset(threeLinePoemDataSet);
+        Context context = JianShiApplication.getInstance().getApplicationContext();
+        return StringUtil.split(poemString, context.getResources().getString(R.string.three_line_string_split));
+    }
 }

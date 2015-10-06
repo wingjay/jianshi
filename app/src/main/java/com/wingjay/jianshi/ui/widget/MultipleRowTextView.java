@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.ui.view;
+package com.wingjay.jianshi.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.util.DisplayUtil;
 
 /**
  * Created by wingjay on 10/4/15.
@@ -54,16 +55,16 @@ public class MultipleRowTextView extends View {
         TypedArray typedArray = context.getTheme()
                 .obtainStyledAttributes(attrs, R.styleable.MultipleRowTextView, 0, 0);
         try {
-            int textSizeSp = typedArray.getInt(R.styleable.MultipleRowTextView_textSize, 18);
-            mFontSize = sp2px(context, textSizeSp);
+            float textSizePixel = typedArray.getDimension(
+                    R.styleable.MultipleRowTextView_multiRowTextSize,
+                    getResources().getDimension(R.dimen.normal_text_size));
+            int textSizeSp = DisplayUtil.px2sp(context, textSizePixel);
+            mFontSize = DisplayUtil.sp2px(context, textSizeSp);
         } finally {
             typedArray.recycle();
         }
     }
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
-    }
+
     //设置文字
     public final void setText(String text) {
         this.text=text;

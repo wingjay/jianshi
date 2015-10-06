@@ -91,8 +91,8 @@ public class EditActivity extends BaseActivity {
             }
         });
 
-        title.setHint(StringByTime.getEditTitleHintByNow(EditActivity.this));
-        content.setHint(StringByTime.getEditContentHintByNow(EditActivity.this));
+        title.setHint(StringByTime.getEditTitleHintByNow());
+        content.setHint(StringByTime.getEditContentHintByNow());
     }
 
     private void saveDiary() {

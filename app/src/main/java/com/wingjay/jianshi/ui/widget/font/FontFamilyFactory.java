@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.ui.view.font;
+package com.wingjay.jianshi.ui.widget.font;
 
 /**
  * Created by wingjay on 10/3/15.

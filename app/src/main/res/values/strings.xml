@@ -43,23 +43,67 @@
     <string name="feedback_email_prefix">Hi,亲爱的简诗开发者们!\n&#160;&#160;&#160;&#160;我希望向亲们提出如下意见：</string>
     <string name="send_email">发送邮件</string>
     <string name="email_client_no_found">未找到任何邮箱客户端，请安装</string>
+    <string name="please_choose_day">请选择日期</string>
+    <string name="please_choose_month">请选择月份</string>
+    <string name="illegal_choose_date">你所选择的日期不合法</string>
 
-    <string name="edit_content_hint_morning">美好的一天，给自己写句鼓励吧&#8230;</string>
-    <string name="edit_content_hint_before_noon">给精彩的一天作个计划吧&#8230;</string>
-    <string name="edit_content_hint_noon">宁静的午后，文字相伴&#8230;</string>
-    <string name="edit_content_hint_after_noon">午后，来杯咖啡，写写文字&#8230;</string>
-    <string name="edit_content_hint_night">落日余晖，是否感慨&#8230;</string>
-    <string name="edit_content_hint_evening">深夜了，心事诉于此&#8230;</string>
-    <string name="edit_content_hint_midnight">亲爱的，明天见&#8230;</string>
-    <string name="edit_content_hint_error">@string/edit_content_hint</string>
+    <string-array name="edit_content_hint_array">
+        <item>美好的一天，给自己写句鼓励吧&#8230;</item>
+        <item>给精彩的一天作个计划吧&#8230;</item>
+        <item>宁静的午后，文字相伴&#8230;</item>
+        <item>午后，来杯咖啡，写写文字&#8230;</item>
+        <item>落日余晖，是否感慨&#8230;</item>
+        <item>深夜了，心事诉于此&#8230;</item>
+        <item>亲爱的，明天见&#8230;</item>
+        <item>@string/edit_content_hint</item>
+    </string-array>
+    <string-array name="edit_title_hint_array">
+        <item>清晨</item>
+        <item>上午</item>
+        <item>午间</item>
+        <item>午后</item>
+        <item>落日</item>
+        <item>夜深</item>
+        <item>晚安</item>
+        <item>@string/edit_title_hint</item>
+    </string-array>
 
-    <string name="edit_title_hint_morning">清晨</string>
-    <string name="edit_title_hint_before_noon">上午</string>
-    <string name="edit_title_hint_noon">午间</string>
-    <string name="edit_title_hint_after_noon">午后</string>
-    <string name="edit_title_hint_night">落日</string>
-    <string name="edit_title_hint_evening">夜深</string>
-    <string name="edit_title_hint_midnight">晚安</string>
-    <string name="edit_title_hint_error">@string/edit_title_hint</string>
+    <!--three-line poems, use ',' to split into a three-line poem -->
+    <string name="three_line_poem_default">
+        白纸。黑字-一堆-醒着的历史
+    </string>
+    <string-array name="three_line_poem_array">
+        <item>
+            日出江花红胜火-春来江水绿如蓝-能不忆江南？
+        </item>
+        <item>
+            白纸。黑字-一堆-醒着的历史
+        </item>
+        <item>
+            春色三分-二分尘土-一分流水
+        </item>
+        <item>
+            滿眼遊絲兼落絮-紅杏開時-一霎清明雨。
+        </item>
+        <item>
+            单身这场旅行-走得太远-忘了归路
+        </item>
+        <item>
+            流浪的-鳥-何處是歸巢
+        </item>
+        <item>
+            转朱阁-低绮户-照无眠。
+        </item>
+        <item>
+            @string/three_line_poem_default
+        </item>
+    </string-array>
+    <string name="three_line_string_split">-</string>
+
+    <string-array name="three_line_poem_array_2">
+        泥泥泞泞的小路-淅淅沥沥的雨声-山村的灯火依然通红
+        墙里秋千墙外道。墙外行人，墙里佳人笑。
+        云雾簇拥,高高在上-令平原仰首翘望-一只雄鹰正展翅高飞
+    </string-array>
 
 </resources>

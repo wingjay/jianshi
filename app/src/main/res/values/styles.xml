@@ -25,6 +25,12 @@
         <item name="android:textSize">@dimen/huge_text_size</item>
     </style>
 
+    <style name="ThreeLinePoemTextStyle" parent="TextStyle">
+        <item name="android:textColor">@color/text_bg</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
     <style name="EditTextStyle" parent="TextStyle">
         <item name="android:background">@android:color/transparent</item>
     </style>

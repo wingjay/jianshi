@@ -13,14 +13,14 @@
         android:gravity="center"
         >
 
-        <com.wingjay.jianshi.ui.view.VerticalTextView
+        <com.wingjay.jianshi.ui.widget.VerticalTextView
             android:id="@+id/max_day_chooser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/DayChooserTextStyle"
             />
 
-        <com.wingjay.jianshi.ui.view.font.CustomizeTextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/max_day_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:gravity="center"
         >
 
-        <com.wingjay.jianshi.ui.view.VerticalTextView
+        <com.wingjay.jianshi.ui.widget.VerticalTextView
             android:id="@+id/mid_day_chooser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             />
 
 
-        <com.wingjay.jianshi.ui.view.font.CustomizeTextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/DayChooserUnitStyle"
@@ -67,14 +67,14 @@
         android:gravity="center"
         >
 
-        <com.wingjay.jianshi.ui.view.VerticalTextView
+        <com.wingjay.jianshi.ui.widget.VerticalTextView
             android:id="@+id/min_day_chooser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/DayChooserTextStyle"
             />
 
-        <com.wingjay.jianshi.ui.view.font.CustomizeTextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/DayChooserUnitStyle"

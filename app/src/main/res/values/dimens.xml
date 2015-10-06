@@ -5,6 +5,7 @@
 
     <dimen name="super_huge_text_size">40sp</dimen>
     <dimen name="huge_text_size">28sp</dimen>
+    <dimen name="big_text_size">22sp</dimen>
     <dimen name="normal_text_size">18sp</dimen>
     <dimen name="small_text_size">16sp</dimen>
 
