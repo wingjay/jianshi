@@ -72,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:multiRowTextBold="true"
+                android:paddingBottom="@dimen/super_huge_text_size"
                 app:multiRowTextSize="@dimen/huge_text_size"
                 />
 
