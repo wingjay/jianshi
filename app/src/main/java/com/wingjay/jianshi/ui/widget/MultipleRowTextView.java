@@ -60,6 +60,11 @@ public class MultipleRowTextView extends View {
                     getResources().getDimension(R.dimen.normal_text_size));
             int textSizeSp = DisplayUtil.px2sp(context, textSizePixel);
             mFontSize = DisplayUtil.sp2px(context, textSizeSp);
+
+            boolean bold = typedArray.getBoolean(R.styleable.MultipleRowTextView_multiRowTextBold, false);
+            if (bold) {
+                paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            }
         } finally {
             typedArray.recycle();
         }

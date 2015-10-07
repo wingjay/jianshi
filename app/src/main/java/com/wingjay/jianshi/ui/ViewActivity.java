@@ -39,7 +39,7 @@ public class ViewActivity extends BaseActivity {
     HorizontalScrollView horizontalScrollView;
 
     @InjectView(R.id.vertical_view_title)
-    TextView vertialTitle;
+    MultipleRowTextView verticalTitle;
 
     @InjectView(R.id.vertical_view_content)
     MultipleRowTextView verticalContent;
@@ -120,7 +120,7 @@ public class ViewActivity extends BaseActivity {
         setVisibilityByVerticalStyle();
 
         if (verticalStyle) {
-            vertialTitle.setText(titleString);
+            verticalTitle.setText(titleString);
             verticalContent.setText(contentString);
         } else {
             horizTitle.setText(titleString);

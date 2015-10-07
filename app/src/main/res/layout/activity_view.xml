@@ -67,14 +67,12 @@
                 app:multiRowTextSize="@dimen/normal_text_size"
                 />
 
-            <TextView
+            <com.wingjay.jianshi.ui.widget.MultipleRowTextView
                 android:id="@+id/vertical_view_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                style="@style/EditTextTitleStyle"
-                android:maxEms="1"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                app:multiRowTextBold="true"
+                app:multiRowTextSize="@dimen/huge_text_size"
                 />
 
         </LinearLayout>

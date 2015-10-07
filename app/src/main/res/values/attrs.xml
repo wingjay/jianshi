@@ -11,6 +11,7 @@
     </declare-styleable>
     <declare-styleable name="MultipleRowTextView">
         <attr name="multiRowTextSize" format="dimension"/>
+        <attr name="multiRowTextBold" format="boolean"/>
     </declare-styleable>
     <declare-styleable name="VerticalTextView">
         <attr name="verticalTextSize" format="dimension"/>
