@@ -3,6 +3,8 @@ package com.wingjay.jianshi.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.wingjay.jianshi.util.UpgradeUtil;
+
 /**
  * Created by wingjay on 10/4/15.
  */

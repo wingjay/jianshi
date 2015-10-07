@@ -47,6 +47,10 @@
     <string name="please_choose_month">请选择月份</string>
     <string name="illegal_choose_date">你所选择的日期不合法</string>
 
+    <!--upgrade-->
+    <string name="upgrade_title">小小的升级只为追求更好</string>
+
+
     <string-array name="edit_content_hint_array">
         <item>美好的一天，给自己写句鼓励吧&#8230;</item>
         <item>给精彩的一天作个计划吧&#8230;</item>
@@ -74,7 +78,7 @@
     </string>
     <string-array name="three_line_poem_array">
         <item>
-            日出江花红胜火-春来江水绿如蓝-能不忆江南？
+            日出江花红胜火-春来江水绿如蓝-能不忆江南
         </item>
         <item>
             白纸。黑字-一堆-醒着的历史
@@ -83,7 +87,7 @@
             春色三分-二分尘土-一分流水
         </item>
         <item>
-            滿眼遊絲兼落絮-紅杏開時-一霎清明雨。
+            滿眼遊絲兼落絮-紅杏開時-一霎清明雨
         </item>
         <item>
             单身这场旅行-走得太远-忘了归路
@@ -92,7 +96,7 @@
             流浪的-鳥-何處是歸巢
         </item>
         <item>
-            转朱阁-低绮户-照无眠。
+            转朱阁-低绮户-照无眠
         </item>
         <item>
             @string/three_line_poem_default

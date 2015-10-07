@@ -49,8 +49,19 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c" />
+        <meta-data
+            android:value="bd75c5322433a5a3cce1ce701f954376"
+            android:name="BUG_HD_SDK_GENERAL_KEY" />
+        <meta-data
+            android:name="FIR_IM_API_TOKEN"
+            android:value="692996fdf3c74790a99affa9a3a528fb"/>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
 </manifest>

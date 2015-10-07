@@ -12,12 +12,14 @@ import java.util.Observable;
  */
 public class BasePrefs extends Observable {
 
+    protected Context context;
     private final static String PREFS_NAME = "PREFS_NAME";
     private static final String KEY_TIME_MODIFIED = "timeModified";
 
     protected final SharedPreferences preferences;
 
     public BasePrefs(Context context) {
+        this.context = context;
         // get child prefs name by reflection
         BasePrefs me = BasePrefs.this;
         Class c = me.getClass();

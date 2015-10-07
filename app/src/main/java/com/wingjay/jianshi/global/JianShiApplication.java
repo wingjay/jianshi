@@ -2,13 +2,13 @@ package com.wingjay.jianshi.global;
 
 import android.app.Application;
 import android.content.ContentResolver;
-import android.content.Context;
-import android.provider.Settings;
 import android.provider.Settings.Secure;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.wingjay.jianshi.db.DbOpenHepler;
+
+import im.fir.sdk.FIR;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -39,11 +39,11 @@ public class JianShiApplication extends Application {
 
     @Override
     public void onCreate() {
+        FIR.init(this);
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
         instance = this;
     }
-
 
 }

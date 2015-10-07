@@ -16,6 +16,7 @@ import com.wingjay.jianshi.ui.widget.RedPointView;
 import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.util.DateUtil;
+import com.wingjay.jianshi.util.UpgradeUtil;
 
 import org.joda.time.DateTime;
 
@@ -59,6 +60,7 @@ public class DateChooseActivity extends BaseActivity {
             day = savedInstanceState.getInt(DAY);
         } else {
             setTodayAsFullDate();
+            UpgradeUtil.checkUpgrade(DateChooseActivity.this);
         }
         updateFullDate();
 

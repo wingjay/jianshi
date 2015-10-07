@@ -16,7 +16,7 @@ repositories {
 
 def versionMajor = 1
 def versionMinor = 1
-def versionPatch = 0
+def versionPatch = 2
 
 def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
 def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
@@ -56,6 +56,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
-
+  compile 'im.fir:sdk:latest.integration'
 
 }

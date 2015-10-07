@@ -9,6 +9,8 @@ import butterknife.ButterKnife;
 
 public class BaseActivity extends AppCompatActivity {
 
+    protected boolean isVisible = false;
+
     protected String TAG = getClass().getSimpleName();
 
     @Override
@@ -32,7 +34,15 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        isVisible = true;
         Log.i(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isVisible = false;
+        Log.i(TAG, "onPause");
     }
 
     @Override
@@ -45,6 +55,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestory");
+    }
+
+    public boolean isUISafe() {
+        return isVisible;
     }
 
 }
