@@ -14,6 +14,12 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+def versionMajor = 1
+def versionMinor = 1
+def versionPatch = 0
+
+def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
+def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 
 android {
   compileSdkVersion 21
@@ -23,8 +29,8 @@ android {
     applicationId "com.wingjay.jianshi"
     minSdkVersion 15
     targetSdkVersion 21
-    versionCode 1
-    versionName "1.0"
+    versionCode baseVersionCode
+    versionName "${baseVersionName}"
   }
   buildTypes {
     release {
