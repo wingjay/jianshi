@@ -41,7 +41,12 @@ public class JianShiApplication extends Application {
     public void onCreate() {
         FIR.init(this);
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+        final Fabric fabric = new Fabric.Builder(this)
+                .kits(new Crashlytics())
+                .debuggable(true)
+                .build();
+        Fabric.with(fabric);
+        //Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
         instance = this;
     }
