@@ -6,6 +6,9 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
 
+# 推荐
+1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
+
 # 更新
 # 2015-10-07
 1. 更换主界面的日期选择为随时间变化的三行小诗；
