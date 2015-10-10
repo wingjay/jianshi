@@ -159,7 +159,9 @@ public class MultipleRowTextView extends View {
         if(mLineWidth==0){
             float[] widths = new float[1];
             paint.getTextWidths("正", widths);//获取单个汉字的宽度
-            mLineWidth = (int) Math.ceil( (widths[0] * 2) * 1.1 +2 );
+            float[] space = new float[1];
+            paint.getTextWidths(" ", space);
+            mLineWidth = (int) Math.ceil( (widths[0] + space[0]) * 1.1 + 2 );
         }
 
         FontMetrics fm = paint.getFontMetrics();

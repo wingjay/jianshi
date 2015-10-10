@@ -56,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/normal_text_size"
+            android:layout_marginBottom="@dimen/normal_text_size"
             android:orientation="horizontal"
             >
 
             <com.wingjay.jianshi.ui.widget.MultipleRowTextView
                 android:id="@+id/vertical_view_content"
-                android:layout_width="500dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/super_huge_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 app:multiRowTextSize="@dimen/normal_text_size"
                 />
 
@@ -72,7 +72,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:multiRowTextBold="true"
-                android:paddingBottom="@dimen/super_huge_text_size"
                 app:multiRowTextSize="@dimen/huge_text_size"
                 />
 
