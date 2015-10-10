@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,31 +20,38 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:exported="false">
         </activity>
         <activity
             android:name=".ui.DateChooseActivity"
-            android:label="@string/title_activity_date_choose" >
+            android:label="@string/title_activity_date_choose"
+            android:exported="false">
         </activity>
         <activity
             android:name=".ui.EditActivity"
-            android:label="@string/title_activity_edit" >
+            android:label="@string/title_activity_edit"
+            android:exported="false">
         </activity>
         <activity
             android:name=".ui.DiaryListActivity"
-            android:label="@string/title_activity_diary_list" >
+            android:label="@string/title_activity_diary_list"
+            android:exported="false" >
         </activity>
         <activity
             android:name=".ui.base.BaseActivity"
-            android:label="@string/title_activity_base" >
+            android:label="@string/title_activity_base"
+            android:exported="false" >
         </activity>
         <activity
             android:name=".ui.ViewActivity"
-            android:label="@string/title_activity_view" >
+            android:label="@string/title_activity_view"
+            android:exported="false">
         </activity>
         <activity
             android:name=".ui.SettingActivity"
-            android:label="@string/title_activity_setting" >
+            android:label="@string/title_activity_setting"
+            android:exported="false">
         </activity>
 
         <meta-data
