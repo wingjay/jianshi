@@ -19,7 +19,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        handler.sendEmptyMessageDelayed(JUMP_TO_MAIN, 1000);
+        handler.sendEmptyMessageDelayed(JUMP_TO_MAIN, 500);
 
     }
 
