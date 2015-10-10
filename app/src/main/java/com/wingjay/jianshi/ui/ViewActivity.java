@@ -66,6 +66,7 @@ public class ViewActivity extends BaseActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(RESULT_OK);
                 Intent i = EditActivity.createIntentWithId(ViewActivity.this, diaryId);
                 startActivity(i);
                 finish();

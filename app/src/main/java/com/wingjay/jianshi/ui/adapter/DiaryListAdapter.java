@@ -1,11 +1,9 @@
 package com.wingjay.jianshi.ui.adapter;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,8 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.data.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.ui.ViewActivity;
+import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.util.ConstantUtil;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ import java.util.List;
  */
 public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.DiaryListViewHolder> {
 
-    private Context context;
-    private List<Diary> diaryList;
+    private final BaseActivity context;
+    private final List<Diary> diaryList;
 
     public class DiaryListViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,7 +40,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
         }
     }
 
-    public DiaryListAdapter(Context context, List<Diary> diaryList) {
+    public DiaryListAdapter(BaseActivity context, List<Diary> diaryList) {
         this.context = context;
         this.diaryList = diaryList;
     }
@@ -61,7 +61,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
             @Override
             public void onClick(View v) {
                 Intent i = ViewActivity.createIntent(context, d.getId());
-                context.startActivity(i);
+                context.startActivityForResult(i, ConstantUtil.REQUEST_CODE_VIEW_DIARY_FROM_LIST);
             }
         });
         final int index = i;
@@ -96,7 +96,5 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
     public int getItemCount() {
         return diaryList.size();
     }
-
-
 
 }
