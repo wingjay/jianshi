@@ -10,9 +10,11 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
 
 # 更新
+
 # 2015-10-11
 1. 新icon，New Icon;
 2. 自定义中国传统颜色作背景，User can customize background color with chinese traditional color;
+
 # 2015-10-07
 1. 更换主界面的日期选择为随时间变化的三行小诗；
 2. 支持自动检测更新；
