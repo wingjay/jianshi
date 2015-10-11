@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="RedPointView">
         <attr name="text" format="string"/>
+        <attr name="redPointViewBgColor" format="color"/>
     </declare-styleable>
     <declare-styleable name="CustomizeTextView">
         <attr name="myTextViewFontFamily" format="string"/>

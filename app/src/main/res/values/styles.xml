@@ -65,7 +65,6 @@
     </style>
 
     <style name="DiaryListDateStyle" parent="DiaryListContentStyle">
-        <item name="android:textColor">@color/light_text_gb</item>
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
 

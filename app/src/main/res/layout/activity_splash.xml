@@ -4,6 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              style="@style/NormalBg"
+             android:id="@+id/layout_container"
              tools:context="com.wingjay.jianshi.ui.SplashActivity"
     >
 

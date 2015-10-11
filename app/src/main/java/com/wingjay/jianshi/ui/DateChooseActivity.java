@@ -15,6 +15,7 @@ import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
 import com.wingjay.jianshi.ui.widget.RedPointView;
 import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
+import com.wingjay.jianshi.util.ConstantUtil;
 import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
@@ -104,7 +105,19 @@ public class DateChooseActivity extends BaseActivity {
 
     @OnClick(R.id.setting)
     void toSettingsPage(View v) {
-        startActivity(new Intent(DateChooseActivity.this, SettingActivity.class));
+        Intent intent = new Intent(DateChooseActivity.this, SettingActivity.class);
+        startActivityForResult(intent, ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE) {
+            if (resultCode == RESULT_OK) {
+                setContainerBgColorFromPrefs();
+            }
+        }
+
     }
 
     @OnClick(R.id.day)

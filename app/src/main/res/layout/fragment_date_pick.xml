@@ -7,6 +7,8 @@
     <ListView
         android:id="@+id/date_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        />
 
 </LinearLayout>

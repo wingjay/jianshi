@@ -3,6 +3,7 @@ package com.wingjay.jianshi.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
 /**
@@ -24,6 +25,16 @@ public class UserPrefs extends BasePrefs {
 
     public boolean getVerticalWrite() {
         return getBoolean(KEY_VERTICAL_WRITE, false);
+    }
+
+    private final static String KEY_GLOBAL_BACKGROUND_COLOR_RES = "global_background_color_res";
+
+    public void setBackgroundColor(int colorRes) {
+        setInt(KEY_GLOBAL_BACKGROUND_COLOR_RES, colorRes);
+    }
+
+    public int getBackgroundColor() {
+        return getInt(KEY_GLOBAL_BACKGROUND_COLOR_RES, R.color.normal_bg);
     }
 
 }

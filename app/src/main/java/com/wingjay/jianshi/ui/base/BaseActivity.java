@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+
+
+import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 
 import butterknife.ButterKnife;
 
@@ -11,6 +16,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected boolean isVisible = false;
 
+    protected View containerView;
     protected String TAG = getClass().getSimpleName();
 
     @Override
@@ -23,6 +29,20 @@ public class BaseActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.inject(this);
+
+        containerView = findViewById(R.id.layout_container);
+        setContainerBgColorFromPrefs();
+    }
+
+    protected void setContainerBgColorFromPrefs() {
+        if (containerView != null) {
+            containerView.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+        }
+    }
+    protected void setContainerBgColor(int colorRes) {
+        if (containerView != null) {
+            containerView.setBackgroundResource(colorRes);
+        }
     }
 
     @Override

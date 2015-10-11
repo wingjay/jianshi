@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.ui.widget.BgColorPickDialogFragment;
 
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
@@ -23,6 +23,9 @@ public class SettingActivity extends BaseActivity {
 
     @InjectView(R.id.send_feedback)
     View sendFeedBack;
+
+    @InjectView(R.id.customize_bg_color)
+    View customizeBgColor;
 
     UserPrefs userPrefs;
 
@@ -58,5 +61,21 @@ public class SettingActivity extends BaseActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+    @OnClick(R.id.customize_bg_color)
+    void chooseBgColor() {
+        BgColorPickDialogFragment bgColorPickDialogFragment = new BgColorPickDialogFragment();
+        bgColorPickDialogFragment.setOnBackgroundColorChangedListener(
+                new BgColorPickDialogFragment.OnBackgroundColorChangedListener() {
+            @Override
+            public void onBackgroundColorChanged(int newColorRes) {
+                SettingActivity.this.setContainerBgColor(newColorRes);
+                userPrefs.setBackgroundColor(newColorRes);
+                setResult(RESULT_OK);
+            }
+        });
+        bgColorPickDialogFragment.show(getSupportFragmentManager(), null);
+    }
+
 
 }

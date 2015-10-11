@@ -1,11 +1,21 @@
-<android.support.v7.widget.RecyclerView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/diary_list"
+    android:id="@+id/layout_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/NormalBgColor"
-    android:paddingTop="@dimen/normal_text_size"
-    tools:context="com.wingjay.jianshi.ui.DiaryListActivity"
-    />
+    >
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/diary_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/normal_text_size"
+        tools:context="com.wingjay.jianshi.ui.DiaryListActivity"
+        />
+
+</FrameLayout>
+
 

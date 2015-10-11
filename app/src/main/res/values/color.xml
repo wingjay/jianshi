@@ -14,4 +14,21 @@
     <color name="light_divider">#B8E1DD</color>
 
     <color name="text_grey">#3E4A61</color>
+
+    <!--background-->
+    <color name="zhu_qing">#789262</color>
+    <color name="chi_jin">#F2BE45</color>
+    <color name="qian_bai">#F0F0F4</color>
+    <color name="ying_bai">#E3F9FD</color>
+    <color name="su">#E0F0E9</color>
+    <color name="yue_bai">#D6ECF0</color>
+    <color name="shui_hong">#F3D3E7</color>
+    <color name="cang_huang">#519A73</color>
+    <color name="ding_xiang_se">#CCA4E3</color>
+    <color name="ai_lv">#A4E2C6</color>
+    <color name="yu_se">#7BCFA6</color>
+    <color name="huang_lu">#E29C45</color>
+    <color name="jiang_huang">#F0C239</color>
+
+
 </resources>

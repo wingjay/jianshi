@@ -37,6 +37,7 @@
     <string name="title_activity_setting">SettingActivity</string>
     <string name="user_setting">设置</string>
     <string name="vertical_reading">竖排文字阅读</string>
+    <string name="customize_background_color">更换背景颜色</string>
     <string name="support_info">支持信息</string>
     <string name="user_feedback">反馈</string>
     <string name="feedback_email_subject">关于&lt;简诗&gt;的二三意见</string>
@@ -110,4 +111,6 @@
         云雾簇拥,高高在上-令平原仰首翘望-一只雄鹰正展翅高飞
     </string-array>
 
+    <string name="please_choose_bg_color">选择你偏爱的背景颜色</string>
+    <string name="unknown_color">未知颜色</string>
 </resources>

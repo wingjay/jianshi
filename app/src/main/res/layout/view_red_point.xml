@@ -3,6 +3,7 @@
              android:layout_width="@dimen/red_circle_size"
              android:layout_height="@dimen/red_circle_size"
              android:background="@drawable/red_circle_bg"
+             android:id="@+id/red_point_container"
     >
 
     <TextView
