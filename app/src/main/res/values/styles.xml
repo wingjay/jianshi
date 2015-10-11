@@ -86,6 +86,11 @@
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
     </style>
 
+    <style name="NormalBgLeftRightPaddingWithoutColor">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
     <style name="NormalBgTopDownPadding" parent="NormalBgColor">
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
