@@ -31,7 +31,7 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 
 ![设置界面](http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![Icon](http://upload-images.jianshu.io/upload_images/281665-64ca40b35eb533c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![old Icon](http://upload-images.jianshu.io/upload_images/281665-64ca40b35eb533c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # 致谢
 [productor 一书及作者](http://producter.io/)
