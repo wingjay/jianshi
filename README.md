@@ -10,6 +10,7 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
 2. [稀土掘金 推荐](http://gold.xitu.io/entry/56209b63ddb2dd000aa2269e)
 3. [codekk推荐](http://p.codekk.com/detail/Android/wingjay/jianshi)
+4. [InfoQ Android开发周报](http://www.infoq.com/cn/news/2015/10/android-weekly-android6)
 4. [[稀土掘金日报] andriod开发新资源新干货](http://www.jianshu.com/p/db680cfa5e77)
 
 # 更新
