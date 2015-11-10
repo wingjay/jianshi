@@ -35,6 +35,7 @@ public class VerticalTextView extends CustomizeTextView {
     @Override
     public void setText(CharSequence text, BufferType type) {
         if (TextUtils.isEmpty(text)) {
+            super.setText(text, type);
             return;
         }
         StringBuffer stringBuffer = new StringBuffer();
