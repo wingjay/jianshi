@@ -1,0 +1,6 @@
+local.properties
+.idea
+.idea/*
+*.iml
+*/*.iml
+/build
