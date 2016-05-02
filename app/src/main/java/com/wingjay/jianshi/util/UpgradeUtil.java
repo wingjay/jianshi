@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 
-import im.fir.sdk.FIR;
 import im.fir.sdk.callback.VersionCheckCallback;
 import im.fir.sdk.version.AppVersion;
 
@@ -37,24 +36,8 @@ public class UpgradeUtil {
                     displayUpgradeDialog(context, appVersion);
                 }
             }
-
-            @Override
-            public void onFail(String s, int i) {
-            }
-
-            @Override
-            public void onError(Exception e) {
-            }
-
-            @Override
-            public void onStart() {
-            }
-
-            @Override
-            public void onFinish() {
-            }
         };
-        FIR.checkForUpdateInFIR(firToken, callback);
+//        FIR.checkForUpdateInFIR(firToken, callback);
     }
 
     private static void displayUpgradeDialog(final Context context, final AppVersion appVersion) {

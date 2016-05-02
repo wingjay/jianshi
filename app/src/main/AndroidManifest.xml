@@ -62,7 +62,7 @@
             android:name="BUG_HD_SDK_GENERAL_KEY" />
         <meta-data
             android:name="FIR_IM_API_TOKEN"
-            android:value="692996fdf3c74790a99affa9a3a528fb"/>
+            android:value="9e6ab47d3c83ce0765cdc2f0696a3da5"/>
 
     </application>
 

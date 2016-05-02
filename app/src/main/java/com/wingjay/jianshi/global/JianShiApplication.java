@@ -8,7 +8,6 @@ import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.wingjay.jianshi.db.DbOpenHepler;
 
-import im.fir.sdk.FIR;
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -39,7 +38,7 @@ public class JianShiApplication extends Application {
 
     @Override
     public void onCreate() {
-        FIR.init(this);
+//        FIR.init(this);
         super.onCreate();
         final Fabric fabric = new Fabric.Builder(this)
                 .kits(new Crashlytics())
