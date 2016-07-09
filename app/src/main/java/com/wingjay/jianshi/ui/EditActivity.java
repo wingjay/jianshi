@@ -22,24 +22,18 @@ import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.util.LanguageUtil;
 import com.wingjay.jianshi.util.StringByTime;
 
-import butterknife.InjectView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class EditActivity extends BaseActivity {
 
     public final static String DATE_TIME = "datetime";
     public final static String DIARY_ID = "diaryId";
 
-    @InjectView(R.id.edit_title)
-    EditText title;
-
-    @InjectView(R.id.edit_content)
-    EditText content;
-
-    @InjectView(R.id.edit_save)
-    View save;
-
-    @InjectView(R.id.edit_scroll_view)
-    ScrollView scrollView;
+    @BindView(R.id.edit_title) EditText title;
+    @BindView(R.id.edit_content) EditText content;
+    @BindView(R.id.edit_save) View save;
+    @BindView(R.id.edit_scroll_view) ScrollView scrollView;
 
     private long dateSeconds;
     private long diaryId;
@@ -51,6 +45,8 @@ public class EditActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        ButterKnife.bind(this);
 
         final Intent intent = getIntent();
         dateSeconds = intent.getLongExtra(DATE_TIME, 0);

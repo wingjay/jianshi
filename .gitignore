@@ -1,3 +1,4 @@
+.gradle
 .gradle/*
 
 local.properties
@@ -6,3 +7,5 @@ local.properties
 *.iml
 */*.iml
 /build
+
+*.iml

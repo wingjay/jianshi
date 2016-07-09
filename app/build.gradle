@@ -8,6 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'io.fabric'
 
 repositories {
@@ -22,40 +23,40 @@ def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
 def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 
 android {
-  compileSdkVersion 21
-  buildToolsVersion "21.1.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
 
-  defaultConfig {
-    applicationId "com.wingjay.jianshi"
-    minSdkVersion 15
-    targetSdkVersion 21
-    versionCode baseVersionCode
-    versionName "${baseVersionName}"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    defaultConfig {
+        applicationId "com.wingjay.jianshi"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode baseVersionCode
+        versionName "${baseVersionName}"
     }
-  }
-  packagingOptions {
-    exclude 'META-INF/LICENSE.txt'
-    exclude 'META-INF/NOTICE.txt'
-  }
-
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.android.support:appcompat-v7:22.2.0'
-  compile 'com.android.support:cardview-v7:21.0.+'
-  compile 'com.android.support:recyclerview-v7:21.0.+'
-  compile 'joda-time:joda-time:2.3'
-  compile 'com.jakewharton:butterknife:6.0.0'
-  compile 'com.facebook.stetho:stetho:1.2.0'
-  compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
-    transitive = true;
-  }
-  compile 'im.fir:sdk:latest.integration@aar'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:cardview-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'joda-time:joda-time:2.3'
+    compile 'com.jakewharton:butterknife:8.1.0'
+    compile 'com.facebook.stetho:stetho:1.2.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
+        transitive = true;
+    }
+    compile 'im.fir:sdk:latest.integration@aar'
 
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
 }

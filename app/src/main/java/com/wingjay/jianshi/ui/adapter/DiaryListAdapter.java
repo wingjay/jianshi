@@ -19,6 +19,9 @@ import com.wingjay.jianshi.util.ConstantUtil;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by wingjay on 9/30/15.
  */
@@ -29,14 +32,15 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
 
     public class DiaryListViewHolder extends RecyclerView.ViewHolder {
 
-        public View diaryItem;
-        public TextView title, content, date;
+        @BindView(R.id.diary_item) View diaryItem;
+        @BindView(R.id.item_diary_title) TextView title;
+        @BindView(R.id.item_diary_content) TextView content;
+        @BindView(R.id.item_diary_date) TextView date;
+
         public DiaryListViewHolder(View itemView) {
             super(itemView);
-            diaryItem = itemView.findViewById(R.id.diary_item);
-            title = (TextView) itemView.findViewById(R.id.item_diary_title);
-            content = (TextView) itemView.findViewById(R.id.item_diary_content);
-            date = (TextView) itemView.findViewById(R.id.item_diary_date);
+
+            ButterKnife.bind(this, itemView);
         }
     }
 

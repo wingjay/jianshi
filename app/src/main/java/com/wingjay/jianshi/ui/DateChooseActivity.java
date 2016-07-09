@@ -1,10 +1,8 @@
 package com.wingjay.jianshi.ui;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.R;
@@ -13,7 +11,6 @@ import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
 import com.wingjay.jianshi.ui.widget.RedPointView;
-import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.util.ConstantUtil;
 import com.wingjay.jianshi.util.DateUtil;
@@ -21,7 +18,7 @@ import com.wingjay.jianshi.util.UpgradeUtil;
 
 import org.joda.time.DateTime;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DateChooseActivity extends BaseActivity {
@@ -30,23 +27,12 @@ public class DateChooseActivity extends BaseActivity {
     private final static String MONTH = "month";
     private final static String DAY = "day";
 
-    @InjectView(R.id.year)
-    VerticalTextView yearTextView;
-
-    @InjectView(R.id.month)
-    VerticalTextView monthTextView;
-
-    @InjectView(R.id.day)
-    VerticalTextView dayTextView;
-
-    @InjectView(R.id.writer)
-    RedPointView writerView;
-
-    @InjectView(R.id.reader)
-    RedPointView readerView;
-
-    @InjectView(R.id.day_chooser)
-    DayChooser dayChooser;
+    @BindView(R.id.year) VerticalTextView yearTextView;
+    @BindView(R.id.month) VerticalTextView monthTextView;
+    @BindView(R.id.day) VerticalTextView dayTextView;
+    @BindView(R.id.writer) RedPointView writerView;
+    @BindView(R.id.reader) RedPointView readerView;
+    @BindView(R.id.day_chooser) DayChooser dayChooser;
 
     private volatile int year, month, day;
 
