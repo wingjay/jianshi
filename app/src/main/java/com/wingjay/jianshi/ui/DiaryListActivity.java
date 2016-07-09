@@ -16,15 +16,14 @@ import com.wingjay.jianshi.util.ConstantUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class DiaryListActivity extends BaseActivity {
 
     private final List<Diary> diaryList = new ArrayList<>();
     private DiaryListAdapter adapter;
 
-    @InjectView(R.id.diary_list)
-    RecyclerView diaryListView;
+    @BindView(R.id.diary_list) RecyclerView diaryListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,20 +12,16 @@ import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.BgColorPickDialogFragment;
 
-import butterknife.InjectView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity {
 
-    @InjectView(R.id.vertical_write)
-    SwitchCompat verticalWrite;
-
-    @InjectView(R.id.send_feedback)
-    View sendFeedBack;
-
-    @InjectView(R.id.customize_bg_color)
-    View customizeBgColor;
+    @BindView(R.id.vertical_write) SwitchCompat verticalWrite;
+    @BindView(R.id.send_feedback) View sendFeedBack;
+    @BindView(R.id.customize_bg_color) View customizeBgColor;
 
     UserPrefs userPrefs;
 
@@ -33,6 +29,9 @@ public class SettingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        ButterKnife.bind(this);
+
         userPrefs = new UserPrefs(SettingActivity.this);
 
         verticalWrite.setChecked(userPrefs.getVerticalWrite());

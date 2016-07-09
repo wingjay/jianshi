@@ -19,30 +19,17 @@ import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.RedPointView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class ViewActivity extends BaseActivity {
 
-    @InjectView(R.id.view_edit)
-    RedPointView edit;
-
-    @InjectView(R.id.hori_container)
-    ScrollView verticalScrollView;
-
-    @InjectView(R.id.view_title)
-    TextView horizTitle;
-
-    @InjectView(R.id.view_content)
-    TextView horizContent;
-
-    @InjectView(R.id.vertical_container)
-    HorizontalScrollView horizontalScrollView;
-
-    @InjectView(R.id.vertical_view_title)
-    MultipleRowTextView verticalTitle;
-
-    @InjectView(R.id.vertical_view_content)
-    MultipleRowTextView verticalContent;
+    @BindView(R.id.view_edit) RedPointView edit;
+    @BindView(R.id.hori_container) ScrollView verticalScrollView;
+    @BindView(R.id.view_title) TextView horizTitle;
+    @BindView(R.id.view_content) TextView horizContent;
+    @BindView(R.id.vertical_container) HorizontalScrollView horizontalScrollView;
+    @BindView(R.id.vertical_view_title) MultipleRowTextView verticalTitle;
+    @BindView(R.id.vertical_view_content) MultipleRowTextView verticalContent;
 
     private long diaryId;
     private boolean verticalStyle = false;
