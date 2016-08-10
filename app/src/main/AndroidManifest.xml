@@ -20,11 +20,6 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".ui.DateChooseActivity"
             android:label="@string/title_activity_date_choose"
             android:exported="false">
         </activity>

@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case JUMP_TO_MAIN:
-                    context.startActivity(new Intent(context, DateChooseActivity.class));
+                    context.startActivity(new Intent(context, MainActivity.class));
                     context.finish();
             }
             super.handleMessage(msg);

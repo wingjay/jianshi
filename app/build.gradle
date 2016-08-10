@@ -8,6 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'io.fabric'
 
 repositories {
@@ -59,5 +60,8 @@ dependencies {
     transitive = true;
   }
   compile 'im.fir:sdk:latest.integration@aar'
-
+  // apt command comes from the android-apt plugin
+  apt 'com.google.dagger:dagger-compiler:2.5'
+  compile 'com.google.dagger:dagger:2.5'
+  provided 'javax.annotation:jsr250-api:1.0'
 }
