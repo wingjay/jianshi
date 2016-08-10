@@ -45,7 +45,6 @@ public class JianShiApplication extends Application {
                 .debuggable(true)
                 .build();
         Fabric.with(fabric);
-        //Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
         instance = this;
     }
