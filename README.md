@@ -6,6 +6,10 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
 
+# 开发计划
+1. Integrate Dagger Retrofit2 OkHttp3 RxJava etc.   -> `Finished`
+2. Build server side framework. Using `LeanCloud` & `Python`  -> `OnGoing`
+
 # 推荐
 1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
 2. [稀土掘金 推荐](http://gold.xitu.io/entry/56209b63ddb2dd000aa2269e)
