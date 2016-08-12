@@ -47,7 +47,7 @@ public class JianShiApplication extends Application {
     super.onCreate();
 
     appComponent = DaggerAppComponent.builder()
-        .appModule(new AppModule())
+        .appModule(new AppModule(JianShiApplication.this))
         .build();
 
     final Fabric fabric = new Fabric.Builder(this)

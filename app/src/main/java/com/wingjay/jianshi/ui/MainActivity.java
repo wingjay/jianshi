@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
@@ -17,6 +19,8 @@ import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
 import org.joda.time.DateTime;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -47,9 +51,13 @@ public class MainActivity extends BaseActivity {
 
   private volatile int year, month, day;
 
+  @Inject
+  UserService userService;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    JianShiApplication.getInstance().getAppComponent().inject(MainActivity.this);
 
     setContentView(R.layout.activity_main);
 
