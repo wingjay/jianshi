@@ -1,8 +1,0 @@
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/WriterTextStyle"
-    android:text="@string/write"
-    android:background="@drawable/red_circle_bg"
-    xmlns:android="http://schemas.android.com/apk/res/android"/>
