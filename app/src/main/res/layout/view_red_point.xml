@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="@dimen/red_circle_size"
+             android:layout_height="@dimen/red_circle_size"
+             android:background="@drawable/red_circle_bg"
+             android:id="@+id/red_point_container"
+    >
+
+    <TextView
+        android:id="@+id/pointer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/small_text_size"
+        android:text="@string/write"
+        />
+
+</FrameLayout>
