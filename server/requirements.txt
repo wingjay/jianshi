@@ -1,0 +1,5 @@
+gevent>=1.0.2
+gevent-websocket>=0.9.5
+leancloud-sdk>=1.0.9
+Flask>=0.10.1
+Flask-Sockets>=0.1
