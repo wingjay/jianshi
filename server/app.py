@@ -16,6 +16,6 @@ def index():
 
 @app.route('/get_json')
 def get_json():
-    json_data = jsonify(v=2, data='new feature')
+    json_data = jsonify(v=2, data='jianshi server')
     return json_data
 

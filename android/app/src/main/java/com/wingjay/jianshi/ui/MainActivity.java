@@ -2,11 +2,13 @@ package com.wingjay.jianshi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
@@ -24,6 +26,9 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
 
@@ -58,6 +63,26 @@ public class MainActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     JianShiApplication.getInstance().getAppComponent().inject(MainActivity.this);
+
+    userService.getJsonTest()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<JsonDataResponse>() {
+          @Override
+          public void onCompleted() {
+            Log.d("jaydebug", "onCompleted");
+          }
+
+          @Override
+          public void onError(Throwable e) {
+            Log.d("jaydebug", "onError");
+          }
+
+          @Override
+          public void onNext(JsonDataResponse jsonDataResponse) {
+            Log.d("jaydebug", "json data:" + jsonDataResponse.getData());
+          }
+        });
 
     setContentView(R.layout.activity_main);
 
