@@ -1,6 +1,11 @@
 package com.wingjay.jianshi.network;
 
+import com.wingjay.jianshi.data.Diary;
+
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -9,4 +14,12 @@ import rx.Observable;
 public interface UserService {
   @GET("get_json")
   Observable<JsonDataResponse> getJsonTest();
+
+  @FormUrlEncoded
+  @POST("diary")
+  Observable<JsonDataResponse<Diary>> createDiary(@Field(Diary.TITLE) String title,
+                                                  @Field(Diary.CONTENT) String content,
+                                                  @Field(Diary.CREATED_TIME) long createdTime,
+                                                  @Field(Diary.DEVICE_ID) String deviceId);
+
 }

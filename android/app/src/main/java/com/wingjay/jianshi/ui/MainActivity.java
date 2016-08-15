@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.data.Diary;
+import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
@@ -18,6 +19,7 @@ import com.wingjay.jianshi.ui.widget.RedPointView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.util.ConstantUtil;
 import com.wingjay.jianshi.util.DateUtil;
+import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
 import org.joda.time.DateTime;
@@ -26,6 +28,7 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import dagger.internal.Preconditions;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -81,6 +84,32 @@ public class MainActivity extends BaseActivity {
           @Override
           public void onNext(JsonDataResponse jsonDataResponse) {
             Log.d("jaydebug", "json data:" + jsonDataResponse.getData());
+          }
+        });
+
+    Diary diary = DbUtil.getDiary(1);
+    Preconditions.checkNotNull(diary);
+//    Log.d("jaydebug", "diary 1: " + diary.getTitle() + ", " + diary.getContent() + ", id " + diary.getId() +
+//     ", device_id " + diary.getDeviceId() + ", createTime: " + diary.getCreatedTime() + ", modified " + diary.getModifiedTime()
+//     + ", DELETE " + diary.getDeleted());
+    userService.createDiary(diary.getTitle(), diary.getContent(), diary.getCreatedTime(), diary.getDeviceId())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<JsonDataResponse<Diary>>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+            Log.d("jaydebug", "create diary Error");
+          }
+
+          @Override
+          public void onNext(JsonDataResponse<Diary> diaryJsonDataResponse) {
+            Log.d("jaydebug", "create diary data: " + diaryJsonDataResponse.getData().getTitle() + ", "
+              + diaryJsonDataResponse.getData().getContent());
           }
         });
 

@@ -4,9 +4,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.data.Diary;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.util.FullDateManager;
 
 /**
  * Created by wingjay on 9/30/15.
@@ -47,13 +47,36 @@ public class DbUtil {
         return (rowChanged > 0) ? diaryId : rowChanged;
     }
 
-    public static Cursor getDiary(long id) {
+    public static Diary getDiary(long id) {
+      Cursor cursor = getDiaryCursor(id);
+      if (cursor.getCount() != 1) {
+        return null;
+      }
+      Diary diary = null;
+      if (cursor.moveToFirst()) {
+        diary = new Diary();
+        do {
+          diary.setId(cursor.getLong(cursor.getColumnIndexOrThrow(Diary._ID)));
+          diary.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Diary.TITLE)));
+          diary.setContent(cursor.getString(cursor.getColumnIndexOrThrow(Diary.CONTENT)));
+          diary.setDeviceId(cursor.getString(cursor.getColumnIndexOrThrow(Diary.DEVICE_ID)));
+          diary.setDeleted(cursor.getInt(cursor.getColumnIndexOrThrow(Diary.DELETED)));
+          diary.setCreatedTime(cursor.getLong(cursor.getColumnIndexOrThrow(Diary.CREATED_TIME)));
+          diary.setModifiedTime(cursor.getLong(cursor.getColumnIndexOrThrow(Diary.MODIFIED_TIME)));
+        } while (cursor.moveToNext());
+      }
+
+      return diary;
+    }
+
+    public static Cursor getDiaryCursor(long id) {
         String where = Diary._ID + "=" + String.valueOf(id);
         String sortOrder = Diary.CREATED_TIME;
         Cursor cursor;
         synchronized (object) {
             SQLiteDatabase db = dbOpenHepler.getReadableDatabase();
-            cursor = db.query(Diary.getTableName(), new String[]{Diary.TITLE, Diary.CONTENT,
+            cursor = db.query(Diary.getTableName(),
+                new String[]{Diary._ID, Diary.TITLE, Diary.CONTENT, Diary.DELETED, Diary.DEVICE_ID,
                     Diary.CREATED_TIME, Diary.MODIFIED_TIME}, where, null, null, null, sortOrder);
         }
         return cursor;

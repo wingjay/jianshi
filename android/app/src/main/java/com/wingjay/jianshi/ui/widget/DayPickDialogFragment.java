@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wingjay.jianshi.FullDateManager;
+import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.R;
 
 import org.joda.time.DateTime;

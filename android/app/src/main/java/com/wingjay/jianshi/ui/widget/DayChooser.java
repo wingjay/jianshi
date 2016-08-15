@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.wingjay.jianshi.FullDateManager;
+import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.R;
 
 /**

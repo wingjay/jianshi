@@ -3,7 +3,6 @@ package com.wingjay.jianshi.util;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.wingjay.jianshi.FullDateManager;
 import com.wingjay.jianshi.R;
 
 /**

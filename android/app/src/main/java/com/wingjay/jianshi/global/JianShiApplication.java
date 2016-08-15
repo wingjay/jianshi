@@ -34,7 +34,7 @@ public class JianShiApplication extends Application {
     if (dbOpenHepler == null ||
           dbOpenHepler.getReadableDatabase().getVersion() < DbOpenHepler.DB_VAERION) {
       dbOpenHepler =
-        new DbOpenHepler(getApplicationContext(), DbOpenHepler.DN_NAME, DbOpenHepler.DB_VAERION);
+        new DbOpenHepler(getApplicationContext(), DbOpenHepler.DB_NAME, DbOpenHepler.DB_VAERION);
     }
     return dbOpenHepler;
   }

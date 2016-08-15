@@ -3,7 +3,6 @@ package com.wingjay.jianshi.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by wingjay on 9/30/15.
@@ -11,7 +10,7 @@ import android.util.Log;
 public class DbOpenHepler extends SQLiteOpenHelper {
 
     public final static int DB_VAERION = 2;
-    public final static String DN_NAME = "jianshi";
+    public final static String DB_NAME = "jianshi";
 
     private final String CREATE_TABLE_DIARY_1 = "create table if not exists diary " +
             "(id integer primary key autoincrement," +

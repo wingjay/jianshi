@@ -38,6 +38,8 @@ android {
     release {
       minifyEnabled true // enable proguard
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+      buildConfigField "String", "BASE_URL", '"http://wingjay-dev2.leanapp.cn/"'
     }
 
     debug {
@@ -45,8 +47,7 @@ android {
       minifyEnabled false
 
       signingConfig signingConfigs.debug
-
-      buildConfigField "String", "BASE_URL", '"http://wingjay-dev2.leanapp.cn/"'
+      buildConfigField "String", "BASE_URL", '"http://192.168.0.100:3000/"'
     }
   }
   packagingOptions {

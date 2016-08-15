@@ -78,7 +78,7 @@ public class ViewActivity extends BaseActivity {
     }
 
     private void loadDiary() {
-        Cursor cursor = DbUtil.getDiary(diaryId);
+        Cursor cursor = DbUtil.getDiaryCursor(diaryId);
         if (cursor.getCount() != 1) {
             finish();
         }

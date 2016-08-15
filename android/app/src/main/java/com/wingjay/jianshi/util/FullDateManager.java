@@ -1,4 +1,4 @@
-package com.wingjay.jianshi;
+package com.wingjay.jianshi.util;
 
 import android.util.Log;
 
