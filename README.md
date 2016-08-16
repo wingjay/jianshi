@@ -1,6 +1,6 @@
 #  简诗
 
-A beautiful app 简诗 for recording anything in your life with traditional Chinese style.
+A beautiful app 简诗(Android + Server) for recording anything in your life with traditional Chinese style.
 
 # 博客
 
@@ -8,7 +8,8 @@ A beautiful app 简诗 for recording anything in your life with traditional Chin
 
 # 开发计划
 1. Integrate Dagger Retrofit2 OkHttp3 RxJava etc.   -> `Finished`
-2. Build server side framework. Using `LeanCloud` & `Python`  -> `OnGoing`
+2. Build server side framework. Using `LeanCloud` & `Python`  -> `Finished`
+3. Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework
 
 # 推荐
 1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
