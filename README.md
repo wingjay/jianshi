@@ -2,6 +2,8 @@
 
 A beautiful app 简诗(Android + Server) for recording anything in your life with traditional Chinese style.
 
+一款传统中国风app，包括Android端和Server端，对 美 和 全栈技术 有追求的小伙伴欢迎关注。
+
 # 博客
 
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
