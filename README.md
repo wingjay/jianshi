@@ -2,6 +2,8 @@
 
 A beautiful app 简诗(Android + Server) for recording anything in your life with traditional Chinese style.
 
+一款传统中国风app，包括Android端和Server端，对 美 和 全栈技术 有追求的小伙伴欢迎关注。
+
 # 博客
 
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
@@ -29,20 +31,18 @@ A beautiful app 简诗(Android + Server) for recording anything in your life wit
 2. 支持自动检测更新；
 
 # 介绍
-![new icon](http://upload-images.jianshu.io/upload_images/281665-ed11aa9d8f7377a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="http://upload-images.jianshu.io/upload_images/281665-ed11aa9d8f7377a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-![介绍页](http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-![主界面](http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-![支持`左右滑动`的竖排方式浏览](http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-![支持`上下滑动`的横排方式浏览](http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
+<img src="http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-![设置界面](http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![old Icon](http://upload-images.jianshu.io/upload_images/281665-64ca40b35eb533c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # 致谢
 [productor 一书及作者](http://producter.io/)
