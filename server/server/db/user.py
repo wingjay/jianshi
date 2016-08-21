@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # coding: utf-8
 
+from server import app
+
 import pymysql
 import pymysql.cursors
 from flask import Flask, g
@@ -14,9 +16,10 @@ def _conn():
                              cursorclass=pymysql.cursors.DictCursor)
 
 def _get_conn():
-	if not hasattr(g, 'db_conn'):
-		g.db_conn=_conn()
-	return g.db_conn
+	with app.app_context():
+		if not hasattr(g, 'db_conn'):
+			g.db_conn=_conn()
+		return g.db_conn
 
 def init_db():
 	"""Initializes the database."""

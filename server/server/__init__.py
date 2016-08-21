@@ -4,6 +4,7 @@ from flask import Flask, g
 import pymysql
 import pymysql.cursors
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -77,6 +78,3 @@ def get_user():
 def get_user_by_id(id):
     return "get user from db by id" + id
 
-
-if __name__ == "__main__":
-    app.run()
