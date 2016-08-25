@@ -1,6 +1,4 @@
-import time
-
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -18,16 +16,25 @@ def hello():
 def get():
     return "get function works Jianshi"
 
-@app.route("/user", methods=['GET'])
-def create_user(email, password):
-	return db_user.create_user(email, password)
 
+@app.route("/user/signup", methods=['POST'])
+def signup():
+	data = request.form.to_dict()
+	return db_user.create_user(data['email'], data['password'])
+
+
+@app.route("/user/login", methods=['POST'])
+def login():
+	data = request.form.to_dict()
+	return db_user.login(data['email'], data['password'])	
 
 def get_user():
 	return db_user.get_user()	
 
 def get_user_by_id(id):
     return "get user from db by id" + id
+
+
 
 
 

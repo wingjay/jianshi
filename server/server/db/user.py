@@ -3,11 +3,12 @@
 
 import time
 
-from server import app
-
 import pymysql
 import pymysql.cursors
 from flask import Flask, g
+
+from server import app
+from server.util import safetyutils
 
 # @app.route("/user")
 # def user():
@@ -42,6 +43,9 @@ def init_db():
 		print _get_conn().close()
 
 def create_user(email, password):
+	if email is None or password is None:
+		return False
+	password = safetyutils.get_hash_password(password)
 	conn = _get_conn(pymysql.cursors.DictCursor)
 	time_created = int(time.time())
 	try:
@@ -54,7 +58,24 @@ def create_user(email, password):
 		conn.close()	
 
 
-def get_user():
+def login(email, password):
+	if email is None or password is None:
+		return False
+	conn = _get_conn(pymysql.cursors.DictCursor)
+	try:
+		with conn.cursor() as cursor:
+			sql = "select * from `User` where `email` = %s "
+			cursor.execute(sql, (str(email)))
+			_user = cursor.fetchone()
+			if not _user:
+				return False
+			else:
+				return safetyutils.verify_hash_password(_user['password'], password)	
+	finally:
+		conn.close()
+
+
+def get_user(user_id):
 	try:
 		with _get_conn().cursor() as cursor:
 			sql = "select * from User"
