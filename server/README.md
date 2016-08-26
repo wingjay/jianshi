@@ -10,8 +10,8 @@
 
 ## 开发日志：
 
-1. 2016/08/15: 采用LeanCloud搭建环境，能够从在线服务器返回json结果。
+- 2016/08/25: 完成基本signup／login功能
+- 2016/08/16: 由于LeanCloud对于数据库操作限制较多，未来决定采用自建服务器和数据库的方式来继续。在本地Mac OS X搭建环境 Apache + MySQL + WSGI module。目前已经能够在本地访问 http://jay.local/get ，直接通过wsgi进入到flask的环境中，并接受读取json返回结果。
+- 2016/08/15: 采用LeanCloud搭建环境，能够从在线服务器返回json结果。
 
 
-
-2. 2016/08/16: 由于LeanCloud对于数据库操作限制较多，未来决定采用自建服务器和数据库的方式来继续。在本地Mac OS X搭建环境 Apache + MySQL + WSGI module。目前已经能够在本地访问 http://jay.local/get ，直接通过wsgi进入到flask的环境中，并接受读取json返回结果。
