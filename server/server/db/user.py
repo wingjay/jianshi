@@ -28,12 +28,21 @@ def _get_conn(cursorclass=pymysql.cursors.Cursor):
 			g.db_conn=_conn(cursorclass)
 		return g.db_conn
 
+def clear_user_table():
+	try:
+		with _get_conn().cursor() as cursor:
+			sql = "drop table `User`"
+			cursor.execute(sql)
+		
+	finally:
+		_get_conn().close()	
+
 def init_db():
 	"""Initializes the database."""
 	try:
 		with _get_conn().cursor() as cursor:
 			# execute schema sql file
-			with app.open_resource('schema/0001/user.sql', mode='r') as f:
+			with app.open_resource('db/schema/0001/user.sql', mode='r') as f:
 				sql = f.read()
 				print sql
 				result = cursor.execute(sql)
@@ -42,30 +51,34 @@ def init_db():
 	finally:
 		print _get_conn().close()
 
-def create_user(email, password):
-	if email is None or password is None:
+def create_user(name, password):
+	if name is None or password is None:
 		return False
+	name_hash = abs(hash(name))	
 	password = safetyutils.get_hash_password(password)
 	conn = _get_conn(pymysql.cursors.DictCursor)
 	time_created = int(time.time())
+	new_user_id = -1
 	try:
 		with conn.cursor() as cursor:
-			sql = "insert into `User` (`email`, `password`, `time_created`, `time_modified`) values (%s, %s, %s, %s)"
-			cursor.execute(sql, (str(email), str(password), str(time_created), '0'))
-		
+			sql = "insert into `User` (`name`, `name_hash`, `password`, `time_created`, `time_modified`) values (%s, %s, %s, %s, %s)"
+			result = cursor.execute(sql, (str(name), str(name_hash), str(password), str(time_created), '0'))
+			new_user_id = cursor.lastrowid
+
 		conn.commit()
 	finally:
-		conn.close()	
+		conn.close()
+		return new_user_id
 
 
-def login(email, password):
-	if email is None or password is None:
+def login(name, password):
+	if name is None or password is None:
 		return False
 	conn = _get_conn(pymysql.cursors.DictCursor)
 	try:
 		with conn.cursor() as cursor:
-			sql = "select * from `User` where `email` = %s "
-			cursor.execute(sql, (str(email)))
+			sql = "select * from `User` where `name` = %s "
+			cursor.execute(sql, (str(name)))
 			_user = cursor.fetchone()
 			if not _user:
 				return False
@@ -75,16 +88,28 @@ def login(email, password):
 		conn.close()
 
 
-def get_user(user_id):
+def delete_user(user_id):
+	"""Delete user."""
+	conn = _get_conn(pymysql.cursors.DictCursor)
 	try:
-		with _get_conn().cursor() as cursor:
-			sql = "select * from User"
-			print sql
-			print cursor.execute(sql)
-			data = cursor.fetchall()
-			for d in data:
-				print d
+		with conn.cursor() as cursor:
+			sql = "delete from `User` where `id` = %s"
+			cursor.execute(sql, (str(user_id)))
+
+		conn.commit()	
+	finally:
+		conn.close()
+
+
+def get_user(user_id):
+	user = None
+	conn = _get_conn(pymysql.cursors.DictCursor)
+	try:
+		with conn.cursor() as cursor:
+			sql = "select * from User where id = %s"
+			cursor.execute(sql, str(user_id))
+			user = cursor.fetchall()[0]
 		
 	finally:
-		_get_conn().close()	
-		print 'close'			
+		conn.close()
+		return user
