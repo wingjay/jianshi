@@ -16,6 +16,7 @@
 3. System level web root: `/Library/WebServer/Documents/`
 4. User level root: `~/Sites`, the configuration location is `/etc/apache2`
 5. Enable `vitural host` to run sites individually. `http://jay.local/` ——`/Users/Jay/Sites`
+6. Edit `/etc/apache2/extra/httpd-vhosts.conf`, Add `ServerAlias 192.168.*` So Computer & Genymotion will be able to use IP address to connect apache server.
 
 [Get Apache, MySQL, PHP and phpMyAdmin working on OSX 10.11 El Capitan](https://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-osx-10-11-el-capitan/)
 
