@@ -85,4 +85,10 @@ public class SignupActivity extends BaseActivity {
           }
         });
   }
+
+  @OnClick(R.id.skip_button)
+  void skip() {
+    startActivity(MainActivity.createIntent(SignupActivity.this));
+    finish();
+  }
 }
