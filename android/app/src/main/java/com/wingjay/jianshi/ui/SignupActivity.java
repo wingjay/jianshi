@@ -49,7 +49,7 @@ public class SignupActivity extends BaseActivity {
   void signUp() {
     if (TextUtils.isEmpty(userNameEditText.getText())
         || TextUtils.isEmpty(userPasswordEditText.getText())) {
-      makeToask("Name & password shouldn't be null");
+      makeToast("Name & password shouldn't be null");
       return;
     }
     userService.signup(userNameEditText.getText().toString(), userPasswordEditText.getText().toString())
@@ -62,7 +62,7 @@ public class SignupActivity extends BaseActivity {
 
           @Override
           public void onError(Throwable e) {
-            makeToask("Please check your network status");
+            makeToast("Please check your network status");
           }
 
           @Override
@@ -78,9 +78,9 @@ public class SignupActivity extends BaseActivity {
               UserPrefs userPrefs = new UserPrefs(SignupActivity.this);
               userPrefs.setAuthToken(user.getEncryptedToken());
               userPrefs.setUser(user);
-              makeToask("Welcome to JianShi, ENJOY!");
+              makeToast("Welcome to JianShi, ENJOY!");
             } else {
-              makeToask("Looks our server meet some problems, try again later!");
+              makeToast("Looks our server meet some problems, try again later!");
             }
           }
         });

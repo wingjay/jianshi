@@ -84,7 +84,7 @@ public class BaseActivity extends AppCompatActivity {
     return isVisible;
   }
 
-  protected void makeToask(@NonNull String content) {
+  protected void makeToast(@NonNull String content) {
     Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
   }
 }
