@@ -13,7 +13,7 @@ import rx.Observable;
  * Created by Jay on 8/10/16.
  */
 public interface UserService {
-  @GET("get_json")
+  @GET("get")
   Observable<JsonDataResponse> getJsonTest();
 
   @FormUrlEncoded

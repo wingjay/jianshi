@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -14,13 +14,13 @@ def hello():
 
 @app.route("/get")
 def get():
-    return "get function works Jianshi"
+    return "get function works Jianshiasasdf"
 
 
 @app.route("/user/signup", methods=['POST'])
 def signup():
 	data = request.form.to_dict()
-	return {'rc': 1, 'data2': data}
+	return jsonify(data)
 	# return db_user.create_user(data['email'], data['password'])
 
 
