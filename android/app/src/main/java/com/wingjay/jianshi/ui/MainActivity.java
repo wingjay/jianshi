@@ -1,5 +1,6 @@
 package com.wingjay.jianshi.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -181,4 +182,12 @@ public class MainActivity extends BaseActivity {
     outState.putInt(DAY, day);
     super.onSaveInstanceState(outState);
   }
+
+  public static Intent createIntent(Context context) {
+    Intent intent = new Intent(context, MainActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK |
+        Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    return intent;
+  }
+
 }

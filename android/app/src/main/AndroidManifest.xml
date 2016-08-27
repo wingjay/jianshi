@@ -48,6 +48,8 @@
             android:label="@string/title_activity_setting"
             android:exported="false">
         </activity>
+        <activity android:name=".ui.SignupActivity"
+                  android:exported="false"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"

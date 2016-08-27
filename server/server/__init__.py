@@ -20,7 +20,8 @@ def get():
 @app.route("/user/signup", methods=['POST'])
 def signup():
 	data = request.form.to_dict()
-	return db_user.create_user(data['email'], data['password'])
+	return {'rc': 1, 'data2': data}
+	# return db_user.create_user(data['email'], data['password'])
 
 
 @app.route("/user/login", methods=['POST'])
