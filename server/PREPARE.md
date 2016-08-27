@@ -192,7 +192,17 @@ Add as below:
    from server import app as application
    ```
 
-4. configure apache vhost `/etc/apache2/extra/httpd-vhosts.conf`
+4. support Auto-Reload source code when changes happen. Refer to [Reloading Source Code](http://modwsgi.readthedocs.io/en/develop/user-guides/reloading-source-code.html) Firstly, Create monitor module (directory) and put content into its `__init__.py`; Then Edit `jianshi.wsgi`:
+  ```python
+  sys.path.insert(0, "/Users/Jay/projects/jianshi/")
+
+  import os
+  import monitor
+  monitor.start(interval=1.0)
+  monitor.track(os.path.join(os.path.dirname(__file__), 'site.cf'))
+  ```
+
+5. configure apache vhost `/etc/apache2/extra/httpd-vhosts.conf`
 
    ```py
    <VirtualHost *:80>
