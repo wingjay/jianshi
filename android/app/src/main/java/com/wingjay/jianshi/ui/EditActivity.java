@@ -16,7 +16,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.data.Diary;
+import com.wingjay.jianshi.bean.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.util.LanguageUtil;

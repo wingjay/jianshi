@@ -1,6 +1,7 @@
 package com.wingjay.jianshi.network;
 
-import com.wingjay.jianshi.data.Diary;
+import com.wingjay.jianshi.bean.Diary;
+import com.wingjay.jianshi.bean.User;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -21,5 +22,10 @@ public interface UserService {
                                                   @Field(Diary.CONTENT) String content,
                                                   @Field(Diary.CREATED_TIME) long createdTime,
                                                   @Field(Diary.DEVICE_ID) String deviceId);
+
+  @FormUrlEncoded
+  @POST("user/signup")
+  Observable<JsonDataResponse<User>> signup(@Field("name") String name,
+                                            @Field("password") String password);
 
 }

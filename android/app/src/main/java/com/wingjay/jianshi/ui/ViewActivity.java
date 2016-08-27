@@ -12,7 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.data.Diary;
+import com.wingjay.jianshi.bean.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;

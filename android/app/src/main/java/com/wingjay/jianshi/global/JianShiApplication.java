@@ -39,7 +39,7 @@ public class JianShiApplication extends Application {
     return dbOpenHepler;
   }
 
-  private AppComponent appComponent;
+  private static AppComponent appComponent;
 
   @Override
   public void onCreate() {
@@ -59,7 +59,7 @@ public class JianShiApplication extends Application {
     instance = this;
   }
 
-  public AppComponent getAppComponent() {
+  public static AppComponent getAppComponent() {
     return appComponent;
   }
 

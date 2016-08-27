@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.data;
+package com.wingjay.jianshi.bean;
 
 import com.google.gson.annotations.SerializedName;
 import com.wingjay.jianshi.util.FullDateManager;

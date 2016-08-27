@@ -1,6 +1,7 @@
 package com.wingjay.jianshi.di;
 
 import com.wingjay.jianshi.ui.MainActivity;
+import com.wingjay.jianshi.ui.SignupActivity;
 
 import javax.inject.Singleton;
 
@@ -14,4 +15,7 @@ import dagger.Component;
 public interface AppComponent {
 
   void inject(MainActivity obj);
+
+  void inject(SignupActivity obj);
+
 }

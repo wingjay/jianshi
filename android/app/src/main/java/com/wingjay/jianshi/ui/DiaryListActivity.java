@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.data.Diary;
+import com.wingjay.jianshi.bean.Diary;
 import com.wingjay.jianshi.db.DbUtil;
 import com.wingjay.jianshi.ui.adapter.DiaryListAdapter;
 import com.wingjay.jianshi.ui.base.BaseActivity;

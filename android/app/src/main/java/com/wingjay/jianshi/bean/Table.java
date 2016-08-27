@@ -1,4 +1,4 @@
-package com.wingjay.jianshi.data;
+package com.wingjay.jianshi.bean;
 
 /**
  * Created by wingjay on 9/30/15.

@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    JianShiApplication.getInstance().getAppComponent().inject(MainActivity.this);
+    JianShiApplication.getAppComponent().inject(MainActivity.this);
 
     setContentView(R.layout.activity_main);
 
