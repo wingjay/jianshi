@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.User;
+import com.wingjay.jianshi.di.ForApplication;
+
+import javax.inject.Inject;
 
 /**
  * Created by wingjay on 10/4/15.
@@ -16,7 +19,8 @@ public class UserPrefs extends BasePrefs {
   //// TODO: 8/27/16 (wingjay) Make it Injectable 
   public final static String PREFS_NAME = "userPrefs";
 
-  public UserPrefs(Context context) {
+  @Inject
+  public UserPrefs(@ForApplication Context context) {
     super(context);
   }
 

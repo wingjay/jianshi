@@ -1,8 +1,11 @@
 package com.wingjay.jianshi.di;
 
+import android.content.Context;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.network.GlobalRequestInterceptor;
 import com.wingjay.jianshi.network.UserService;
 
 import java.util.concurrent.TimeUnit;
@@ -31,12 +34,19 @@ public class AppModule {
   }
 
   @Provides
+  @ForApplication
+  Context provideApplicationContext() {
+    return jianShiApplication;
+  }
+
+  @Provides
   @Singleton
-  OkHttpClient provideOkHttpClient() {
+  OkHttpClient provideOkHttpClient(GlobalRequestInterceptor globalRequestInterceptor) {
     OkHttpClient.Builder builder = new OkHttpClient.Builder()
         .connectionPool(new ConnectionPool(5, 59, TimeUnit.SECONDS))
         .connectTimeout(20, TimeUnit.SECONDS)
         .readTimeout(20, TimeUnit.SECONDS)
+        .addInterceptor(globalRequestInterceptor)
         .retryOnConnectionFailure(false);
     if (BuildConfig.DEBUG) {
       builder.addNetworkInterceptor(new StethoInterceptor());
