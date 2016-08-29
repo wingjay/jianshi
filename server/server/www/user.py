@@ -26,9 +26,6 @@ def mobile_request(func):
     			# token is valid, but maybe user is deleted
     			raise errors.UserNotFound()
 
-        print 'start'
-        kwargs['user_id'] = 20
-        print kwargs
     	return func(**kwargs)
     return wrapped	
 
@@ -39,8 +36,14 @@ def hello222(user_id, **kwargs):
     return "This is www layer for user"
 
 
+@app.route("/test/token", methods=['GET', 'POST'])
+@mobile_request
+def testToken(user_id, **kwargs):
+	return user_id
+
+
 @app.route("/user/signup", methods=['POST'])
-def signup(user_id, **kwargs):
+def signup(**kwargs):
 	data = request.form.to_dict()
 	if 'name' not in data or 'password' not in data:
 		return jsonify(rc=1, msg='Both name & password should not be null')
@@ -49,7 +52,7 @@ def signup(user_id, **kwargs):
 
 
 @app.route("/user/login", methods=['POST'])
-def login(user_id, **kwargs):
+def login(**kwargs):
 	data = request.form.to_dict()
 	return db_user.login(data['email'], data['password'])	
 
