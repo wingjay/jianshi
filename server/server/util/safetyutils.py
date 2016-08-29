@@ -24,7 +24,13 @@ def encrypt_auth_token(user_id):
 
 
 def decrypt_auth_token_for_user_id(encrypted_token):
-	return decrypt_obj(encrypted_token, AUTH_TOKEN_ENCRYPT_KEY)[0]
+	return decrypt_auth_token(encrypted_token)[0]
+
+
+def decrypt_auth_token(encrypted_token):
+    """Decrypt authToken and return (user_id, create_time)
+    """
+    return decrypt_obj(encrypted_token, AUTH_TOKEN_ENCRYPT_KEY)
 
 
 def encrypt_obj(obj, key=default_key):
