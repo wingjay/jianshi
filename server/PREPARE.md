@@ -142,6 +142,8 @@ Add as below:
     
     WSGIDaemonProcess jay.local processes=2 threads=15 display-name=%{GROUP}
     WSGIProcessGroup jay.local
+    WSGIPassAuthorization On 
+
     WSGIScriptAlias / /Users/Jay/Sites/testapp/testapp.wsgi
     <Directory "/Users/Jay/Sites/testapp">
         Require all granted
@@ -151,6 +153,9 @@ Add as below:
     CustomLog "/private/var/log/apache2/jay.local-access_log" common
 </VirtualHost>
 ```
+
+[WSGIPassAuthorization](http://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIPassAuthorization.html) is used to pass client http headers `Authorization` to server application. Default off, means it will STOP `Authorization` going forward to server application. So we need to Turn on it.
+
 
 #### 5. Restart Apache and Test
 
