@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 import com.wingjay.jianshi.util.DisplayUtil;
 
 /**
@@ -68,6 +69,9 @@ public class MultipleRowTextView extends View {
         } finally {
             typedArray.recycle();
         }
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+                "fonts/" + FontFamilyFactory.getDefaultFontFamily());
+        setTypeface(typeface);
     }
 
     //设置文字

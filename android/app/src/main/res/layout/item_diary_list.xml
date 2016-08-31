@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
     >
 
     <RelativeLayout
@@ -13,16 +13,16 @@
         style="@style/PressableBg"
         >
 
-        <TextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/item_diary_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/DiaryListTitleStyle"
-            android:singleLine="true"
+            android:maxLines="1"
             android:ellipsize="end"
             />
 
-        <TextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/item_diary_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,13 +32,13 @@
             android:ellipsize="end"
             />
 
-        <TextView
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/item_diary_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_diary_content"
             style="@style/DiaryListDateStyle"
-            android:singleLine="true"
+            android:maxLines="1"
             android:gravity="end"
             android:layout_marginTop="@dimen/small_text_size"
             />

@@ -42,10 +42,12 @@ public class CustomizeEditText extends EditText {
     }
 
     private void initTypeFace() {
-        String fontPath = "fonts/" + getFontName();
-        setTypeFaceByPath(fontPath);
+        if (FontFamilyFactory.getTypeface() != null) {
+            setTypeface(FontFamilyFactory.getTypeface());
+        }
     }
 
+    @Deprecated
     private void setTypeFaceByPath(String fontPath) {
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontPath);
         setTypeface(typeface);
