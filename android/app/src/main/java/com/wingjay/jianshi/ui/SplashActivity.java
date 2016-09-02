@@ -22,7 +22,7 @@ public class SplashActivity extends BaseActivity {
     setContentView(R.layout.activity_splash);
 
 
-    handler.sendEmptyMessageDelayed(JUMP_TO_NEXT, 500);
+    handler.sendEmptyMessageDelayed(JUMP_TO_NEXT, 2000);
 
   }
 

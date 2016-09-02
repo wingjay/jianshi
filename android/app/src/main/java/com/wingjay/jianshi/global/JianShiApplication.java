@@ -10,6 +10,7 @@ import com.wingjay.jianshi.db.DbOpenHepler;
 import com.wingjay.jianshi.di.AppComponent;
 import com.wingjay.jianshi.di.AppModule;
 import com.wingjay.jianshi.di.DaggerAppComponent;
+import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -57,6 +58,7 @@ public class JianShiApplication extends Application {
     Fabric.with(fabric);
     Stetho.initializeWithDefaults(this);
     instance = this;
+    FontFamilyFactory.init(this).subscribe();
   }
 
   public static AppComponent getAppComponent() {
