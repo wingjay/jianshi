@@ -1,33 +1,9 @@
-import functools
-
 from flask import request, jsonify
 
 from server import app
+from server.www.base import mobile_request
 from server.logic import user as logic_user
 from server.data import errors
-
-def mobile_request(func):
-    @functools.wraps(func)
-    def wrapped(*args, **kwargs):
-    	# put all parameters into kwargs
-    	kwargs = kwargs if kwargs else {'testkey': 'testvalue'}
-    	if request.args: # get param
-    		kwargs.update(request.args.to_dict())
-    	if request.form: # post param
-    		kwargs.update(request.form.to_dict())
-    	#todo: request.files & request.data
-    	if request.headers.get('Authorization'):
-    		encrypted_token = request.headers.get('Authorization')
-    		isValid, user_id = logic_user.is_token_valid(encrypted_token)
-    		if not isValid:
-    			raise errors.AuthTokenInvalid()
-    		user = logic_user.get_user_by_id(user_id)
-    		if not user:
-    			# token is valid, but maybe user is deleted
-    			raise errors.UserNotFound()
-
-    	return func(**kwargs)
-    return wrapped	
 
 
 @app.route("/www/index")
@@ -38,22 +14,26 @@ def hello222(user_id, **kwargs):
 
 @app.route("/test/token", methods=['GET', 'POST'])
 @mobile_request
-def testToken(user_id, **kwargs):
-	return user_id
+def test_token(user_id, **kwargs):
+    return user_id
 
 
 @app.route("/user/signup", methods=['POST'])
+@mobile_request
 def signup(**kwargs):
-	data = request.form.to_dict()
-	if 'name' not in data or 'password' not in data:
-		return jsonify(rc=1, msg='Both name & password should not be null')
-	result = logic_user.signup(data['name'], data['password'])
-	return jsonify(result)
+    if 'name' not in kwargs or 'password' not in kwargs:
+        return jsonify(rc=1, msg='Both name & password should not be null')
+    result = logic_user.signup(kwargs['name'], kwargs['password'])
+    return result
 
 
 @app.route("/user/login", methods=['POST'])
+@mobile_request
 def login(**kwargs):
-	data = request.form.to_dict()
-	return db_user.login(data['email'], data['password'])	
+    result, user = logic_user.login(kwargs['name'], kwargs['password'])
+    if result:
+        return user
+    else:
+        raise errors.UserLoginFailure()
 
 

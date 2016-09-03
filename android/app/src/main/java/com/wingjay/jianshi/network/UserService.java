@@ -28,4 +28,8 @@ public interface UserService {
   Observable<JsonDataResponse<User>> signup(@Field("name") String name,
                                             @Field("password") String password);
 
+  @FormUrlEncoded
+  @POST("user/login")
+  Observable<JsonDataResponse<User>> login(@Field("name") String name,
+                                            @Field("password") String password);
 }

@@ -80,15 +80,45 @@ public class SignupActivity extends BaseActivity {
               userPrefs.setUser(user);
               makeToast("Welcome to JianShi, ENJOY!");
             } else {
-              makeToast("Looks our server meet some problems, try again later!");
+              makeToast(userJsonDataResponse.getMsg());
             }
           }
         });
   }
 
-  @OnClick(R.id.skip_button)
-  void skip() {
-    startActivity(MainActivity.createIntent(SignupActivity.this));
-    finish();
+  @OnClick(R.id.login_button)
+  void login() {
+    userService.login(userNameEditText.getText().toString(), userPasswordEditText.getText().toString())
+        .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
+        .subscribe(new Subscriber<JsonDataResponse<User>>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+            makeToast("Please check your network status");
+          }
+
+          @Override
+          public void onNext(JsonDataResponse<User> userJsonDataResponse) {
+            if (userJsonDataResponse.getRc() == JianshiConstant.ServerResultCode.RESULT_OK) {
+              User user = userJsonDataResponse.getData();
+              if (user == null || user.getId() <= 0) {
+                throw new RuntimeException(userJsonDataResponse.getMsg());
+              } else if (TextUtils.isEmpty(user.getEncryptedToken())) {
+                throw new RuntimeException(userJsonDataResponse.getMsg());
+              }
+
+              UserPrefs userPrefs = new UserPrefs(SignupActivity.this);
+              userPrefs.setAuthToken(user.getEncryptedToken());
+              userPrefs.setUser(user);
+              makeToast("Welcome to JianShi, ENJOY!");
+            } else {
+              makeToast(userJsonDataResponse.getMsg());
+            }
+          }
+        });
   }
 }
