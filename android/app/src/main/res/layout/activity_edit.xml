@@ -7,13 +7,13 @@
                 style="@style/NormalBgLeftRightPadding"
                 tools:context="com.wingjay.jianshi.ui.EditActivity">
 
-    <EditText
+    <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_text_size"
-        style="@style/EditTextTitleStyle"
-        />
+        android:maxLines="1"
+        style="@style/EditTextTitleStyle" />
 
     <ScrollView
         android:id="@+id/edit_scroll_view"
@@ -24,7 +24,7 @@
         android:scrollbars="none"
         >
 
-        <EditText
+        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
             android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
