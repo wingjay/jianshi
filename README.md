@@ -1,6 +1,6 @@
 #  jianshi 简诗
 
-A full-stack mobile app, including Android side & Server side, Simple-Poem 简诗. You can write poem in graceful & traditional Chinese style.
+A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简诗. You can write poem in graceful & traditional Chinese style.
 
 一款优雅的中国风记录app，包括Android端和Server端。
 
@@ -32,4 +32,4 @@ A full-stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 
 # Inspired By
-[《Productor》](http://producter.io/)
+[《Producter》](http://producter.io/)
