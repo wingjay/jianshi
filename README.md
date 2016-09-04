@@ -5,7 +5,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 一款优雅的中国风记录app，包括Android端和Server端。
 
 # Development Progress
-- [Server + Android] Development for data sync between android side and server side. [OnGoing]
+- **[Server + Android] Development for data sync between android side and server side. [OnGoing] **
 - [Server + Android] Finish User managment in server side and Signup & Login flow in Android side. [2016/09/03]
 - [Server] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework [2016/08/25]
 - [Server] Build server side framework. Using `LeanCloud` & `Python`  -> `Finished` [2016/08/20]
