@@ -6,18 +6,26 @@ import pymysql.cursors
 from server import app
 
 
-def init_db():
+def _init_db(sql_file):
     """Initializes the database."""
     try:
         with get_conn().cursor() as cursor:
             # execute schema sql file
-            with app.open_resource('db/schema/0001/user.sql', mode='r') as f:
+            with app.open_resource(sql_file, mode='r') as f:
                 sql = f.read()
                 print sql
                 result = cursor.execute(sql)
                 print result
     finally:
         print get_conn().close()
+
+
+def init_user_table():
+    _init_db('db/schema/0001/user.sql')
+
+
+def init_diary_table():
+    _init_db('db/schema/0001/diary.sql')
 
 
 def _conn(cursorclass=pymysql.cursors.Cursor):

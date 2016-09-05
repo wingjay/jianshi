@@ -13,7 +13,12 @@ class AccessForbiddenError(Exception):
     rc = 403
     msg = 'Forbidden'
 
-# User releated
+
+class ArgumentShouldNotBeNull(Exception):
+    rc = 700
+    msg = 'Illegal argument given'
+
+# User related
 
 
 class AuthTokenInvalid(Exception):
@@ -44,3 +49,23 @@ class WrongPassword(Exception):
 class UserNameAlreadyUsed(Exception):
     rc = 1005
     msg = "This user name is already used. Please choose a new one if that's not yourself"
+
+# Diary related
+class InvalidUserIdDuringCreatingDiary(Exception):
+    rc = 2000
+    msg = "User Id is invalid during creating diart"
+
+
+class DiaryEmpty(Exception):
+    rc = 2001
+    msg = "The target diary is empty"
+
+
+class NotAccessForThisDiary(Exception):
+    rc = 2002
+    msg = "Not access for thie diary"
+
+
+class UpdateDiaryFailure(Exception):
+    rc = 2003
+    msg = "Update diary failure"

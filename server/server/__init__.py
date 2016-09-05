@@ -6,6 +6,7 @@ app = Flask(__name__)
 ## If you want to use 'from server import app' in your py, 
 ## you must add one line as following
 import server.www.user
+import server.db.diary
 
 @app.route("/")
 def hello():
