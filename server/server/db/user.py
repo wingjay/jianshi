@@ -5,9 +5,8 @@ import time
 
 import pymysql
 import pymysql.cursors
-from flask import Flask, g
 
-from server import app
+import server.db as base_db
 from server.util import safetyutils
 from server.data import errors
 
@@ -16,46 +15,18 @@ from server.data import errors
 # 	return "root from User, app.route works"
 
 
-def _conn(cursorclass=pymysql.cursors.Cursor):
-    return pymysql.connect(host='192.168.33.10',
-                           user='emma', password='emma',
-                           db='jianshi', charset='utf8mb4',
-                           cursorclass=cursorclass)
-
-
-def _get_conn(cursorclass=pymysql.cursors.Cursor):
-    with app.app_context():
-        if not hasattr(g, 'db_conn'):
-            g.db_conn = _conn(cursorclass)
-        return g.db_conn
-
-
 def clear_user_table():
     try:
-        with _get_conn().cursor() as cursor:
+        with base_db.get_conn().cursor() as cursor:
             sql = "drop table `User`"
             cursor.execute(sql)
     finally:
-        _get_conn().close()
-
-
-def init_db():
-    """Initializes the database."""
-    try:
-        with _get_conn().cursor() as cursor:
-            # execute schema sql file
-            with app.open_resource('db/schema/0001/user.sql', mode='r') as f:
-                sql = f.read()
-                print sql
-                result = cursor.execute(sql)
-                print result
-    finally:
-        print _get_conn().close()
+        base_db.get_conn().close()
 
 
 def check_name_existance(name):
     name_hash = abs(hash(name))
-    conn = _get_conn(pymysql.cursors.DictCursor)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
         with conn.cursor() as cursor:
             sql = "select * from User where name_hash = %s"
@@ -72,7 +43,7 @@ def create_user(name, password):
         return False
     name_hash = abs(hash(name))
     password = safetyutils.get_hash_password(password)
-    conn = _get_conn(pymysql.cursors.DictCursor)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
     time_created = int(time.time())
     new_user_id = -1
     try:
@@ -91,7 +62,7 @@ def create_user(name, password):
 def login(name, password):
     if name is None or password is None:
         return False
-    conn = _get_conn(pymysql.cursors.DictCursor)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
         with conn.cursor() as cursor:
             sql = "select * from `User` where `name` = %s "
@@ -110,7 +81,7 @@ def login(name, password):
 
 def delete_user(user_id):
     """Delete user."""
-    conn = _get_conn(pymysql.cursors.DictCursor)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
         with conn.cursor() as cursor:
             sql = "delete from `User` where `id` = %s"
@@ -123,7 +94,7 @@ def delete_user(user_id):
 
 def get_user(user_id, with_password=False):
     user = None
-    conn = _get_conn(pymysql.cursors.DictCursor)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
         with conn.cursor() as cursor:
             sql = "select * from User where id = %s"
