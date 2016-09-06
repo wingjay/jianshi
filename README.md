@@ -15,13 +15,9 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem ç®€è¯
 # Android UI 
 <img src="http://upload-images.jianshu.io/upload_images/281665-ed11aa9d8f7377a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-<img src="http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
+<img src="http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">     <img src="http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
-<img src="http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
-
-<img src="http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
-
-<img src="http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
+<img src="http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">     <img src="http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
 <img src="http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
