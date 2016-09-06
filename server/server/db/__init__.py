@@ -4,6 +4,7 @@ import pymysql
 import pymysql.cursors
 
 from server import app
+from server.conf import all as conf
 
 
 def _init_db(sql_file):
@@ -29,9 +30,11 @@ def init_diary_table():
 
 
 def _conn(cursorclass=pymysql.cursors.Cursor):
-    return pymysql.connect(host='192.168.33.10',
-                           user='emma', password='emma',
-                           db='jianshi', charset='utf8mb4',
+    return pymysql.connect(host=conf.MYSQL_LOCAL_HOST,
+                           user=conf.MYSQL_USER,
+                           password=conf.MYSQL_PASSWORD,
+                           db=conf.MYSQL_DB_NAME,
+                           charset='utf8mb4',
                            cursorclass=cursorclass)
 
 

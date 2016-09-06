@@ -6,9 +6,14 @@ from server.logic import user as logic_user
 from server.data import errors
 
 
+@app.route("/index")
+def index(**kwargs):
+    return "index"
+
+
 @app.route("/www/index")
 @mobile_request
-def hello222(user_id, **kwargs):
+def wwwhello(**kwargs):
     return "This is www layer for user"
 
 

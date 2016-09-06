@@ -50,6 +50,12 @@ class UserNameAlreadyUsed(Exception):
     rc = 1005
     msg = "This user name is already used. Please choose a new one if that's not yourself"
 
+
+class CanNotFindUserId(Exception):
+    rc = 1006
+    msg = "Cannot find your user id"
+
+
 # Diary related
 class InvalidUserIdDuringCreatingDiary(Exception):
     rc = 2000
@@ -69,3 +75,8 @@ class NotAccessForThisDiary(Exception):
 class UpdateDiaryFailure(Exception):
     rc = 2003
     msg = "Update diary failure"
+
+
+class NoAccessForOthersDiary(Exception):
+    rc = 2004
+    msg = "You have no access for other's diary"

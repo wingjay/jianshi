@@ -44,3 +44,12 @@ def mobile_request(func):
 
     return wrapped
 
+
+def must_login(func):
+    @functools.wraps(func)
+    def wrapped(*args, **kwargs):
+        if 'user_id' not in kwargs:
+            raise errors.CanNotFindUserId()
+        return func(**kwargs)
+
+    return wrapped
