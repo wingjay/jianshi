@@ -15,6 +15,8 @@
     <string name="write">撰</string>
     <string name="read">阅</string>
     <string name="setting">置</string>
+    <string name="floating">浮</string>
+    <string name="screenshot">转</string>
     <string name="day">日</string>
     <string name="month">月</string>
     <string name="year">年</string>
@@ -47,6 +49,10 @@
     <string name="please_choose_day">请选择日期</string>
     <string name="please_choose_month">请选择月份</string>
     <string name="illegal_choose_date">你所选择的日期不合法</string>
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
 
     <!--upgrade-->
     <string name="upgrade_title">小小的升级只为追求更好</string>
