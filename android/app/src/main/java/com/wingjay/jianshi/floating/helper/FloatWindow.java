@@ -21,13 +21,6 @@ import android.widget.Toast;
 
 /**
  * Created by cpb on 2016/7/1.
- * FloatWindow是一个管理类，管理floatView和playerView的转化
- * 按下返回键或ACTION_UP时playerView转化为floatView，
- * 点击floatView时会呈现出playerView，
- * 同时管理floatView的各种点击事件以及playerView按下返回键的点击事件
- *
- * 要注意service是后台服务，本身并没有界面可言，所以floatWindow承载的另一个任务是作为界面呈现
- * 界面呈现通过setContentView函数实现，其实就是获得当前的layout，在里面添加东西。
  */
 
 public class FloatWindow {

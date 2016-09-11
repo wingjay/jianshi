@@ -30,7 +30,7 @@ public class ScreenshotHelper {
 
     Bitmap thumbBmp = Bitmap.createScaledBitmap(jianshiBitmap, THUMB_SIZE, THUMB_SIZE, true);
     jianshiBitmap.recycle();
-    msg.thumbData = bmpToByteArray(thumbBmp, true);  // 设置缩略图
+    msg.thumbData = bmpToByteArray(thumbBmp, true);
 
     SendMessageToWX.Req req = new SendMessageToWX.Req();
     req.transaction = buildTransaction("img");

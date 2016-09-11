@@ -15,12 +15,5 @@
             android:src="@drawable/floatnews_rotate_logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <ImageView
-            android:contentDescription="@string/app_name"
-            android:id="@+id/float_iv_handle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/floatnews_rotate_handle"/>
     </RelativeLayout>
 </RelativeLayout>
