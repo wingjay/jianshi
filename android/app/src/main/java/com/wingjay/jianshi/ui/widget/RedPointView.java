@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 
 /**
  * Created by wingjay on 10/1/15.
@@ -24,6 +25,7 @@ public class RedPointView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.view_red_point, this);
         textView = (TextView) findViewById(R.id.pointer);
         containerView = findViewById(R.id.red_point_container);
+        textView.setTypeface(FontFamilyFactory.getTypeface());
         TypedArray typedArray = context.getTheme()
                 .obtainStyledAttributes(attrs, R.styleable.RedPointView, 0, 0);
         try {
