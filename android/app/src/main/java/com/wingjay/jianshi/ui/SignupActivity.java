@@ -114,7 +114,8 @@ public class SignupActivity extends BaseActivity {
               UserPrefs userPrefs = new UserPrefs(SignupActivity.this);
               userPrefs.setAuthToken(user.getEncryptedToken());
               userPrefs.setUser(user);
-              makeToast("Welcome to JianShi, ENJOY!");
+
+              startActivity(MainActivity.createIntent(SignupActivity.this));
             } else {
               makeToast(userJsonDataResponse.getMsg());
             }
