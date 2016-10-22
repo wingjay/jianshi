@@ -5,6 +5,7 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.wingjay.jianshi.db.JianshiDatabase;
+import com.wingjay.jianshi.util.FullDateManager;
 
 @Table(database = JianshiDatabase.class)
 public class Diary extends BaseModel{
@@ -67,5 +68,10 @@ public class Diary extends BaseModel{
 
   public void setTime_removed(long time_removed) {
     this.time_removed = time_removed;
+  }
+
+  public String getChineseCreatedTime() {
+    FullDateManager fullDateManager = new FullDateManager(time_created);
+    return fullDateManager.getFullDate();
   }
 }
