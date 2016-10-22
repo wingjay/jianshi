@@ -27,7 +27,10 @@ def test_token(user_id, **kwargs):
 @mobile_request
 def signup(**kwargs):
     if 'name' not in kwargs or 'password' not in kwargs:
-        return jsonify(rc=1, msg='Both name & password should not be null')
+        return {
+            'rc': 1,
+            'msg': 'Both name & password should not be null'
+        }
     result = logic_user.signup(kwargs['name'], kwargs['password'])
     return result
 

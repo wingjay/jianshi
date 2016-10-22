@@ -31,8 +31,8 @@ def check_name_existance(name):
         with conn.cursor() as cursor:
             sql = "select * from User where name_hash = %s"
             cursor.execute(sql, str(name_hash))
-            user = cursor.fetchall()[0]
-            return user is not None
+            user = cursor.fetchall()
+            return len(user) > 0
 
     finally:
         conn.close()
