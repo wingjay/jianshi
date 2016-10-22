@@ -19,15 +19,15 @@ public class DbOpenHepler extends SQLiteOpenHelper {
             "title string not null," +
             "content string not null," +
             "created_time long not null," +
-            "modified_time long )";
+            "modified_time long );";
 
     private static final String ADD_COLUMN_DELETE_IN_DIARY_2 =
-            "alter table diary add column deleted integer default 0 after content";
+            "alter table diary add column deleted integer default 0;";
 
     private static final String ADD_DIARY_ID_IN_DIARY_3 =
-        " alter table diary add column diary_id integer after id; " +
-        " alter table diary add column time_removed long after modified_time; " +
-        " alter table diary add column sync_dirty integer default 0 after id;";
+        " alter table diary add column diary_id integer; " +
+        " alter table diary add column time_removed long; " +
+        " alter table diary add column sync_dirty integer default 0;";
 
     private static final String[] sqlArray = new String[3];
     static {
