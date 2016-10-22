@@ -30,6 +30,8 @@
 
 Because I already has one mysql in my vituralBox, It's hard and non-sense to install another one in my computer. So I can connect to vituralBox MySQL directly.
 
+> You need to make your mysql allow to be connected from outside(your computer). You need to ssh devbox -> change /etc/mysql/my.cnf -> bind-address = 0.0.0.0 -> restart mysql: sudo service mysql restart
+
 ```mysql
 > mysql -u emma -h 192.168.33.10 -p
 > pwd: emma
