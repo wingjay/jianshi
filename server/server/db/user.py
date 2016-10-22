@@ -10,10 +10,7 @@ import server.db as base_db
 from server.util import safetyutils
 from server.data import errors
 
-# @app.route("/user")
-# def user():
-# 	return "root from User, app.route works"
-
+DB_NAME = 'User'
 
 def clear_user_table():
     try:

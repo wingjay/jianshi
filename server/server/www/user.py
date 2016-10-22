@@ -1,5 +1,3 @@
-from flask import request, jsonify
-
 from server import app
 from server.www.base import mobile_request
 from server.logic import user as logic_user

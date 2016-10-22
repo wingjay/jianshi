@@ -1,5 +1,3 @@
-from flask import request, jsonify
-
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import diary as logic_diary

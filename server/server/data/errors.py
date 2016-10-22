@@ -80,3 +80,6 @@ class UpdateDiaryFailure(Exception):
 class NoAccessForOthersDiary(Exception):
     rc = 2004
     msg = "You have no access for other's diary"
+
+
+# Sync

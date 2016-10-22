@@ -66,7 +66,8 @@ def is_token_valid(encrypted_token):
     try:
         obj = safetyutils.decrypt_auth_token(encrypted_token)
         user_id = obj[0]
-    except Exception, e:
+    except Exception as e:
+        print e
         return False, user_id
     # if user is None or expire
     if db_user.get_user(user_id) is None or (time.time() - obj[1]) > conf.AUTH_TOKEN_EXPIRE_TIME:
