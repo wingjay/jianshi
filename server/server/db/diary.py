@@ -32,6 +32,8 @@ def create_diary(user_id, uuid, title, content, time_created=None):
             cursor.execute(sql, (str(user_id), str(uuid), str(title), str(content), str(time_created), str(time_created)))
             new_diary_id = cursor.lastrowid
         conn.commit()
+    except Exception as e:
+        print e
     finally:
         conn.close()
         return new_diary_id
@@ -46,13 +48,15 @@ def get_diary_by_id(diary_id):
             cursor.execute(sql, (str(diary_id), str(0)))
             result = cursor.fetchall()
             diary = result[0] if len(result) > 0 else None
-
+    except Exception as e:
+        print e
     finally:
         conn.close()
         return diary
 
 
 def get_diary_by_uuid(uuid, user_id):
+    print 'get_diary_by_uuid uuid ', uuid, ', user_id: ', user_id
     diary = None
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
@@ -60,9 +64,10 @@ def get_diary_by_uuid(uuid, user_id):
             sql = "select * from Diary where uuid = %s and user_id = %s and time_removed = %s"
             cursor.execute(sql, (str(uuid), str(user_id), str(0)))
             result = cursor.fetchall()
-            print result
             diary = result[0] if len(result) > 0 else None
-
+            print 'diary: ', diary
+    except Exception as e:
+        print e
     finally:
         conn.close()
         return diary
@@ -78,43 +83,46 @@ def get_diary_list_since_last_sync(user_id, last_sync_time):
             cursor.execute(sql, (str(user_id), str(last_sync_time)))
             diary_list = cursor.fetchall()
             print diary_list
-
+    except Exception as e:
+        print e
     finally:
         conn.close()
         return diary_list
 
 
 def update_diary(user_id, uuid, title, content, time_modified=None):
-    if _check_access(user_id, uuid) is False:
-        return
-    if time is None:
+    if time_modified is None:
         time_modified = int(time.time())
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
     result = 0
+    print 'prepare update_diary user_id: ', user_id, ', uuid: ', uuid, 'title: ', title, ', content: ', content
     try:
         with conn.cursor() as cursor:
-            sql = "update Diary set title = %s, content = %s, time_modified = %s where uuid = %s"
-            result = cursor.execute(sql, (str(title), str(content), str(time_modified), str(uuid)))
+            sql = "update Diary set title = %s, content = %s, time_modified = %s where uuid = %s and user_id = %s"
+            print 'update!'
+            result = cursor.execute(sql, (str(title), str(content), str(time_modified), str(uuid), str(user_id)))
+        print 'update_diary result:', result
         conn.commit()
-
+    except Exception as e:
+        print e
     finally:
         conn.close()
-        if result is not 1:
+        if result != 1:
             raise errors.UpdateDiaryFailure
 
 
 def delete_diary(user_id, uuid, time_removed=None):
-    if _check_access(user_id, uuid) is False:
-        return
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
     if time_removed is None:
         time_removed = int(time.time())
     try:
         with conn.cursor() as cursor:
-            sql = "update `Diary` set time_removed = %s, time_modified = %s where `uuid` = %s"
-            cursor.execute(sql, (str(time_removed), str(time_removed), str(uuid)))
+            sql = "update `Diary` set time_removed = %s, time_modified = %s where `uuid` = %s and `user_id` = %s"
+            result = cursor.execute(sql, (str(time_removed), str(time_removed), str(uuid), str(user_id)))
+            print result
         conn.commit()
-
+    except Exception as e:
+        print e
     finally:
         conn.close()
 
@@ -139,7 +147,7 @@ def upsert_diary(user_id, uuid, data):
 
 
 def _check_access(user_id, uuid):
-    diary = get_diary_by_uuid(user_id, uuid)
+    diary = get_diary_by_uuid(uuid, user_id)
     if diary is None:
         raise errors.DiaryEmpty()
     if diary['user_id'] is not user_id:

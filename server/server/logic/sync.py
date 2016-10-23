@@ -1,6 +1,7 @@
+import time
+
 import server.db.diary as db_diary
 from server.logic import user as logic_user
-from server.data import errors
 from server.util import safetyutils
 
 
@@ -11,7 +12,7 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
      3. If need_pull: Get changed data since last_sync_time, comparing with time_modified(upsert) & time_removed(delete);
      4. Pull: return changed data to user.
 
-     sync_items = [
+    sync_items = [
         {
             'Diary': {
                 'create': {
@@ -19,51 +20,62 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
                     'time': 1477139399,
                     'title': 'this is a new diary',
                     'content': 'today is a good day',
-                }
+                },
             },
+        },
+        {
             'Diary': {
                 'update': {
-                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
-                    'time': 1477139399,
+                    'uuid': "b8f4428a-98e1-11e6-8155-a45e60dcd7ed",
+                    'time': 1477139400,
                     'title': 'I update this title',
-                    'content': 'I'm updated content',
-                }
-            },
-            'Diary': {
-                'delete': {
-                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0"
-                    'time': 1477139399,
+                    'content': 'I\'m updated content',
                 }
             }
-
+        },
+        {
+            'Diary': {
+                'delete': {
+                    'uuid': "b9000ff0-98e1-11e6-91f7-a45e60dcd7ed",
+                    'time': 1477139401,
+                }
+            }
         }
-     ]
+    ]
 
      Return:
     {
         'synced_count': 2,
         'sync_token': 'jym0JTE-svI8iDOPp-6e_UMe6dYOVVNSVes8pzZCXDd_I4xn3CYT-oyGVjaCgKgtHO' (based on new last_sync_time),
         'Diary': {
-            'delete': {
-                'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0",
-                'time': 1477139340,
-            }
-        },
-        'Diary': {
-            'update': {
-                'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
-                'time': 1477139399,
-                'title': 'I'm created by other client',
-                'content': 'I'm created by other client',
-            }
-        },
-        'Diary': {
-            'create': {
-                'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB5",
-                'time': 1477139399,
-                'title': 'I'm updated by other client',
-                'content': 'I'm updated by other client',
-            }
+            'delete': [
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0",
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                    'time': 1477139340,
+                }
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241ABC",
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                    'time': 1477139340,
+                }
+            ],
+            'upsert': [
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
+                    'time': 1477139399,
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                },
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
+                    'time': 1477139399,
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                }
+            ]
         }
      }
     """
@@ -79,8 +91,9 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
     }
     if need_pull:
         pull_data = _pull(user_id, last_sync_time)
+        result.update(pull_data)
 
-    return None
+    return result
 
 
 def _push(user_id, sync_items):
@@ -106,33 +119,51 @@ def _pull(user_id, last_sync_time):
 
     Return:
     {
-        'synced_count': 2,
         'sync_token': 'jym0JTE-svI8iDOPp-6e_UMe6dYOVVNSVes8pzZCXDd_I4xn3CYT-oyGVjaCgKgtHO' (based on new last_sync_time),
         'Diary': {
-            'delete': {
-                'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0",
-                'time': 1477139340,
-            }
-        },
-        'Diary': {
-            'update': {
-                'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
-                'time': 1477139399,
-                'title': 'I'm created by other client',
-                'content': 'I'm created by other client',
-            }
-        },
-        'Diary': {
-            'create': {
-                'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB5",
-                'time': 1477139399,
-                'title': 'I'm updated by other client',
-                'content': 'I'm updated by other client',
-            }
+            'delete': [
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0",
+                    'time': 1477139340,
+                }
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241ABC",
+                    'time': 1477139340,
+                }
+            ],
+            'upsert': [
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
+                    'time': 1477139399,
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                },
+                {
+                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
+                    'time': 1477139399,
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
+                }
+            ]
         }
      }
     """
+    result = {}
     changed_diary_list = db_diary.get_diary_list_since_last_sync(user_id, last_sync_time)
+    delete = []
+    upsert = []
+    for diary in changed_diary_list:
+        if diary.get('time_removed') == 0:
+            upsert.append(diary)
+        else:
+            delete.append(diary)
+    if len(delete):
+        result['delete'] = delete
+    if len(upsert):
+        result['upsert'] = upsert
+    new_sync_token = safetyutils.encrypt_sync_token(int(time.time()))
+    result['sync_token'] = new_sync_token
+    return result
 
 
 def _push_diary_data_by_action(user_id, action, data):
@@ -146,7 +177,8 @@ def _push_diary_data_by_action(user_id, action, data):
         'title': 'this is a new diary',
         'content': 'today is a good day',
     }
-    'delete': {
+    action:'delete'
+    data: {
         'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0"
         'time': 1477139399,
     }
@@ -154,6 +186,6 @@ def _push_diary_data_by_action(user_id, action, data):
     if action == 'create' or action == 'update':
         db_diary.upsert_diary(user_id, data.get('uuid'), data)
     elif action == 'delete':
-        db_diary.delete_diary(user_id, data.get('uuid'))
+        db_diary.delete_diary(user_id, data.get('uuid'), data.get('time'))
     else:
         return
