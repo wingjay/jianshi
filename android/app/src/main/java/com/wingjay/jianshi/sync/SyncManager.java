@@ -1,8 +1,6 @@
 package com.wingjay.jianshi.sync;
 
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -20,6 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.functions.Action1;
+import timber.log.Timber;
 
 @Singleton
 public class SyncManager {
@@ -43,7 +42,7 @@ public class SyncManager {
     syncData.add("sync_items", array);
     syncData.add("need_pull", gson.toJsonTree(1));
     syncData.add("sync_token", gson.toJsonTree(""));
-    Log.i("Sync Data", syncData.toString());
+    Timber.d("Sync Data : %s", syncData.toString());
     userService.sync(syncData)
         .compose(RxUtil.<JsonDataResponse<Object>>normalSchedulers())
         .subscribe(new Action1<JsonDataResponse<Object>>() {
@@ -54,7 +53,7 @@ public class SyncManager {
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable throwable) {
-            Log.e("sync", throwable.getMessage());
+            Timber.e(throwable, throwable.getMessage());
           }
         });
   }
