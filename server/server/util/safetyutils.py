@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 SECURE_HASH_METHOD = 'pbkdf2:sha1:1111'
 default_key = 'XjYpwIiYLbaOsU69HXUjlGRMCut88zQG'
 AUTH_TOKEN_ENCRYPT_KEY = '8G7Zg3kjhsdv23bjdalj82nh'
-SYNC_TOKEN_ENCRYPT_KEY = 'a9skSfsGS9sdfjNl2S3lsSs76'
+SYNC_TOKEN_ENCRYPT_KEY = 'a9skSfsGS9sdfjNl2S3lsSs7'
 
 
 def get_hash_password(real_password):
