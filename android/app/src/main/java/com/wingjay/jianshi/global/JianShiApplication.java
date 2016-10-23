@@ -6,6 +6,8 @@ import android.provider.Settings.Secure;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 import com.wingjay.jianshi.db.DbOpenHepler;
 import com.wingjay.jianshi.di.AppComponent;
 import com.wingjay.jianshi.di.AppModule;
@@ -59,6 +61,7 @@ public class JianShiApplication extends Application {
     Stetho.initializeWithDefaults(this);
     instance = this;
     FontFamilyFactory.init(this).subscribe();
+    FlowManager.init(new FlowConfig.Builder(this).openDatabasesOnInit(true).build());
   }
 
   public static AppComponent getAppComponent() {

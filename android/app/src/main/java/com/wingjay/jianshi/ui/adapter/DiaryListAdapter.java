@@ -1,27 +1,20 @@
 package com.wingjay.jianshi.ui.adapter;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.bean.Diary;
-import com.wingjay.jianshi.db.DbUtil;
-import com.wingjay.jianshi.ui.ViewActivity;
+import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.util.ConstantUtil;
 
 import java.util.List;
 
-/**
- * Created by wingjay on 9/30/15.
- */
+
 public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.DiaryListViewHolder> {
 
     private final BaseActivity context;
@@ -60,8 +53,6 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
         diaryListViewHolder.diaryItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = ViewActivity.createIntent(context, d.getId());
-                context.startActivityForResult(i, ConstantUtil.REQUEST_CODE_VIEW_DIARY_FROM_LIST);
             }
         });
         final int index = i;
@@ -73,15 +64,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (DbUtil.deleteDiary(d.getId()) == 1) {
-                                    diaryList.remove(index);
-                                    //notifyDataSetChanged();
-                                    notifyItemRemoved(index);
-                                    notifyItemRangeChanged(index, diaryList.size());
-                                } else {
-                                    Toast.makeText(context, R.string.delete_diary_failure,
-                                            Toast.LENGTH_SHORT).show();
-                                }
+
                             }
                         })
                         .setNegativeButton(R.string.no, null)

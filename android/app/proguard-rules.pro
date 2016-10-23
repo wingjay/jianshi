@@ -118,3 +118,5 @@
 #
 # Note: Doesn't include Javascript console lines. See https://github.com/facebook/stetho/tree/master/stetho-js-rhino#proguard
 -keep class com.facebook.stetho.** { *; }
+#DBFlow
+-keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
