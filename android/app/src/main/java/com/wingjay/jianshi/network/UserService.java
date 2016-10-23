@@ -35,7 +35,6 @@ public interface UserService {
   Observable<JsonDataResponse<User>> login(@Field("name") String name,
                                            @Field("password") String password);
 
-  @FormUrlEncoded
   @POST("sync")
   Observable<JsonDataResponse<Object>> sync(@Body JsonObject jsonObject);
 }

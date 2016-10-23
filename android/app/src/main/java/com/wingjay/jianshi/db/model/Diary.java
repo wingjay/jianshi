@@ -22,6 +22,8 @@ public class Diary extends BaseModel{
   @Column(defaultValue = "0")
   long time_removed;
 
+  private long time;
+
   public String getUuid() {
     return uuid;
   }
@@ -68,6 +70,14 @@ public class Diary extends BaseModel{
 
   public void setTime_removed(long time_removed) {
     this.time_removed = time_removed;
+  }
+
+  public long getTime() {
+    return time;
+  }
+
+  public void setTime(long time) {
+    this.time = time;
   }
 
   public String getChineseCreatedTime() {

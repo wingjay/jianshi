@@ -27,6 +27,7 @@ public class DiaryService {
       @Override
       public Observable<Void> call() {
         JsonObject jsonObject = new JsonObject();
+        diary.setTime(System.currentTimeMillis());
         if (diary.getTime_removed() > 0) {
           jsonObject.add(Operation.DELETE.getAction(),
               GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
