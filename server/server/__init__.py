@@ -7,12 +7,13 @@ app = Flask(__name__)
 # you must add one line as following
 import server.www.user
 import server.www.diary
+import server.www.sync
 import server.db.diary
 
 
 @app.route("/")
 def hello():
-    return "Hello, I love Digital Ocean! Jianshi"
+    return "Hello, Here is Jianshi Server! Welcome!"
 
 
 @app.route("/get")
