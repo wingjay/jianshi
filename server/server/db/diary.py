@@ -94,7 +94,6 @@ def update_diary(user_id, uuid, title, content, time_modified=None):
     if time_modified is None:
         time_modified = int(time.time())
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
-    result = 0
     print 'prepare update_diary user_id: ', user_id, ', uuid: ', uuid, 'title: ', title, ', content: ', content
     try:
         with conn.cursor() as cursor:
@@ -105,10 +104,10 @@ def update_diary(user_id, uuid, title, content, time_modified=None):
         conn.commit()
     except Exception as e:
         print e
+        raise errors.DBError()
     finally:
         conn.close()
-        if result != 1:
-            raise errors.UpdateDiaryFailure
+        return
 
 
 def delete_diary(user_id, uuid, time_removed=None):

@@ -1,8 +1,11 @@
 import time
 
+from server import app
 from server.db import diary as db_diary
 from server.logic import user as logic_user
 from server.util import safetyutils
+
+logger = app.logger
 
 
 def sync_data(user_id, sync_token, sync_items, need_pull):
@@ -183,6 +186,7 @@ def _push_diary_data_by_action(user_id, action, data):
         'time': 1477139399,
     }
     """
+    logger.info('_push_diary_data_by_action %s %s %s', user_id, action, data)
     if action == 'create' or action == 'update':
         db_diary.upsert_diary(user_id, data.get('uuid'), data)
     elif action == 'delete':
