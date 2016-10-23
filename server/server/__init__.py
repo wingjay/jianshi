@@ -15,6 +15,9 @@ import server.www.sync
 import server.db.diary
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
+path = current_dir + '/logs/jianshi.log'
+if not os.path.exists(path):
+    os.popen('cd ' + current_dir +' ; mkdir logs' + '; cd ' + current_dir + '/logs/' + ' ; touch jianshi.log')
 formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
 handler = RotatingFileHandler(current_dir + '/logs/jianshi.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.DEBUG)
@@ -37,9 +40,3 @@ def get():
     logger.error('An error occurred')
     logger.info('Info')
     return "get function works Jianshiasasdf"
-
-
-
-
-
-

@@ -19,7 +19,7 @@ public class BaseActivity extends AppCompatActivity {
   protected boolean isVisible = false;
 
   protected View containerView;
-  protected String TAG = getClass().getSimpleName();
+  protected String TAG = getClass().getSimpleName() + ": %s";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class BaseActivity extends AppCompatActivity {
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    Timber.d(TAG, "onDestory");
+    Timber.d(TAG, "onDestroy");
   }
 
   public boolean isUISafe() {
