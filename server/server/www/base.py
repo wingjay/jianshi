@@ -25,6 +25,8 @@ def mobile_request(func):
             if not user:
                 # token is valid, but maybe user is deleted
                 raise errors.UserNotFound()
+            kwargs["user_id"] = user_id
+
         try:
             result = func(**kwargs)
             response = {
