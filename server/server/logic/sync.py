@@ -12,7 +12,7 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
      3. If need_pull: Get changed data since last_sync_time, comparing with time_modified(upsert) & time_removed(delete);
      4. Pull: return changed data to user.
 
-     sync_items = [
+    sync_items = [
         {
             'Diary': {
                 'create': {
@@ -20,25 +20,28 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
                     'time': 1477139399,
                     'title': 'this is a new diary',
                     'content': 'today is a good day',
-                }
+                },
             },
+        },
+        {
             'Diary': {
                 'update': {
-                    'uuid': "04B977C7-6F7F-4D36-BFDC-FE98C5241DB0",
-                    'time': 1477139399,
+                    'uuid': "b8f4428a-98e1-11e6-8155-a45e60dcd7ed",
+                    'time': 1477139400,
                     'title': 'I update this title',
-                    'content': 'I'm updated content',
-                }
-            },
-            'Diary': {
-                'delete': {
-                    'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0"
-                    'time': 1477139399,
+                    'content': 'I\'m updated content',
                 }
             }
-
+        },
+        {
+            'Diary': {
+                'delete': {
+                    'uuid': "b9000ff0-98e1-11e6-91f7-a45e60dcd7ed",
+                    'time': 1477139401,
+                }
+            }
         }
-     ]
+    ]
 
      Return:
     {
@@ -48,10 +51,14 @@ def sync_data(user_id, sync_token, sync_items, need_pull):
             'delete': [
                 {
                     'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241DB0",
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
                     'time': 1477139340,
                 }
                 {
                     'uuid': "04B977C7-6F7F-4D36-BFDA-FE98C5241ABC",
+                    'title': 'I'm created by other client',
+                    'content': 'I'm created by other client',
                     'time': 1477139340,
                 }
             ],

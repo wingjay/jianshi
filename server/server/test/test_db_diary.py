@@ -6,6 +6,7 @@ import pymysql
 
 import server.db as base_db
 import server.db.diary as db_diary
+import server.logic.sync as logic_sync
 
 
 def reinit_table():
@@ -141,6 +142,65 @@ def test_pull():
     changed_diary_list = db_diary.get_diary_list_since_last_sync(user_id, last_sync_time)
     assert len(changed_diary_list) == 3
 
+
+def test_sync():
+    reinit_table()
+    user_id = 1
+    current_time = int(time.time())
+    # user 1 create two diary long long ago
+    uuid_1 = _get_uuid()
+    uuid_2 = _get_uuid()
+    db_diary.create_diary(user_id, uuid_1, "first", "first", current_time - 10000)
+    db_diary.create_diary(user_id, uuid_2, "second", "second", current_time - 9000)
+    assert db_diary.get_diary_by_uuid(uuid_1, user_id) is not None
+    assert db_diary.get_diary_by_uuid(uuid_2, user_id) is not None
+
+    # until now, he update first diary, delete second diary, created one new diary. he starts sync
+    sync_token = None
+    uuid_3 = "2F69DEB5-B631-40DD-A65E-AFE9A0882275"
+    sync_items = [
+        {
+            'Diary': {
+                'update': {
+                    'uuid': uuid_1,
+                    'time': current_time - 2000,
+                    'title': 'I update first diary',
+                    'content': 'I update first diary'
+                }
+            }
+        },
+        {
+            'Diary': {
+                'delete': {
+                    'uuid': uuid_2,
+                    'time': current_time - 1000,
+                }
+            }
+        },
+        {
+            'Diary': {
+                'create': {
+                    'uuid': uuid_3,
+                    'time': current_time - 3000,
+                    'title': 'this is third diary',
+                    'content': 'this is third diary',
+                }
+            }
+        }
+    ]
+    pull_result = logic_sync.sync_data(user_id, sync_token, sync_items, True)
+    # if sync success, user 1 currently will only own first & third diary
+    first_diary = db_diary.get_diary_by_uuid(uuid_1, user_id)
+    assert first_diary is not None
+    assert first_diary['title'] == 'I update first diary'
+    assert first_diary['content'] == 'I update first diary'
+    assert first_diary['time_modified'] == current_time - 2000
+    second_diary = db_diary.get_diary_by_uuid(uuid_2, user_id)
+    assert second_diary is None
+    third_diary = db_diary.get_diary_by_uuid(uuid_3, user_id)
+    assert third_diary is not None
+    assert third_diary['time_created'] == current_time - 3000
+    assert third_diary['time_modified'] == current_time - 3000
 
 
 def _get_uuid():
