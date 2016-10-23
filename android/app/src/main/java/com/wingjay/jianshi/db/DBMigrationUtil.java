@@ -22,8 +22,8 @@ class DBMigrationUtil {
         com.wingjay.jianshi.db.model.Diary diary = new com.wingjay.jianshi.db.model.Diary();
         diary.setTitle(cursor.getString(cursor.getColumnIndex(Diary.TITLE)));
         diary.setContent(cursor.getString(cursor.getColumnIndex(Diary.CONTENT)));
-        diary.setTime_created(cursor.getLong(cursor.getColumnIndex(Diary.CREATED_TIME)) * 1000);
-        diary.setTime_modified(cursor.getLong(cursor.getColumnIndex(Diary.CREATED_TIME)) * 1000);
+        diary.setTime_created(cursor.getLong(cursor.getColumnIndex(Diary.CREATED_TIME)));
+        diary.setTime_modified(cursor.getLong(cursor.getColumnIndex(Diary.CREATED_TIME)));
         diary.setUuid(UUID.randomUUID().toString().toUpperCase());
         diary.save();
         Log.i("Migrate", "save success" + diary.getUuid());

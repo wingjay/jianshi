@@ -19,6 +19,7 @@ import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.StringByTime;
 
 import java.util.UUID;
@@ -121,11 +122,11 @@ public class EditActivity extends BaseActivity {
       diary.setTitle(titleString);
       diary.setContent(contentString);
       diary.setUuid(UUID.randomUUID().toString().toUpperCase());
-      diary.setTime_created(System.currentTimeMillis());
+      diary.setTime_created(DateUtil.getCurrentTimeStamp());
     }else {
       diary.setTitle(titleString);
       diary.setContent(contentString);
-      diary.setTime_modified(System.currentTimeMillis());
+      diary.setTime_modified(DateUtil.getCurrentTimeStamp());
     }
     diaryService.saveDiary(diary)
         .subscribeOn(Schedulers.io())

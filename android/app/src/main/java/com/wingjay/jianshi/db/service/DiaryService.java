@@ -7,6 +7,7 @@ import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.model.Diary_Table;
 import com.wingjay.jianshi.sync.Change;
 import com.wingjay.jianshi.sync.Operation;
+import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.GsonUtil;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class DiaryService {
       @Override
       public Observable<Void> call() {
         JsonObject jsonObject = new JsonObject();
-        diary.setTime(System.currentTimeMillis());
+        diary.setTime(DateUtil.getCurrentTimeStamp());
         if (diary.getTime_removed() > 0) {
           jsonObject.add(Operation.DELETE.getAction(),
               GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));

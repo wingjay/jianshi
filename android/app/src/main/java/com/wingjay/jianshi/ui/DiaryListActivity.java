@@ -14,6 +14,7 @@ import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.ui.adapter.DiaryListAdapter;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.util.ConstantUtil;
+import com.wingjay.jianshi.util.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
           @Override
           public void onClick(DialogInterface dialog, int which) {
             Diary diary = diaryList.get(position);
-            diary.setTime_removed(System.currentTimeMillis());
+            diary.setTime_removed(DateUtil.getCurrentTimeStamp());
             diaryService.saveDiary(diary)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
