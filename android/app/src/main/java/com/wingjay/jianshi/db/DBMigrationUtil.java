@@ -8,9 +8,9 @@ import com.wingjay.jianshi.bean.Diary;
 
 import java.util.UUID;
 
-public class DBMigrationUtil {
+class DBMigrationUtil {
 
-  public static void migrateToDBFlow() {
+  static void migrateToDBFlow() {
     Log.i("Migrate", Thread.currentThread().getName());
     Cursor cursor = DbUtil.getAllDiary();
     if (cursor.getCount() == 0) {

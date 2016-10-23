@@ -10,12 +10,10 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * Created by Jay on 8/10/16.
- */
+
 @Singleton
 @Component(modules = AppModule.class)
-public interface AppComponent {
+public interface AppComponent extends MiscComponent{
 
   void inject(MainActivity obj);
 

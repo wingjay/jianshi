@@ -1,7 +1,9 @@
 package com.wingjay.jianshi.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -23,7 +25,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
-public class DiaryListActivity extends BaseActivity {
+public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.RecyclerClickListener{
 
   private final List<Diary> diaryList = new ArrayList<>();
   private DiaryListAdapter adapter;
@@ -43,6 +45,7 @@ public class DiaryListActivity extends BaseActivity {
 
     // get all local diaries
     adapter = new DiaryListAdapter(DiaryListActivity.this, diaryList);
+    adapter.setRecyclerClickListener(this);
     diaryListView.setAdapter(adapter);
     diaryService.getDiaryList()
         .subscribeOn(Schedulers.io())
@@ -67,4 +70,34 @@ public class DiaryListActivity extends BaseActivity {
     }
   }
 
+  @Override
+  public void onItemClick(int position) {
+    startActivity(ViewActivity.createIntent(this, diaryList.get(position).getUuid()));
+  }
+
+  @Override
+  public void onItemLongClick(final int position) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.do_you_want_to_delete_diary)
+        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            Diary diary = diaryList.get(position);
+            diary.setTime_removed(System.currentTimeMillis());
+            diaryService.saveDiary(diary)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                  @Override
+                  public void call(Void aVoid) {
+                    diaryList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                  }
+                });
+          }
+        })
+        .setNegativeButton(R.string.no, null)
+        .create()
+        .show();
+  }
 }

@@ -1,14 +1,10 @@
 package com.wingjay.jianshi.util;
 
-import android.util.Log;
-
 import org.joda.time.DateTime;
 
 import java.util.HashMap;
 
-/**
- * Created by wingjay on 9/30/15.
- */
+
 public class FullDateManager {
 
     public final static String YEAR_CHINESE = "年";

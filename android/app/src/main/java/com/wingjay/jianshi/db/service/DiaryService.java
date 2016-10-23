@@ -27,6 +27,7 @@ public class DiaryService {
       }
     });
   }
+
   public Observable<List<Diary>> getDiaryList() {
     return Observable.defer(new Func0<Observable<List<Diary>>>() {
       @Override
@@ -37,7 +38,10 @@ public class DiaryService {
   }
 
   private List<Diary> fetchDiaryListFromDB() {
-    return SQLite.select().from(Diary.class).queryList();
+    return SQLite.select()
+        .from(Diary.class)
+        .where(Diary_Table.time_removed.eq(0))
+        .queryList();
   }
 
   public Observable<Diary> getDiaryByUuid(final String uuid) {
