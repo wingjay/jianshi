@@ -1,6 +1,6 @@
 import time
 
-import server.db.diary as db_diary
+from server.db import diary as db_diary
 from server.logic import user as logic_user
 from server.util import safetyutils
 
