@@ -1,9 +1,13 @@
 package com.wingjay.jianshi.db.service;
 
 
+import com.google.gson.JsonObject;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.model.Diary_Table;
+import com.wingjay.jianshi.sync.Change;
+import com.wingjay.jianshi.sync.Operation;
+import com.wingjay.jianshi.util.GsonUtil;
 
 import java.util.List;
 
@@ -22,6 +26,18 @@ public class DiaryService {
     return Observable.defer(new Func0<Observable<Void>>() {
       @Override
       public Observable<Void> call() {
+        JsonObject jsonObject = new JsonObject();
+        if (diary.getTime_removed() > 0) {
+          jsonObject.add(Operation.DELETE.getAction(),
+              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+        } else if (diary.getTime_modified() >= diary.getTime_created()) {
+          jsonObject.add(Operation.UPDATE.getAction(),
+              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+        } else {
+          jsonObject.add(Operation.CREATE.getAction(),
+              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+        }
+        Change.handleChangeByDBKey(Change.DBKey.DIARY, jsonObject);
         diary.save();
         return Observable.just(null);
       }

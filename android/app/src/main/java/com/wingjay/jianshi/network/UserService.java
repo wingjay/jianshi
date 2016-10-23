@@ -1,8 +1,10 @@
 package com.wingjay.jianshi.network;
 
+import com.google.gson.JsonObject;
 import com.wingjay.jianshi.bean.Diary;
 import com.wingjay.jianshi.bean.User;
 
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -31,5 +33,9 @@ public interface UserService {
   @FormUrlEncoded
   @POST("user/login")
   Observable<JsonDataResponse<User>> login(@Field("name") String name,
-                                            @Field("password") String password);
+                                           @Field("password") String password);
+
+  @FormUrlEncoded
+  @POST("sync")
+  Observable<JsonDataResponse<Object>> sync(@Body JsonObject jsonObject);
 }
