@@ -27,27 +27,27 @@ public class Diary extends Table {
   private int deleted;
 
   public static String getTableName() {
-      return TABLE_NAME;
+    return TABLE_NAME;
   }
 
   public String getDeviceId() {
-      return deviceId;
+    return deviceId;
   }
 
   public void setTitle(String title) {
-      this.title = title;
+    this.title = title;
   }
 
   public String getTitle() {
-      return title;
+    return title;
   }
 
   public void setContent(String content) {
-      this.content = content;
+    this.content = content;
   }
 
   public String getContent() {
-      return content;
+    return content;
   }
 
   public void setDeviceId(String deviceId) {
@@ -63,8 +63,8 @@ public class Diary extends Table {
   }
 
   public String getChineseCreatedTime() {
-      FullDateManager fullDateManager = new FullDateManager(createdTime);
-      return fullDateManager.getFullDate();
+    FullDateManager fullDateManager = new FullDateManager(createdTime);
+    return fullDateManager.getFullDate();
   }
 
 }

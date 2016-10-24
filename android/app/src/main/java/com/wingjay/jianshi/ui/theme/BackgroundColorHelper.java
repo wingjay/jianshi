@@ -9,9 +9,9 @@ import com.wingjay.jianshi.prefs.UserPrefs;
  */
 public class BackgroundColorHelper {
 
-    public static int getBackgroundColorResFromPrefs(Context context) {
-        UserPrefs userPrefs = new UserPrefs(context);
-        return userPrefs.getBackgroundColor();
-    }
+  public static int getBackgroundColorResFromPrefs(Context context) {
+    UserPrefs userPrefs = new UserPrefs(context);
+    return userPrefs.getBackgroundColor();
+  }
 
 }

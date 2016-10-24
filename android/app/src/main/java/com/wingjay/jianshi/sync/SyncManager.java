@@ -27,7 +27,7 @@ public class SyncManager {
   UserService userService;
 
   @Inject
-  public SyncManager() {
+  SyncManager() {
   }
 
   public void sync() {

@@ -16,7 +16,7 @@ import javax.inject.Inject;
  */
 public class UserPrefs extends BasePrefs {
 
-  //// TODO: 8/27/16 (wingjay) Make it Injectable 
+  //// TODO: 8/27/16 (wingjay) Make it Injectable
   public final static String PREFS_NAME = "userPrefs";
 
   @Inject
@@ -43,9 +43,9 @@ public class UserPrefs extends BasePrefs {
   public int getBackgroundColor() {
     return getInt(KEY_GLOBAL_BACKGROUND_COLOR_RES, R.color.normal_bg);
   }
-  
+
   public final static String KEY_USER_AUTH_TOKEN = "user_auth_token";
-  
+
   public String getAuthToken() {
     return getString(KEY_USER_AUTH_TOKEN, null);
   }
@@ -53,13 +53,13 @@ public class UserPrefs extends BasePrefs {
   public void setAuthToken(@NonNull String authToken) {
     setString(KEY_USER_AUTH_TOKEN, authToken);
   }
-  
-  public void clearAuthToken() { 
+
+  public void clearAuthToken() {
     setString(KEY_USER_AUTH_TOKEN, null);
   }
-  
+
   public static final String KEY_USER = "user";
-  
+
   public User getUser() {
     String jsonString = getString(KEY_USER, null);
     if (TextUtils.isEmpty(jsonString)) {
@@ -68,10 +68,10 @@ public class UserPrefs extends BasePrefs {
     Gson gson = new Gson();
     return gson.fromJson(jsonString, User.class);
   }
-  
+
   public void setUser(@NonNull User user) {
     Gson gson = new Gson();
     setString(KEY_USER, gson.toJson(user));
   }
-  
+
 }

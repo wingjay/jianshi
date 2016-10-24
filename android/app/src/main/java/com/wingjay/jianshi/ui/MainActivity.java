@@ -73,40 +73,40 @@ public class MainActivity extends BaseActivity {
     updateFullDate();
 
     writerView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            DateTime current = new DateTime(year, month, day, 0, 0);
-            long dateSeconds = FullDateManager.getDateSeconds(current);
-            Intent i = EditActivity.createIntent(MainActivity.this, dateSeconds);
-            startActivity(i);
-        }
+      @Override
+      public void onClick(View v) {
+        DateTime current = new DateTime(year, month, day, 0, 0);
+        long dateSeconds = FullDateManager.getDateSeconds(current);
+        Intent i = EditActivity.createIntent(MainActivity.this, dateSeconds);
+        startActivity(i);
+      }
     });
 
     readerView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, DiaryListActivity.class));
-        }
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(MainActivity.this, DiaryListActivity.class));
+      }
     });
 
     dayChooser.setOnDayChooserClickListener(new DayChooser.OnDayChooserClickListener() {
-        @Override
-        public void onDayChoose(int chooseDay) {
-            DayPickDialogFragment dayPickDialogFragment = new DayPickDialogFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt(DayPickDialogFragment.CHOOSE_DAY, chooseDay);
-            bundle.putInt(DayPickDialogFragment.CHOOSE_MONTH, month);
-            bundle.putInt(DayPickDialogFragment.CHOOSE_YEAR, year);
-            dayPickDialogFragment.setArguments(bundle);
-            dayPickDialogFragment.setOnDayChoosedListener(new DayPickDialogFragment.OnDayChoosedListener() {
-                @Override
-                public void onDayChoosed(DateTime chooseDate) {
-                    setDate(chooseDate);
-                    updateFullDate();
-                }
-            });
-            dayPickDialogFragment.show(getSupportFragmentManager(), null);
-        }
+      @Override
+      public void onDayChoose(int chooseDay) {
+        DayPickDialogFragment dayPickDialogFragment = new DayPickDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(DayPickDialogFragment.CHOOSE_DAY, chooseDay);
+        bundle.putInt(DayPickDialogFragment.CHOOSE_MONTH, month);
+        bundle.putInt(DayPickDialogFragment.CHOOSE_YEAR, year);
+        dayPickDialogFragment.setArguments(bundle);
+        dayPickDialogFragment.setOnDayChoosedListener(new DayPickDialogFragment.OnDayChoosedListener() {
+          @Override
+          public void onDayChoosed(DateTime chooseDate) {
+            setDate(chooseDate);
+            updateFullDate();
+          }
+        });
+        dayPickDialogFragment.show(getSupportFragmentManager(), null);
+      }
     });
 
     new Thread(new Runnable() {
@@ -127,9 +127,9 @@ public class MainActivity extends BaseActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE) {
-        if (resultCode == RESULT_OK) {
-            setContainerBgColorFromPrefs();
-        }
+      if (resultCode == RESULT_OK) {
+        setContainerBgColorFromPrefs();
+      }
     }
   }
 
@@ -152,20 +152,20 @@ public class MainActivity extends BaseActivity {
     bundle.putInt(DatePickDialogFragment.PICK_TYPE, pickType);
     datePickDialogFragment.setArguments(bundle);
     datePickDialogFragment.setOnDateChoosedListener(new DatePickDialogFragment.OnDateChoosedListener() {
-        @Override
-        public void onDayChoosed(int mDay) {
-            day = mDay;
-            updateFullDate();
-        }
+      @Override
+      public void onDayChoosed(int mDay) {
+        day = mDay;
+        updateFullDate();
+      }
 
-        @Override
-        public void onMonthChoosed(int mMonth) {
-            month = mMonth;
-            if (!DateUtil.checkDayAndMonth(day, mMonth, year)) {
-                day = DateUtil.getLastDay(mMonth, year);
-            }
-            updateFullDate();
+      @Override
+      public void onMonthChoosed(int mMonth) {
+        month = mMonth;
+        if (!DateUtil.checkDayAndMonth(day, mMonth, year)) {
+          day = DateUtil.getLastDay(mMonth, year);
         }
+        updateFullDate();
+      }
     });
     datePickDialogFragment.show(getSupportFragmentManager(), null);
   }
