@@ -22,7 +22,7 @@ def mobile_request(func):
             kwargs.update(request.form.to_dict())
         if request.data: # request body
             kwargs.update(json.loads(request.data))
-        # todo: request.files & request.data
+        # todo: request.files
         if request.headers.get('Authorization'):
             encrypted_token = request.headers.get('Authorization')
             is_valid, user_id = logic_user.is_token_valid(encrypted_token)

@@ -82,4 +82,22 @@ class NoAccessForOthersDiary(Exception):
     msg = "You have no access for other's diary"
 
 
-# Sync
+# DB
+class DbCreateError(Exception):
+    rc = 3000
+    msg = "DB Creation error"
+
+
+class DbUpdateError(Exception):
+    rc = 3001
+    msg = "DB Update error"
+
+
+class DbDeleteError(Exception):
+    rc = 3002
+    msg = "Db Deletion error"
+
+
+class DbReadError(Exception):
+    rc = 3003
+    msg = "Db Read Error"

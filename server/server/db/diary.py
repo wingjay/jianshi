@@ -5,15 +5,19 @@ import time
 import pymysql
 import pymysql.cursors
 
+from server import app
 import server.db as base_db
 import server.db.user as db_user
 from server.data import errors
 
-
+logger = app.logger
 DB_NAME = "Diary"
 
 
 def create_diary(user_id, uuid, title, content, time_created=None):
+    """
+    Raise: errors.DbCreateError
+    """
     if user_id is None or uuid is None or title is None or content is None:
         raise errors.ArgumentShouldNotBeNull()
 
@@ -33,13 +37,17 @@ def create_diary(user_id, uuid, title, content, time_created=None):
             new_diary_id = cursor.lastrowid
         conn.commit()
     except Exception as e:
-        print e
+        logger.error(e)
+        raise errors.DbCreateError()
     finally:
         conn.close()
         return new_diary_id
 
 
 def get_diary_by_id(diary_id):
+    """
+    Raise: errors.DbReadError
+    """
     diary = None
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
     try:
@@ -49,13 +57,17 @@ def get_diary_by_id(diary_id):
             result = cursor.fetchall()
             diary = result[0] if len(result) > 0 else None
     except Exception as e:
-        print e
+        logger.error(e)
+        raise errors.DbReadError()
     finally:
         conn.close()
         return diary
 
 
 def get_diary_by_uuid(uuid, user_id):
+    """
+    Raise: errors.DbReadError
+    """
     print 'get_diary_by_uuid uuid ', uuid, ', user_id: ', user_id
     diary = None
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
@@ -67,13 +79,17 @@ def get_diary_by_uuid(uuid, user_id):
             diary = result[0] if len(result) > 0 else None
             print 'diary: ', diary
     except Exception as e:
-        print e
+        logger.error(e)
+        raise errors.DbReadError()
     finally:
         conn.close()
         return diary
 
 
 def get_diary_list_since_last_sync(user_id, last_sync_time):
+    """
+    Raise: errors.DbReadError
+    """
     print 'get_diary_list_since_last_sync for user_id: ', user_id, ', last_sync_time: ', last_sync_time
     diary_list = []
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
@@ -84,13 +100,17 @@ def get_diary_list_since_last_sync(user_id, last_sync_time):
             diary_list = cursor.fetchall()
             print diary_list
     except Exception as e:
-        print e
+        logger.error(e)
+        raise errors.DbReadError()
     finally:
         conn.close()
         return diary_list
 
 
 def update_diary(user_id, uuid, title, content, time_modified=None):
+    """
+    Raise: errors.DbUpdateError
+    """
     if time_modified is None:
         time_modified = int(time.time())
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
@@ -103,14 +123,17 @@ def update_diary(user_id, uuid, title, content, time_modified=None):
         print 'update_diary result:', result
         conn.commit()
     except Exception as e:
-        print e
-        raise errors.DBError()
+        logger.error(e)
+        raise errors.DbUpdateError()
     finally:
         conn.close()
         return
 
 
 def delete_diary(user_id, uuid, time_removed=None):
+    """
+    Raise: errors.DbDeleteError
+    """
     conn = base_db.get_conn(pymysql.cursors.DictCursor)
     if time_removed is None:
         time_removed = int(time.time())
@@ -121,7 +144,8 @@ def delete_diary(user_id, uuid, time_removed=None):
             print result
         conn.commit()
     except Exception as e:
-        print e
+        logger.error(e)
+        raise errors.DbDeleteError()
     finally:
         conn.close()
 
@@ -140,9 +164,11 @@ def upsert_diary(user_id, uuid, data):
 
     diary = get_diary_by_uuid(uuid, user_id)
     if diary:
-        update_diary(user_id, uuid, data.get('title'), data.get('content'), data.get('time'))
+        update_diary(user_id, uuid, data.get('title').encode('utf8'), data.get('content').encode('utf8'),
+                     data.get('time'))
     else:
-        create_diary(user_id, uuid, data.get('title'), data.get('content'), data.get('time'))
+        create_diary(user_id, uuid, data.get('title').encode('utf8'), data.get('content').encode('utf8'),
+                     data.get('time'))
 
 
 def _check_access(user_id, uuid):

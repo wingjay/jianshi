@@ -186,7 +186,7 @@ def _push_diary_data_by_action(user_id, action, data):
         'time': 1477139399,
     }
     """
-    logger.info('_push_diary_data_by_action %s %s %s', user_id, action, data)
+    logger.info('_push_diary_data_by_action: user_id:%s; action:%s; data:%s', user_id, action, data)
     if action == 'create' or action == 'update':
         db_diary.upsert_diary(user_id, data.get('uuid'), data)
     elif action == 'delete':
