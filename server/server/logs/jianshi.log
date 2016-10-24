@@ -1,136 +1,91 @@
-[2016-10-24 22:25:56,758] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+[2016-10-25 00:10:45,581] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
         func: sync_data
         args: ()
         kwargs: {'device_id': u'dc8eb3109c3b9cf4',
  u'need_pull': 1,
- u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7VIFzLmXW70STQNGwzhjOUidX08RIdOYgvBTMpyWk8Bn',
+ u'sync_items': [{u'Diary': {u'delete': {u'content': u'\u4e00\u6b21\u5c31\u597d\uff0c\u6211\u966a\u4f60\u53bb\u770b\u5929\u8352\u5730\u8001\n\u5728\u9633\u5149\u707f\u70c2\u7684\u65e5\u5b50\u91cc\u5f00\u6000\u5927\u7b11',
+                                         u'time': 1477325449,
+                                         u'time_created': 1477312847,
+                                         u'time_modified': 1477312847,
+                                         u'time_removed': 1477325449,
+                                         u'title': u'\u4e00\u6b21\u5c31\u597d',
+                                         u'uuid': u'C641AFA2-0B9E-45BA-8C13-FFFDAAEC6D15'}}}],
+ u'sync_token': u'rbQzceBvpC884We41W9B7dmCIL01uvytwkl7RGKZmX4beem9Q6PiuRyUuOTxm7-6',
  'testkey': 'testvalue',
  'user_id': 1}
-[2016-10-24 22:39:57,769] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+[2016-10-25 00:10:45,588] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:delete; data:{u'uuid': u'C641AFA2-0B9E-45BA-8C13-FFFDAAEC6D15', u'title': u'\u4e00\u6b21\u5c31\u597d', u'time_removed': 1477325449, u'content': u'\u4e00\u6b21\u5c31\u597d\uff0c\u6211\u966a\u4f60\u53bb\u770b\u5929\u8352\u5730\u8001\n\u5728\u9633\u5149\u707f\u70c2\u7684\u65e5\u5b50\u91cc\u5f00\u6000\u5927\u7b11', u'time_modified': 1477312847, u'time_created': 1477312847, u'time': 1477325449}
+[2016-10-25 00:10:50,583] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
         func: sync_data
         args: ()
         kwargs: {'device_id': u'dc8eb3109c3b9cf4',
  u'need_pull': 1,
- u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7SH9iFPGVla8H8Lj6jTMmEmJ-1eYJmEuTK1pnk1woRFS',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-24 22:40:31,615] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7RKRNWHo-oGx4S-Byzbil3Ky9_n4X5kXZNY8iJ9iIFZL',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-24 22:41:05,941] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7aJl3EH6IybCQ0sDlR_E0gw-RQSS5S_e17laxrgCcXSJ',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-24 22:41:36,805] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7c8B2Ua5SmNqqGnHVchdlK2jBP2VClUA-E4rsgKvCcC1',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-24 22:55:13,810] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [{u'Diary': {u'create': {u'content': u'\u5728\u54ea\u4e0a\u73ed',
-                                         u'time': 1477320599,
-                                         u'time_created': 1477320599,
-                                         u'time_modified': 0,
-                                         u'time_removed': 0,
-                                         u'title': u'\u5929\u7a7a\u4e4b\u57ce',
-                                         u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34'}}},
-                 {u'Diary': {u'update': {u'content': u'\u5728\u54ea\u4e0a\u73ed',
-                                         u'time': 1477320688,
-                                         u'time_created': 1477320599,
-                                         u'time_modified': 1477320688,
-                                         u'time_removed': 0,
-                                         u'title': u'\u5929\u7a7a\u4e4b\u57ce',
-                                         u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34'}}},
-                 {u'Diary': {u'update': {u'content': u'\u5728\u54ea\u4e0a\u73ed',
-                                         u'time': 1477320867,
-                                         u'time_created': 1477320599,
-                                         u'time_modified': 1477320867,
-                                         u'time_removed': 0,
-                                         u'title': u'\u5929\u7a7a\u4e4b\u57ce',
-                                         u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34'}}}],
- u'sync_token': u'rbQzceBvpC884We41W9B7af-1tuhBMHmMJ7hghYL3mWJ-1eYJmEuTK1pnk1woRFS',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-24 22:55:13,822] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:create; data:{u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34', u'title': u'\u5929\u7a7a\u4e4b\u57ce', u'time_removed': 0, u'content': u'\u5728\u54ea\u4e0a\u73ed', u'time_modified': 0, u'time_created': 1477320599, u'time': 1477320599}
-[2016-10-24 22:55:13,898] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:update; data:{u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34', u'title': u'\u5929\u7a7a\u4e4b\u57ce', u'time_removed': 0, u'content': u'\u5728\u54ea\u4e0a\u73ed', u'time_modified': 1477320688, u'time_created': 1477320599, u'time': 1477320688}
-[2016-10-24 22:55:13,919] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:update; data:{u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34', u'title': u'\u5929\u7a7a\u4e4b\u57ce', u'time_removed': 0, u'content': u'\u5728\u54ea\u4e0a\u73ed', u'time_modified': 1477320867, u'time_created': 1477320599, u'time': 1477320867}
-[2016-10-24 22:56:10,623] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [{u'Diary': {u'create': {u'content': u'\u4f60\u6ca1\u6709\u9519\u5417',
-                                         u'time': 1477320974,
+ u'sync_items': [{u'Diary': {u'delete': {u'content': u'\u4f60\u6ca1\u6709\u9519\u5417',
+                                         u'time': 1477325454,
                                          u'time_created': 1477320974,
-                                         u'time_modified': 0,
-                                         u'time_removed': 0,
+                                         u'time_modified': 1477320974,
+                                         u'time_removed': 1477325454,
                                          u'title': u'\u8986\u6c34\u96be\u6536',
                                          u'uuid': u'22E3BA45-BBA4-48E9-85C0-ACF168871FE1'}}}],
- u'sync_token': u'rbQzceBvpC884We41W9B7bJqGTQ4LvpsxO4YHgjujP0kltjqrcr0eHI5RZtY45dV',
+ u'sync_token': u'rbQzceBvpC884We41W9B7dmCIL01uvytwkl7RGKZmX6jBP2VClUA-E4rsgKvCcC1',
  'testkey': 'testvalue',
  'user_id': 1}
-[2016-10-24 22:56:10,632] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:create; data:{u'uuid': u'22E3BA45-BBA4-48E9-85C0-ACF168871FE1', u'title': u'\u8986\u6c34\u96be\u6536', u'time_removed': 0, u'content': u'\u4f60\u6ca1\u6709\u9519\u5417', u'time_modified': 0, u'time_created': 1477320974, u'time': 1477320974}
-[2016-10-24 23:34:19,805] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+[2016-10-25 00:10:50,586] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:delete; data:{u'uuid': u'22E3BA45-BBA4-48E9-85C0-ACF168871FE1', u'title': u'\u8986\u6c34\u96be\u6536', u'time_removed': 1477325454, u'content': u'\u4f60\u6ca1\u6709\u9519\u5417', u'time_modified': 1477320974, u'time_created': 1477320974, u'time': 1477325454}
+[2016-10-25 00:11:52,333] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
         func: sync_data
         args: ()
         kwargs: {'device_id': u'dc8eb3109c3b9cf4',
  u'need_pull': 1,
  u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7evx-4YRTw2bWpAYEQkeqhIbeem9Q6PiuRyUuOTxm7-6',
+ u'sync_token': u'rbQzceBvpC884We41W9B7U3IMlfAj_J3NedO-AfQcB4beem9Q6PiuRyUuOTxm7-6',
  'testkey': 'testvalue',
  'user_id': 1}
-[2016-10-24 23:45:49,099] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+[2016-10-25 00:11:57,203] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
+ u'need_pull': 1,
+ u'sync_items': [{u'Diary': {u'delete': {u'content': u'\u5728\u54ea\u4e0a\u73ed',
+                                         u'time': 1477325521,
+                                         u'time_created': 1477320599,
+                                         u'time_modified': 1477320867,
+                                         u'time_removed': 1477325521,
+                                         u'title': u'\u5929\u7a7a\u4e4b\u57ce',
+                                         u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34'}}}],
+ u'sync_token': u'rbQzceBvpC884We41W9B7RD2NB0f3-riQ5vmFYYEFLvg0G1sdQThdg5BKLsjldxP',
+ 'testkey': 'testvalue',
+ 'user_id': 1}
+[2016-10-25 00:11:57,208] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:delete; data:{u'uuid': u'30FDE7C2-DC6D-44EC-A996-A203F1D07F34', u'title': u'\u5929\u7a7a\u4e4b\u57ce', u'time_removed': 1477325521, u'content': u'\u5728\u54ea\u4e0a\u73ed', u'time_modified': 1477320867, u'time_created': 1477320599, u'time': 1477325521}
+[2016-10-25 00:12:02,321] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
+ u'need_pull': 1,
+ u'sync_items': [{u'Diary': {u'delete': {u'content': u'\u5927\u6f20\u5b64\u70df\u76f4\n\u957f\u6cb3\u843d\u65e5\u5706',
+                                         u'time': 1477325526,
+                                         u'time_created': 1477312181,
+                                         u'time_modified': 1477312181,
+                                         u'time_removed': 1477325526,
+                                         u'title': u'\u957f\u6068\u6b4c',
+                                         u'uuid': u'86816D2F-F4F1-4474-9478-8768B56E50B0'}}}],
+ u'sync_token': u'rbQzceBvpC884We41W9B7RD2NB0f3-riQ5vmFYYEFLuy9_n4X5kXZNY8iJ9iIFZL',
+ 'testkey': 'testvalue',
+ 'user_id': 1}
+[2016-10-25 00:12:02,338] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:delete; data:{u'uuid': u'86816D2F-F4F1-4474-9478-8768B56E50B0', u'title': u'\u957f\u6068\u6b4c', u'time_removed': 1477325526, u'content': u'\u5927\u6f20\u5b64\u70df\u76f4\n\u957f\u6cb3\u843d\u65e5\u5706', u'time_modified': 1477312181, u'time_created': 1477312181, u'time': 1477325526}
+[2016-10-25 00:12:13,774] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
         func: sync_data
         args: ()
         kwargs: {'device_id': u'dc8eb3109c3b9cf4',
  u'need_pull': 1,
  u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7ekhybaNgsVkhrQOne4JKz-dX08RIdOYgvBTMpyWk8Bn',
+ u'sync_token': u'rbQzceBvpC884We41W9B7ZetdgPWq_pP1Tt5XgONvbfg0G1sdQThdg5BKLsjldxP',
  'testkey': 'testvalue',
  'user_id': 1}
-[2016-10-24 23:46:15,354] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
+[2016-10-25 00:12:23,799] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
         func: sync_data
         args: ()
         kwargs: {'device_id': u'dc8eb3109c3b9cf4',
  u'need_pull': 1,
  u'sync_items': [],
- u'sync_token': u'rbQzceBvpC884We41W9B7YiEcw-l5orReshzSdcPMvedX08RIdOYgvBTMpyWk8Bn',
+ u'sync_token': u'rbQzceBvpC884We41W9B7S_MHWmxZvoUeE4M8YgGU0kkltjqrcr0eHI5RZtY45dV',
  'testkey': 'testvalue',
  'user_id': 1}
-[2016-10-25 00:05:05,200] {/Users/panl/OpenSource/jianshi/server/server/www/base.py:73} INFO - Handle mobile request:
-        func: sync_data
-        args: ()
-        kwargs: {'device_id': u'dc8eb3109c3b9cf4',
- u'need_pull': 1,
- u'sync_items': [{u'Diary': {u'create': {u'content': u'\u662f\u7684\n\u5c31\u8fd9\u6837\u5427',
-                                         u'time': 1477325081,
-                                         u'time_created': 1477325081,
-                                         u'time_modified': 0,
-                                         u'time_removed': 0,
-                                         u'title': u'\u771f\u7684\u597d\u554a',
-                                         u'uuid': u'626F6744-2859-4CA6-BF2A-B5EBFABA3AE8'}}}],
- u'sync_token': u'rbQzceBvpC884We41W9B7XK2VehQH1dmXyBxM1lmY5OjBP2VClUA-E4rsgKvCcC1',
- 'testkey': 'testvalue',
- 'user_id': 1}
-[2016-10-25 00:05:05,210] {/Users/panl/OpenSource/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:1; action:create; data:{u'uuid': u'626F6744-2859-4CA6-BF2A-B5EBFABA3AE8', u'title': u'\u771f\u7684\u597d\u554a', u'time_removed': 0, u'content': u'\u662f\u7684\n\u5c31\u8fd9\u6837\u5427', u'time_modified': 0, u'time_created': 1477325081, u'time': 1477325081}

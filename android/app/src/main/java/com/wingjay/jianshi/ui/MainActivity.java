@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
       public void onClick(View v) {
         DateTime current = new DateTime(year, month, day, 0, 0);
         long dateSeconds = FullDateManager.getDateSeconds(current);
-        Intent i = EditActivity.createIntent(MainActivity.this, dateSeconds);
+        Intent i = new Intent(MainActivity.this, EditActivity.class);
         startActivity(i);
       }
     });

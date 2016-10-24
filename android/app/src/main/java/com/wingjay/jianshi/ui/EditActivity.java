@@ -33,7 +33,6 @@ import rx.schedulers.Schedulers;
 
 public class EditActivity extends BaseActivity {
 
-  public final static String DATE_TIME = "date_time";
   public final static String DIARY_UUID = "diary_uuid";
 
   @InjectView(R.id.edit_title)
@@ -48,7 +47,6 @@ public class EditActivity extends BaseActivity {
   @InjectView(R.id.edit_scroll_view)
   ScrollView scrollView;
 
-  private long dateSeconds;
   private String diaryUUID;
 
   private boolean unchanged = true;
@@ -63,11 +61,7 @@ public class EditActivity extends BaseActivity {
     setContentView(R.layout.activity_edit);
     JianShiApplication.getAppComponent().inject(this);
     final Intent intent = getIntent();
-    dateSeconds = intent.getLongExtra(DATE_TIME, 0);
     diaryUUID = intent.getStringExtra(DIARY_UUID);
-    if (dateSeconds == 0 && (diaryUUID == null)) {
-      finish();
-    }
 
     if (diaryUUID != null) {
       loadDiary();
@@ -213,12 +207,6 @@ public class EditActivity extends BaseActivity {
   public static Intent createIntentWithId(Context context, String diaryId) {
     Intent i = new Intent(context, EditActivity.class);
     i.putExtra(DIARY_UUID, diaryId);
-    return i;
-  }
-
-  public static Intent createIntent(Context context, long dateMillis) {
-    Intent i = new Intent(context, EditActivity.class);
-    i.putExtra(DATE_TIME, dateMillis);
     return i;
   }
 }
