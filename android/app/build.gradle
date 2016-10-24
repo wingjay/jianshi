@@ -22,7 +22,7 @@ def versionPatch = 0
 def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
 def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 
-def port = 80
+def port = 5000
 
 android {
   compileSdkVersion 25
@@ -49,7 +49,7 @@ android {
       minifyEnabled false
 
       signingConfig signingConfigs.debug
-      buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '"'
+      buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '/"'
     }
   }
   packagingOptions {

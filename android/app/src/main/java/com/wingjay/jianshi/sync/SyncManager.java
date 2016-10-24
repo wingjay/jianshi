@@ -21,6 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rx.functions.Action1;
 import timber.log.Timber;
 
 @Singleton
@@ -37,7 +38,7 @@ public class SyncManager {
   }
 
   public synchronized void sync() {
-    List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
+    final List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
     Gson gson = GsonUtil.getGsonWithExclusionStrategy();
     JsonParser jsonParser = new JsonParser();
     JsonObject syncData = new JsonObject();
@@ -50,35 +51,45 @@ public class SyncManager {
     syncData.add("sync_token", gson.toJsonTree(userPrefs.getSyncToken()));
     Timber.d("Sync Data : %s", syncData.toString());
 
-    JsonDataResponse<SyncModel> response = userService.sync(syncData).toBlocking().first();
-    if (response.getRc() == RCCode.SUCCESS) {
-      SyncModel syncModel = response.getData();
-      userPrefs.setSyncToken(syncModel.getSyncToken());
-      if (syncModel.getUpsert() != null) {
-        for (Diary diary : syncModel.getUpsert()) {
-          diary.save();
+    userService.sync(syncData).subscribe(new Action1<JsonDataResponse<SyncModel>>() {
+      @Override
+      public void call(JsonDataResponse<SyncModel> response) {
+        if (response.getRc() == RCCode.SUCCESS) {
+          SyncModel syncModel = response.getData();
+          userPrefs.setSyncToken(syncModel.getSyncToken());
+          if (syncModel.getUpsert() != null) {
+            for (Diary diary : syncModel.getUpsert()) {
+              diary.save();
+            }
+          }
+
+          if (syncModel.getDelete() != null) {
+            for (Diary diary : syncModel.getDelete()) {
+              diary.save();
+            }
+          }
+
+          int syncCount = syncModel.getSyncedCount();
+
+          for (PushData pushData : pushDataList) {
+            SQLite.delete()
+                .from(PushData.class)
+                .where(PushData_Table.id.eq(pushData.getId()))
+                .execute();
+            syncCount--;
+            if (syncCount <= 0) {
+              break;
+            }
+          }
         }
       }
-
-      if (syncModel.getDelete() != null) {
-        for (Diary diary : syncModel.getDelete()) {
-          diary.save();
-        }
+    }, new Action1<Throwable>() {
+      @Override
+      public void call(Throwable throwable) {
+        Timber.e(throwable, "Sync Failed");
       }
+    });
 
-      int syncCount = syncModel.getSyncedCount();
-
-      for (PushData pushData : pushDataList) {
-        SQLite.delete()
-            .from(PushData.class)
-            .where(PushData_Table.id.eq(pushData.getId()))
-            .execute();
-        syncCount--;
-        if (syncCount <= 0) {
-          break;
-        }
-      }
-    }
   }
 
 
