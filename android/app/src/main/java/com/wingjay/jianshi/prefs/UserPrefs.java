@@ -16,7 +16,7 @@ import javax.inject.Inject;
  */
 public class UserPrefs extends BasePrefs {
 
-  //// TODO: 8/27/16 (wingjay) Make it Injectable 
+  //// TODO: 8/27/16 (wingjay) Make it Injectable
   public final static String PREFS_NAME = "userPrefs";
 
   @Inject

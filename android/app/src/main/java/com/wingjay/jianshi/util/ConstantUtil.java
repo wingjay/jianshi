@@ -5,7 +5,7 @@ package com.wingjay.jianshi.util;
  */
 public class ConstantUtil {
 
-    public final static int REQUEST_CODE_VIEW_DIARY_FROM_LIST = 100;
-    public final static int REQUEST_CODE_BG_COLOR_CHANGE = 200;
+  public final static int REQUEST_CODE_VIEW_DIARY_FROM_LIST = 100;
+  public final static int REQUEST_CODE_BG_COLOR_CHANGE = 200;
 
 }

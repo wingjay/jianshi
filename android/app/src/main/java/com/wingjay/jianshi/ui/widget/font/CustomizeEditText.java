@@ -13,47 +13,47 @@ import com.wingjay.jianshi.R;
  */
 public class CustomizeEditText extends EditText {
 
-    private Context context;
-    public CustomizeEditText(Context context) {
-        super(context);
-        this.context = context;
-        initTypeFace();
-    }
+  private Context context;
+  public CustomizeEditText(Context context) {
+    super(context);
+    this.context = context;
+    initTypeFace();
+  }
 
-    public CustomizeEditText(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        initTypeFace(attrs);
-    }
+  public CustomizeEditText(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    this.context = context;
+    initTypeFace(attrs);
+  }
 
-    private void initTypeFace(AttributeSet attrs) {
-        TypedArray typedArray = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.CustomizeEditText, 0, 0);
-        try {
-            String fontFamily = typedArray.getString(R.styleable.CustomizeEditText_myEditTextFontFamily);
-            if (fontFamily != null) {
-                setTypeFaceByPath("fonts/" + fontFamily);
-                return;
-            }
-        } finally {
-            typedArray.recycle();
-        }
-        initTypeFace();
+  private void initTypeFace(AttributeSet attrs) {
+    TypedArray typedArray = context.getTheme()
+        .obtainStyledAttributes(attrs, R.styleable.CustomizeEditText, 0, 0);
+    try {
+      String fontFamily = typedArray.getString(R.styleable.CustomizeEditText_myEditTextFontFamily);
+      if (fontFamily != null) {
+        setTypeFaceByPath("fonts/" + fontFamily);
+        return;
+      }
+    } finally {
+      typedArray.recycle();
     }
+    initTypeFace();
+  }
 
-    private void initTypeFace() {
-        if (FontFamilyFactory.getTypeface() != null) {
-            setTypeface(FontFamilyFactory.getTypeface());
-        }
+  private void initTypeFace() {
+    if (FontFamilyFactory.getTypeface() != null) {
+      setTypeface(FontFamilyFactory.getTypeface());
     }
+  }
 
-    @Deprecated
-    private void setTypeFaceByPath(String fontPath) {
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontPath);
-        setTypeface(typeface);
-    }
+  @Deprecated
+  private void setTypeFaceByPath(String fontPath) {
+    Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontPath);
+    setTypeface(typeface);
+  }
 
-    protected String getFontName() {
-        return FontFamilyFactory.getDefaultFontFamily();
-    }
+  protected String getFontName() {
+    return FontFamilyFactory.getDefaultFontFamily();
+  }
 }

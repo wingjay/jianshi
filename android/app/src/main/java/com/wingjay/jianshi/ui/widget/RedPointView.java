@@ -17,38 +17,38 @@ import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
  */
 public class RedPointView extends FrameLayout {
 
-    private View containerView;
-    private TextView textView;
+  private View containerView;
+  private TextView textView;
 
-    public RedPointView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.view_red_point, this);
-        textView = (TextView) findViewById(R.id.pointer);
-        containerView = findViewById(R.id.red_point_container);
-        textView.setTypeface(FontFamilyFactory.getTypeface());
-        TypedArray typedArray = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.RedPointView, 0, 0);
-        try {
-            String text = typedArray.getString(R.styleable.RedPointView_text);
-            setText(text);
-            int colorRes = typedArray.getInt(R.styleable.RedPointView_redPointViewBgColor,
-                    R.color.bright_red);
-            setContainerBackgroundColor(colorRes);
-        } finally {
-            typedArray.recycle();
-        }
+  public RedPointView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    LayoutInflater.from(context).inflate(R.layout.view_red_point, this);
+    textView = (TextView) findViewById(R.id.pointer);
+    containerView = findViewById(R.id.red_point_container);
+    textView.setTypeface(FontFamilyFactory.getTypeface());
+    TypedArray typedArray = context.getTheme()
+        .obtainStyledAttributes(attrs, R.styleable.RedPointView, 0, 0);
+    try {
+      String text = typedArray.getString(R.styleable.RedPointView_text);
+      setText(text);
+      int colorRes = typedArray.getInt(R.styleable.RedPointView_redPointViewBgColor,
+          R.color.bright_red);
+      setContainerBackgroundColor(colorRes);
+    } finally {
+      typedArray.recycle();
     }
+  }
 
-    public void setText(String text) {
-        if (text.length() > 1) {
-            return;
-        }
-        textView.setText(text);
+  public void setText(String text) {
+    if (text.length() > 1) {
+      return;
     }
+    textView.setText(text);
+  }
 
-    public void setContainerBackgroundColor(int colorRes) {
-        GradientDrawable drawable = (GradientDrawable) containerView.getBackground();
-        drawable.setColor(getResources().getColor(colorRes));
-    }
+  public void setContainerBackgroundColor(int colorRes) {
+    GradientDrawable drawable = (GradientDrawable) containerView.getBackground();
+    drawable.setColor(getResources().getColor(colorRes));
+  }
 
 }

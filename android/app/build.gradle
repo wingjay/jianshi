@@ -1,18 +1,18 @@
 buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
 
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.+'
+  }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'io.fabric'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
+  maven { url 'https://maven.fabric.io/public' }
 }
 
 def versionMajor = 1
@@ -21,6 +21,8 @@ def versionPatch = 0
 
 def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
 def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
+
+def port = 80
 
 android {
   compileSdkVersion 25
@@ -47,7 +49,7 @@ android {
       minifyEnabled false
 
       signingConfig signingConfigs.debug
-      buildConfigField "String", "BASE_URL", '"http://192.168.0.109:5000/"'
+      buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '"'
     }
   }
   packagingOptions {
@@ -94,4 +96,15 @@ dependencies {
   compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
   compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
   compile 'com.jakewharton.timber:timber:4.3.1'
+}
+
+// Get the ip address by interface name
+def getLocalIp(String interfaceName) {
+  NetworkInterface iface =  NetworkInterface.getByName(interfaceName);
+  for (InterfaceAddress address : iface.getInterfaceAddresses()) {
+    String ip =  address.getAddress().getHostAddress()
+    if (ip.length() <= 15) {
+      return ip;
+    }
+  }
 }
