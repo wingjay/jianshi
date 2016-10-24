@@ -32,5 +32,10 @@
         android:layout_height="wrap_content"
         android:text="Login"
         />
+    <Button
+        android:id="@+id/skip_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="skip"/>
 
 </LinearLayout>
