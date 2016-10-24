@@ -3,6 +3,7 @@ package com.wingjay.jianshi.sync;
 
 import com.google.gson.JsonObject;
 import com.wingjay.jianshi.db.model.PushData;
+import com.wingjay.jianshi.util.DateUtil;
 
 public class Change {
   public enum DBKey {
@@ -24,7 +25,7 @@ public class Change {
     jsonObject.add(dbKey.getKey(), object);
     PushData pushData = new PushData();
     pushData.setData(jsonObject.toString());
-    pushData.setTimeCreated(System.currentTimeMillis());
+    pushData.setTimeCreated(DateUtil.getCurrentTimeStamp());
     pushData.save();
   }
 }

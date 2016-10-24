@@ -1,0 +1,49 @@
+package com.wingjay.jianshi.sync;
+
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
+
+import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.prefs.UserPrefs;
+
+import javax.inject.Inject;
+
+import timber.log.Timber;
+
+/**
+ * Created by panl on 2016/10/24.
+ * contact panlei106@gmail.com
+ */
+
+public class SyncService extends IntentService {
+
+  @Inject
+  SyncManager syncManager;
+  @Inject
+  UserPrefs userPrefs;
+
+
+  public SyncService() {
+    super("SyncService");
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    JianShiApplication.getAppComponent().inject(this);
+  }
+
+  @Override
+  protected void onHandleIntent(Intent intent) {
+    Timber.d("SyncService name: %s", Thread.currentThread().getName());
+    if (!TextUtils.isEmpty(userPrefs.getAuthToken()) && userPrefs.getUser() != null) {
+      syncManager.sync();
+    }
+  }
+
+  public static void syncImmediately(Context context) {
+    context.startService(new Intent(context, SyncService.class));
+  }
+}

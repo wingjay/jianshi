@@ -1,7 +1,7 @@
 # mysql
-MYSQL_LOCAL_HOST = '192.168.33.10'
-MYSQL_USER       = 'emma'
-MYSQL_PASSWORD   = 'emma'
+MYSQL_LOCAL_HOST = '127.0.0.1'
+MYSQL_USER       = 'root'
+MYSQL_PASSWORD   = ''
 MYSQL_DB_NAME    = 'jianshi'
 
 # user

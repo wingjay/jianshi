@@ -17,6 +17,7 @@ import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.RedPointView;
+import com.wingjay.jianshi.util.LanguageUtil;
 
 import javax.inject.Inject;
 
@@ -92,7 +93,11 @@ public class ViewActivity extends BaseActivity {
           @Override
           public void call(com.wingjay.jianshi.db.model.Diary diary) {
             if (diary != null) {
-              showDiary(diary.getTitle(), diary.getContent());
+              showDiary(diary.getTitle(),
+                  diary.getContent()
+                      + LanguageUtil.getDiaryDateEnder(
+                      getApplicationContext(),
+                      diary.getTime_created()));
             }
           }
         });

@@ -5,9 +5,7 @@ import android.content.res.Resources;
 
 import com.wingjay.jianshi.R;
 
-/**
- * Created by wingjay on 10/1/15.
- */
+
 public class LanguageUtil {
 
   public static String getDiaryDateEnder(Context context, long dateSeconds) {

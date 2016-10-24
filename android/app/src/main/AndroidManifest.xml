@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.wingjay.jianshi" >
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.wingjay.jianshi">
 
     <application
         android:name=".global.JianShiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.SplashActivity"
             android:label="@string/app_name"
             >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_date_choose"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_date_choose">
         </activity>
         <activity
             android:name=".ui.EditActivity"
-            android:label="@string/title_activity_edit"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_edit">
         </activity>
         <activity
             android:name=".ui.DiaryListActivity"
-            android:label="@string/title_activity_diary_list"
-            android:exported="false" >
+            android:exported="false"
+            android:label="@string/title_activity_diary_list">
         </activity>
         <activity
             android:name=".ui.base.BaseActivity"
-            android:label="@string/title_activity_base"
-            android:exported="false" >
+            android:exported="false"
+            android:label="@string/title_activity_base">
         </activity>
         <activity
             android:name=".ui.ViewActivity"
-            android:label="@string/title_activity_view"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_view">
         </activity>
         <activity
             android:name=".ui.SettingActivity"
-            android:label="@string/title_activity_setting"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_setting">
         </activity>
-        <activity android:name=".ui.SignupActivity"
-                  android:exported="false"/>
+        <activity
+            android:name=".ui.SignupActivity"
+            android:exported="false"/>
+
+        <service android:name=".sync.SyncService"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c" />
+            android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c"/>
         <meta-data
-            android:value="bd75c5322433a5a3cce1ce701f954376"
-            android:name="BUG_HD_SDK_GENERAL_KEY" />
+            android:name="BUG_HD_SDK_GENERAL_KEY"
+            android:value="bd75c5322433a5a3cce1ce701f954376"/>
         <meta-data
             android:name="FIR_IM_API_TOKEN"
             android:value="9e6ab47d3c83ce0765cdc2f0696a3da5"/>
 
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:ignore="ManifestOrder"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-
 </manifest>
