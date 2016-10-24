@@ -11,10 +11,11 @@ import rx.schedulers.Schedulers;
 public class FontFamilyFactory {
 
   private final static String DEFAULT_FONT_FAMILY = "libian.TTF";
+  private final static String DEFAULT_FONT_FAMILY_2 = "jianshi_default.otf";
   private static Typeface typeface = null;
 
   public static String getDefaultFontFamily() {
-    return DEFAULT_FONT_FAMILY;
+    return DEFAULT_FONT_FAMILY_2;
   }
 
   public static Observable<Void> init(final Context context) {
