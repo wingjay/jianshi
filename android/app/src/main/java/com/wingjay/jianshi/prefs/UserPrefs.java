@@ -43,9 +43,9 @@ public class UserPrefs extends BasePrefs {
   public int getBackgroundColor() {
     return getInt(KEY_GLOBAL_BACKGROUND_COLOR_RES, R.color.normal_bg);
   }
-  
+
   public final static String KEY_USER_AUTH_TOKEN = "user_auth_token";
-  
+
   public String getAuthToken() {
     return getString(KEY_USER_AUTH_TOKEN, null);
   }
@@ -53,13 +53,13 @@ public class UserPrefs extends BasePrefs {
   public void setAuthToken(@NonNull String authToken) {
     setString(KEY_USER_AUTH_TOKEN, authToken);
   }
-  
-  public void clearAuthToken() { 
+
+  public void clearAuthToken() {
     setString(KEY_USER_AUTH_TOKEN, null);
   }
-  
+
   public static final String KEY_USER = "user";
-  
+
   public User getUser() {
     String jsonString = getString(KEY_USER, null);
     if (TextUtils.isEmpty(jsonString)) {
@@ -68,10 +68,19 @@ public class UserPrefs extends BasePrefs {
     Gson gson = new Gson();
     return gson.fromJson(jsonString, User.class);
   }
-  
+
   public void setUser(@NonNull User user) {
     Gson gson = new Gson();
     setString(KEY_USER, gson.toJson(user));
   }
-  
+
+  private static final String KEY_SYNC_TOKEN = "sync_token";
+
+  public void setSyncToken(@NonNull String syncToken) {
+    setString(KEY_SYNC_TOKEN, syncToken);
+  }
+
+  public String getSyncToken() {
+    return getString(KEY_SYNC_TOKEN, "");
+  }
 }

@@ -1,12 +1,16 @@
 package com.wingjay.jianshi.db.service;
 
 
+import android.content.Context;
+
 import com.google.gson.JsonObject;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.model.Diary_Table;
+import com.wingjay.jianshi.di.ForApplication;
 import com.wingjay.jianshi.sync.Change;
 import com.wingjay.jianshi.sync.Operation;
+import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.GsonUtil;
 
@@ -19,8 +23,11 @@ import rx.functions.Func0;
 
 public class DiaryService {
 
+  private Context context;
+
   @Inject
-  DiaryService() {
+  DiaryService(@ForApplication Context context) {
+    this.context = context;
   }
 
   public Observable<Void> saveDiary(final Diary diary) {
@@ -41,6 +48,7 @@ public class DiaryService {
         }
         Change.handleChangeByDBKey(Change.DBKey.DIARY, jsonObject);
         diary.save();
+        SyncService.syncImmediately(context);
         return Observable.just(null);
       }
     });

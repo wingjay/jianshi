@@ -8,6 +8,7 @@ import android.view.View;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.sync.SyncManager;
+import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
@@ -109,12 +110,7 @@ public class MainActivity extends BaseActivity {
         }
     });
 
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        syncManager.sync();
-      }
-    }).start();
+    SyncService.syncImmediately(this);
   }
 
   @OnClick(R.id.setting)
