@@ -64,7 +64,7 @@ public class Diary extends Table {
 
   public String getChineseCreatedTime() {
     FullDateManager fullDateManager = new FullDateManager(createdTime);
-    return fullDateManager.getFullDate();
+    return fullDateManager.getFullCNDate();
   }
 
 }

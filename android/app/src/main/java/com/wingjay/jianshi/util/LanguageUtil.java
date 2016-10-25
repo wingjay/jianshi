@@ -12,7 +12,7 @@ public class LanguageUtil {
     FullDateManager fullDateManager = new FullDateManager(dateSeconds);
     Resources resources = context.getResources();
     return resources.getString(R.string.space_of_date_record)
-        + fullDateManager.getFullDate()
+        + fullDateManager.getFullCNDate()
         + resources.getString(R.string.record)
         + resources.getString(R.string.space_of_date_record);
   }
