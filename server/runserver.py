@@ -1,2 +1,7 @@
+# -*- coding:utf-8 -*-
 from server import app
-app.run(host='192.168.0.103',debug=True)
+import socket
+#获取本机ip
+localhost = socket.gethostbyname(socket.gethostname())
+print localhost
+app.run(host=localhost,debug=True)

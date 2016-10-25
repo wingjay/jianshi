@@ -6,11 +6,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.model.PushData;
+import com.wingjay.jianshi.db.model.PushData_Table;
 import com.wingjay.jianshi.network.JsonDataResponse;
+import com.wingjay.jianshi.network.RCCode;
 import com.wingjay.jianshi.network.UserService;
+import com.wingjay.jianshi.network.model.SyncModel;
+import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.util.GsonUtil;
-import com.wingjay.jianshi.util.RxUtil;
 
 import java.util.List;
 
@@ -27,11 +31,14 @@ public class SyncManager {
   UserService userService;
 
   @Inject
+  UserPrefs userPrefs;
+
+  @Inject
   SyncManager() {
   }
 
-  public void sync() {
-    List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
+  public synchronized void sync() {
+    final List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
     Gson gson = GsonUtil.getGsonWithExclusionStrategy();
     JsonParser jsonParser = new JsonParser();
     JsonObject syncData = new JsonObject();
@@ -41,21 +48,48 @@ public class SyncManager {
     }
     syncData.add("sync_items", array);
     syncData.add("need_pull", gson.toJsonTree(1));
-    syncData.add("sync_token", gson.toJsonTree(""));
+    syncData.add("sync_token", gson.toJsonTree(userPrefs.getSyncToken()));
     Timber.d("Sync Data : %s", syncData.toString());
-    userService.sync(syncData)
-        .compose(RxUtil.<JsonDataResponse<Object>>normalSchedulers())
-        .subscribe(new Action1<JsonDataResponse<Object>>() {
-          @Override
-          public void call(JsonDataResponse<Object> objectJsonDataResponse) {
 
+    userService.sync(syncData).subscribe(new Action1<JsonDataResponse<SyncModel>>() {
+      @Override
+      public void call(JsonDataResponse<SyncModel> response) {
+        if (response.getRc() == RCCode.SUCCESS) {
+          SyncModel syncModel = response.getData();
+          userPrefs.setSyncToken(syncModel.getSyncToken());
+          if (syncModel.getUpsert() != null) {
+            for (Diary diary : syncModel.getUpsert()) {
+              diary.save();
+            }
           }
-        }, new Action1<Throwable>() {
-          @Override
-          public void call(Throwable throwable) {
-            Timber.e(throwable, throwable.getMessage());
+
+          if (syncModel.getDelete() != null) {
+            for (Diary diary : syncModel.getDelete()) {
+              diary.save();
+            }
           }
-        });
+
+          int syncCount = syncModel.getSyncedCount();
+
+          for (PushData pushData : pushDataList) {
+            SQLite.delete()
+                .from(PushData.class)
+                .where(PushData_Table.id.eq(pushData.getId()))
+                .execute();
+            syncCount--;
+            if (syncCount <= 0) {
+              break;
+            }
+          }
+        }
+      }
+    }, new Action1<Throwable>() {
+      @Override
+      public void call(Throwable throwable) {
+        Timber.e(throwable, "Sync Failed");
+      }
+    });
+
   }
 
 
