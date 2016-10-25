@@ -20,22 +20,21 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
   private RecyclerClickListener listener;
 
   class DiaryListViewHolder extends RecyclerView.ViewHolder {
-
-    View diaryItem;
-    TextView title, content, date;
+    TextView title, year;
+    View contentView;
 
     DiaryListViewHolder(View itemView) {
       super(itemView);
-      diaryItem = itemView.findViewById(R.id.diary_item);
-      title = (TextView) itemView.findViewById(R.id.item_diary_title);
-      content = (TextView) itemView.findViewById(R.id.item_diary_content);
-      date = (TextView) itemView.findViewById(R.id.item_diary_date);
+      contentView = itemView;
+      title = (TextView) itemView.findViewById(R.id.diary_title);
+      year = (TextView) itemView.findViewById(R.id.year);
     }
   }
 
   public void setRecyclerClickListener(RecyclerClickListener listener) {
     this.listener = listener;
   }
+
   public DiaryListAdapter(BaseActivity context, List<Diary> diaryList) {
     this.context = context;
     this.diaryList = diaryList;
@@ -48,24 +47,33 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
   }
 
   @Override
-  public void onBindViewHolder(DiaryListViewHolder diaryListViewHolder, final int i) {
-    final Diary d = diaryList.get(i);
-    diaryListViewHolder.title.setText(d.getTitle());
-    diaryListViewHolder.content.setText(d.getContent());
-    diaryListViewHolder.date.setText(d.getChineseCreatedTime());
-    diaryListViewHolder.diaryItem.setOnClickListener(new View.OnClickListener() {
+  public void onBindViewHolder(DiaryListViewHolder diaryListViewHolder, int position) {
+    final Diary d = diaryList.get(position);
+    if (position == 0) {
+      diaryListViewHolder.year.setVisibility(View.VISIBLE);
+    } else {
+      if (diaryList.get(position).getYearCN()
+          .equals(diaryList.get(position - 1).getYearCN())) {
+        diaryListViewHolder.year.setVisibility(View.GONE);
+      } else {
+        diaryListViewHolder.year.setVisibility(View.VISIBLE);
+      }
+    }
+    diaryListViewHolder.title.setText(d.getCatalogueTitle());
+    diaryListViewHolder.year.setText(d.getYearCN());
+    diaryListViewHolder.title.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         if (listener != null) {
-          listener.onItemClick(i);
+          listener.onItemClick(d);
         }
       }
     });
-    diaryListViewHolder.diaryItem.setOnLongClickListener(new View.OnLongClickListener() {
+    diaryListViewHolder.title.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         if (listener != null) {
-          listener.onItemLongClick(i);
+          listener.onItemLongClick(d);
         }
         return true;
       }
@@ -78,8 +86,9 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.Diar
   }
 
   public interface RecyclerClickListener {
-    void onItemClick(int position);
-    void onItemLongClick(int position);
+    void onItemClick(Diary diary);
+
+    void onItemLongClick(Diary diary);
   }
 
 }

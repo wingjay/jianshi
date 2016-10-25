@@ -22,6 +22,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -36,13 +37,22 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
   @Inject
   DiaryService diaryService;
 
+  @OnClick(R.id.view_write)
+  void write() {
+    startActivity(new Intent(this, EditActivity.class));
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_diary_list);
     JianShiApplication.getAppComponent().inject(this);
     diaryListView.setHasFixedSize(true);
-    diaryListView.setLayoutManager(new LinearLayoutManager(DiaryListActivity.this));
+    diaryListView.setLayoutManager(
+        new LinearLayoutManager(
+            DiaryListActivity.this,
+            LinearLayoutManager.HORIZONTAL,
+            true));
 
     // get all local diaries
     adapter = new DiaryListAdapter(DiaryListActivity.this, diaryList);
@@ -72,18 +82,17 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
   }
 
   @Override
-  public void onItemClick(int position) {
-    startActivity(ViewActivity.createIntent(this, diaryList.get(position).getUuid()));
+  public void onItemClick(Diary diary) {
+    startActivity(ViewActivity.createIntent(this, diary.getUuid()));
   }
 
   @Override
-  public void onItemLongClick(final int position) {
+  public void onItemLongClick(final Diary diary) {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.do_you_want_to_delete_diary)
         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            Diary diary = diaryList.get(position);
             diary.setTime_removed(DateUtil.getCurrentTimeStamp());
             diaryService.saveDiary(diary)
                 .subscribeOn(Schedulers.io())
@@ -91,8 +100,8 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
                 .subscribe(new Action1<Void>() {
                   @Override
                   public void call(Void aVoid) {
-                    diaryList.remove(position);
-                    adapter.notifyItemRemoved(position);
+                    diaryList.remove(diary);
+                    adapter.notifyDataSetChanged();
                   }
                 });
           }

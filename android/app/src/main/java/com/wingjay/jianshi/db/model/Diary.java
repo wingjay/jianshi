@@ -24,6 +24,8 @@ public class Diary extends BaseModel{
 
   private long time;
 
+  private FullDateManager manager;
+
   public String getUuid() {
     return uuid;
   }
@@ -81,7 +83,17 @@ public class Diary extends BaseModel{
   }
 
   public String getChineseCreatedTime() {
-    FullDateManager fullDateManager = new FullDateManager(time_created);
-    return fullDateManager.getFullDate();
+    manager = new FullDateManager(time_created);
+    return manager.getFullCNDate();
+  }
+
+  public String getYearCN() {
+    manager = new FullDateManager(time_created);
+    return manager.getYearMonthCNData();
+  }
+
+  public String getCatalogueTitle() {
+    manager = new FullDateManager(time_created);
+    return manager.getDayCNData() + "  " + getTitle();
   }
 }

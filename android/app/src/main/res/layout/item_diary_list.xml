@@ -1,55 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-    >
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/diary_item"
-        android:layout_width="match_parent"
+    <com.wingjay.jianshi.ui.widget.VerticalTextView
+        android:id="@+id/diary_title"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/small_text_size"
-        android:paddingBottom="@dimen/small_text_size"
+        android:gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="60dp"
+        android:textColor="@android:color/black"
         style="@style/PressableBg"
-        >
+        tools:text="九月十二日 水调歌头·中秋"/>
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-            android:id="@+id/item_diary_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DiaryListTitleStyle"
-            android:maxLines="1"
-            android:ellipsize="end"
-            />
-
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-            android:id="@+id/item_diary_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_diary_title"
-            style="@style/DiaryListContentStyle"
-            android:maxLines="3"
-            android:ellipsize="end"
-            />
-
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-            android:id="@+id/item_diary_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_diary_content"
-            style="@style/DiaryListDateStyle"
-            android:maxLines="1"
-            android:gravity="end"
-            android:layout_marginTop="@dimen/small_text_size"
-            />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:drawable/divider_horizontal_bright"
-        android:layout_below="@+id/diary_item"
-        />
+    <com.wingjay.jianshi.ui.widget.VerticalTextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/diary_title"
+        android:paddingTop="35dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="@android:color/black"
+        app:verticalTextSize="22sp"
+        tools:ignore="RtlHardcoded"
+        tools:text="二零一六年 丙申"/>
 
 </RelativeLayout>

@@ -7,9 +7,9 @@ import java.util.HashMap;
 
 public class FullDateManager {
 
-  public final static String YEAR_CHINESE = "年";
-  public final static String MONTH_CHINESE = "月";
-  public final static String DAY_CHINESE = "日";
+  private final static String YEAR_CHINESE = "年";
+  private final static String MONTH_CHINESE = "月";
+  private final static String DAY_CHINESE = "日";
   private int year = 0;
   private int month = 0;
   private int day = 0;
@@ -32,7 +32,8 @@ public class FullDateManager {
     intToChinese.put(10, "十");
   }
 
-  public FullDateManager() {}
+  public FullDateManager() {
+  }
 
   public FullDateManager(long dateSeconds) {
     DateTime dateTime = getDateTime(dateSeconds);
@@ -66,19 +67,30 @@ public class FullDateManager {
     }
     StringBuilder otherString = new StringBuilder();
     int tens = dayOrMonth / 10;
-    otherString.append( (tens == 1 ? "" : intToChinese.get(tens)) + "十");
+    otherString.append((tens == 1 ? "" : intToChinese.get(tens)) + "十");
     int units = dayOrMonth - tens * 10;
-    otherString.append( (units <= 0) ? "" : intToChinese.get(units));
+    otherString.append((units <= 0) ? "" : intToChinese.get(units));
     return otherString.toString();
   }
 
   // format : "二零一五年 九月 十一日"
-  public String getFullDate() {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(getYear(year));
-    stringBuilder.append(getMonth(month));
-    stringBuilder.append(getDay(day));
-    return stringBuilder.toString();
+  public String getFullCNDate() {
+    return getYear(year) + getMonth(month) + getDay(day);
+  }
+
+  // format : "十月二十五日"
+  public String getMonthDayCNDate() {
+    return getMonth(month) + getDay(day);
+  }
+
+  // format : "二零一六年 九月"
+  public String getYearMonthCNData() {
+    return getYear(year) + getMonth(month);
+  }
+
+  // format : 二十五日
+  public String getDayCNData() {
+    return getDay(day);
   }
 
   public String getDay(int day) {
@@ -93,6 +105,7 @@ public class FullDateManager {
     return getPureMonth(month) + MONTH_CHINESE + " ";
   }
 
+  // format
   public String getPureDay(int day) {
     return otherToChinese(day);
   }
