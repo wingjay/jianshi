@@ -6,10 +6,13 @@ import struct
 from Crypto.Cipher import AES
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from server import app
+conf = app.config
+
 SECURE_HASH_METHOD = 'pbkdf2:sha1:1111'
-default_key = 'XjYpwIiYLbaOsU69HXUjlGRMCut88zQG'
-AUTH_TOKEN_ENCRYPT_KEY = '8G7Zg3kjhsdv23bjdalj82nh'
-SYNC_TOKEN_ENCRYPT_KEY = 'a9skSfsGS9sdfjNl2S3lsSs7'
+DEFAULT_KEY = conf['DEFAULT_KEY']
+AUTH_TOKEN_ENCRYPT_KEY = conf['AUTH_TOKEN_ENCRYPT_KEY']
+SYNC_TOKEN_ENCRYPT_KEY = conf['SYNC_TOKEN_ENCRYPT_KEY']
 
 
 def get_hash_password(real_password):
@@ -55,7 +58,7 @@ def decrypt_sync_token(sync_token):
         return {}
 
 
-def encrypt_obj(obj, key=default_key):
+def encrypt_obj(obj, key=DEFAULT_KEY):
     enc = AES.new(key, AES.MODE_ECB)
     text = json.dumps(obj)
     packed = struct.pack('I', len(text)) + text
@@ -63,7 +66,7 @@ def encrypt_obj(obj, key=default_key):
     return base64.urlsafe_b64encode(enc.encrypt(padded))
 
 
-def decrypt_obj(text, key=default_key):
+def decrypt_obj(text, key=DEFAULT_KEY):
     dec = AES.new(key, AES.MODE_ECB)
     text = dec.decrypt(base64.urlsafe_b64decode(str(text)))
     size, data = text[:4], text[4:]

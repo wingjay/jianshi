@@ -1,10 +1,9 @@
-from flask import Flask, g
-
+from flask import g
 import pymysql
 import pymysql.cursors
 
 from server import app
-from server.conf import all as conf
+from conf import all as conf
 
 
 def _init_db(sql_file):

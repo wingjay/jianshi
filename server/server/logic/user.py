@@ -2,7 +2,7 @@ import time
 
 import server.db.user as db_user
 from server.util import safetyutils
-from server.conf import all as conf
+from conf import all as conf
 from server.data import errors
 
 

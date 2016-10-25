@@ -4,7 +4,15 @@ from logging.handlers import RotatingFileHandler
 
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+
+# load config
+app.config.from_object("conf.all")
+app.config.from_pyfile('config.py')
+if app.config['DEBUG']:
+    app.config.from_object("conf.dev")
+else:
+    app.config.from_object("conf.prod")
 
 # MUST under app = Flask(__name__)
 # If you want to use 'from server import app' in your py,
