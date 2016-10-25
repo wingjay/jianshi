@@ -5,11 +5,11 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 一款优雅的中国风记录app，包括Android端和Server端。
 
 # Development Progress
-- __[OnGoing][Server + Android] Development for data sync between android side and server side.__
-- __[2016/09/03][Server + Android] Finish User managment in server side and Signup & Login flow in Android side.__ 
-- __[2016/08/25][Server] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework.__ 
-- __[2016/08/20][Server] Build server side framework. Using `LeanCloud` & `Python`  -> `Finished`__ 
-- __[2016/08/18][Android] Integrate Dagger Retrofit2 OkHttp3 RxJava etc.   -> `Finished`__ 
+- __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
+- __[2016/09/03] User managment in server side and Signup & Login flow in Android side. [Server+Android]__ 
+- __[2016/08/25] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework. [Server]__ 
+- __[2016/08/20] Build server side framework. Using `LeanCloud` & `Python`. [Server]__ 
+- __[2016/08/18] Integrate Dagger Retrofit2 OkHttp3 RxJava etc. [Android]__ 
 
 
 # Android UI 
