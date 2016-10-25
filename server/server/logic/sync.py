@@ -11,7 +11,7 @@ logger = app.logger
 def sync_data(user_id, sync_token, sync_items, need_pull):
     """Upsert client data, sync_items, into server db; fetch changed data from server and return to client.
      1. Decrypt sync_token and fetch last_sync_time;
-     2. Push: Reverse sync_items, execute upsert/delete action for specified table. Record sync_count for client usage;
+     2. Push: Traverse sync_items, execute upsert/delete action for specified table. Record sync_count for client usage;
      3. If need_pull: Get changed data since last_sync_time, comparing with time_modified(upsert) & time_removed(delete);
      4. Pull: return changed data to user.
 
