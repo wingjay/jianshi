@@ -2,7 +2,7 @@
 
 A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简诗. You can write poem in graceful & traditional Chinese style.
 
-一款优雅的中国风记录app，包括Android端和Server端。
+一款优雅的中国风Android App，包括Android端和Server端。
 
 # Development Progress
 - __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
