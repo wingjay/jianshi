@@ -21,14 +21,14 @@
             android:layout_marginTop="@dimen/normal_text_size"
             >
 
-            <TextView
+            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
                 android:id="@+id/view_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextTitleStyle"
                 />
 
-            <TextView
+            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
                 android:id="@+id/view_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
