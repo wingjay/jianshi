@@ -115,4 +115,11 @@
 
     <string name="please_choose_bg_color">选择你偏爱的背景颜色</string>
     <string name="unknown_color">未知颜色</string>
+
+    <!--account-->
+    <string name="login_failure">登录失败</string>
+    <string name="signup_failure">注册失败</string>
+    <string name="email_should_not_be_null">邮箱不能为空</string>
+    <string name="password_should_not_be_null">密码不能为空</string>
+    <!--account ends-->
 </resources>
