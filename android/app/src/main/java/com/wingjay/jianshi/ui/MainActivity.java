@@ -25,7 +25,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
-  
+
   private final static String YEAR = "year";
   private final static String MONTH = "month";
   private final static String DAY = "day";
@@ -138,5 +138,4 @@ public class MainActivity extends BaseActivity {
         Intent.FLAG_ACTIVITY_NO_ANIMATION);
     return intent;
   }
-
 }

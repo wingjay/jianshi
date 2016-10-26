@@ -39,7 +39,9 @@
     <string name="vertical_reading">竖排文字阅读</string>
     <string name="customize_background_color">更换背景颜色</string>
     <string name="support_info">支持信息</string>
+    <string name="account_info">账户</string>
     <string name="user_feedback">反馈</string>
+    <string name="logout">注销</string>
     <string name="feedback_email_subject">关于&lt;简诗&gt;的二三意见</string>
     <string name="feedback_email_prefix">Hi,亲爱的简诗开发者们!\n&#160;&#160;&#160;&#160;我希望向亲们提出如下意见：</string>
     <string name="send_email">发送邮件</string>

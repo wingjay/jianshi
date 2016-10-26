@@ -1,5 +1,7 @@
 package com.wingjay.jianshi.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -126,5 +128,12 @@ public class SignupActivity extends BaseActivity {
   @OnClick(R.id.skip_button)
   void skip() {
     startActivity(MainActivity.createIntent(SignupActivity.this));
+  }
+
+  public static Intent createIntent(Context context) {
+    Intent intent = new Intent(context, SignupActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK |
+        Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    return intent;
   }
 }

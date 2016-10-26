@@ -74,6 +74,10 @@ public class UserPrefs extends BasePrefs {
     setString(KEY_USER, gson.toJson(user));
   }
 
+  public void clearUser() {
+    setString(KEY_USER, null);
+  }
+
   private static final String KEY_SYNC_TOKEN = "sync_token";
 
   public void setSyncToken(@NonNull String syncToken) {

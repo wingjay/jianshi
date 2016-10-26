@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.BgColorPickDialogFragment;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
@@ -27,16 +30,15 @@ public class SettingActivity extends BaseActivity {
   @InjectView(R.id.customize_bg_color)
   View customizeBgColor;
 
+  @Inject
   UserPrefs userPrefs;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    JianShiApplication.getAppComponent().inject(this);
     setContentView(R.layout.activity_setting);
-    userPrefs = new UserPrefs(SettingActivity.this);
-
     verticalWrite.setChecked(userPrefs.getVerticalWrite());
-
   }
 
   @OnCheckedChanged(R.id.vertical_write)
@@ -77,5 +79,11 @@ public class SettingActivity extends BaseActivity {
     bgColorPickDialogFragment.show(getSupportFragmentManager(), null);
   }
 
-
+  @OnClick(R.id.logout)
+  void logout() {
+    userPrefs.clearAuthToken();
+    userPrefs.clearUser();
+    startActivity(SignupActivity.createIntent(this));
+    finish();
+  }
 }

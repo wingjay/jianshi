@@ -11,6 +11,11 @@
         <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 
+    <style name="ClickableTextStyle" parent="TextStyle">
+        <item name="android:clickable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
     <style name="TitleTextStyle">
         <item name="android:textColor">@color/text_grey</item>
         <item name="android:textSize">@dimen/small_text_size</item>
