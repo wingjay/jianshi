@@ -3,6 +3,7 @@ package com.wingjay.jianshi.db.service;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.wingjay.jianshi.db.model.Diary;
@@ -12,7 +13,6 @@ import com.wingjay.jianshi.sync.Change;
 import com.wingjay.jianshi.sync.Operation;
 import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.util.DateUtil;
-import com.wingjay.jianshi.util.GsonUtil;
 
 import java.util.List;
 
@@ -20,10 +20,14 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.functions.Func0;
+import rx.schedulers.Schedulers;
 
 public class DiaryService {
 
   private Context context;
+
+  @Inject
+  private Gson gson;
 
   @Inject
   DiaryService(@ForApplication Context context) {
@@ -37,21 +41,18 @@ public class DiaryService {
         JsonObject jsonObject = new JsonObject();
         diary.setTime(DateUtil.getCurrentTimeStamp());
         if (diary.getTime_removed() > 0) {
-          jsonObject.add(Operation.DELETE.getAction(),
-              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+          jsonObject.add(Operation.DELETE.getAction(), gson.toJsonTree(diary));
         } else if (diary.getTime_modified() >= diary.getTime_created()) {
-          jsonObject.add(Operation.UPDATE.getAction(),
-              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+          jsonObject.add(Operation.UPDATE.getAction(), gson.toJsonTree(diary));
         } else {
-          jsonObject.add(Operation.CREATE.getAction(),
-              GsonUtil.getGsonWithExclusionStrategy().toJsonTree(diary));
+          jsonObject.add(Operation.CREATE.getAction(), gson.toJsonTree(diary));
         }
         Change.handleChangeByDBKey(Change.DBKey.DIARY, jsonObject);
         diary.save();
         SyncService.syncImmediately(context);
         return Observable.just(null);
       }
-    });
+    }).subscribeOn(Schedulers.io());
   }
 
   public Observable<List<Diary>> getDiaryList() {
@@ -60,7 +61,7 @@ public class DiaryService {
       public Observable<List<Diary>> call() {
         return Observable.just(fetchDiaryListFromDB());
       }
-    });
+    }).subscribeOn(Schedulers.io());
   }
 
   private List<Diary> fetchDiaryListFromDB() {
@@ -81,6 +82,6 @@ public class DiaryService {
             .querySingle();
         return Observable.just(diary);
       }
-    });
+    }).subscribeOn(Schedulers.io());
   }
 }

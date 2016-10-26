@@ -14,7 +14,6 @@ import com.wingjay.jianshi.network.RCCode;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.network.model.SyncModel;
 import com.wingjay.jianshi.prefs.UserPrefs;
-import com.wingjay.jianshi.util.GsonUtil;
 
 import java.util.List;
 
@@ -34,12 +33,14 @@ public class SyncManager {
   UserPrefs userPrefs;
 
   @Inject
+  Gson gson;
+
+  @Inject
   SyncManager() {
   }
 
   public synchronized void sync() {
     final List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
-    Gson gson = GsonUtil.getGsonWithExclusionStrategy();
     JsonParser jsonParser = new JsonParser();
     JsonObject syncData = new JsonObject();
     JsonArray array = new JsonArray();
