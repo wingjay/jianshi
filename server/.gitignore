@@ -5,6 +5,8 @@ jianshi.log.1
 custom.log
 error.log
 
+logs/
+
 *.log
 
 # Byte-compiled / optimized / DLL files
