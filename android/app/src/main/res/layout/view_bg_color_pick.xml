@@ -7,7 +7,7 @@
               android:padding="@dimen/small_text_size"
     >
 
-    <com.wingjay.jianshi.ui.widget.RedPointView
+    <com.wingjay.jianshi.ui.widget.TextPointView
         android:id="@+id/bg_color_hint"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

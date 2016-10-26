@@ -9,5 +9,6 @@
     <dimen name="normal_text_size">18sp</dimen>
     <dimen name="small_text_size">16sp</dimen>
 
+    <dimen name="red_circle_text_size">16sp</dimen>
     <dimen name="red_circle_size">30sp</dimen>
 </resources>

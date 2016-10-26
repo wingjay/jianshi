@@ -16,7 +16,7 @@ import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
-import com.wingjay.jianshi.ui.widget.RedPointView;
+import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.util.LanguageUtil;
 
 import javax.inject.Inject;
@@ -29,7 +29,7 @@ import rx.schedulers.Schedulers;
 public class ViewActivity extends BaseActivity {
 
   @InjectView(R.id.view_edit)
-  RedPointView edit;
+  TextPointView edit;
 
   @InjectView(R.id.hori_container)
   ScrollView verticalScrollView;

@@ -35,7 +35,7 @@
             android:layout_marginBottom="@dimen/normal_text_size"
             />
 
-        <com.wingjay.jianshi.ui.widget.RedPointView
+        <com.wingjay.jianshi.ui.widget.TextPointView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

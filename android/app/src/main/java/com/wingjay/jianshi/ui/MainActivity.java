@@ -13,7 +13,7 @@ import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
-import com.wingjay.jianshi.ui.widget.RedPointView;
+import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.util.DateUtil;
@@ -43,10 +43,10 @@ public class MainActivity extends BaseActivity {
   VerticalTextView dayTextView;
 
   @InjectView(R.id.writer)
-  RedPointView writerView;
+  TextPointView writerView;
 
   @InjectView(R.id.reader)
-  RedPointView readerView;
+  TextPointView readerView;
 
   @InjectView(R.id.day_chooser)
   DayChooser dayChooser;

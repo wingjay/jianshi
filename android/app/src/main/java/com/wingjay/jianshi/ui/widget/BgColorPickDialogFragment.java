@@ -39,7 +39,7 @@ public class BgColorPickDialogFragment extends DialogFragment {
   private class BgColorPickAdapter extends BaseAdapter{
 
     private class ViewHolder {
-      RedPointView colorHint;
+      TextPointView colorHint;
       TextView colorName;
     }
 
@@ -73,7 +73,7 @@ public class BgColorPickDialogFragment extends DialogFragment {
         convertView = LayoutInflater.from(context)
             .inflate(R.layout.view_bg_color_pick, parent, false);
         viewHolder = new ViewHolder();
-        viewHolder.colorHint = (RedPointView) convertView.findViewById(R.id.bg_color_hint);
+        viewHolder.colorHint = (TextPointView) convertView.findViewById(R.id.bg_color_hint);
         viewHolder.colorName = (TextView) convertView.findViewById(R.id.bg_color_name);
         convertView.setTag(viewHolder);
       } else {
@@ -82,7 +82,7 @@ public class BgColorPickDialogFragment extends DialogFragment {
 
       final TraditionalColorNamer colorNamer = colorNamerList.get(position);
       viewHolder.colorName.setText(colorNamer.getColorName());
-      viewHolder.colorHint.setContainerBackgroundColor(colorNamer.getColorRes());
+      viewHolder.colorHint.setCircleBackgroundColor(colorNamer.getColorRes());
       convertView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

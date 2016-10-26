@@ -10,7 +10,7 @@
         android:layout_height="match_parent"/>
 
 
-    <com.wingjay.jianshi.ui.widget.RedPointView
+    <com.wingjay.jianshi.ui.widget.TextPointView
         android:id="@+id/view_write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
