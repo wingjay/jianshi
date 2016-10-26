@@ -2,6 +2,7 @@ package com.wingjay.jianshi.global;
 
 import android.app.Application;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.provider.Settings.Secure;
 
 import com.crashlytics.android.Crashlytics;
@@ -20,6 +21,7 @@ import io.fabric.sdk.android.Fabric;
 public class JianShiApplication extends Application {
 
   private static JianShiApplication instance;
+  private static Context newsContext;
 
   public static JianShiApplication getInstance() {
       return instance;
@@ -47,6 +49,8 @@ public class JianShiApplication extends Application {
 //        FIR.init(this);
     super.onCreate();
 
+    newsContext = getApplicationContext();
+
     appComponent = DaggerAppComponent.builder()
         .appModule(new AppModule(JianShiApplication.this))
         .build();
@@ -65,4 +69,7 @@ public class JianShiApplication extends Application {
     return appComponent;
   }
 
+  public static Context getPoemContext(){
+    return newsContext;
+  }
 }

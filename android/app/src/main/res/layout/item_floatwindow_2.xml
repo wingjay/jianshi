@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="250dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/red_circle_size"
+    android:layout_marginStart="@dimen/red_circle_size"
+    android:layout_marginEnd="@dimen/red_circle_size"
+    android:layout_marginRight="@dimen/red_circle_size"
+    android:background="@drawable/floati_expandview_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.wingjay.jianshi.ui.widget.DayChooser
+        android:id="@+id/day_chooser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+    <com.wingjay.jianshi.ui.widget.ThreeLinePoemView
+        android:id="@+id/three_line_poem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>

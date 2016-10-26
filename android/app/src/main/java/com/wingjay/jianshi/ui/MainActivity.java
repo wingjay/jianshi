@@ -1,12 +1,25 @@
 package com.wingjay.jianshi.ui;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.floating.PoemService;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.screenshot.ScreenshotHelper;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
@@ -23,7 +36,7 @@ import org.joda.time.DateTime;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IWXAPIEventHandler {
 
   private final static String YEAR = "year";
   private final static String MONTH = "month";
@@ -44,15 +57,33 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.reader)
   RedPointView readerView;
 
+  @InjectView(R.id.floating)
+  RedPointView floatView;
+
+  @InjectView(R.id.screenshot)
+  RedPointView screenshotView;
+
   @InjectView(R.id.day_chooser)
   DayChooser dayChooser;
 
+  @InjectView(R.id.screenshot_layout)
+  RelativeLayout screenshotLayout;
+
   private volatile int year, month, day;
+
+  private PoemService mService;
+  private ServiceConnection mConnection;
+  private Intent mServiceIntent;
+
+  private static final String APP_ID = "wx565518a6df3fcacb";
+  private IWXAPI mWechatApi;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     JianShiApplication.getAppComponent().inject(MainActivity.this);
+    bindService();
+    regToWx();
 
     setContentView(R.layout.activity_main);
 
@@ -102,6 +133,55 @@ public class MainActivity extends BaseActivity {
             dayPickDialogFragment.show(getSupportFragmentManager(), null);
         }
     });
+
+    floatView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        MainActivity.this.startService(mServiceIntent);
+        if(mService != null){
+          mService.show();
+        }
+      }
+    });
+
+    screenshotView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        try{
+          android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+          builder.setTitle("简诗");
+          builder.setMessage("这首优美的小诗怎么不分享给其他人呢？");
+          builder.setNegativeButton("朋友圈", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+              try{
+                ScreenshotHelper.screenshotShare(MainActivity.this,screenshotLayout,mWechatApi,true);
+              }catch(Exception e){
+                e.printStackTrace();
+              }
+            }
+          });
+          builder.setPositiveButton("好友", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+              try{
+                ScreenshotHelper.screenshotShare(MainActivity.this,screenshotLayout,mWechatApi,false);
+              }catch(Exception e){
+                e.printStackTrace();
+              }
+            }
+          });
+          builder.show();
+        }catch(Exception e){
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
+  private void regToWx(){
+    mWechatApi = WXAPIFactory.createWXAPI(this,APP_ID,true);
+    mWechatApi.registerApp(APP_ID);
   }
 
   @OnClick(R.id.setting)
@@ -190,4 +270,80 @@ public class MainActivity extends BaseActivity {
     return intent;
   }
 
+  private void bindService(){
+    mServiceIntent = new Intent(this,PoemService.class);
+    if(mConnection == null){
+      mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+          mService = ((PoemService.PoemFloatWindowBinder)service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+      };
+
+      this.bindService(mServiceIntent,mConnection,this.BIND_AUTO_CREATE);
+    }
+  }
+
+  private void unbindService(){
+    if(null != mConnection){
+      this.unbindService(mConnection);
+      mConnection = null;
+    }
+  }
+
+  @Override
+  public void onDestroy(){
+    unbindService();
+    super.onDestroy();
+  }
+
+  @Override
+  public void onPause(){
+    unbindService();
+    super.onPause();
+  }
+
+  @Override
+  public void onStop(){
+    unbindService();
+    super.onStop();
+  }
+
+  @Override
+  public void onResume(){
+    bindService();
+    super.onResume();
+  }
+
+  @Override
+  public void onReq(BaseReq baseReq) {
+
+  }
+
+  @Override
+  public void onResp(BaseResp resp) {
+    int result = 0;
+
+    switch (resp.errCode) {
+      case BaseResp.ErrCode.ERR_OK:
+        result = R.string.errcode_success;
+        break;
+      case BaseResp.ErrCode.ERR_USER_CANCEL:
+        result = R.string.errcode_cancel;
+        break;
+      case BaseResp.ErrCode.ERR_AUTH_DENIED:
+        result = R.string.errcode_deny;
+        break;
+      default:
+        result = R.string.errcode_unknown;
+        break;
+    }
+
+    Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+  }
 }

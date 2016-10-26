@@ -51,6 +51,9 @@
         <activity android:name=".ui.SignupActivity"
                   android:exported="false"/>
 
+        <service android:name=".floating.PoemService"
+                 android:windowSoftInputMode="stateVisible|adjustResize"/>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c" />
@@ -68,5 +71,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.GET_TASKS"/>
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
