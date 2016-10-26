@@ -116,13 +116,13 @@ public class MainActivity extends BaseActivity {
   @OnClick(R.id.setting)
   void toSettingsPage(View v) {
     Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-    startActivityForResult(intent, ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE);
+    startActivityForResult(intent, ConstantUtil.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE);
   }
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE) {
+    if (requestCode == ConstantUtil.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE) {
       if (resultCode == RESULT_OK) {
         setContainerBgColorFromPrefs();
       }

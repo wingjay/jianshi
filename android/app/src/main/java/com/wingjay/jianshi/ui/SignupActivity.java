@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.wingjay.jianshi.JianshiConstant;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.User;
 import com.wingjay.jianshi.global.JianShiApplication;
@@ -13,6 +12,7 @@ import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.util.ConstantUtil;
 import com.wingjay.jianshi.util.RxUtil;
 
 import javax.inject.Inject;
@@ -67,7 +67,7 @@ public class SignupActivity extends BaseActivity {
 
           @Override
           public void onNext(JsonDataResponse<User> userJsonDataResponse) {
-            if (userJsonDataResponse.getRc() == JianshiConstant.ServerResultCode.RESULT_OK) {
+            if (userJsonDataResponse.getRc() == ConstantUtil.ServerResultCode.RESULT_OK) {
               User user = userJsonDataResponse.getData();
               if (user == null || user.getId() <= 0) {
                 throw new RuntimeException(userJsonDataResponse.getMsg());
@@ -103,7 +103,7 @@ public class SignupActivity extends BaseActivity {
 
           @Override
           public void onNext(JsonDataResponse<User> userJsonDataResponse) {
-            if (userJsonDataResponse.getRc() == JianshiConstant.ServerResultCode.RESULT_OK) {
+            if (userJsonDataResponse.getRc() == ConstantUtil.ServerResultCode.RESULT_OK) {
               User user = userJsonDataResponse.getData();
               if (user == null || user.getId() <= 0) {
                 throw new RuntimeException(userJsonDataResponse.getMsg());

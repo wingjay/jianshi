@@ -74,7 +74,7 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == ConstantUtil.REQUEST_CODE_VIEW_DIARY_FROM_LIST
+    if (requestCode == ConstantUtil.RequestCode.REQUEST_CODE_VIEW_DIARY_FROM_LIST
         && resultCode == RESULT_OK) {
       adapter.notifyItemRangeChanged(0, diaryList.size());
       adapter.notifyDataSetChanged();
