@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import retrofit2.http.HEAD;
-
 /**
  * Diary Table:
  * id  diary_id  device_id  title  content  deleted  created_time  modified_time  time_removed

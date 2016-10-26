@@ -1,9 +1,9 @@
-package com.wingjay.jianshi.util;
+package com.wingjay.jianshi;
 
 /**
  * Created by wingjay on 10/10/15.
  */
-public class ConstantUtil {
+public class Constants {
 
   public final static class RequestCode {
     public final static int REQUEST_CODE_VIEW_DIARY_FROM_LIST = 100;

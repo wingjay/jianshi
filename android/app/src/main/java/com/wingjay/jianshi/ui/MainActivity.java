@@ -15,7 +15,7 @@ import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
 import com.wingjay.jianshi.ui.widget.RedPointView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
-import com.wingjay.jianshi.util.ConstantUtil;
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.util.UpgradeUtil;
@@ -116,13 +116,13 @@ public class MainActivity extends BaseActivity {
   @OnClick(R.id.setting)
   void toSettingsPage(View v) {
     Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-    startActivityForResult(intent, ConstantUtil.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE);
+    startActivityForResult(intent, Constants.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE);
   }
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == ConstantUtil.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE) {
+    if (requestCode == Constants.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE) {
       if (resultCode == RESULT_OK) {
         setContainerBgColorFromPrefs();
       }

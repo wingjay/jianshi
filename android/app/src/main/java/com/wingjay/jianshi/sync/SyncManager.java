@@ -10,10 +10,10 @@ import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.model.PushData;
 import com.wingjay.jianshi.db.model.PushData_Table;
 import com.wingjay.jianshi.network.JsonDataResponse;
-import com.wingjay.jianshi.network.RCCode;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.network.model.SyncModel;
 import com.wingjay.jianshi.prefs.UserPrefs;
+import com.wingjay.jianshi.Constants;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class SyncManager {
     userService.sync(syncData).subscribe(new Action1<JsonDataResponse<SyncModel>>() {
       @Override
       public void call(JsonDataResponse<SyncModel> response) {
-        if (response.getRc() == RCCode.SUCCESS) {
+        if (response.getRc() == Constants.ServerResultCode.RESULT_OK) {
           SyncModel syncModel = response.getData();
           userPrefs.setSyncToken(syncModel.getSyncToken());
           if (syncModel.getUpsert() != null) {
