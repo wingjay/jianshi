@@ -27,10 +27,10 @@ public class DiaryService {
   private Context context;
 
   @Inject
-  private Gson gson;
+  Gson gson;
 
   @Inject
-  DiaryService(@ForApplication Context context) {
+  public DiaryService(@ForApplication Context context) {
     this.context = context;
   }
 
