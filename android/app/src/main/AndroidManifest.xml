@@ -58,12 +58,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c"/>
-        <meta-data
-            android:name="BUG_HD_SDK_GENERAL_KEY"
-            android:value="bd75c5322433a5a3cce1ce701f954376"/>
-        <meta-data
-            android:name="FIR_IM_API_TOKEN"
-            android:value="9e6ab47d3c83ce0765cdc2f0696a3da5"/>
 
     </application>
 

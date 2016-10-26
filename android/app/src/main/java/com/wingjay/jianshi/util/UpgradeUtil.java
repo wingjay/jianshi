@@ -7,13 +7,11 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 
-import im.fir.sdk.callback.VersionCheckCallback;
 import im.fir.sdk.version.AppVersion;
 
 /**
@@ -21,23 +19,8 @@ import im.fir.sdk.version.AppVersion;
  */
 public class UpgradeUtil {
 
-  public final static int INVALID_NEW_VERSION = -1;
-
   public static void checkUpgrade(final BaseActivity context) {
-    String firToken = getMetadata(context, "FIR_IM_API_TOKEN");
-    VersionCheckCallback callback = new VersionCheckCallback() {
-      @Override
-      public void onSuccess(AppVersion appVersion, boolean b) {
-        if (!context.isUISafe()) {
-          return;
-        }
-        Log.i("upgrade", "appversion : " + appVersion + ", b : " + b);
-        if (b) {
-          displayUpgradeDialog(context, appVersion);
-        }
-      }
-    };
-//        FIR.checkForUpdateInFIR(firToken, callback);
+//    displayUpgradeDialog(context, appVersion);
   }
 
   private static void displayUpgradeDialog(final Context context, final AppVersion appVersion) {
