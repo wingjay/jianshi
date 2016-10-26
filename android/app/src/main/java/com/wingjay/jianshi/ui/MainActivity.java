@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.sync.SyncManager;
 import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
-import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
 import com.wingjay.jianshi.ui.widget.RedPointView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
-import com.wingjay.jianshi.Constants;
-import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
@@ -90,26 +87,6 @@ public class MainActivity extends BaseActivity {
       }
     });
 
-    dayChooser.setOnDayChooserClickListener(new DayChooser.OnDayChooserClickListener() {
-      @Override
-      public void onDayChoose(int chooseDay) {
-        DayPickDialogFragment dayPickDialogFragment = new DayPickDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(DayPickDialogFragment.CHOOSE_DAY, chooseDay);
-        bundle.putInt(DayPickDialogFragment.CHOOSE_MONTH, month);
-        bundle.putInt(DayPickDialogFragment.CHOOSE_YEAR, year);
-        dayPickDialogFragment.setArguments(bundle);
-        dayPickDialogFragment.setOnDayChoosedListener(new DayPickDialogFragment.OnDayChoosedListener() {
-          @Override
-          public void onDayChoosed(DateTime chooseDate) {
-            setDate(chooseDate);
-            updateFullDate();
-          }
-        });
-        dayPickDialogFragment.show(getSupportFragmentManager(), null);
-      }
-    });
-
     SyncService.syncImmediately(this);
   }
 
@@ -127,43 +104,6 @@ public class MainActivity extends BaseActivity {
         setContainerBgColorFromPrefs();
       }
     }
-  }
-
-  @OnClick(R.id.day)
-  void chooseDay(View v) {
-    showDatePickDialog(DatePickDialogFragment.PICK_TYPE_DAY);
-  }
-
-  @OnClick(R.id.month)
-  void chooseMonth() {
-    showDatePickDialog(DatePickDialogFragment.PICK_TYPE_MONTH);
-  }
-
-  private void showDatePickDialog(int pickType) {
-    DatePickDialogFragment datePickDialogFragment = new DatePickDialogFragment();
-    Bundle bundle = new Bundle();
-    bundle.putInt(DatePickDialogFragment.CURRENT_DAY, day);
-    bundle.putInt(DatePickDialogFragment.CURRENT_MONTH, month);
-    bundle.putInt(DatePickDialogFragment.CURRENT_YEAR, year);
-    bundle.putInt(DatePickDialogFragment.PICK_TYPE, pickType);
-    datePickDialogFragment.setArguments(bundle);
-    datePickDialogFragment.setOnDateChoosedListener(new DatePickDialogFragment.OnDateChoosedListener() {
-      @Override
-      public void onDayChoosed(int mDay) {
-        day = mDay;
-        updateFullDate();
-      }
-
-      @Override
-      public void onMonthChoosed(int mMonth) {
-        month = mMonth;
-        if (!DateUtil.checkDayAndMonth(day, mMonth, year)) {
-          day = DateUtil.getLastDay(mMonth, year);
-        }
-        updateFullDate();
-      }
-    });
-    datePickDialogFragment.show(getSupportFragmentManager(), null);
   }
 
   private void setDate(DateTime date) {
