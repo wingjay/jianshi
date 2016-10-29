@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.BgColorPickDialogFragment;
@@ -32,6 +33,9 @@ public class SettingActivity extends BaseActivity {
 
   @Inject
   UserPrefs userPrefs;
+
+  @Inject
+  UserManager userManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +85,6 @@ public class SettingActivity extends BaseActivity {
 
   @OnClick(R.id.logout)
   void logout() {
-    userPrefs.clearAuthToken();
-    userPrefs.clearUser();
-    startActivity(SignupActivity.createIntent(this));
-    finish();
+    userManager.logout(this);
   }
 }
