@@ -40,31 +40,38 @@ android {
     release {
       minifyEnabled true // enable proguard
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
       buildConfigField "String", "BASE_URL", '"http://wingjay-dev2.leanapp.cn/"'
     }
-
     debug {
       debuggable true
       minifyEnabled false
-
       signingConfig signingConfigs.debug
       buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '/"'
+      applicationIdSuffix '.debug'
     }
   }
   packagingOptions {
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'
   }
+
+  signingConfigs {
+    debug {
+      storeFile file('jianshi_dev.jks')
+      storePassword 'jianshi'
+      keyAlias 'jianshidev'
+      keyPassword 'jianshi'
+    }
+  }
 }
 
-dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  def supportLibVersion = '25.0.0'
-  compile "com.android.support:appcompat-v7:${supportLibVersion}"
-  compile "com.android.support:cardview-v7:${supportLibVersion}"
-  compile "com.android.support:recyclerview-v7:${supportLibVersion}"
+def supportLibVersion = '25.0.0'
+def dbflow_version = "4.0.0-beta1"
 
+dependencies {
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile "com.android.support:appcompat-v7:${supportLibVersion}"
+  compile "com.android.support:recyclerview-v7:${supportLibVersion}"
   compile 'joda-time:joda-time:2.3'
   compile 'com.jakewharton:butterknife:6.0.0'
   compile 'com.facebook.stetho:stetho:1.2.0'
@@ -76,7 +83,6 @@ dependencies {
   apt 'com.google.dagger:dagger-compiler:2.5'
   compile 'com.google.dagger:dagger:2.5'
   provided 'javax.annotation:jsr250-api:1.0'
-
   //suqare
   compile 'com.squareup.okhttp3:okhttp:3.4.1'
   compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
@@ -90,7 +96,6 @@ dependencies {
   // explicitly depend on RxJava's latest version for bug fixes and new features.
   compile 'io.reactivex:rxjava:1.1.6'
   //DBFlow
-  def dbflow_version = "4.0.0-beta1"
   apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
   compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
   compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
