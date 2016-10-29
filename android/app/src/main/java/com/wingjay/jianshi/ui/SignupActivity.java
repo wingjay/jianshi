@@ -11,6 +11,7 @@ import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
 
 import javax.inject.Inject;
@@ -35,6 +36,9 @@ public class SignupActivity extends BaseActivity {
   @Inject
   UserManager userManager;
 
+  @InjectView(R.id.text_point)
+  TextPointView textPointView;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -42,7 +46,7 @@ public class SignupActivity extends BaseActivity {
     JianShiApplication.getAppComponent().inject(this);
   }
 
-  @OnClick(R.id.signup_button)
+  @OnClick(R.id.signup)
   void signUp() {
     if (!checkEmailPwdNonNull()) {
       return;
@@ -52,7 +56,7 @@ public class SignupActivity extends BaseActivity {
         getPassword());
   }
 
-  @OnClick(R.id.login_button)
+  @OnClick(R.id.login)
   void login() {
     if (!checkEmailPwdNonNull()) {
       return;
@@ -87,7 +91,7 @@ public class SignupActivity extends BaseActivity {
     return userPassword.getText().toString();
   }
 
-  @OnClick(R.id.skip_button)
+  @OnClick(R.id.skip)
   void skip() {
     startActivity(MainActivity.createIntent(SignupActivity.this));
   }

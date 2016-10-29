@@ -9,20 +9,24 @@ import android.support.annotation.Px;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 import com.wingjay.jianshi.util.DisplayUtil;
 
+import java.util.Random;
+
 /**
  * One Text on the circle background.
  */
-public class TextPointView extends RelativeLayout {
+public class TextPointView extends FrameLayout {
 
+  private final long random = new Random().nextLong();
   private Context context;
   private static final int DEFAULT_SIZE_DP = 30;
   private static final int DEFAULT_TEXT_SIZE = 16;
@@ -56,15 +60,14 @@ public class TextPointView extends RelativeLayout {
     typedArray.recycle();
 
     circleView = new View(context);
-    circleView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+    circleView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT));
     setCircleBackgroundColor(circleColorRes);
 
     textView = new TextView(context);
-    RelativeLayout.LayoutParams params =
-        new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT);
-    params.addRule(RelativeLayout.CENTER_IN_PARENT);
+    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    params.gravity = Gravity.CENTER;
     textView.setLayoutParams(params);
     textView.setTypeface(FontFamilyFactory.getTypeface());
     textView.setTextSize(textSize);
