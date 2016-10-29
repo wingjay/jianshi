@@ -82,6 +82,7 @@ public class UserManager {
 
               userPrefsLazy.get().setAuthToken(user.getEncryptedToken());
               userPrefsLazy.get().setUser(user);
+              context.startActivity(MainActivity.createIntent(context));
             } else {
               Toast.makeText(context, userJsonDataResponse.getMsg(), Toast.LENGTH_SHORT).show();
             }

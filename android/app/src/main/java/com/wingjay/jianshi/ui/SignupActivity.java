@@ -12,6 +12,7 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
+import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
@@ -33,23 +34,32 @@ public class SignupActivity extends BaseActivity {
   @InjectView(R.id.password)
   CustomizeEditText userPassword;
 
-  @Inject
-  UserService userService;
-
-  @Inject
-  UserManager userManager;
-
   @InjectView(R.id.text_point)
   TextPointView textPointView;
 
   @InjectView(R.id.skip)
   CustomizeTextView skip;
 
+  @Inject
+  UserService userService;
+
+  @Inject
+  UserManager userManager;
+
+  @Inject
+  UserPrefs userPrefs;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_signup);
     JianShiApplication.getAppComponent().inject(this);
+
+    if (userPrefs.getAuthToken() != null) {
+      startActivity(MainActivity.createIntent(this));
+      finish();
+      return;
+    }
 
     if (BuildConfig.DEBUG) {
       skip.setVisibility(View.VISIBLE);

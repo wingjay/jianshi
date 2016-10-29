@@ -73,7 +73,6 @@
             style="@style/SignupTextView"
             android:layout_below="@+id/password"
             android:text="@string/login"
-            android:textSize="22sp"
             android:textColor="@color/bright_red"
             />
 

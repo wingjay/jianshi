@@ -22,7 +22,7 @@ def versionPatch = 0
 def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
 def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 
-def port = 5000
+def port = 80
 
 android {
   compileSdkVersion 25
