@@ -30,6 +30,8 @@ public class TextPointView extends RelativeLayout {
   private String singleText;
   private @Px int textSize;
   private @ColorRes int circleColorRes;
+  private View circleView;
+  private TextView textView;
 
   public TextPointView(Context context) {
     this(context, null);
@@ -53,15 +55,12 @@ public class TextPointView extends RelativeLayout {
     textSize = typedArray.getDimensionPixelSize(R.styleable.TextPointView_textSize, DEFAULT_TEXT_SIZE);
     typedArray.recycle();
 
-    View circleView = new View(context);
+    circleView = new View(context);
     circleView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT));
-    ShapeDrawable circleShapeDrawable = new ShapeDrawable();
-    circleShapeDrawable.setShape(new OvalShape());
-    circleShapeDrawable.getPaint().setColor(ContextCompat.getColor(context, circleColorRes));
-    circleView.setBackgroundDrawable(circleShapeDrawable);
+    setCircleBackgroundColor(circleColorRes);
 
-    TextView textView = new TextView(context);
+    textView = new TextView(context);
     RelativeLayout.LayoutParams params =
         new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -91,8 +90,10 @@ public class TextPointView extends RelativeLayout {
   }
 
   public void setCircleBackgroundColor(@ColorRes int circleColorRes) {
-    this.circleColorRes = circleColorRes;
-    invalidate();
+    ShapeDrawable circleShapeDrawable = new ShapeDrawable();
+    circleShapeDrawable.setShape(new OvalShape());
+    circleShapeDrawable.getPaint().setColor(ContextCompat.getColor(context, circleColorRes));
+    circleView.setBackgroundDrawable(circleShapeDrawable);
   }
 
   public void setSingleText(String text) {
@@ -101,7 +102,7 @@ public class TextPointView extends RelativeLayout {
     } else {
       this.singleText = "";
     }
-    invalidate();
+    textView.setText(singleText);
   }
 
 }

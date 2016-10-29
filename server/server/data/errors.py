@@ -46,14 +46,24 @@ class WrongPassword(Exception):
     msg = "Your original password is not correct"
 
 
-class UserNameAlreadyUsed(Exception):
+class UserEmailAlreadyUsed(Exception):
     rc = 1005
-    msg = "This user name is already used. Please choose a new one if that's not yourself"
+    msg = "This user email is already used. Please choose a new one if that's not yourself"
 
 
 class CanNotFindUserId(Exception):
     rc = 1006
     msg = "Cannot find your user id"
+
+
+class UserDeleteFailure(Exception):
+    rc = 1007
+    msg = "User delete error"
+
+
+class EmailFormatWrong(Exception):
+    rc = 1008
+    msg = "Email format is wrong"
 
 
 # Diary related

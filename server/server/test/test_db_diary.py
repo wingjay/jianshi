@@ -1,27 +1,15 @@
 import time
-import random
 import uuid
 
-import pymysql
-
-import server.db as base_db
+import server.test as base_test
 import server.db.diary as db_diary
 import server.logic.sync as logic_sync
 
-
-def reinit_table():
-    conn = base_db.get_conn()
-    try:
-        with conn.cursor() as cursor:
-            sql = "drop table if exists Diary;"
-            cursor.execute(sql)
-    finally:
-        conn.close()
-    base_db.init_diary_table()
+DIARY_DB_NAME = 'Diary'
 
 
 def test_create():
-    reinit_table()
+    base_test.reinit_table(DIARY_DB_NAME)
     for user_id in [1, 3, 5]:
         title = _get_title()
         content = _get_content()
@@ -35,7 +23,7 @@ def test_create():
 
 
 def test_update():
-    reinit_table()
+    base_test.reinit_table(DIARY_DB_NAME)
     user_id = 1
     _uuid = _get_uuid()
     print 'uuid generated: ', _uuid
@@ -56,7 +44,7 @@ def test_update():
 
 
 def test_delete():
-    reinit_table()
+    base_test.reinit_table(DIARY_DB_NAME)
     uuid1 = _get_uuid()
     uuid2 = _get_uuid()
     uuid3 = _get_uuid()
@@ -83,7 +71,7 @@ def test_delete():
 
 
 def test_push():
-    reinit_table()
+    base_test.reinit_table(DIARY_DB_NAME)
     # create a diary
     data = {
         'title': 'first diary',
@@ -122,7 +110,7 @@ def test_push():
 
 
 def test_pull():
-    reinit_table()
+    base_test.reinit_table(DIARY_DB_NAME)
     user_id = 1
     # set last_sync_time
     current_time = int(time.time())
