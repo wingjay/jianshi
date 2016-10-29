@@ -2,6 +2,7 @@ package com.wingjay.jianshi.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -13,14 +14,20 @@ import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.TextPointView;
+import com.wingjay.jianshi.util.CaptureViewUtil;
 import com.wingjay.jianshi.util.DisplayUtil;
+import com.wingjay.jianshi.util.IntentUtil;
 import com.wingjay.jianshi.util.LanguageUtil;
+
+import java.io.File;
 
 import javax.inject.Inject;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -52,11 +59,39 @@ public class ViewActivity extends BaseActivity {
   @InjectView(R.id.container)
   View container;
 
+  @InjectView(R.id.normal_container)
+  View normalContainer;
+
+  @InjectView(R.id.bottom_container)
+  View bottomContainer;
+
   private String diaryUuid;
   private boolean verticalStyle = false;
 
   @Inject
   DiaryService diaryService;
+
+  @OnClick(R.id.view_share)
+  void share() {
+    final String path = getExternalCacheDir() + "/temp.jpg";
+    View capture;
+    if (verticalStyle) {
+      capture = container;
+    } else {
+      capture = normalContainer;
+    }
+    CaptureViewUtil.captureView(capture, path)
+        .subscribe(new Action1<Boolean>() {
+          @Override
+          public void call(Boolean aBoolean) {
+            Timber.i("capture result %s", aBoolean);
+            IntentUtil.shareLinkWithImage(
+                ViewActivity.this,
+                "jianshi.link.download",
+                Uri.fromFile(new File(path)));
+          }
+        });
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +145,7 @@ public class ViewActivity extends BaseActivity {
     if (verticalStyle) {
       verticalTitle.setText(titleString);
       verticalContent.setText(contentString);
+      container.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
       container.post(new Runnable() {
         @Override
         public void run() {
@@ -121,6 +157,7 @@ public class ViewActivity extends BaseActivity {
         }
       });
     } else {
+      normalContainer.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
       horizTitle.setText(titleString);
       horizContent.setText(contentString);
     }

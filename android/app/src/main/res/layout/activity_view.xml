@@ -9,15 +9,16 @@
 
     <ScrollView
         android:id="@+id/hori_container"
-        style="@style/NormalBgLeftRightPaddingWithoutColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
 
         <RelativeLayout
+            android:id="@+id/normal_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_text_size">
+            style="@style/NormalBgLeftRightPaddingWithoutColor"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
             <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
                 android:id="@+id/view_title"
@@ -41,10 +42,8 @@
 
     <HorizontalScrollView
         android:id="@+id/vertical_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:scrollbars="none"
         android:visibility="gone">
 
@@ -52,9 +51,9 @@
             android:id="@+id/container"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/normal_text_size"
-            android:layout_marginTop="@dimen/normal_text_size"
-            android:orientation="horizontal">
+            android:padding="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:background="@color/white">
 
             <com.wingjay.jianshi.ui.widget.MultipleRowTextView
                 android:id="@+id/vertical_view_content"
@@ -73,11 +72,14 @@
 
     </HorizontalScrollView>
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/bottom_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/normal_text_size"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:background="@android:color/transparent">
 
         <com.wingjay.jianshi.ui.widget.TextPointView
@@ -87,6 +89,15 @@
             android:layout_gravity="center_horizontal"
             app:text="@string/edit"/>
 
-    </FrameLayout>
+        <com.wingjay.jianshi.ui.widget.TextPointView
+            android:id="@+id/view_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            app:text="@string/share"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
