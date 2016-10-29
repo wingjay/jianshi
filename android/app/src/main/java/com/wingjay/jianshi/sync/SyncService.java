@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.prefs.UserPrefs;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import timber.log.Timber;
@@ -19,6 +20,7 @@ import timber.log.Timber;
 
 public class SyncService extends IntentService {
 
+  private static SyncManager.SyncResultListener mSyncResultListener;
   @Inject
   SyncManager syncManager;
   @Inject
@@ -39,11 +41,16 @@ public class SyncService extends IntentService {
   protected void onHandleIntent(Intent intent) {
     Timber.d("SyncService name: %s", Thread.currentThread().getName());
     if (!TextUtils.isEmpty(userPrefs.getAuthToken()) && userPrefs.getUser() != null) {
-      syncManager.sync();
+      syncManager.sync(mSyncResultListener);
     }
   }
 
   public static void syncImmediately(Context context) {
+    syncImmediately(context, null);
+  }
+
+  public static void syncImmediately(Context context, @Nullable SyncManager.SyncResultListener syncResultListener) {
+    mSyncResultListener = syncResultListener;
     context.startService(new Intent(context, SyncService.class));
   }
 }

@@ -17,9 +17,12 @@ import com.wingjay.jianshi.Constants;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import timber.log.Timber;
 
@@ -40,6 +43,10 @@ public class SyncManager {
   }
 
   public synchronized void sync() {
+    sync(null);
+  }
+
+  public synchronized void sync(final @Nullable SyncResultListener syncResultListener) {
     final List<PushData> pushDataList = SQLite.select().from(PushData.class).queryList();
     JsonParser jsonParser = new JsonParser();
     JsonObject syncData = new JsonObject();
@@ -91,7 +98,24 @@ public class SyncManager {
       }
     });
 
+    Observable.just(null).subscribeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<Object>() {
+          @Override
+          public void call(Object o) {
+            if (syncResultListener != null) {
+              if (SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
+                syncResultListener.onFailure();
+              } else {
+                syncResultListener.onSuccess();
+              }
+            }
+          }
+        });
   }
 
+  public interface SyncResultListener {
+    void onSuccess();
+    void onFailure();
+  }
 
 }
