@@ -90,7 +90,6 @@
             android:layout_below="@+id/signup"
             android:text="skip"
             android:visibility="gone"
-            tools:visibility="visible"
             />
 
     </RelativeLayout>

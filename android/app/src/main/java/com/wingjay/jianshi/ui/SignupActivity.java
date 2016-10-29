@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.util.PatternsCompat;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.manager.UserManager;
@@ -13,6 +15,7 @@ import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
+import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 
 import javax.inject.Inject;
 
@@ -39,11 +42,20 @@ public class SignupActivity extends BaseActivity {
   @InjectView(R.id.text_point)
   TextPointView textPointView;
 
+  @InjectView(R.id.skip)
+  CustomizeTextView skip;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_signup);
     JianShiApplication.getAppComponent().inject(this);
+
+    if (BuildConfig.DEBUG) {
+      skip.setVisibility(View.VISIBLE);
+    } else {
+      skip.setVisibility(View.GONE);
+    }
   }
 
   @OnClick(R.id.signup)
