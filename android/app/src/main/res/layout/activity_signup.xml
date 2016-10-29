@@ -1,153 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/su"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/qian_bai">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/circle_corner_bg"
-        >
+        android:id="@+id/left_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/light_grey_corner_bg">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/circle_corner_bg"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                >
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:background="@drawable/light_grey_corner_bg"
-                    >
-
-                    <com.wingjay.jianshi.ui.widget.TextPointView
-                        android:id="@+id/logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:text="@string/write"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_alignParentTop="true"
-                        />
-
-                    <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/logo"
-                        android:inputType="textEmailAddress"
-                        android:layout_marginTop="8dp"
-                        android:padding="8dp"
-                        android:background="@color/transparent"
-                        android:hint="邮箱地址"
-                        />
-
-                    <View
-                        android:id="@+id/email_divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/email"
-                        android:background="@color/light_text_gb"
-                        android:visibility="gone"
-                        />
-
-                    <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/email_divider"
-                        android:inputType="textEmailAddress"
-                        android:padding="8dp"
-                        android:background="@color/transparent"
-                        android:hint="密码"
-                        />
-
-                    <View
-                        android:id="@+id/password_divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@id/password"
-                        android:background="@color/light_text_gb"
-                        android:visibility="gone"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:orientation="vertical">
-
-                        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-                            android:id="@+id/signup_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:padding="8dp"
-                            android:textSize="15sp"
-                            style="@style/PressableBg"
-                            android:text="注册"
-                            android:gravity="center"
-                            />
-
-                        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-                            android:id="@+id/login_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:padding="8dp"
-                            android:textSize="15sp"
-                            style="@style/PressableBg"
-                            android:text="登录"
-                            android:gravity="center"
-                            />
-
-                        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
-                            android:id="@+id/skip_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:padding="8dp"
-                            android:textSize="15sp"
-                            style="@style/PressableBg"
-                            android:text="skip"
-                            android:gravity="center"
-                            />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </FrameLayout>
-
-        </FrameLayout>
+        <com.wingjay.jianshi.ui.widget.TextPointView
+            android:id="@+id/text_point"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="-30dp"
+            android:layout_marginStart="-30dp"
+            app:text="登录"
+            app:textSize="13sp"
+            />
 
     </FrameLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/left_circle"
+        android:layout_toEndOf="@+id/left_circle"
+        android:paddingRight="@dimen/margin_32"
+        android:paddingEnd="@dimen/margin_32"
+        android:paddingTop="@dimen/margin_64"
+        >
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/app_name"
+            style="@style/SignupTextView"
+            android:textSize="36sp"
+            android:textColor="@color/black"
+            android:text="@string/app_name_broken"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/app_slogan"
+            style="@style/SignupTextView"
+            android:layout_below="@+id/app_name"
+            android:textSize="14sp"
+            android:gravity="end"
+            android:text="@string/logo_slogan"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+            android:id="@+id/email"
+            style="@style/SignupEditText"
+            android:layout_below="@+id/app_slogan"
+            android:layout_marginTop="@dimen/margin_64"
+            android:hint="@string/email"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+            android:id="@+id/password"
+            style="@style/SignupEditText"
+            android:layout_below="@+id/email"
+            android:gravity="end"
+            android:hint="@string/password"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/login"
+            style="@style/SignupTextView"
+            android:layout_below="@+id/password"
+            android:text="@string/login"
+            android:textSize="22sp"
+            android:textColor="@color/bright_red"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/signup"
+            style="@style/SignupTextView"
+            android:layout_below="@+id/login"
+            android:text="@string/signup"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/skip"
+            style="@style/SignupTextView"
+            android:layout_below="@+id/signup"
+            android:text="skip"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -111,4 +111,23 @@
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
 
+    <style name="SignupTextView" parent="PressableBg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_16</item>
+        <item name="android:gravity">end|right</item>
+        <item name="android:textColor">@color/black_4a</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="SignupEditText">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">end|right</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black_4a</item>
+    </style>
+
 </resources>

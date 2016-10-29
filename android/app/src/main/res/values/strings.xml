@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">简诗</string>
+    <string name="app_name_broken">简\n诗</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -24,6 +25,8 @@
     <string name="edit_content_hint">讲述你的故事&#8230;</string>
     <string name="edit">辑</string>
     <string name="edit_save">存</string>
+    <string name="email">邮箱</string>
+    <string name="password">密码</string>
     <string name="edit_saving">保存中&#8230;</string>
     <string name="save_success">保存成功!</string>
     <string name="save_failure">保存失败&#8230;</string>
@@ -117,9 +120,23 @@
     <string name="unknown_color">未知颜色</string>
 
     <!--account-->
+    <string name="login">登录</string>
+    <string name="signup">注册</string>
     <string name="login_failure">登录失败</string>
     <string name="signup_failure">注册失败</string>
     <string name="email_should_not_be_null">邮箱不能为空</string>
     <string name="password_should_not_be_null">密码不能为空</string>
+    <string name="wrong_email_format">邮箱格式不对</string>
     <!--account ends-->
+
+    <!--logo-->
+    <string name="jianshi_slogan_1">@string/logo_slogan</string>
+    <string-array name="jianshi_slogan">
+        <item>@string/logo_slogan</item>
+        <item>腹有诗歌气自华</item>
+    </string-array>
+
+    <string name="jianshi_slogan_2">@string/logo_slogan</string>
+    <!--logo ends-->
+
 </resources>
