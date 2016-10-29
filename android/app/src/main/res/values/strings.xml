@@ -121,5 +121,6 @@
     <string name="signup_failure">注册失败</string>
     <string name="email_should_not_be_null">邮箱不能为空</string>
     <string name="password_should_not_be_null">密码不能为空</string>
+    <string name="wrong_email_format">邮箱格式不对</string>
     <!--account ends-->
 </resources>
