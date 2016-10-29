@@ -23,20 +23,14 @@ def test_token(user_id, **kwargs):
 
 @app.route("/user/signup", methods=['POST'])
 @mobile_request
-def signup(**kwargs):
-    if 'name' not in kwargs or 'password' not in kwargs:
-        return {
-            'rc': 1,
-            'msg': 'Both name & password should not be null'
-        }
-    result = logic_user.signup(kwargs['name'], kwargs['password'])
-    return result
+def signup(email, password, **kwargs):
+    return logic_user.signup(email, password)
 
 
 @app.route("/user/login", methods=['POST'])
 @mobile_request
-def login(**kwargs):
-    result, user = logic_user.login(kwargs['name'], kwargs['password'])
+def login(email, password, **kwargs):
+    result, user = logic_user.login(email, password)
     if result:
         return user
     else:

@@ -28,12 +28,12 @@ public interface UserService {
 
   @FormUrlEncoded
   @POST("user/signup")
-  Observable<JsonDataResponse<User>> signup(@Field("name") String name,
+  Observable<JsonDataResponse<User>> signup(@Field("email") String email,
                                             @Field("password") String password);
 
   @FormUrlEncoded
   @POST("user/login")
-  Observable<JsonDataResponse<User>> login(@Field("name") String name,
+  Observable<JsonDataResponse<User>> login(@Field("email") String email,
                                            @Field("password") String password);
 
   @POST("sync")
