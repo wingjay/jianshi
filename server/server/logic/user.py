@@ -73,3 +73,5 @@ def is_token_valid(encrypted_token):
     return True, user_id
 
 
+def delete_user(user_id):
+    db_user.delete_user(user_id)
