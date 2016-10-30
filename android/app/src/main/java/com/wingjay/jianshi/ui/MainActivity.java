@@ -90,6 +90,7 @@ public class MainActivity extends BaseActivity {
     JianShiApplication.getAppComponent().inject(MainActivity.this);
 
     setContentView(R.layout.activity_main);
+    setNeedRegister();
 
     if (savedInstanceState != null) {
       year = savedInstanceState.getInt(YEAR);
@@ -187,9 +188,9 @@ public class MainActivity extends BaseActivity {
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onInvalidTokenEvent(InvalidUserTokenEvent event) {
+  public void onEvent(InvalidUserTokenEvent event) {
     makeToast(getString(R.string.invalid_token_force_logout));
-    userManager.logout(this);
+    userManager.logoutByInvalidToken(this);
   }
 
   private void setDate(DateTime date) {

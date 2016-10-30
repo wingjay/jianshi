@@ -27,13 +27,12 @@ def mobile_request(func):
             encrypted_token = request.headers.get('Authorization')
             is_valid, user_id = logic_user.is_token_valid(encrypted_token)
             if not is_valid:
+                # AuthTokenInvalid
                 abort(401)
-                # raise errors.AuthTokenInvalid()
             user = logic_user.get_user_by_id(user_id)
             if not user:
-                # token is valid, but maybe user is deleted
+                # token is valid, but maybe user is deleted.UserNotFound
                 abort(404)
-                # raise errors.UserNotFound()
             kwargs["user_id"] = user_id
 
         try:

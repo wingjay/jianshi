@@ -23,6 +23,12 @@ public class BaseActivity extends AppCompatActivity {
   protected View containerView;
   protected String TAG = getClass().getSimpleName() + ": %s";
 
+  private boolean isNeedRegister = false;
+
+  protected void setNeedRegister() {
+    this.isNeedRegister = true;
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -59,7 +65,9 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     Timber.d(TAG, "onStart");
-    EventBus.getDefault().register(this);
+    if (isNeedRegister) {
+      EventBus.getDefault().register(this);
+    }
   }
 
   @Override
@@ -80,7 +88,9 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStop() {
     super.onStop();
     Timber.d(TAG, "onStop");
-    EventBus.getDefault().unregister(this);
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
   }
 
   @Override

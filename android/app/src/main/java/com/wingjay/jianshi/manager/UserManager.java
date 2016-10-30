@@ -109,11 +109,14 @@ public class UserManager {
         });
   }
 
+  public void logoutByInvalidToken(final @NonNull Context context) {
+    doLogout(context);
+  }
+
   public void logout(final @NonNull Context context) {
     final ProgressDialog dialog = ProgressDialog.show(context, "",
         context.getString(R.string.logout_ing));
-    if (!TextUtils.isEmpty(userPrefs.getAuthToken())
-        && SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
+    if (SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
       SyncService.syncImmediately(context, new SyncManager.SyncResultListener() {
         @Override
         public void onSuccess() {
@@ -149,6 +152,7 @@ public class UserManager {
   private void doLogout(final @NonNull Context context) {
     userPrefs.clearAuthToken();
     userPrefs.clearUser();
+    //// TODO: 10/30/16 Ray cannot delete
     SQLite.delete().from(PushData_Table.class).execute();
     SQLite.delete().from(Diary_Table.class).execute();
     context.startActivity(SignupActivity.createIntent(context));
