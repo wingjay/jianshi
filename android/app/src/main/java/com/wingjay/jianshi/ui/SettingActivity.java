@@ -25,6 +25,9 @@ public class SettingActivity extends BaseActivity {
   @InjectView(R.id.vertical_write)
   SwitchCompat verticalWrite;
 
+  @InjectView(R.id.home_image_poem_switch)
+  SwitchCompat homeImagePoemSwitch;
+
   @InjectView(R.id.send_feedback)
   View sendFeedBack;
 
@@ -43,11 +46,17 @@ public class SettingActivity extends BaseActivity {
     JianShiApplication.getAppComponent().inject(this);
     setContentView(R.layout.activity_setting);
     verticalWrite.setChecked(userPrefs.getVerticalWrite());
+    homeImagePoemSwitch.setChecked(userPrefs.getHomeImagePoem());
   }
 
   @OnCheckedChanged(R.id.vertical_write)
   void chooseVerticalWrite() {
     userPrefs.setVerticalWrite(verticalWrite.isChecked());
+  }
+
+  @OnCheckedChanged(R.id.home_image_poem_switch)
+  void checkHomeImagePoem() {
+    userPrefs.setHomeImagePoem(homeImagePoemSwitch.isChecked());
   }
 
   @OnClick(R.id.send_feedback)

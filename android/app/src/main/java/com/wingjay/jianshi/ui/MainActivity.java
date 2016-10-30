@@ -2,14 +2,11 @@ package com.wingjay.jianshi.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
@@ -18,6 +15,7 @@ import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
+import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.sync.SyncManager;
 import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
@@ -80,7 +78,8 @@ public class MainActivity extends BaseActivity {
   @Inject
   UserManager userManager;
 
-  private Target target;
+  @Inject
+  UserPrefs userPrefs;
 
   private volatile int year, month, day;
 
@@ -120,25 +119,26 @@ public class MainActivity extends BaseActivity {
     });
 
     SyncService.syncImmediately(this);
+  }
 
-    target = new Target() {
-      @Override
-      public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-        setContainerBgColor(R.color.transparent);
-        backgroundImage.setImageBitmap(bitmap);
-      }
+  @Override
+  protected void onStart() {
+    super.onStart();
+    setupImagePoemBackground();
+  }
 
-      @Override
-      public void onBitmapFailed(Drawable errorDrawable) {
+  private void setupImagePoemBackground() {
+    if (!userPrefs.getHomeImagePoem()) {
+      setContainerBgColorFromPrefs();
+      return;
+    }
 
-      }
-
-      @Override
-      public void onPrepareLoad(Drawable placeHolderDrawable) {
-        setContainerBgColorFromPrefs();
-      }
-    };
-
+    Picasso.with(this)
+        .load(R.mipmap.default_home_image)
+        .fit()
+        .centerCrop()
+        .into(backgroundImage);
+    setContainerBgColor(R.color.transparent);
     userService.getImagePoem()
         .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
         .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
@@ -154,7 +154,9 @@ public class MainActivity extends BaseActivity {
             ImagePoem imagePoem = response.getData();
             Picasso.with(MainActivity.this)
                 .load(imagePoem.getImageUrl())
-                .into(target);
+                .fit()
+                .centerCrop()
+                .into(backgroundImage);
             threeLinePoemView.setThreeLinePoem(imagePoem.getPoem());
           }
         }, new Action1<Throwable>() {
@@ -163,12 +165,6 @@ public class MainActivity extends BaseActivity {
             Timber.e(throwable, "getImagePoem() failure");
           }
         });
-  }
-
-  @Override
-  protected void onDestroy() {
-    Picasso.with(this).cancelRequest(target);
-    super.onDestroy();
   }
 
   @OnClick(R.id.setting)
