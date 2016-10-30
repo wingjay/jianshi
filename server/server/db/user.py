@@ -6,7 +6,7 @@ import time
 import pymysql
 import pymysql.cursors
 
-import server.db as base_db
+import server.db.init as base_db
 from server.util import safetyutils, regxutils
 from server.data import errors
 from server import app

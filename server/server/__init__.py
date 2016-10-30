@@ -20,7 +20,7 @@ else:
 import server.www.user
 import server.www.diary
 import server.www.sync
-import server.db.diary
+import server.db
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 path = current_dir + '/logs/jianshi.log'
