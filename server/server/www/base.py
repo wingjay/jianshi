@@ -3,7 +3,7 @@ import json
 import logging
 import pprint
 
-from flask import request, jsonify
+from flask import request, jsonify, abort
 
 from server import app
 from server.data import errors
@@ -27,11 +27,12 @@ def mobile_request(func):
             encrypted_token = request.headers.get('Authorization')
             is_valid, user_id = logic_user.is_token_valid(encrypted_token)
             if not is_valid:
-                raise errors.AuthTokenInvalid()
+                # AuthTokenInvalid
+                abort(401)
             user = logic_user.get_user_by_id(user_id)
             if not user:
-                # token is valid, but maybe user is deleted
-                raise errors.UserNotFound()
+                # token is valid, but maybe user is deleted.UserNotFound
+                abort(404)
             kwargs["user_id"] = user_id
 
         try:

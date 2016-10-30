@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
@@ -20,6 +22,12 @@ public class BaseActivity extends AppCompatActivity {
 
   protected View containerView;
   protected String TAG = getClass().getSimpleName() + ": %s";
+
+  private boolean isNeedRegister = false;
+
+  protected void setNeedRegister() {
+    this.isNeedRegister = true;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,9 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     Timber.d(TAG, "onStart");
+    if (isNeedRegister) {
+      EventBus.getDefault().register(this);
+    }
   }
 
   @Override
@@ -77,6 +88,9 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStop() {
     super.onStop();
     Timber.d(TAG, "onStop");
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
   }
 
   @Override

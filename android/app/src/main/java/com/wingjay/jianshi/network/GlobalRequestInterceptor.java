@@ -4,8 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.wingjay.jianshi.di.ForApplication;
+import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.util.DeviceUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
@@ -40,6 +43,11 @@ public class GlobalRequestInterceptor implements Interceptor {
     if (!TextUtils.isEmpty(userPrefs.getAuthToken())) {
       newRequestBuilder.addHeader("Authorization", userPrefs.getAuthToken());
     }
-    return chain.proceed(newRequestBuilder.url(urlBuilder.build()).build());
+    Response response = chain.proceed(newRequestBuilder.url(urlBuilder.build()).build());
+
+    if (response.code() == 401 || response.code() == 404) {
+      EventBus.getDefault().post(new InvalidUserTokenEvent());
+    }
+    return response;
   }
 }

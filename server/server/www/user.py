@@ -1,7 +1,7 @@
 from server import app
-from server.www.base import mobile_request
+from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
-from server.data import errors
+from server.data import errors, home_images
 
 
 @app.route("/index")
@@ -36,4 +36,10 @@ def login(email, password, **kwargs):
     else:
         raise errors.UserLoginFailure()
 
+
+@app.route("/home/image_poem", methods=['GET'])
+@mobile_request
+@must_login
+def get_home_poem(**kwargs):
+    return home_images.image_poem_list[0]
 
