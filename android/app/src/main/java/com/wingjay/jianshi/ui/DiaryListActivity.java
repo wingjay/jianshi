@@ -58,6 +58,11 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
     adapter = new DiaryListAdapter(DiaryListActivity.this, diaryList);
     adapter.setRecyclerClickListener(this);
     diaryListView.setAdapter(adapter);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
     diaryService.getDiaryList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

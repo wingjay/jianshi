@@ -8,12 +8,13 @@ import android.graphics.Paint;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 import com.wingjay.jianshi.util.DisplayUtil;
+
+import timber.log.Timber;
 
 
 public class MultipleRowTextView extends View {
@@ -113,7 +114,7 @@ public class MultipleRowTextView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    Log.v("TextViewVertical", "onDraw");
+    Timber.i("TextViewVertical %s", "onDraw");
     //画字
     drawMultipleVerticalText(canvas);
   }
@@ -150,6 +151,7 @@ public class MultipleRowTextView extends View {
     mHeight = measureHeight(heightMeasureSpec);
     mWidth = measureWidth();
     setMeasuredDimension(mWidth, mHeight);
+    Timber.i("TextViewVertical width: %s, height: %s", mWidth, mHeight);
   }
 
   private int measureHeight(int measureSpec) {
@@ -176,7 +178,7 @@ public class MultipleRowTextView extends View {
   }
 
   private int measureWidth() {
-    Log.v("TextViewVertical", "measureWidthAndLineHeight");
+    Timber.i("TextViewVertical %s", "measureWidthAndLineHeight");
     char ch;
     int h = 0;
     paint.setTextSize(mFontSize);
