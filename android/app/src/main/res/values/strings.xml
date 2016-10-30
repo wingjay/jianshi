@@ -82,7 +82,7 @@
 
     <!--three-line poems, use ',' to split into a three-line poem -->
     <string name="three_line_poem_default">
-        白纸。黑字-一堆-醒着的历史
+        春色三分-二分尘土-一分流水
     </string>
     <string-array name="three_line_poem_array">
         <item>
@@ -129,13 +129,16 @@
     <string name="email_should_not_be_null">邮箱不能为空</string>
     <string name="password_should_not_be_null">密码不能为空</string>
     <string name="wrong_email_format">邮箱格式不对</string>
+    <string name="logout_ing">注销中</string>
+    <string name="logout_warning_with_data_not_sync">确定要注销？你还有数据未同步，现在登出可能导致数据丢失。</string>
+    <string name="invalid_token_force_logout">你的身份信息已经过期，被强制登出</string>
     <!--account ends-->
 
     <!--logo-->
     <string name="jianshi_slogan_1">@string/logo_slogan</string>
     <string-array name="jianshi_slogan">
         <item>@string/logo_slogan</item>
-        <item>腹有诗歌气自华</item>
+        <item>流浪的鸟，何处是归巢</item>
     </string-array>
 
     <string name="jianshi_slogan_2">@string/logo_slogan</string>

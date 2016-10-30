@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
@@ -57,6 +59,7 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     Timber.d(TAG, "onStart");
+    EventBus.getDefault().register(this);
   }
 
   @Override
@@ -77,6 +80,7 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStop() {
     super.onStop();
     Timber.d(TAG, "onStop");
+    EventBus.getDefault().unregister(this);
   }
 
   @Override

@@ -110,9 +110,10 @@ public class UserManager {
   }
 
   public void logout(final @NonNull Context context) {
-    boolean success = false;
-    final ProgressDialog dialog = ProgressDialog.show(context, "", "注销中");
-    if (SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
+    final ProgressDialog dialog = ProgressDialog.show(context, "",
+        context.getString(R.string.logout_ing));
+    if (!TextUtils.isEmpty(userPrefs.getAuthToken())
+        && SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
       SyncService.syncImmediately(context, new SyncManager.SyncResultListener() {
         @Override
         public void onSuccess() {
@@ -124,15 +125,14 @@ public class UserManager {
         public void onFailure() {
           dialog.dismiss();
           AlertDialog.Builder builder = new AlertDialog.Builder(context)
-              .setTitle("确定要注销？你还有数据未同步，请保持网络畅通")
-              .setPositiveButton("是", new DialogInterface.OnClickListener() {
+              .setTitle(R.string.logout_warning_with_data_not_sync)
+              .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                  SyncService.syncImmediately(context, null);
                   doLogout(context);
                 }
               })
-              .setNegativeButton("否", new DialogInterface.OnClickListener() {
+              .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                   dialogInterface.dismiss();

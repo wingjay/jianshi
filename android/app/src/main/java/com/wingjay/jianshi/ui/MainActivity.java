@@ -12,22 +12,34 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.manager.UserManager;
+import com.wingjay.jianshi.network.JsonDataResponse;
+import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.sync.SyncManager;
 import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.TextPointView;
+import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.util.FullDateManager;
+import com.wingjay.jianshi.util.RxUtil;
 import com.wingjay.jianshi.util.UpgradeUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
 
@@ -56,8 +68,17 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.day_chooser)
   DayChooser dayChooser;
 
+  @InjectView(R.id.three_line_poem)
+  ThreeLinePoemView threeLinePoemView;
+
   @Inject
   SyncManager syncManager;
+
+  @Inject
+  UserService userService;
+
+  @Inject
+  UserManager userManager;
 
   private Target target;
 
@@ -116,9 +137,31 @@ public class MainActivity extends BaseActivity {
         setContainerBgColorFromPrefs();
       }
     };
-    Picasso.with(this)
-        .load("https://images.unsplash.com/photo-1448363268505-8d554aac134f?dpr=2&auto=format&crop=entropy&fit=crop&w=500&h=899&q=80&cs=tinysrgb")
-        .into(target);
+
+    userService.getImagePoem()
+        .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
+        .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
+          @Override
+          public Boolean call(JsonDataResponse<ImagePoem> response) {
+            return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
+                && (response.getData() != null);
+          }
+        })
+        .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
+          @Override
+          public void call(JsonDataResponse<ImagePoem> response) {
+            ImagePoem imagePoem = response.getData();
+            Picasso.with(MainActivity.this)
+                .load(imagePoem.getImageUrl())
+                .into(target);
+            threeLinePoemView.setThreeLinePoem(imagePoem.getPoem());
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+            Timber.e(throwable, "getImagePoem() failure");
+          }
+        });
   }
 
   @Override
@@ -141,6 +184,12 @@ public class MainActivity extends BaseActivity {
         setContainerBgColorFromPrefs();
       }
     }
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onInvalidTokenEvent(InvalidUserTokenEvent event) {
+    makeToast(getString(R.string.invalid_token_force_logout));
+    userManager.logout(this);
   }
 
   private void setDate(DateTime date) {
