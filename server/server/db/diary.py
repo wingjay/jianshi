@@ -5,10 +5,11 @@ import time
 import pymysql
 import pymysql.cursors
 
+import server.db.init as base_db
 from server import app
-import server.db as base_db
 import server.db.user as db_user
 from server.data import errors
+
 
 logger = app.logger
 DB_NAME = "Diary"

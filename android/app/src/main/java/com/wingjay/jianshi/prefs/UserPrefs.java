@@ -34,6 +34,16 @@ public class UserPrefs extends BasePrefs {
     return getBoolean(KEY_VERTICAL_WRITE, false);
   }
 
+  private final static String KEY_HOME_IMAGE_POEM = "key_home_image_poem";
+
+  public void setHomeImagePoem(boolean homeImagePoem) {
+    setBoolean(KEY_HOME_IMAGE_POEM, homeImagePoem);
+  }
+
+  public boolean getHomeImagePoem() {
+    return getBoolean(KEY_HOME_IMAGE_POEM, false);
+  }
+
   private final static String KEY_GLOBAL_BACKGROUND_COLOR_RES = "global_background_color_res";
 
   public void setBackgroundColor(int colorRes) {

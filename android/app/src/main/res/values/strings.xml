@@ -42,6 +42,7 @@
     <string name="title_activity_setting">SettingActivity</string>
     <string name="user_setting">设置</string>
     <string name="vertical_reading">竖排文字阅读</string>
+    <string name="turn_on_home_image_poem">开启首页图片背景</string>
     <string name="customize_background_color">更换背景颜色</string>
     <string name="support_info">支持信息</string>
     <string name="account_info">账户</string>

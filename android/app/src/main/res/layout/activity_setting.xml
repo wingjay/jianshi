@@ -50,6 +50,28 @@
 
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_border"
+                android:padding="16dp">
+
+                <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/turn_on_home_image_poem"
+                    />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/home_image_poem_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    />
+
+            </FrameLayout>
 
             <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
                 android:id="@+id/customize_bg_color"
