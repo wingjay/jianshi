@@ -11,10 +11,7 @@ public class LanguageUtil {
   public static String getDiaryDateEnder(Context context, long dateSeconds) {
     FullDateManager fullDateManager = new FullDateManager(dateSeconds);
     Resources resources = context.getResources();
-    return resources.getString(R.string.space_of_date_record)
-        + fullDateManager.getFullCNDate()
-        + resources.getString(R.string.record)
-        + resources.getString(R.string.space_of_date_record_end);
+    return fullDateManager.getFullCNDate() + resources.getString(R.string.record);
   }
 
 }

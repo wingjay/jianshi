@@ -65,6 +65,9 @@ public class ViewActivity extends BaseActivity {
   @InjectView(R.id.bottom_container)
   View bottomContainer;
 
+  @InjectView(R.id.vertical_view_date)
+  MultipleRowTextView verticalDate;
+
   private String diaryUuid;
   private boolean verticalStyle = false;
 
@@ -89,6 +92,12 @@ public class ViewActivity extends BaseActivity {
                 ViewActivity.this,
                 "jianshi.link.download",
                 Uri.fromFile(new File(path)));
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+            Timber.e(throwable);
+            makeToast("图片制作失败！！！");
           }
         });
   }
@@ -129,9 +138,10 @@ public class ViewActivity extends BaseActivity {
           @Override
           public void call(com.wingjay.jianshi.db.model.Diary diary) {
             if (diary != null) {
-              showDiary(diary.getTitle(),
-                  diary.getContent()
-                      + LanguageUtil.getDiaryDateEnder(
+              showDiary(
+                  diary.getTitle(),
+                  diary.getContent(),
+                  LanguageUtil.getDiaryDateEnder(
                       getApplicationContext(),
                       diary.getTime_created()));
             }
@@ -139,12 +149,13 @@ public class ViewActivity extends BaseActivity {
         });
   }
 
-  private void showDiary(String titleString, String contentString) {
+  private void showDiary(String titleString, String contentString, String contentDate) {
     setVisibilityByVerticalStyle();
 
     if (verticalStyle) {
       verticalTitle.setText(titleString);
       verticalContent.setText(contentString);
+      verticalDate.setText(contentDate);
       container.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
       container.post(new Runnable() {
         @Override
@@ -159,7 +170,7 @@ public class ViewActivity extends BaseActivity {
     } else {
       normalContainer.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
       horizTitle.setText(titleString);
-      horizContent.setText(contentString);
+      horizContent.setText(contentString + getString(R.string.space_of_date_record_end) + contentDate);
     }
   }
 

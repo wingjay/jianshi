@@ -25,6 +25,10 @@ public class DisplayUtil {
     return Resources.getSystem().getDisplayMetrics().widthPixels;
   }
 
+
+  public static int getDisplayHeight() {
+    return Resources.getSystem().getDisplayMetrics().heightPixels;
+  }
   /**
    * Transfer sp to px in order keep font size the same
    * @param context

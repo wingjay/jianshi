@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.FontMetrics;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
@@ -155,11 +154,15 @@ public class MultipleRowTextView extends View {
   }
 
   private int measureHeight(int measureSpec) {
+    measureFontHeight();
     int specMode = MeasureSpec.getMode(measureSpec);
     int specSize = MeasureSpec.getSize(measureSpec);
     int result = 500;
     if (specMode == MeasureSpec.AT_MOST) {
-      result = specSize;
+      result = mFontHeight * text.length();
+      if (result > specSize) {
+        result = specSize;
+      }
     } else if (specMode == MeasureSpec.EXACTLY) {
       result = specSize;
     }
@@ -177,14 +180,18 @@ public class MultipleRowTextView extends View {
     }
   }
 
+  private void measureFontHeight() {
+    Paint.FontMetrics fm = paint.getFontMetrics();
+    mFontHeight = (int) (Math.ceil(fm.descent - fm.top) * 0.9);// 获得字体高度
+  }
+
   private int measureWidth() {
     Timber.i("TextViewVertical %s", "measureWidthAndLineHeight");
     char ch;
     int h = 0;
     paint.setTextSize(mFontSize);
     measureLineWidth();
-    FontMetrics fm = paint.getFontMetrics();
-    mFontHeight = (int) (Math.ceil(fm.descent - fm.top) * 0.9);// 获得字体高度
+    measureFontHeight();
     //计算文字行数
     int mRealLine = 0;
     for (int i = 0; i < this.textLength; i++) {
