@@ -1,6 +1,7 @@
 import time
 
-import server.db.user as db_user
+import server
+from server.db import user as db_user
 from server.util import safetyutils
 from conf import all as conf
 from server.data import errors

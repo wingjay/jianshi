@@ -120,3 +120,6 @@
 -keep class com.facebook.stetho.** { *; }
 #DBFlow
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
+
+#picasso
+-dontwarn com.squareup.okhttp.**
