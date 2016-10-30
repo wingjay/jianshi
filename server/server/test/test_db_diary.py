@@ -4,26 +4,38 @@ import uuid
 import server.test as base_test
 import server.db.diary as db_diary
 import server.logic.sync as logic_sync
+from server.logic import user as logic_user
 
 DIARY_DB_NAME = 'Diary'
 
 
+def execute_all_test():
+    test_create()
+    test_update()
+    test_delete()
+    test_push()
+    test_pull()
+    test_sync()
+
+
 def test_create():
-    base_test.reinit_table(DIARY_DB_NAME)
-    for user_id in [1, 3, 5]:
+    base_test.reinit_table()
+    _create_mock_user(3)
+    for user_id in [1, 2, 3]:
         title = _get_title()
         content = _get_content()
         print 'create diary for user_id %s' % user_id
         db_diary.create_diary(user_id, _get_uuid(), title, content)
 
-    for user_id in [1, 3, 5]:
+    for user_id in [1, 2, 3]:
         print 'user_id = %s' % user_id
         result = db_diary.get_diary_list_since_last_sync(user_id, 0)
         assert len(result) == 1
 
 
 def test_update():
-    base_test.reinit_table(DIARY_DB_NAME)
+    base_test.reinit_table()
+    _create_mock_user(1)
     user_id = 1
     _uuid = _get_uuid()
     print 'uuid generated: ', _uuid
@@ -44,34 +56,37 @@ def test_update():
 
 
 def test_delete():
-    base_test.reinit_table(DIARY_DB_NAME)
+    base_test.reinit_table()
+    _create_mock_user(3)
     uuid1 = _get_uuid()
     uuid2 = _get_uuid()
     uuid3 = _get_uuid()
     diary_id_1 = db_diary.create_diary(1, uuid1, _get_title(), _get_content())
-    diary_id_2 = db_diary.create_diary(3, uuid2, _get_title(), _get_content())
-    diary_id_3 = db_diary.create_diary(5, uuid3, _get_title(), _get_content())
+    diary_id_2 = db_diary.create_diary(2, uuid2, _get_title(), _get_content())
+    diary_id_3 = db_diary.create_diary(3, uuid3, _get_title(), _get_content())
 
     assert db_diary.get_diary_by_id(diary_id_1) is not None
     assert db_diary.get_diary_by_uuid(uuid1, 1) is not None
     assert db_diary.get_diary_by_id(diary_id_2) is not None
-    assert db_diary.get_diary_by_uuid(uuid2, 3) is not None
+    assert db_diary.get_diary_by_uuid(uuid2, 2) is not None
     assert db_diary.get_diary_by_id(diary_id_3) is not None
-    assert db_diary.get_diary_by_uuid(uuid3, 5) is not None
+    assert db_diary.get_diary_by_uuid(uuid3, 3) is not None
 
     db_diary.delete_diary(1, uuid1)
     assert db_diary.get_diary_by_id(diary_id_1) is None
     assert db_diary.get_diary_by_uuid(uuid1, 1) is None
-    db_diary.delete_diary(3, uuid2)
+    db_diary.delete_diary(2, uuid2)
     assert db_diary.get_diary_by_id(diary_id_1) is None
-    assert db_diary.get_diary_by_uuid(uuid2, 3) is None
-    db_diary.delete_diary(5, uuid3)
+    assert db_diary.get_diary_by_uuid(uuid2, 2) is None
+    db_diary.delete_diary(3, uuid3)
     assert db_diary.get_diary_by_id(diary_id_3) is None
-    assert db_diary.get_diary_by_uuid(uuid3, 5) is None
+    assert db_diary.get_diary_by_uuid(uuid3, 3) is None
 
 
 def test_push():
-    base_test.reinit_table(DIARY_DB_NAME)
+    base_test.reinit_table()
+    # create mock user
+    _create_mock_user(1)
     # create a diary
     data = {
         'title': 'first diary',
@@ -110,7 +125,9 @@ def test_push():
 
 
 def test_pull():
-    base_test.reinit_table(DIARY_DB_NAME)
+    base_test.reinit_table()
+    # create mock user
+    _create_mock_user(1)
     user_id = 1
     # set last_sync_time
     current_time = int(time.time())
@@ -132,7 +149,9 @@ def test_pull():
 
 
 def test_sync():
-    reinit_table()
+    base_test.reinit_table()
+    # create mock user
+    _create_mock_user(1)
     user_id = 1
     current_time = int(time.time())
     # user 1 create two diary long long ago
@@ -201,3 +220,11 @@ def _get_title():
 
 def _get_content():
     return 'content %s' % int(time.time())
+
+
+def _create_mock_user(count):
+    i = 1
+    while i <= count:
+        user = logic_user.signup("user_%s@qq.com" % i, "pwd_1")
+        i += 1
+        assert user is not None

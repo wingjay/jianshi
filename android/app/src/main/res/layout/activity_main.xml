@@ -3,34 +3,47 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/layout_container"
-                style="@style/NormalBg"
                 tools:context=".ui.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="@dimen/red_circle_size"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        >
-
-        <com.wingjay.jianshi.ui.widget.TextPointView
-            android:id="@+id/setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/normal_text_size"
-            app:text="@string/setting"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="@dimen/red_circle_size"
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:scaleType="centerCrop"
+        android:foreground="#bbffffff"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_container"
+        style="@style/NormalBg"
         >
+
+        <RelativeLayout
+            android:layout_width="@dimen/red_circle_size"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            >
+
+            <com.wingjay.jianshi.ui.widget.TextPointView
+                android:id="@+id/setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/normal_text_size"
+                app:text="@string/setting"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/red_circle_size"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            >
 
             <ScrollView
                 android:id="@+id/right_top_bar"
@@ -92,31 +105,33 @@
 
             </ScrollView>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/red_circle_size"
-        android:layout_marginStart="@dimen/red_circle_size"
-        android:layout_marginEnd="@dimen/red_circle_size"
-        android:layout_marginRight="@dimen/red_circle_size"
-        >
-
-        <com.wingjay.jianshi.ui.widget.DayChooser
-            android:id="@+id/day_chooser"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            />
+            android:layout_marginLeft="@dimen/red_circle_size"
+            android:layout_marginStart="@dimen/red_circle_size"
+            android:layout_marginEnd="@dimen/red_circle_size"
+            android:layout_marginRight="@dimen/red_circle_size"
+            >
 
-        <com.wingjay.jianshi.ui.widget.ThreeLinePoemView
-            android:id="@+id/three_line_poem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            />
+            <com.wingjay.jianshi.ui.widget.DayChooser
+                android:id="@+id/day_chooser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                />
+
+            <com.wingjay.jianshi.ui.widget.ThreeLinePoemView
+                android:id="@+id/three_line_poem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

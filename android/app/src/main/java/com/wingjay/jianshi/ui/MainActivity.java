@@ -2,9 +2,14 @@ package com.wingjay.jianshi.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
@@ -30,6 +35,9 @@ public class MainActivity extends BaseActivity {
   private final static String MONTH = "month";
   private final static String DAY = "day";
 
+  @InjectView(R.id.background_image)
+  ImageView backgroundImage;
+
   @InjectView(R.id.year)
   VerticalTextView yearTextView;
 
@@ -50,6 +58,8 @@ public class MainActivity extends BaseActivity {
 
   @Inject
   SyncManager syncManager;
+
+  private Target target;
 
   private volatile int year, month, day;
 
@@ -88,6 +98,33 @@ public class MainActivity extends BaseActivity {
     });
 
     SyncService.syncImmediately(this);
+
+    target = new Target() {
+      @Override
+      public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+        setContainerBgColor(R.color.transparent);
+        backgroundImage.setImageBitmap(bitmap);
+      }
+
+      @Override
+      public void onBitmapFailed(Drawable errorDrawable) {
+
+      }
+
+      @Override
+      public void onPrepareLoad(Drawable placeHolderDrawable) {
+        setContainerBgColorFromPrefs();
+      }
+    };
+    Picasso.with(this)
+        .load("https://images.unsplash.com/photo-1448363268505-8d554aac134f?dpr=2&auto=format&crop=entropy&fit=crop&w=500&h=899&q=80&cs=tinysrgb")
+        .into(target);
+  }
+
+  @Override
+  protected void onDestroy() {
+    Picasso.with(this).cancelRequest(target);
+    super.onDestroy();
   }
 
   @OnClick(R.id.setting)

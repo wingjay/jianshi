@@ -1,12 +1,17 @@
-import server.db as base_db
-import server.test as base_test
+import server
+from server import test as base_test
 from server.logic import user as logic_user
 
 USER_DB_NAME = 'User'
 
 
+def execute_all_test():
+    test_signup_login()
+    test_token()
+
+
 def test_signup_login():
-    base_test.reinit_table(USER_DB_NAME)
+    base_test.reinit_table()
     email = 'email_1@qq.com'
     password = 'password_1'
     user = logic_user.signup(email, password)
@@ -22,7 +27,7 @@ def test_signup_login():
 
 
 def test_token():
-    base_test.reinit_table(USER_DB_NAME)
+    base_test.reinit_table()
     email = 'email_1@qq.com'
     password = 'password_1'
     user = logic_user.signup(email, password)
