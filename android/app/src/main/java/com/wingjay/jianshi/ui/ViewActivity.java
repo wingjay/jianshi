@@ -2,9 +2,8 @@ package com.wingjay.jianshi.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
@@ -15,16 +14,24 @@ import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
+import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.TextPointView;
+import com.wingjay.jianshi.util.CaptureViewUtil;
+import com.wingjay.jianshi.util.DisplayUtil;
+import com.wingjay.jianshi.util.IntentUtil;
 import com.wingjay.jianshi.util.LanguageUtil;
+
+import java.io.File;
 
 import javax.inject.Inject;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class ViewActivity extends BaseActivity {
 
@@ -49,11 +56,42 @@ public class ViewActivity extends BaseActivity {
   @InjectView(R.id.vertical_view_content)
   MultipleRowTextView verticalContent;
 
+  @InjectView(R.id.container)
+  View container;
+
+  @InjectView(R.id.normal_container)
+  View normalContainer;
+
+  @InjectView(R.id.bottom_container)
+  View bottomContainer;
+
   private String diaryUuid;
   private boolean verticalStyle = false;
 
   @Inject
   DiaryService diaryService;
+
+  @OnClick(R.id.view_share)
+  void share() {
+    final String path = getExternalCacheDir() + "/temp.jpg";
+    View capture;
+    if (verticalStyle) {
+      capture = container;
+    } else {
+      capture = normalContainer;
+    }
+    CaptureViewUtil.captureView(capture, path)
+        .subscribe(new Action1<Boolean>() {
+          @Override
+          public void call(Boolean aBoolean) {
+            Timber.i("capture result %s", aBoolean);
+            IntentUtil.shareLinkWithImage(
+                ViewActivity.this,
+                "jianshi.link.download",
+                Uri.fromFile(new File(path)));
+          }
+        });
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +118,7 @@ public class ViewActivity extends BaseActivity {
         finish();
       }
     });
-
-    Handler handler = new HorizHandler(horizontalScrollView, verticalContent);
-    verticalContent.setHandler(handler);
+    Timber.i("contentWidth : %s", container.getWidth());
   }
 
   private void loadDiary() {
@@ -103,34 +139,25 @@ public class ViewActivity extends BaseActivity {
         });
   }
 
-  private static class HorizHandler extends Handler {
-
-    private static HorizontalScrollView MhorizontalScrollView;
-    private static MultipleRowTextView mMultipleRowTextView;
-
-    public HorizHandler(HorizontalScrollView horizontalScrollView,
-                        MultipleRowTextView multipleRowTextView) {
-      MhorizontalScrollView = horizontalScrollView;
-      mMultipleRowTextView = multipleRowTextView;
-    }
-
-    @Override
-    public void handleMessage(Message msg) {
-      switch (msg.what) {
-        case MultipleRowTextView.LAYOUT_CHANGED:
-          MhorizontalScrollView.scrollBy(mMultipleRowTextView.getTextWidth(), 0);
-          break;
-      }
-    }
-  }
-
   private void showDiary(String titleString, String contentString) {
     setVisibilityByVerticalStyle();
 
     if (verticalStyle) {
       verticalTitle.setText(titleString);
       verticalContent.setText(contentString);
+      container.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+      container.post(new Runnable() {
+        @Override
+        public void run() {
+          int scrollOffsetX = container.getWidth() - DisplayUtil.getDisplayWidth();
+          Timber.i("contentWidthAfter : %s", container.getMeasuredHeight());
+          if (scrollOffsetX > 0) {
+            horizontalScrollView.scrollBy(scrollOffsetX, 0);
+          }
+        }
+      });
     } else {
+      normalContainer.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
       horizTitle.setText(titleString);
       horizContent.setText(contentString);
     }

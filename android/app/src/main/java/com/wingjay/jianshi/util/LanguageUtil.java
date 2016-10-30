@@ -14,7 +14,7 @@ public class LanguageUtil {
     return resources.getString(R.string.space_of_date_record)
         + fullDateManager.getFullCNDate()
         + resources.getString(R.string.record)
-        + resources.getString(R.string.space_of_date_record);
+        + resources.getString(R.string.space_of_date_record_end);
   }
 
 }

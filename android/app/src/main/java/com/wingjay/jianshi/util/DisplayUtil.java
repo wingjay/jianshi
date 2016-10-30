@@ -1,11 +1,29 @@
 package com.wingjay.jianshi.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * Transformation of pixel, sp, dp.
  */
 public class DisplayUtil {
+
+  private DisplayUtil() {
+
+  }
+
+
+  private static final float DENSITY = Resources.getSystem().getDisplayMetrics().density;
+
+
+
+  public static int dp2px(int dp) {
+    return Math.round(dp * DENSITY);
+  }
+
+  public static int getDisplayWidth() {
+    return Resources.getSystem().getDisplayMetrics().widthPixels;
+  }
 
   /**
    * Transfer sp to px in order keep font size the same

@@ -25,6 +25,7 @@
     <string name="edit_content_hint">讲述你的故事&#8230;</string>
     <string name="edit">辑</string>
     <string name="edit_save">存</string>
+    <string name="share">享</string>
     <string name="email">邮箱</string>
     <string name="password">密码</string>
     <string name="edit_saving">保存中&#8230;</string>
@@ -35,7 +36,8 @@
     <string name="title_activity_view">ViewActivity</string>
     <string name="do_you_want_to_delete_diary">确定要删除？</string>
     <string name="delete_diary_failure">删除失败，请重试</string>
-    <string name="space_of_date_record">\n\n\n</string>
+    <string name="space_of_date_record">\n\n\n\n</string>
+    <string name="space_of_date_record_end">\n\n</string>
     <string name="record">记</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="user_setting">设置</string>

@@ -9,17 +9,18 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 import com.wingjay.jianshi.util.DisplayUtil;
 
-/**
- * Created by wingjay on 9/30/15.
- */
 public class VerticalTextView extends CustomizeTextView {
 
   public VerticalTextView(Context context) {
-    super(context);
+    this(context, null);
   }
 
   public VerticalTextView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    super(context, attrs, 0);
+  }
+
+  public VerticalTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
     TypedArray typedArray = context.getTheme()
         .obtainStyledAttributes(attrs, R.styleable.VerticalTextView, 0, 0);
     try {
