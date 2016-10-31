@@ -5,6 +5,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 一款优雅的中国风Android App，包括Android端和Server端。
 
 # Development Progress
+- __[2016/10/30] Signup & Login UI new design; Screenshot & system Share; and other cool features__
 - __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
 - __[2016/09/03] User managment in server side and Signup & Login flow in Android side. [Server+Android]__ 
 - __[2016/08/25] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework. [Server]__ 
