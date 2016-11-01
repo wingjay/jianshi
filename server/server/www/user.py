@@ -1,3 +1,5 @@
+import random
+
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
@@ -41,5 +43,6 @@ def login(email, password, **kwargs):
 @mobile_request
 @must_login
 def get_home_poem(**kwargs):
-    return home_images.image_poem_list[0]
+    random_index = random.randint(0, len(home_images.image_poem_list))
+    return home_images.image_poem_list[random_index]
 
