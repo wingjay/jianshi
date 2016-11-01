@@ -4,7 +4,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 一款优雅的中国风Android App，包括Android端和Server端。
 
-[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
+[《如何在一天之内完成一款具备cool属性的Android产品》from 简书](http://www.jianshu.com/p/cf496fc408b2)
 
 # Development Progress (development branch:v2.0)
 - __[2016/10/30] Signup & Login UI new design; Screenshot & system Share; and other cool features__
