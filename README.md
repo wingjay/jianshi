@@ -4,6 +4,8 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 一款优雅的中国风Android App，包括Android端和Server端。
 
+[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
+
 # Development Progress (development branch:v2.0)
 - __[2016/10/30] Signup & Login UI new design; Screenshot & system Share; and other cool features__
 - __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
@@ -21,11 +23,6 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 <img src="http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">     <img src="http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
 
 <img src="http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="300">
-
-
-# Chinese Blog for jianshi
-
-[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
 
 
 # Inspired By
