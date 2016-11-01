@@ -68,4 +68,15 @@ public class BasePrefs extends Observable {
     return preferences.getBoolean(key, defaultValue);
   }
 
+  protected void setLong(String key, long value) {
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putLong(key, value);
+    editor.putLong(KEY_TIME_MODIFIED, System.currentTimeMillis());
+    editor.apply();
+  }
+
+  protected long getLong(String key, long defaultValue) {
+    return preferences.getLong(key, defaultValue);
+  }
+
 }

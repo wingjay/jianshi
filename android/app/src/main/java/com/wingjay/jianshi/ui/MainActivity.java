@@ -128,17 +128,17 @@ public class MainActivity extends BaseActivity {
   }
 
   private void setupImagePoemBackground() {
-    if (!userPrefs.getHomeImagePoem()) {
+    if (!userPrefs.getHomeImagePoemSetting()) {
       setContainerBgColorFromPrefs();
       return;
     }
 
-    Picasso.with(this)
-        .load(R.mipmap.default_home_image)
-        .fit()
-        .centerCrop()
-        .into(backgroundImage);
-    setContainerBgColor(R.color.transparent);
+    if (!userPrefs.canFetchNextHomeImagePoem() && userPrefs.getLastHomeImagePoem() != null) {
+      // use last imagePoem data
+      setImagePoem(userPrefs.getLastHomeImagePoem());
+      return;
+    }
+
     userService.getImagePoem()
         .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
         .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
@@ -151,13 +151,9 @@ public class MainActivity extends BaseActivity {
         .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
           @Override
           public void call(JsonDataResponse<ImagePoem> response) {
-            ImagePoem imagePoem = response.getData();
-            Picasso.with(MainActivity.this)
-                .load(imagePoem.getImageUrl())
-                .fit()
-                .centerCrop()
-                .into(backgroundImage);
-            threeLinePoemView.setThreeLinePoem(imagePoem.getPoem());
+            setImagePoem(response.getData());
+            userPrefs.setLastHomeImagePoem(response.getData());
+            userPrefs.setLastFetchHomeImagePoemTime();
           }
         }, new Action1<Throwable>() {
           @Override
@@ -165,6 +161,24 @@ public class MainActivity extends BaseActivity {
             Timber.e(throwable, "getImagePoem() failure");
           }
         });
+  }
+
+  private void setImagePoem(ImagePoem imagePoem) {
+    setContainerBgColor(R.color.transparent);
+    if (imagePoem == null) {
+      Picasso.with(this)
+          .load(R.mipmap.default_home_image)
+          .fit()
+          .centerCrop()
+          .into(backgroundImage);
+    } else {
+      Picasso.with(MainActivity.this)
+          .load(imagePoem.getImageUrl())
+          .fit()
+          .centerCrop()
+          .into(backgroundImage);
+      threeLinePoemView.setThreeLinePoem(imagePoem.getPoem());
+    }
   }
 
   @OnClick(R.id.setting)

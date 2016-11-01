@@ -46,7 +46,7 @@ public class SettingActivity extends BaseActivity {
     JianShiApplication.getAppComponent().inject(this);
     setContentView(R.layout.activity_setting);
     verticalWrite.setChecked(userPrefs.getVerticalWrite());
-    homeImagePoemSwitch.setChecked(userPrefs.getHomeImagePoem());
+    homeImagePoemSwitch.setChecked(userPrefs.getHomeImagePoemSetting());
   }
 
   @OnCheckedChanged(R.id.vertical_write)
