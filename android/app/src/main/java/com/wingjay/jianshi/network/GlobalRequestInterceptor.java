@@ -45,7 +45,7 @@ public class GlobalRequestInterceptor implements Interceptor {
     }
     Response response = chain.proceed(newRequestBuilder.url(urlBuilder.build()).build());
 
-    if (response.code() == 401 || response.code() == 404) {
+    if (response.code() == 401) {
       EventBus.getDefault().post(new InvalidUserTokenEvent());
     }
     return response;

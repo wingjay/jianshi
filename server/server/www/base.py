@@ -32,7 +32,7 @@ def mobile_request(func):
             user = logic_user.get_user_by_id(user_id)
             if not user:
                 # token is valid, but maybe user is deleted.UserNotFound
-                abort(404)
+                abort(401)
             kwargs["user_id"] = user_id
 
         try:
