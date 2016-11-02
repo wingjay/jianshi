@@ -1,3 +1,5 @@
+Flask==0.10.1
+requests==2.11.1
 pymysql==0.7.9
 pycrypto==2.6.1
 validate_email==1.3
