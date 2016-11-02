@@ -6,6 +6,10 @@ from server.logic import user as logic_user
 from server.data import errors, home_images
 
 
+@app.route("/")
+def welcome():
+    return "Welcome to Jianshi"
+
 @app.route("/index")
 def index(**kwargs):
     return "index"
