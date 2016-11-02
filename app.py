@@ -16,4 +16,5 @@ if not os.path.exists(path):
              + '/instance/' + ' ; touch config.py; touch __init__.py')
 
 from server import app
-app.run(host='0.0.0.0', debug=True, port=port)
+
+app.run(host='0.0.0.0', debug=True, port=5000)
