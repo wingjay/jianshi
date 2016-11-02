@@ -1,0 +1,118 @@
+[2016-11-01 22:08:52,774] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [{u'Diary': {u'create': {u'content': u'\u6df1\u591c\u4e86\uff0c\u5fc3\u4e8b\u8bc9\u4e8e\u6b64\u2026',
+                                         u'time': 1478009332,
+                                         u'time_created': 1478009332,
+                                         u'time_modified': 0,
+                                         u'time_removed': 0,
+                                         u'title': u'\u8349\u5305\u5c31\u662f\u4f60',
+                                         u'uuid': u'5ECD6367-8772-492B-BC7E-0BC16F742C1F'}}}],
+ u'sync_token': u'rbQzceBvpC884We41W9B7XhDloMJTHvq7xMboYkERfydX08RIdOYgvBTMpyWk8Bn',
+ 'testkey': 'testvalue',
+ 'user_id': 2}
+[2016-11-01 22:08:52,778] {/Users/Jay/projects/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:2; action:create; data:{u'uuid': u'5ECD6367-8772-492B-BC7E-0BC16F742C1F', u'title': u'\u8349\u5305\u5c31\u662f\u4f60', u'time_removed': 0, u'content': u'\u6df1\u591c\u4e86\uff0c\u5fc3\u4e8b\u8bc9\u4e8e\u6b64\u2026', u'time_modified': 0, u'time_created': 1478009332, u'time': 1478009332}
+[2016-11-01 22:11:16,612] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: get_home_poem
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631', 'testkey': 'testvalue', 'user_id': 2}
+[2016-11-01 22:11:16,613] {/Users/Jay/projects/jianshi/server/server/www/base.py:47} ERROR - list index out of range
+[2016-11-01 22:12:44,084] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: get_home_poem
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631', 'testkey': 'testvalue', 'user_id': 2}
+[2016-11-01 22:22:16,073] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7ZjISw2Lw5AWlPtPcOGuwPDg0G1sdQThdg5BKLsjldxP',
+ 'testkey': 'testvalue',
+ 'user_id': 2}
+[2016-11-01 22:40:51,320] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: get_home_poem
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631', 'testkey': 'testvalue', 'user_id': 2}
+[2016-11-01 22:40:51,320] {/Users/Jay/projects/jianshi/server/server/www/base.py:47} ERROR - list index out of range
+[2016-11-01 22:40:56,733] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7VKBBP2kjL9eEUJdC2xp0TuJ-1eYJmEuTK1pnk1woRFS',
+ 'testkey': 'testvalue',
+ 'user_id': 2}
+[2016-11-01 22:41:01,475] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7cjm0T5lgFqhaa_KImJy6a-J-1eYJmEuTK1pnk1woRFS',
+ 'testkey': 'testvalue',
+ 'user_id': 2}
+[2016-11-01 22:42:29,707] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: signup
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ 'email': u'wingjay@qq.com',
+ 'password': u'yinjie123123',
+ 'testkey': 'testvalue'}
+[2016-11-01 22:42:57,480] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7YkbMRgiBDDPd5MpXO1bvLsbeem9Q6PiuRyUuOTxm7-6',
+ 'testkey': 'testvalue',
+ 'user_id': 5}
+[2016-11-01 22:44:29,293] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [{u'Diary': {u'create': {u'content': u'second',
+                                         u'time': 1478011469,
+                                         u'time_created': 1478011469,
+                                         u'time_modified': 0,
+                                         u'time_removed': 0,
+                                         u'title': u'\u7b2c\u4e8c\u7bc7',
+                                         u'uuid': u'791EE5CE-0D7C-4F5B-88E7-046BD669F09D'}}}],
+ u'sync_token': u'rbQzceBvpC884We41W9B7eHmhpqKTTn6KQifDI9aKN7fJK6NPJ8l82juZW7wRjRq',
+ 'testkey': 'testvalue',
+ 'user_id': 5}
+[2016-11-01 22:44:29,296] {/Users/Jay/projects/jianshi/server/server/logic/sync.py:189} INFO - _push_diary_data_by_action: user_id:5; action:create; data:{u'uuid': u'791EE5CE-0D7C-4F5B-88E7-046BD669F09D', u'title': u'\u7b2c\u4e8c\u7bc7', u'time_removed': 0, u'content': u'second', u'time_modified': 0, u'time_created': 1478011469, u'time': 1478011469}
+[2016-11-01 22:45:02,912] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7Z26GzejGCA5nm6kkAmIUH_fJK6NPJ8l82juZW7wRjRq',
+ 'testkey': 'testvalue',
+ 'user_id': 5}
+[2016-11-01 22:46:30,494] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: login
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ 'email': u'wingjay@qq.com',
+ 'password': u'yinjie123123',
+ 'testkey': 'testvalue'}
+[2016-11-01 22:48:02,755] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: sync_data
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631',
+ u'need_pull': 1,
+ u'sync_items': [],
+ u'sync_token': u'rbQzceBvpC884We41W9B7TZNvcz50iEzUFhmPjHSb_gbeem9Q6PiuRyUuOTxm7-6',
+ 'testkey': 'testvalue',
+ 'user_id': 5}
+[2016-11-01 22:48:47,795] {/Users/Jay/projects/jianshi/server/server/www/base.py:74} INFO - Handle mobile request:
+        func: get_home_poem
+        args: ()
+        kwargs: {'device_id': u'68e851582c0f3631', 'testkey': 'testvalue', 'user_id': 5}
