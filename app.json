@@ -1,7 +1,7 @@
 {
   "name": "JianShi Android app",
   "description": "Writing in traditional Chinese way",
-  "repository": "https://github.com/wingjay/jianshi/server",
+  "repository": "https://github.com/wingjay/jianshi",
   "logo": "http://xvir.github.io/img/apiai.png",
   "keywords": ["api.ai", "natural language"]
 }
