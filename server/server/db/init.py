@@ -28,6 +28,10 @@ def init_diary_table():
     _init_db('db/schema/0001/diary.sql')
 
 
+def init_event_log_table():
+    _init_db('db/schema/0001/event_log.sql')
+
+
 def _conn(cursorclass=pymysql.cursors.Cursor):
     return pymysql.connect(host=conf['MYSQL_LOCAL_HOST'],
                            user=conf['MYSQL_USER'],
