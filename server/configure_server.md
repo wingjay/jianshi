@@ -62,7 +62,7 @@ def index():
 from server import app as application
 
 if __name__ == "__main__":
-   application.run()
+   application.run(debug=False, host='0.0.0.0')
 ```
 
 ## Testing Gunicorn's Ability to Serve the Project
@@ -204,5 +204,44 @@ sudo vim /etc/logrotate.d/nginx
 
 
 
+# Import Command
+
+```
+sudo service nginx stop -> This site can't be reachable
+sudo stop jianshi -> 502. Totally restart jianshi service
+```
+
+? question
+
+Seems the supervisor doesn't
+
+
+
 ## Install MySQL
+
+```
+sudo apt-get update
+sudo apt-get install mysql-server  #jianshiserver
+sudo mysql_secure_installation
+sudo mysql_install_db
+
+service mysql status
+sudo service mysql start
+```
+
+```
+Make mysql allow connections remotely
+1. enter mysql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'thepassword' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+2. sudo vim /etc/mysql/my.cnf
+#bind-address = 127.0.0.1
+3. sudo service mysql restart
+```
+
+```
+In my own computer, i have two ways to connect mysql
+1. mysql -u root -p -h 106.14.26.35
+2. Sequel pro.
+```
 
