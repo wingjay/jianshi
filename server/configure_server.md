@@ -19,7 +19,7 @@ source venv/bin/activate # must enter venv to install python dependecy
 ```
 
 ```
-vim requirements.txt : Flask=0.10.1  gunicorn==19.6.0
+vim requirements.txt : Flask==0.10.1  gunicorn==19.6.0
 pip install -r requirements.txt
 ```
 
