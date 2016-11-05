@@ -170,12 +170,9 @@ Admin + yin
 
 Code in ubuntu is on `/var/lib/jenkins/workspace/jianshi`
 
+After building, jenkins will auto pull code from github into server.
 
 
-## Deploy apps
 
-```
-mkdir /home/apps; cd /home/apps
-mkdir jianshi
-```
+## Install MySQL
 
