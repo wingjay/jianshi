@@ -5,7 +5,7 @@ import socket
 localhost = socket.gethostbyname(socket.gethostname())
 print localhost
 
-from server import app
+from server import app as application
 
 if __name__ == "__main__":
-    app.run(host=localhost, debug=True)
+    application.run(host=localhost, debug=True)

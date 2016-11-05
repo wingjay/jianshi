@@ -150,6 +150,28 @@ Done! http://106.14.26.35/
 
 Supervisor is a software that allows users to manage multiple processes, so we could actually have multiple gunicorn sites running with different configurations.
 
+```
+sudo vim /etc/supervisor/conf.d/jianshi.conf
+[program:jianshi]
+command = /var/lib/jenkins/workspace/jianshi/server/venv/bin/gunicorn wsgi -w 4
+directory = /var/lib/jenkins/workspace/jianshi/server
+user = root
+stdout_logfile = /var/lib/jenkins/workspace/jianshi/server/logs/gunicorn/gunicorn_stdout.log
+stderr_logfile = /var/lib/jenkins/workspace/jianshi/server/logs/gunicorn/gunicorn_stderr.log
+redirect_stderr = True
+environment = PRODUCTION=1
+```
+
+```
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start jianshi
+```
+
+
+
+
+
 
 
 ## Install Jekins in ubuntu
