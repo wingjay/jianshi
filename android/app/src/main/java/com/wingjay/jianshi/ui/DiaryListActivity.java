@@ -7,13 +7,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.ui.adapter.DiaryListAdapter;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.util.DateUtil;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
 
   @OnClick(R.id.view_write)
   void write() {
+    Blaster.log(LoggingData.BTN_CLK_DIARY_LIST_WRITE);
     startActivity(new Intent(this, EditActivity.class));
   }
 
@@ -58,6 +61,7 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
     adapter = new DiaryListAdapter(DiaryListActivity.this, diaryList);
     adapter.setRecyclerClickListener(this);
     diaryListView.setAdapter(adapter);
+    Blaster.log(LoggingData.PAGE_IMP_DIARY_LIST);
   }
 
   @Override
@@ -88,6 +92,7 @@ public class DiaryListActivity extends BaseActivity implements DiaryListAdapter.
 
   @Override
   public void onItemClick(Diary diary) {
+    Blaster.log(LoggingData.BTN_CLK_DIARY_LIST_VIEW);
     startActivity(ViewActivity.createIntent(this, diary.getUuid()));
   }
 

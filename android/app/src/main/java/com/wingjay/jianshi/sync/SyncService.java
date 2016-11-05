@@ -42,6 +42,7 @@ public class SyncService extends IntentService {
     Timber.d("SyncService name: %s", Thread.currentThread().getName());
     if (!TextUtils.isEmpty(userPrefs.getAuthToken()) && userPrefs.getUser() != null) {
       syncManager.sync(mSyncResultListener);
+      syncManager.syncLog();
     }
   }
 

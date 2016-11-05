@@ -12,6 +12,8 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
 import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
@@ -104,8 +106,7 @@ public class MainActivity extends BaseActivity {
     writerView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        DateTime current = new DateTime(year, month, day, 0, 0);
-        long dateSeconds = FullDateManager.getDateSeconds(current);
+        Blaster.log(LoggingData.BTN_CLK_HOME_WRITE);
         Intent i = new Intent(MainActivity.this, EditActivity.class);
         startActivity(i);
       }
@@ -114,10 +115,12 @@ public class MainActivity extends BaseActivity {
     readerView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        Blaster.log(LoggingData.BTN_CLK_HOME_VIEW);
         startActivity(new Intent(MainActivity.this, DiaryListActivity.class));
       }
     });
 
+    Blaster.log(LoggingData.PAGE_IMP_HOME);
     SyncService.syncImmediately(this);
   }
 

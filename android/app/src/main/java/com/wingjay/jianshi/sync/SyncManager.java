@@ -6,14 +6,16 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.db.model.Diary;
+import com.wingjay.jianshi.db.model.EventLog;
+import com.wingjay.jianshi.db.model.EventLog_Table;
 import com.wingjay.jianshi.db.model.PushData;
 import com.wingjay.jianshi.db.model.PushData_Table;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.network.model.SyncModel;
 import com.wingjay.jianshi.prefs.UserPrefs;
-import com.wingjay.jianshi.Constants;
 
 import java.util.List;
 
@@ -113,8 +115,43 @@ public class SyncManager {
         });
   }
 
+  public synchronized void syncLog() {
+    final List<EventLog> logItems = SQLite.select().from(EventLog.class).queryList();
+    JsonObject syncLog = new JsonObject();
+    JsonArray array = new JsonArray();
+    for (EventLog eventLog : logItems) {
+      array.add(new Gson().toJsonTree(eventLog));
+    }
+    syncLog.add("log_items", array);
+    userService.syncLog(syncLog).subscribe(new Action1<JsonDataResponse<JsonObject>>() {
+      @Override
+      public void call(JsonDataResponse<JsonObject> jsonObjectJsonDataResponse) {
+        if (jsonObjectJsonDataResponse.getRc() == Constants.ServerResultCode.RESULT_OK) {
+          JsonObject object = jsonObjectJsonDataResponse.getData();
+          int syncedCount = object.get("synced_count").getAsInt();
+          Timber.i("synced log count %d", syncedCount);
+          for (EventLog eventLog : logItems) {
+            SQLite.delete(EventLog.class)
+                .where(EventLog_Table.id.eq(eventLog.getId()))
+                .execute();
+            syncedCount--;
+            if (syncedCount <= 0) {
+              break;
+            }
+          }
+        }
+      }
+    }, new Action1<Throwable>() {
+      @Override
+      public void call(Throwable throwable) {
+        Timber.e(throwable, "SyncLog failed");
+      }
+    });
+  }
+
   public interface SyncResultListener {
     void onSuccess();
+
     void onFailure();
   }
 

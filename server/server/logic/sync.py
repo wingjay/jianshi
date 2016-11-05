@@ -229,7 +229,7 @@ def sync_event_log(user_id, log_items):
          'synced_count': 0
         }
     for item in log_items:
-        if item['page_source'] is None:
+        if 'page_source' not in item:
             item['page_source'] = ''
         db_log.add_event_log(user_id, item)
         synced_count += 1

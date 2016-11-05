@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
@@ -76,6 +78,7 @@ public class ViewActivity extends BaseActivity {
 
   @OnClick(R.id.view_share)
   void share() {
+    Blaster.log(LoggingData.BTN_CLK_SHARE_DIARY_IMAGE);
     final String path = getExternalCacheDir() + "/temp.jpg";
     View capture;
     if (verticalStyle) {
@@ -122,12 +125,14 @@ public class ViewActivity extends BaseActivity {
       @Override
       public void onClick(View v) {
         setResult(RESULT_OK);
+        Blaster.log(LoggingData.BTN_CLK_UPDATE_DIARY);
         Intent i = EditActivity.createIntentWithId(ViewActivity.this, diaryUuid);
         startActivity(i);
         finish();
       }
     });
     Timber.i("contentWidth : %s", container.getWidth());
+    Blaster.log(LoggingData.PAGE_IMP_VIEW);
   }
 
   private void loadDiary() {

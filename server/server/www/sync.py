@@ -13,5 +13,5 @@ def sync_data(user_id, sync_token=None, sync_items=[], need_pull=True, **kwargs)
 
 @app.route("/logs/sync", methods=['POST'])
 @mobile_request
-def sync_event_log(user_id, log_items):
+def sync_event_log(user_id, log_items, **kwargs):
     return logic_sync.sync_event_log(user_id, log_items)

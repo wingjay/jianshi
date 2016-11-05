@@ -13,9 +13,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import rx.Observable;
 
-/**
- * Created by Jay on 8/10/16.
- */
 public interface UserService {
   @GET("get")
   Observable<JsonDataResponse> getJsonTest();
@@ -43,4 +40,6 @@ public interface UserService {
   @GET("home/image_poem")
   Observable<JsonDataResponse<ImagePoem>> getImagePoem();
 
+  @POST("logs/sync")
+  Observable<JsonDataResponse<JsonObject>> syncLog(@Body JsonObject jsonObject);
 }
