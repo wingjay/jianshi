@@ -16,4 +16,6 @@ if not os.path.exists(path):
              + '/instance/' + ' ; touch config.py; touch __init__.py')
 
 from server import app
-app.run(host=localhost, debug=True)
+
+if __name__ == "__main__":
+    app.run(host=localhost, debug=True)
