@@ -168,12 +168,6 @@ sudo supervisorctl update
 sudo supervisorctl start jianshi
 ```
 
-
-
-
-
-
-
 ## Install Jekins in ubuntu
 
 [Doc](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu)
@@ -198,6 +192,15 @@ Admin + yin
 Code in ubuntu is on `/var/lib/jenkins/workspace/jianshi`
 
 After building, jenkins will auto pull code from github into server.
+
+## Log Rotation
+
+```
+sudo vim /etc/logrotate.d/nginx
+/var/log/nginx/*.log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/*.log {
+     ...
+}
+```
 
 
 

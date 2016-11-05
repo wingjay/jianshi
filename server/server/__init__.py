@@ -9,7 +9,7 @@ app = Flask(__name__, instance_relative_config=True)
 # create empty instance directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 print current_dir
-path = current_dir + '/instance/config.py'
+path = current_dir + '/../instance/config.py'
 if not os.path.exists(path):
     print 'not exists'
     os.popen('cd ' + current_dir + '/..; mkdir instance' + '; cd ' + current_dir
@@ -32,11 +32,11 @@ import server.www.sync
 import server.db
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-path = current_dir + '/logs/jianshi.log'
+path = current_dir + '/../logs/jianshi.log'
 if not os.path.exists(path):
-    os.popen('cd ' + current_dir +' ; mkdir logs' + '; cd ' + current_dir + '/logs/' + ' ; touch jianshi.log')
+    os.popen('cd ' + current_dir +'/.. ; mkdir logs' + '; cd ' + current_dir + '/../logs/' + ' ; touch jianshi.log')
 formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
-handler = RotatingFileHandler(current_dir + '/logs/jianshi.log', maxBytes=10000, backupCount=1)
+handler = RotatingFileHandler(current_dir + '/../logs/jianshi.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
