@@ -10,7 +10,6 @@ import com.facebook.stetho.Stetho;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.wingjay.jianshi.BuildConfig;
-import com.wingjay.jianshi.db.DbOpenHepler;
 import com.wingjay.jianshi.di.AppComponent;
 import com.wingjay.jianshi.di.AppModule;
 import com.wingjay.jianshi.di.DaggerAppComponent;
@@ -33,16 +32,6 @@ public class JianShiApplication extends Application {
     return Secure.getString(contentResolver, Secure.ANDROID_ID);
   }
 
-  private DbOpenHepler dbOpenHepler;
-
-  public DbOpenHepler getDbOpenHepler() {
-    if (dbOpenHepler == null ||
-        dbOpenHepler.getReadableDatabase().getVersion() < DbOpenHepler.DB_VAERION) {
-      dbOpenHepler =
-          new DbOpenHepler(getApplicationContext(), DbOpenHepler.DB_NAME, DbOpenHepler.DB_VAERION);
-    }
-    return dbOpenHepler;
-  }
 
   private static AppComponent appComponent;
 
