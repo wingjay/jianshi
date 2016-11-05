@@ -103,7 +103,7 @@ public class SyncManager {
           @Override
           public void call(Object o) {
             if (syncResultListener != null) {
-              if (SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
+              if (SQLite.select().from(PushData.class).queryList().size() > 0) {
                 syncResultListener.onFailure();
               } else {
                 syncResultListener.onSuccess();
