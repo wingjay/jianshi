@@ -4,6 +4,7 @@ from server import app
 from server.db import diary as db_diary
 from server.logic import user as logic_user
 from server.util import safetyutils
+from server.db import event_log as db_log
 
 logger = app.logger
 
@@ -193,3 +194,45 @@ def _push_diary_data_by_action(user_id, action, data):
         db_diary.delete_diary(user_id, data.get('uuid'), data.get('time'))
     else:
         return
+
+
+def sync_event_log(user_id, log_items):
+    """
+    sync log from client
+
+    log_items = [
+        {
+            event_name : 'home_page_impression'
+            page_source : None
+            time_created : 14000000
+        },
+        {
+            event_name : 'home_page_impression'
+            page_source : None
+            time_created : 14000000
+        },
+        {
+            event_name : 'home_page_impression'
+            page_source : None
+            time_created : 14000000
+        },
+        {
+            event_name : 'home_page_impression'
+            page_source : None
+            time_created : 14000000
+        },
+    ]
+    """
+    synced_count = 0
+    if user_id is None or log_items is None:
+        return {
+         'synced_count': 0
+        }
+    for item in log_items:
+        if 'page_source' not in item:
+            item['page_source'] = ''
+        db_log.add_event_log(user_id, item)
+        synced_count += 1
+    return {
+     'synced_count': synced_count
+    }

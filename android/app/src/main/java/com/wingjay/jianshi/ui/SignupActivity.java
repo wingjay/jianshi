@@ -10,6 +10,8 @@ import android.view.View;
 import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
@@ -66,10 +68,12 @@ public class SignupActivity extends BaseActivity {
     } else {
       skip.setVisibility(View.GONE);
     }
+    Blaster.log(LoggingData.PAGE_IMP_SIGN_UP);
   }
 
   @OnClick(R.id.signup)
   void signUp() {
+    Blaster.log(LoggingData.BTN_CLK_SIGN_UP);
     if (!checkEmailPwdNonNull()) {
       return;
     }
@@ -80,6 +84,7 @@ public class SignupActivity extends BaseActivity {
 
   @OnClick(R.id.login)
   void login() {
+    Blaster.log(LoggingData.BTN_CLK_LOGIN);
     if (!checkEmailPwdNonNull()) {
       return;
     }

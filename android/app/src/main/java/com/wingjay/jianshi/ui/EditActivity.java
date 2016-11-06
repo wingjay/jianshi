@@ -18,6 +18,8 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.db.model.Diary;
 import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.StringByTime;
@@ -70,6 +72,7 @@ public class EditActivity extends BaseActivity {
     save.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        Blaster.log(LoggingData.BTN_CLK_SAVE_DIARY);
         saveDiary();
       }
     });
@@ -97,6 +100,7 @@ public class EditActivity extends BaseActivity {
 
     title.setHint(StringByTime.getEditTitleHintByNow());
     content.setHint(StringByTime.getEditContentHintByNow());
+    Blaster.log(LoggingData.PAGE_IMP_WRITE);
   }
 
   private void saveDiary() {

@@ -3,7 +3,6 @@ package com.wingjay.jianshi.prefs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.wingjay.jianshi.BuildConfig;
@@ -38,7 +37,7 @@ public class UserPrefs extends BasePrefs {
   }
 
   public boolean getVerticalWrite() {
-    return getBoolean(KEY_VERTICAL_WRITE, false);
+    return getBoolean(KEY_VERTICAL_WRITE, true);
   }
 
   private final static String KEY_HOME_IMAGE_POEM = "key_home_image_poem";

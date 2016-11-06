@@ -9,6 +9,7 @@ import com.wingjay.jianshi.util.FullDateManager;
 
 @Table(database = JianshiDatabase.class)
 public class Diary extends BaseModel{
+
   @PrimaryKey
   String uuid;
   @Column

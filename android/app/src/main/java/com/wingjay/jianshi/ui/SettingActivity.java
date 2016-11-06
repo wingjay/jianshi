@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
@@ -47,6 +49,7 @@ public class SettingActivity extends BaseActivity {
     setContentView(R.layout.activity_setting);
     verticalWrite.setChecked(userPrefs.getVerticalWrite());
     homeImagePoemSwitch.setChecked(userPrefs.getHomeImagePoemSetting());
+    Blaster.log(LoggingData.PAGE_IMP_SETTING);
   }
 
   @OnCheckedChanged(R.id.vertical_write)

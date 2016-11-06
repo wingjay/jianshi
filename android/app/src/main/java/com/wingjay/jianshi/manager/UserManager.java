@@ -12,8 +12,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.User;
-import com.wingjay.jianshi.db.model.Diary_Table;
-import com.wingjay.jianshi.db.model.PushData_Table;
+import com.wingjay.jianshi.db.model.PushData;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
@@ -116,7 +115,7 @@ public class UserManager {
   public void logout(final @NonNull Context context) {
     final ProgressDialog dialog = ProgressDialog.show(context, "",
         context.getString(R.string.logout_ing));
-    if (SQLite.select().from(PushData_Table.class).queryList().size() > 0) {
+    if (SQLite.select().from(PushData.class).queryList().size() > 0) {
       SyncService.syncImmediately(context, new SyncManager.SyncResultListener() {
         @Override
         public void onSuccess() {
@@ -153,8 +152,8 @@ public class UserManager {
     userPrefs.clearAuthToken();
     userPrefs.clearUser();
     //// TODO: 10/30/16 Ray cannot delete
-    SQLite.delete().from(PushData_Table.class).execute();
-    SQLite.delete().from(Diary_Table.class).execute();
+    SQLite.delete().from(PushData.class).execute();
+    SQLite.delete().from(PushData.class).execute();
     context.startActivity(SignupActivity.createIntent(context));
   }
 }
