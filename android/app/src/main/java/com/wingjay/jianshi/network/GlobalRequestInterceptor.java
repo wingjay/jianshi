@@ -25,12 +25,13 @@ import okhttp3.Response;
 public class GlobalRequestInterceptor implements Interceptor {
 
   Context applicationContext;
+
+  @Inject
   UserPrefs userPrefs;
 
   @Inject
-  GlobalRequestInterceptor(@ForApplication Context applicationContext, UserPrefs userPrefs) {
+  GlobalRequestInterceptor(@ForApplication Context applicationContext) {
     this.applicationContext = applicationContext;
-    this.userPrefs = userPrefs;
   }
 
   @Override

@@ -16,7 +16,6 @@ import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.util.CaptureViewUtil;
@@ -75,6 +74,9 @@ public class ViewActivity extends BaseActivity {
 
   @Inject
   DiaryService diaryService;
+
+  @Inject
+  UserPrefs userPrefs;
 
   @OnClick(R.id.view_share)
   void share() {
@@ -161,7 +163,7 @@ public class ViewActivity extends BaseActivity {
       verticalTitle.setText(titleString);
       verticalContent.setText(contentString);
       verticalDate.setText(contentDate);
-      container.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+      container.setBackgroundResource(userPrefs.getBackgroundColor());
       container.post(new Runnable() {
         @Override
         public void run() {
@@ -173,7 +175,7 @@ public class ViewActivity extends BaseActivity {
         }
       });
     } else {
-      normalContainer.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+      normalContainer.setBackgroundResource(userPrefs.getBackgroundColor());
       horizTitle.setText(titleString);
       horizContent.setText(contentString + getString(R.string.space_of_date_record_end) + contentDate);
     }

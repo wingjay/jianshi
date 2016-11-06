@@ -29,7 +29,7 @@ android {
   buildToolsVersion "24.0.1"
 
   defaultConfig {
-    applicationId "com.wingjay.jianshi"
+    applicationId "com.wingjay.android.jianshi"
     minSdkVersion 14
     targetSdkVersion 25
     versionCode baseVersionCode
@@ -40,7 +40,7 @@ android {
     release {
       minifyEnabled true // enable proguard
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      buildConfigField "String", "BASE_URL", '"http://wingjay-dev2.leanapp.cn/"'
+      buildConfigField "String", "BASE_URL", '"http://106.14.26.35/"'
     }
     debug {
       debuggable true

@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
+import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.prefs.UserPrefs;
 
 import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -29,9 +32,13 @@ public class BaseActivity extends AppCompatActivity {
     this.isNeedRegister = true;
   }
 
+  @Inject
+  UserPrefs userPrefs;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    JianShiApplication.getAppComponent().inject(this);
     Timber.d(TAG, "onCreate");
   }
 
@@ -46,7 +53,7 @@ public class BaseActivity extends AppCompatActivity {
 
   protected void setContainerBgColorFromPrefs() {
     if (containerView != null) {
-      containerView.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+      containerView.setBackgroundResource(userPrefs.getBackgroundColor());
     }
   }
   protected void setContainerBgColor(int colorRes) {
