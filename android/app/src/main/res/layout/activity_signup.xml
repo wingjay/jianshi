@@ -1,54 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/qian_bai">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/qian_bai">
 
     <FrameLayout
         android:id="@+id/left_circle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-        <com.wingjay.jianshi.ui.widget.TextPointView
-            android:id="@+id/text_point"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="-30dp"
-            android:layout_marginStart="-30dp"
-            app:text="登录"
-            app:textSize="13sp"
-            />
-
-    </FrameLayout>
+        android:layout_width="137dp"
+        android:layout_height="307dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="-67dp"
+        android:background="@drawable/jianshi_logo"/>
 
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/left_circle"
         android:layout_toEndOf="@+id/left_circle"
-        android:paddingRight="@dimen/margin_32"
+        android:layout_toRightOf="@+id/left_circle"
         android:paddingEnd="@dimen/margin_32"
+        android:paddingRight="@dimen/margin_32"
         android:paddingTop="@dimen/margin_64"
         >
 
         <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/app_name"
             style="@style/SignupTextView"
-            android:textSize="36sp"
-            android:textColor="@color/black"
             android:text="@string/app_name_broken"
+            android:textColor="@color/black"
+            android:textSize="36sp"
             />
 
         <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             android:id="@+id/app_slogan"
             style="@style/SignupTextView"
             android:layout_below="@+id/app_name"
-            android:textSize="14sp"
             android:gravity="end"
             android:text="@string/logo_slogan"
+            android:textSize="14sp"
             />
 
         <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
@@ -65,6 +54,7 @@
             android:layout_below="@+id/email"
             android:gravity="end"
             android:hint="@string/password"
+            android:inputType="textPassword"
             />
 
         <com.wingjay.jianshi.ui.widget.font.CustomizeTextView

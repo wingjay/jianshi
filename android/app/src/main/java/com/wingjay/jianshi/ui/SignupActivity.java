@@ -16,7 +16,6 @@ import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
 import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 
@@ -35,9 +34,6 @@ public class SignupActivity extends BaseActivity {
 
   @InjectView(R.id.password)
   CustomizeEditText userPassword;
-
-  @InjectView(R.id.text_point)
-  TextPointView textPointView;
 
   @InjectView(R.id.skip)
   CustomizeTextView skip;
