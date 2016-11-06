@@ -3,7 +3,8 @@
 
     <color name="primary">#b679797c</color>
 
-    <color name="normal_bg">#f3e5b1</color>
+    <color name="normal_bg">#F0F0F4</color>
+    <!--<color name="normal_bg">#f3e5b1</color>-->
     <!--#D9DAD7-->
     <color name="black">#000000</color>
     <color name="black_4a">#4a4a4a</color>

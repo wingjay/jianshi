@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Jay on 8/10/16.
  */
-public class JsonResponse {
+public class JsonResponse extends UnStripable{
 
   @SerializedName("rc")
   private int rc;

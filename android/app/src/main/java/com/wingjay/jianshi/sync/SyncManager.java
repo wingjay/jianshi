@@ -14,7 +14,7 @@ import com.wingjay.jianshi.db.model.PushData;
 import com.wingjay.jianshi.db.model.PushData_Table;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
-import com.wingjay.jianshi.network.model.SyncModel;
+import com.wingjay.jianshi.bean.SyncModel;
 import com.wingjay.jianshi.prefs.UserPrefs;
 
 import java.util.List;
