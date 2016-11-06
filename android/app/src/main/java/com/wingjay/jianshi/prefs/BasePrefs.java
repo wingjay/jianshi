@@ -3,8 +3,6 @@ package com.wingjay.jianshi.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.lang.reflect.Field;
-import java.util.NoSuchElementException;
 import java.util.Observable;
 
 /**
@@ -18,21 +16,9 @@ public class BasePrefs extends Observable {
 
   protected final SharedPreferences preferences;
 
-  public BasePrefs(Context context) {
+  public BasePrefs(Context context, final String prefName) {
     this.context = context;
-    // get child prefs name by reflection
-    BasePrefs me = BasePrefs.this;
-    Class c = me.getClass();
-
-    try {
-      Field f = c.getField("PREFS_NAME");
-      String name = (String)f.get(null);
-      preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
-    } catch (NoSuchFieldException e) {
-      throw new NoSuchElementException("PREFS_NAME is not specified");
-    } catch (IllegalAccessException e) {
-      throw new IllegalArgumentException("PREFS_NAME is not specified");
-    }
+    this.preferences = context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
   }
 
   protected String getString(String key, String defaultValue) {

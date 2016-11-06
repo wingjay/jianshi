@@ -26,7 +26,6 @@ public class SyncService extends IntentService {
   @Inject
   UserPrefs userPrefs;
 
-
   public SyncService() {
     super("SyncService");
   }

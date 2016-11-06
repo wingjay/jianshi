@@ -29,7 +29,7 @@ android {
   buildToolsVersion "24.0.1"
 
   defaultConfig {
-    applicationId "com.wingjay.jianshi"
+    applicationId "com.wingjay.android.jianshi"
     minSdkVersion 14
     targetSdkVersion 25
     versionCode baseVersionCode

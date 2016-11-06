@@ -10,6 +10,8 @@ import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 
+import java.lang.ref.WeakReference;
+
 public class SplashActivity extends BaseActivity {
 
   private final static int JUMP_TO_NEXT = 1;
@@ -20,28 +22,32 @@ public class SplashActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
-    handler.sendEmptyMessageDelayed(JUMP_TO_NEXT, 2000);
+    handler.sendEmptyMessageDelayed(JUMP_TO_NEXT, 1000);
   }
 
   private static class MyHandler extends Handler {
-    private static BaseActivity context;
+    private WeakReference<BaseActivity> weakReference;
 
-    public MyHandler(BaseActivity activity) {
-      context = activity;
+    MyHandler(BaseActivity activity) {
+      this.weakReference = new WeakReference<>(activity);
     }
 
     @Override
     public void handleMessage(Message msg) {
       switch (msg.what) {
         case JUMP_TO_NEXT:
-          UserPrefs userPrefs = new UserPrefs(context);
+          if (weakReference.get() == null) {
+            return;
+          }
+          BaseActivity activity = weakReference.get();
+          UserPrefs userPrefs = new UserPrefs(activity);
           if (!TextUtils.isEmpty(userPrefs.getAuthToken())
               && (userPrefs.getUser() != null)) {
-            context.startActivity(MainActivity.createIntent(context));
+            activity.startActivity(MainActivity.createIntent(activity));
           } else {
-            context.startActivity(new Intent(context, SignupActivity.class));
+            activity.startActivity(new Intent(activity, SignupActivity.class));
           }
-          context.finish();
+          activity.finish();
       }
       super.handleMessage(msg);
     }

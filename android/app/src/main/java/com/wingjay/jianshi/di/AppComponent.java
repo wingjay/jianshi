@@ -6,6 +6,7 @@ import com.wingjay.jianshi.ui.MainActivity;
 import com.wingjay.jianshi.ui.SettingActivity;
 import com.wingjay.jianshi.ui.SignupActivity;
 import com.wingjay.jianshi.ui.ViewActivity;
+import com.wingjay.jianshi.ui.base.BaseActivity;
 
 import javax.inject.Singleton;
 
@@ -15,6 +16,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent extends MiscComponent{
+
+  void inject(BaseActivity obj);
 
   void inject(MainActivity obj);
 

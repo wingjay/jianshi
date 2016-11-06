@@ -27,7 +27,7 @@ public class UserPrefs extends BasePrefs {
 
   @Inject
   public UserPrefs(@ForApplication Context context) {
-    super(context);
+    super(context, PREFS_NAME);
   }
 
   private final static String KEY_VERTICAL_WRITE = "vertical_write";
