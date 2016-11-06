@@ -15,6 +15,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem ç®€è¯
 
 # Android UI
 ![](material/screenshots/shareImage.png)
+
 <img src="material/screenshots/Login.png" width = 300>
 <img src="material/screenshots/category.png" width = 300>
 <img src="material/screenshots/View.png" width = 300>
