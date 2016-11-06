@@ -1,10 +1,11 @@
 import server.db.init as base_db
 
-tables_name = {'Diary', 'User'}
+tables_name = {'Diary', 'User', 'EventLog'}
 
 
 def reinit_table():
     conn = base_db.get_conn()
+    print 'reinit start droping tables'
     try:
         with conn.cursor() as cursor:
             sql = ""
@@ -13,7 +14,7 @@ def reinit_table():
             cursor.execute(sql)
     finally:
         conn.close()
-    if 'Diary' in tables_name:
-        base_db.init_diary_table()
-    if 'User' in tables_name:
-        base_db.init_user_table()
+
+    print 'reinit start init all schema files'
+    base_db.init_all_schema()
+

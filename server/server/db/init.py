@@ -1,3 +1,6 @@
+import os
+import os.path
+
 from flask import g
 import pymysql
 import pymysql.cursors
@@ -6,7 +9,7 @@ from server import app
 conf = app.config
 
 
-def _init_db(sql_file):
+def _execute_sql_file(sql_file):
     """Initializes the database."""
     try:
         with get_conn().cursor() as cursor:
@@ -20,16 +23,15 @@ def _init_db(sql_file):
         print get_conn().close()
 
 
-def init_user_table():
-    _init_db('db/schema/0001/user.sql')
-
-
-def init_diary_table():
-    _init_db('db/schema/0001/diary.sql')
-
-
-def init_event_log_table():
-    _init_db('db/schema/0001/event_log.sql')
+def init_all_schema():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    path = current_dir + '/schema/'
+    for dirpaths, dirs, files in os.walk(path):
+        if len(files) > 0:
+            for f in files:
+                sql_file = dirpaths + '/' + f
+                print('sql_file: %s', sql_file)
+                _execute_sql_file(sql_file)
 
 
 def _conn(cursorclass=pymysql.cursors.Cursor):
