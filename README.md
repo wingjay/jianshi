@@ -16,11 +16,11 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem ç®€è¯
 
 # Android UI
 
-<img src="material/screenshots/shareImage.png" width = 800>
 <img src="material/screenshots/Login.png" width = 300>
 <img src="material/screenshots/1.jpeg" width = 300>
 <img src="material/screenshots/3.jpeg" width = 300>
-<img src="material/screenshots/2.jpeg" width = 500>
+<img src="material/screenshots/2.jpeg" width = 300>
+<img src="material/screenshots/shareImage.png" width = 800>
 
 # Chinese Blog for jianshi
 
