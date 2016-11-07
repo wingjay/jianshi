@@ -59,6 +59,9 @@ public class SettingActivity extends BaseActivity {
 
   @OnCheckedChanged(R.id.home_image_poem_switch)
   void checkHomeImagePoem() {
+    if (homeImagePoemSwitch.isChecked()) {
+      Blaster.log(LoggingData.BTN_CLK_SHOW_HOME_IMAGE);
+    }
     userPrefs.setHomeImagePoem(homeImagePoemSwitch.isChecked());
   }
 
@@ -97,6 +100,7 @@ public class SettingActivity extends BaseActivity {
 
   @OnClick(R.id.logout)
   void logout() {
+    Blaster.log(LoggingData.BTN_CLK_LOGOUT);
     userManager.logout(this);
   }
 }
