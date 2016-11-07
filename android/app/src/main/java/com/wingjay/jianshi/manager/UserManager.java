@@ -25,6 +25,7 @@ import com.wingjay.jianshi.util.RxUtil;
 import javax.inject.Inject;
 
 import dagger.Lazy;
+import rx.functions.Action0;
 import rx.functions.Action1;
 import timber.log.Timber;
 
@@ -47,8 +48,15 @@ public class UserManager {
   UserManager() {}
 
   public void login(final Context context, @NonNull String email, @NonNull String password) {
+    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.logining), "");
     userService.login(email, password)
         .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
+        .doOnTerminate(new Action0() {
+          @Override
+          public void call() {
+            dialog.dismiss();
+          }
+        })
         .subscribe(new Action1<JsonDataResponse<User>>() {
           @Override
           public void call(JsonDataResponse<User> userJsonDataResponse) {
@@ -78,8 +86,15 @@ public class UserManager {
   }
 
   public void signup(final Context context, @NonNull String email, @NonNull String password) {
+    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.logining), "");
     userService.signup(email, password)
         .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
+        .doOnTerminate(new Action0() {
+          @Override
+          public void call() {
+            dialog.dismiss();
+          }
+        })
         .subscribe(new Action1<JsonDataResponse<User>>() {
           @Override
           public void call(JsonDataResponse<User> userJsonDataResponse) {
@@ -113,8 +128,8 @@ public class UserManager {
   }
 
   public void logout(final @NonNull Context context) {
-    final ProgressDialog dialog = ProgressDialog.show(context, "",
-        context.getString(R.string.logout_ing));
+    final ProgressDialog dialog = ProgressDialog.show(context,
+        context.getString(R.string.logout_ing), "");
     if (SQLite.select().from(PushData.class).queryList().size() > 0) {
       SyncService.syncImmediately(context, new SyncManager.SyncResultListener() {
         @Override
@@ -151,7 +166,6 @@ public class UserManager {
   private void doLogout(final @NonNull Context context) {
     userPrefs.clearAuthToken();
     userPrefs.clearUser();
-    //// TODO: 10/30/16 Ray cannot delete
     SQLite.delete().from(PushData.class).execute();
     SQLite.delete().from(PushData.class).execute();
     context.startActivity(SignupActivity.createIntent(context));

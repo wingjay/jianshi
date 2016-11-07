@@ -130,7 +130,9 @@
 
     <!--account-->
     <string name="login">登录</string>
+    <string name="logining">登录中</string>
     <string name="signup">注册</string>
+    <string name="signuping">注册中</string>
     <string name="login_failure">登录失败</string>
     <string name="signup_failure">注册失败</string>
     <string name="email_should_not_be_null">邮箱不能为空</string>
