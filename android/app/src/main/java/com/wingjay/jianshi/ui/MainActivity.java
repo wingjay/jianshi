@@ -177,6 +177,7 @@ public class MainActivity extends BaseActivity {
     } else {
       Picasso.with(MainActivity.this)
           .load(imagePoem.getImageUrl())
+          .placeholder(R.mipmap.default_home_image)
           .fit()
           .centerCrop()
           .into(backgroundImage);
