@@ -3,7 +3,7 @@ import random
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
-from server.data import errors, home_images
+from server.data import errors, images, poems
 
 
 @app.route("/index")
@@ -43,6 +43,10 @@ def login(email, password, **kwargs):
 @mobile_request
 @must_login
 def get_home_poem(**kwargs):
-    random_index = random.randint(0, len(home_images.image_poem_list))
-    return home_images.image_poem_list[random_index]
+    image_index = random.randint(0, len(images.images) - 1)
+    poem_index = random.randint(0, len(poems.poems) - 1)
+    return {
+        'image': images.images[image_index],
+        'poem': poems.poems[poem_index]
+    }
 

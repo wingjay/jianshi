@@ -5,13 +5,23 @@
                 android:layout_height="match_parent"
                 tools:context=".ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:foreground="#bbffffff"
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
         />
+
+        <View android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#bbffffff"
+        />
+
+    </FrameLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
