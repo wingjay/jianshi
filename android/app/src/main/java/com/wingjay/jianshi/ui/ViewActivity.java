@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
@@ -33,11 +32,9 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -88,51 +85,52 @@ public class ViewActivity extends BaseActivity {
   @Inject
   UserService userService;
 
+  String downloadLink;
+
   @OnClick(R.id.view_share)
   void share() {
     Blaster.log(LoggingData.BTN_CLK_SHARE_DIARY_IMAGE);
     final String path = getExternalCacheDir() + "/temp.jpg";
-    View capture;
+    final View capture;
     if (verticalStyle) {
       capture = container;
     } else {
       capture = normalContainer;
     }
     final ProgressDialog dialog = ProgressDialog.show(this, "", "加载中...");
-    Observable.zip(
-        userService.getDownloadLink(),
-        CaptureViewUtil.captureView(capture, path),
-        new Func2<JsonDataResponse<String>, Boolean, String>() {
-          @Override
-          public String call(JsonDataResponse<String> s, Boolean aBoolean) {
-            if (!TextUtils.isEmpty(s.getData()) && aBoolean) {
-              return s.getData();
-            }
-            return null;
-          }
-        }).filter(new Func1<String, Boolean>() {
-      @Override
-      public Boolean call(String link) {
-        return !TextUtils.isEmpty(link);
-      }
-    })
+    userService.getDownloadLink()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<String>() {
+        .doOnTerminate(new Action0() {
           @Override
-          public void call(String link) {
+          public void call() {
             dialog.dismiss();
-            IntentUtil.shareLinkWithImage(
-                ViewActivity.this,
-                link,
-                Uri.fromFile(new File(path)));
+            CaptureViewUtil.captureView(capture, path).subscribe(new Action1<Boolean>() {
+              @Override
+              public void call(Boolean aBoolean) {
+                IntentUtil.shareLinkWithImage(
+                    ViewActivity.this,
+                    downloadLink,
+                    Uri.fromFile(new File(path)));
+              }
+            }, new Action1<Throwable>() {
+              @Override
+              public void call(Throwable throwable) {
+                Timber.e(throwable, "share image");
+                makeToast("图片制作失败！！！");
+              }
+            });
+          }
+        })
+        .subscribe(new Action1<JsonDataResponse<String>>() {
+          @Override
+          public void call(JsonDataResponse<String> stringJsonDataResponse) {
+            downloadLink = stringJsonDataResponse.getData();
           }
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable throwable) {
-            dialog.dismiss();
-            Timber.e(throwable, "share image");
-            makeToast("图片制作失败！！！");
+            Timber.e(throwable, "get download link");
           }
         });
   }

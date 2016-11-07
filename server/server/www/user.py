@@ -21,7 +21,7 @@ def wwwhello(**kwargs):
 @app.route("/app/download_link", methods=['GET'])
 @mobile_request
 def app_download_link(**kwargs):
-    return 'http://fir.im/vd1r'
+    return android_version.newest_version['link']
 
 @app.route("/test/token", methods=['GET', 'POST'])
 @mobile_request
