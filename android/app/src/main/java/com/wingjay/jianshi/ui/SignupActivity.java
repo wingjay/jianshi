@@ -73,6 +73,12 @@ public class SignupActivity extends BaseActivity {
     if (!checkEmailPwdNonNull()) {
       return;
     }
+
+    if (getPassword().length() < 6) {
+      userPassword.setError(getString(R.string.password_length_must_bigger_than_6));
+      return;
+    }
+
     userManager.signup(SignupActivity.this,
         getEmailText(),
         getPassword());

@@ -25,6 +25,7 @@ import com.wingjay.jianshi.util.RxUtil;
 import javax.inject.Inject;
 
 import dagger.Lazy;
+import rx.functions.Action0;
 import rx.functions.Action1;
 import timber.log.Timber;
 
@@ -47,62 +48,79 @@ public class UserManager {
   UserManager() {}
 
   public void login(final Context context, @NonNull String email, @NonNull String password) {
+    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.logining), "");
     userService.login(email, password)
         .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
+        .doOnTerminate(new Action0() {
+          @Override
+          public void call() {
+            dialog.dismiss();
+          }
+        })
         .subscribe(new Action1<JsonDataResponse<User>>() {
           @Override
           public void call(JsonDataResponse<User> userJsonDataResponse) {
             if (userJsonDataResponse.getRc() == Constants.ServerResultCode.RESULT_OK) {
               User user = userJsonDataResponse.getData();
-              if (user == null || user.getId() <= 0) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              } else if (TextUtils.isEmpty(user.getEncryptedToken())) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
+              if (user == null || user.getId() <= 0 || TextUtils.isEmpty(user.getEncryptedToken())) {
+                Toast.makeText(context, context.getString(R.string.login_failure),
+                    Toast.LENGTH_SHORT).show();
+                return;
               }
               userPrefsLazy.get().setAuthToken(user.getEncryptedToken());
               userPrefsLazy.get().setUser(user);
 
               context.startActivity(MainActivity.createIntent(context));
             } else {
-              Toast.makeText(context, userJsonDataResponse.getMsg(), Toast.LENGTH_SHORT).show();
+              Toast.makeText(context, context.getString(R.string.server_error),
+                  Toast.LENGTH_SHORT).show();
             }
           }
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable e) {
             Timber.e(e, "login failure");
-            Toast.makeText(context, context.getString(R.string.login_failure),
+            Toast.makeText(context, context.getString(R.string.network_error),
                 Toast.LENGTH_SHORT).show();
           }
         });
   }
 
   public void signup(final Context context, @NonNull String email, @NonNull String password) {
+    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.logining), "");
     userService.signup(email, password)
         .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
+        .doOnTerminate(new Action0() {
+          @Override
+          public void call() {
+            dialog.dismiss();
+          }
+        })
         .subscribe(new Action1<JsonDataResponse<User>>() {
           @Override
           public void call(JsonDataResponse<User> userJsonDataResponse) {
             if (userJsonDataResponse.getRc() == Constants.ServerResultCode.RESULT_OK) {
               User user = userJsonDataResponse.getData();
-              if (user == null || user.getId() <= 0) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              } else if (TextUtils.isEmpty(user.getEncryptedToken())) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
+              if (user == null || user.getId() <= 0 || TextUtils.isEmpty(user.getEncryptedToken())) {
+                Toast.makeText(context, context.getString(R.string.signup_failure),
+                    Toast.LENGTH_SHORT).show();
+                return;
               }
 
               userPrefsLazy.get().setAuthToken(user.getEncryptedToken());
               userPrefsLazy.get().setUser(user);
               context.startActivity(MainActivity.createIntent(context));
             } else {
-              Toast.makeText(context, userJsonDataResponse.getMsg(), Toast.LENGTH_SHORT).show();
+
+              Toast.makeText(context, context.getString(R.string.server_error),
+                  Toast.LENGTH_SHORT).show();
             }
           }
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable e) {
             Timber.e(e, "signup failure");
-            Toast.makeText(context, context.getString(R.string.signup_failure),
+            Toast.makeText(context, context.getString(R.string.network_error),
                 Toast.LENGTH_SHORT).show();
           }
         });
@@ -113,8 +131,8 @@ public class UserManager {
   }
 
   public void logout(final @NonNull Context context) {
-    final ProgressDialog dialog = ProgressDialog.show(context, "",
-        context.getString(R.string.logout_ing));
+    final ProgressDialog dialog = ProgressDialog.show(context,
+        context.getString(R.string.logout_ing), "");
     if (SQLite.select().from(PushData.class).queryList().size() > 0) {
       SyncService.syncImmediately(context, new SyncManager.SyncResultListener() {
         @Override
@@ -151,7 +169,6 @@ public class UserManager {
   private void doLogout(final @NonNull Context context) {
     userPrefs.clearAuthToken();
     userPrefs.clearUser();
-    //// TODO: 10/30/16 Ray cannot delete
     SQLite.delete().from(PushData.class).execute();
     SQLite.delete().from(PushData.class).execute();
     context.startActivity(SignupActivity.createIntent(context));

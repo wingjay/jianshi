@@ -112,7 +112,7 @@ sudo vim /etc/nginx/sites-available/jianshi
 ```
 server {
     listen 80;
-    server_name jianshi.wingjay.com;
+    server_name 106.14.26.35 jianshi.wingjay.com;
 
 	access_log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/access.log;
     error_log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/error.log;

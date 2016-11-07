@@ -130,11 +130,14 @@
 
     <!--account-->
     <string name="login">登录</string>
+    <string name="logining">登录中</string>
     <string name="signup">注册</string>
-    <string name="login_failure">登录失败</string>
+    <string name="signuping">注册中</string>
+    <string name="login_failure">用户名密码不匹配</string>
     <string name="signup_failure">注册失败</string>
     <string name="email_should_not_be_null">邮箱不能为空</string>
     <string name="password_should_not_be_null">密码不能为空</string>
+    <string name="password_length_must_bigger_than_6">密码长度至少六位</string>
     <string name="wrong_email_format">邮箱格式不对</string>
     <string name="logout_ing">注销中</string>
     <string name="logout_warning_with_data_not_sync">确定要注销？你还有数据未同步，现在登出可能导致数据丢失。</string>
@@ -151,4 +154,8 @@
     <string name="jianshi_slogan_2">@string/logo_slogan</string>
     <!--logo ends-->
 
+    <!--network error-->
+    <string name="network_error">你的网络连接不正常，请检查</string>
+    <string name="server_error">服务器打个盹，请稍后再试</string>
+    <!--network error end-->
 </resources>
