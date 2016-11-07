@@ -2,8 +2,9 @@ package com.wingjay.jianshi.network;
 
 import com.google.gson.JsonObject;
 import com.wingjay.jianshi.bean.ImagePoem;
-import com.wingjay.jianshi.bean.User;
 import com.wingjay.jianshi.bean.SyncModel;
+import com.wingjay.jianshi.bean.User;
+import com.wingjay.jianshi.bean.VersionUpgrade;
 
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -32,4 +33,8 @@ public interface UserService {
 
   @POST("logs/sync")
   Observable<JsonDataResponse<JsonObject>> syncLog(@Body JsonObject jsonObject);
+
+  @GET("user/upgrade")
+  Observable<JsonDataResponse<VersionUpgrade>> checkUpgrade();
+
 }

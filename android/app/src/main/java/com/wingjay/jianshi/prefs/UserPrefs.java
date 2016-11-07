@@ -10,6 +10,7 @@ import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
 import com.wingjay.jianshi.bean.User;
+import com.wingjay.jianshi.bean.VersionUpgrade;
 import com.wingjay.jianshi.di.ForApplication;
 
 import javax.annotation.Nullable;
@@ -132,4 +133,20 @@ public class UserPrefs extends BasePrefs {
   public String getSyncToken() {
     return getString(KEY_SYNC_TOKEN, "");
   }
+
+  private static final String KEY_UPGRADE_VERSION = "key_upgrade_version";
+
+  public void setVersionUpgrade(@Nullable VersionUpgrade versionUpgrade) {
+    String versionUpgradeString = (versionUpgrade == null) ? "" : gson.toJson(versionUpgrade);
+    setString(KEY_UPGRADE_VERSION, versionUpgradeString);
+  }
+
+  public @Nullable VersionUpgrade getVersionUpgrade() {
+    String versionUpgradeString = getString(KEY_UPGRADE_VERSION, "");
+    if (TextUtils.isEmpty(versionUpgradeString)) {
+      return null;
+    }
+    return gson.fromJson(versionUpgradeString, VersionUpgrade.class);
+  }
+
 }

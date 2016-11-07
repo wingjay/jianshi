@@ -5,6 +5,7 @@
     <dimen name="margin_32">32dp</dimen>
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
 
     <dimen name="activity_horizontal_margin">18dp</dimen>
     <dimen name="activity_vertical_margin">18dp</dimen>

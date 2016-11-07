@@ -114,6 +114,38 @@
             android:padding="16dp"
             android:text="@string/user_feedback"/>
 
+        <RelativeLayout
+            android:id="@+id/version_upgrade"
+            style="@style/PressableBg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_border">
+
+            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                android:id="@+id/version_upgrade_title"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_16"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_16"
+                android:text="@string/version_upgrade"/>
+
+            <com.wingjay.jianshi.ui.widget.TextPointView
+                android:id="@+id/version_upgrade_warning"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_toRightOf="@+id/version_upgrade_title"
+                android:layout_toEndOf="@+id/version_upgrade_title"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+            />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout

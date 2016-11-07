@@ -1,16 +1,21 @@
 package com.wingjay.jianshi.ui;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.bean.VersionUpgrade;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.manager.UpgradeManager;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
@@ -21,6 +26,10 @@ import javax.inject.Inject;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
+import timber.log.Timber;
 
 public class SettingActivity extends BaseActivity {
 
@@ -36,11 +45,17 @@ public class SettingActivity extends BaseActivity {
   @InjectView(R.id.customize_bg_color)
   View customizeBgColor;
 
+  @InjectView(R.id.version_upgrade_warning)
+  View versionUpgradeWarning;
+
   @Inject
   UserPrefs userPrefs;
 
   @Inject
   UserManager userManager;
+
+  @Inject
+  UpgradeManager upgradeManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +65,17 @@ public class SettingActivity extends BaseActivity {
     verticalWrite.setChecked(userPrefs.getVerticalWrite());
     homeImagePoemSwitch.setChecked(userPrefs.getHomeImagePoemSetting());
     Blaster.log(LoggingData.PAGE_IMP_SETTING);
+
+    setupUpgradeWarning();
+  }
+
+  public void setupUpgradeWarning() {
+    VersionUpgrade versionUpgrade = userPrefs.getVersionUpgrade();
+    if (versionUpgrade == null) {
+      versionUpgradeWarning.setVisibility(View.GONE);
+    } else {
+      versionUpgradeWarning.setVisibility(View.VISIBLE);
+    }
   }
 
   @OnCheckedChanged(R.id.vertical_write)
@@ -63,6 +89,60 @@ public class SettingActivity extends BaseActivity {
       Blaster.log(LoggingData.BTN_CLK_SHOW_HOME_IMAGE);
     }
     userPrefs.setHomeImagePoem(homeImagePoemSwitch.isChecked());
+  }
+
+  @OnClick(R.id.version_upgrade)
+  void checkVersionUpgrade() {
+    final ProgressDialog progressDialog = ProgressDialog.show(this, getString(R.string.checking_upgrade), "");
+    upgradeManager.checkUpgradeObservable()
+        .doOnTerminate(new Action0() {
+          @Override
+          public void call() {
+            progressDialog.dismiss();
+          }
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<VersionUpgrade>() {
+          @Override
+          public void call(final VersionUpgrade versionUpgrade) {
+            if (!isUISafe()) {
+              return;
+            }
+
+            if (versionUpgrade == null) {
+              makeToast(getString(R.string.current_newest_verion));
+              return;
+            }
+
+            String upgradeInfo = getString(R.string.upgrade_info,
+                versionUpgrade.getVersionName(),
+                versionUpgrade.getDescription());
+            AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+
+            builder.setTitle(R.string.upgrade_title)
+                .setMessage(upgradeInfo)
+                .setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(versionUpgrade.getDownloadLink()));
+                    startActivity(browserIntent);
+                  }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                  }
+                });
+            builder.create().show();
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+            Timber.e(throwable, "upgrade failure");
+          }
+        });
   }
 
   @OnClick(R.id.send_feedback)

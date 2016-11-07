@@ -3,7 +3,8 @@ import random
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
-from server.data import errors, images, poems
+from server.data import errors, images, poems, android_version
+from server.util import mathutil
 
 
 @app.route("/index")
@@ -49,4 +50,13 @@ def get_home_poem(**kwargs):
         'image': images.images[image_index],
         'poem': poems.poems[poem_index]
     }
+
+
+@app.route("/user/upgrade", methods=['GET'])
+@mobile_request
+def check_upgrade(version_name, **kwargs):
+    newest_version = android_version.newest_version
+    if mathutil.version_gt(newest_version['version_name'], version_name):
+        return newest_version
+    return None
 

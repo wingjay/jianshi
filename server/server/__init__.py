@@ -26,6 +26,7 @@ else:
 # MUST under app = Flask(__name__)
 # If you want to use 'from server import app' in your py,
 # you must add one line as following
+import server.www
 import server.www.user
 import server.www.diary
 import server.www.sync
