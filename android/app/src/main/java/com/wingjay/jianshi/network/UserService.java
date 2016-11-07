@@ -3,7 +3,7 @@ package com.wingjay.jianshi.network;
 import com.google.gson.JsonObject;
 import com.wingjay.jianshi.bean.ImagePoem;
 import com.wingjay.jianshi.bean.User;
-import com.wingjay.jianshi.network.model.SyncModel;
+import com.wingjay.jianshi.bean.SyncModel;
 
 import retrofit2.http.Body;
 import retrofit2.http.Field;

@@ -1,7 +1,8 @@
-package com.wingjay.jianshi.network.model;
+package com.wingjay.jianshi.bean;
 
 import com.google.gson.annotations.SerializedName;
 import com.wingjay.jianshi.db.model.Diary;
+import com.wingjay.jianshi.network.UnStripable;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * contact panlei106@gmail.com
  */
 
-public class SyncModel {
+public class SyncModel extends UnStripable {
   @SerializedName("sync_token")
   String syncToken;
 
