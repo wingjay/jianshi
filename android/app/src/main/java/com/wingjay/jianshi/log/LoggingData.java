@@ -22,4 +22,6 @@ public class LoggingData {
   public static final String BTN_CLK_HOME_VIEW = "home_view_diary_btn_clk";
   public static final String BTN_CLK_DIARY_LIST_VIEW = "diary_list_view_diary_btn_clk";
   public static final String BTN_CLK_SAVE_DIARY = "save_diary_btn_clk";
+  public static final String BTN_CLK_LOGOUT = "logout_btn_clk";
+  public static final String BTN_CLK_SHOW_HOME_IMAGE = "show_home_image_btn_clk";
 }
