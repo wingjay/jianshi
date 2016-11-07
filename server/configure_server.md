@@ -245,3 +245,39 @@ In my own computer, i have two ways to connect mysql
 2. Sequel pro.
 ```
 
+## Config
+1. Load config during init
+```python
+# load config
+app.config.from_object("conf.all")
+app.config.from_pyfile('config.py')
+if app.config['DEBUG']:
+    app.config.from_object("conf.dev")
+else:
+    app.config.from_object("conf.prod")
+```
+2. set `DEBUG = True` in conf.all
+3. set `DEBUG = False` in instance/config.py in Prod env!! Don't forget.
+
+
+instance/config.py is not included in open source and stored sensentive data into itself.
+```
+# NOTICE!!! DEBUG Must be turn-on in prod env
+#DEBUG = False
+
+# safety constant. The real key is stored in other config, which isn't included in this open-source repo
+DEFAULT_KEY = 'xxx'
+AUTH_TOKEN_ENCRYPT_KEY = 'xxx'
+SYNC_TOKEN_ENCRYPT_KEY = 'xxx'
+
+# mysql
+MYSQL_LOCAL_HOST = 'localhost'
+MYSQL_USER       = 'user'
+MYSQL_PASSWORD   = 'password'
+MYSQL_DB_NAME    = 'dbname'
+
+
+#Email
+EMAIL_ADDRESS = 'email'
+EMAIL_PASSWORD = 'password' # client authorization code from mail.126.com
+```
