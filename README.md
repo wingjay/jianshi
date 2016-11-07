@@ -5,7 +5,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 一款优雅的中国风Android App，包括Android端和Server端。
 
 # Development Progress (development branch:v2.0)
-- __[2016/11/06] Configure aliyun server and deploy application by jenkins, install MySql, testing signup & data sync logic
+- __[2016/11/06] Configure aliyun server and deploy application by jenkins, install MySql, testing signup & data sync logic__
 - __[2016/10/30] Signup & Login UI new design; Screenshot & system Share; and other cool features__
 - __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
 - __[2016/09/03] User managment in server side and Signup & Login flow in Android side. [Server+Android]__
@@ -15,18 +15,21 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 
 # Android UI
-![](material/screenshots/shareImage.png)
 
 <img src="material/screenshots/Login.png" width = 300>
-<img src="material/screenshots/category.png" width = 300>
-<img src="material/screenshots/View.png" width = 300>
-
-
+<img src="material/screenshots/1.jpeg" width = 300>
+<img src="material/screenshots/3.jpeg" width = 300>
+<img src="material/screenshots/2.jpeg" width = 400>
+<img src="material/screenshots/shareImage.png" width = 800>
 
 # Chinese Blog for jianshi
 
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
 
+
+# Contributor
+We build Android & Server together for JianShi.
+[wingjay](https://github.com/wingjay), [Panl Ray](https://github.com/Panl). 
 
 # Inspired By
 [《Producter》](http://producter.io/)
