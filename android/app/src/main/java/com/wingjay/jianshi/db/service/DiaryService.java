@@ -20,7 +20,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.functions.Func0;
-import rx.schedulers.Schedulers;
 
 public class DiaryService {
 
@@ -52,7 +51,7 @@ public class DiaryService {
         SyncService.syncImmediately(context);
         return Observable.just(null);
       }
-    }).subscribeOn(Schedulers.io());
+    });
   }
 
   public Observable<List<Diary>> getDiaryList() {
@@ -61,7 +60,7 @@ public class DiaryService {
       public Observable<List<Diary>> call() {
         return Observable.just(fetchDiaryListFromDB());
       }
-    }).subscribeOn(Schedulers.io());
+    });
   }
 
   private List<Diary> fetchDiaryListFromDB() {
@@ -82,6 +81,6 @@ public class DiaryService {
             .querySingle();
         return Observable.just(diary);
       }
-    }).subscribeOn(Schedulers.io());
+    });
   }
 }
