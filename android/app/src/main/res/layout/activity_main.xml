@@ -31,7 +31,7 @@
         >
 
         <RelativeLayout
-            android:layout_width="@dimen/red_circle_size"
+            android:layout_width="@dimen/contain_red_circle_size"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -42,14 +42,15 @@
                 android:id="@+id/setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/normal_text_size"
+                android:layout_marginBottom="@dimen/margin_18"
+                android:layout_centerHorizontal="true"
                 app:text="@string/setting"
                 />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/red_circle_size"
+            android:layout_width="@dimen/contain_red_circle_size"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -57,14 +58,14 @@
 
             <ScrollView
                 android:id="@+id/right_top_bar"
-                android:layout_width="@dimen/red_circle_size"
+                android:layout_width="@dimen/contain_red_circle_size"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
                 >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
 
@@ -95,19 +96,19 @@
 
                     <com.wingjay.jianshi.ui.widget.TextPointView
                         android:id="@+id/writer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/normal_text_size"
+                        android:layout_marginTop="@dimen/margin_18"
                         app:text="@string/write"
                         />
 
                     <com.wingjay.jianshi.ui.widget.TextPointView
                         android:id="@+id/reader"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/normal_text_size"
+                        android:layout_marginTop="@dimen/margin_18"
                         app:text="@string/read"
                         />
 
@@ -120,10 +121,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/red_circle_size"
-            android:layout_marginStart="@dimen/red_circle_size"
-            android:layout_marginEnd="@dimen/red_circle_size"
-            android:layout_marginRight="@dimen/red_circle_size"
+            android:layout_marginLeft="@dimen/contain_red_circle_size"
+            android:layout_marginStart="@dimen/contain_red_circle_size"
+            android:layout_marginEnd="@dimen/contain_red_circle_size"
+            android:layout_marginRight="@dimen/contain_red_circle_size"
             >
 
             <com.wingjay.jianshi.ui.widget.DayChooser

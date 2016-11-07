@@ -17,7 +17,7 @@
             style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/small_text_size"
+            android:layout_marginBottom="@dimen/margin_16"
             android:text="@string/user_setting"
             />
 
@@ -79,9 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="0.5dp"
                 android:background="@drawable/white_border"
-                android:padding="16dp"
+                android:padding="@dimen/margin_16"
                 android:text="@string/customize_background_color"/>
 
 
@@ -92,7 +91,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_text_size"
+        android:layout_marginTop="@dimen/margin_18"
         android:orientation="vertical"
         >
 
@@ -100,7 +99,7 @@
             style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/small_text_size"
+            android:layout_marginBottom="@dimen/margin_16"
             android:text="@string/support_info"
             />
 
@@ -120,14 +119,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_text_size"
+        android:layout_marginTop="@dimen/margin_18"
         android:orientation="vertical">
 
         <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
             style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/small_text_size"
+            android:layout_marginBottom="@dimen/margin_16"
             android:text="@string/account_info"
             />
 

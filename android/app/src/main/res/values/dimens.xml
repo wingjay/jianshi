@@ -1,8 +1,11 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="margin_64">64dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_32">32dp</dimen>
     <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+
     <dimen name="activity_horizontal_margin">18dp</dimen>
     <dimen name="activity_vertical_margin">18dp</dimen>
 
@@ -13,7 +16,8 @@
     <dimen name="small_text_size">16sp</dimen>
 
     <dimen name="red_circle_text_size">16sp</dimen>
-    <dimen name="red_circle_size">30sp</dimen>
+    <dimen name="red_circle_size">30dp</dimen>
+    <dimen name="contain_red_circle_size">40dp</dimen>
 
     <dimen name="huge_circle_size">120dp</dimen>
     <dimen name="half_circle_size">-60dp</dimen>
