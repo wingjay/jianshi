@@ -40,7 +40,7 @@ android {
     release {
       minifyEnabled true // enable proguard
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      buildConfigField "String", "BASE_URL", '"http://106.14.26.35/"'
+      buildConfigField "String", "BASE_URL", '"http://jianshi.wingjay.com/"'
     }
     debug {
       debuggable true

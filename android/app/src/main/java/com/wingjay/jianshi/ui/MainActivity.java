@@ -14,6 +14,7 @@ import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.manager.UpgradeManager;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
@@ -27,7 +28,6 @@ import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
 import com.wingjay.jianshi.util.FullDateManager;
 import com.wingjay.jianshi.util.RxUtil;
-import com.wingjay.jianshi.util.UpgradeUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -81,6 +81,9 @@ public class MainActivity extends BaseActivity {
   UserManager userManager;
 
   @Inject
+  UpgradeManager upgradeManager;
+
+  @Inject
   UserPrefs userPrefs;
 
   private volatile int year, month, day;
@@ -99,7 +102,7 @@ public class MainActivity extends BaseActivity {
       day = savedInstanceState.getInt(DAY);
     } else {
       setTodayAsFullDate();
-      UpgradeUtil.checkUpgrade(MainActivity.this);
+      upgradeManager.checkUpgrade();
     }
     updateFullDate();
 

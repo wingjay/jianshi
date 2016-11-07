@@ -107,7 +107,7 @@ public class SignupActivity extends BaseActivity {
   }
 
   private String getEmailText() {
-    return userEmail.getText().toString();
+    return userEmail.getText().toString().trim();
   }
 
   private String getPassword() {

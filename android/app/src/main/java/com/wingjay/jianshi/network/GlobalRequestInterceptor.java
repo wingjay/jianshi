@@ -3,6 +3,7 @@ package com.wingjay.jianshi.network;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.di.ForApplication;
 import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.prefs.UserPrefs;
@@ -39,6 +40,7 @@ public class GlobalRequestInterceptor implements Interceptor {
     Request request = chain.request();
     HttpUrl.Builder urlBuilder = request.url().newBuilder();
     urlBuilder.addQueryParameter("device_id", DeviceUtil.getAndroidId(applicationContext));
+    urlBuilder.addQueryParameter("version_name", BuildConfig.VERSION_NAME);
 
     Request.Builder newRequestBuilder = request.newBuilder();
     if (!TextUtils.isEmpty(userPrefs.getAuthToken())) {

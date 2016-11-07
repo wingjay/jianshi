@@ -47,6 +47,7 @@
     <string name="support_info">支持信息</string>
     <string name="account_info">账户</string>
     <string name="user_feedback">反馈</string>
+    <string name="version_upgrade">版本升级</string>
     <string name="logout">注销</string>
     <string name="feedback_email_subject">关于&lt;简诗&gt;的二三意见</string>
     <string name="feedback_email_prefix">Hi,亲爱的简诗开发者们!\n&#160;&#160;&#160;&#160;我希望向亲们提出如下意见：</string>
@@ -58,7 +59,12 @@
 
     <!--upgrade-->
     <string name="upgrade_title">小小的升级只为追求更好</string>
-
+    <string name="checking_upgrade">升级检查中...</string>
+    <string name="upgrade_info">新版本：%1$s； 更新信息：%2$s</string>
+    <string name="upgrade">获取新体验</string>
+    <string name="cancel">下次咯</string>
+    <string name="current_newest_verion">您已经是最新版本啦！</string>
+    <!--upgrade end-->
 
     <string-array name="edit_content_hint_array">
         <item>美好的一天，给自己写句鼓励吧&#8230;</item>

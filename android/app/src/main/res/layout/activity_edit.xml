@@ -11,7 +11,7 @@
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_text_size"
+        android:layout_marginTop="@dimen/margin_18"
         android:maxLines="1"
         style="@style/EditTextTitleStyle" />
 
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/edit_title"
-        android:layout_marginTop="@dimen/normal_text_size"
+        android:layout_marginTop="@dimen/margin_18"
         android:scrollbars="none"
         >
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             style="@style/EditTextContentStyle"
-            android:paddingBottom="@dimen/super_huge_text_size"
+            android:paddingBottom="@dimen/margin_40"
             />
 
     </ScrollView>
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/normal_text_size"
+        android:layout_marginBottom="@dimen/margin_18"
         >
 
         <com.wingjay.jianshi.ui.widget.TextPointView
