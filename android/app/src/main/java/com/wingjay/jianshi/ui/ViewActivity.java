@@ -1,9 +1,11 @@
 package com.wingjay.jianshi.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
@@ -14,6 +16,8 @@ import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.network.JsonDataResponse;
+import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
@@ -29,8 +33,11 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -78,6 +85,9 @@ public class ViewActivity extends BaseActivity {
   @Inject
   UserPrefs userPrefs;
 
+  @Inject
+  UserService userService;
+
   @OnClick(R.id.view_share)
   void share() {
     Blaster.log(LoggingData.BTN_CLK_SHARE_DIARY_IMAGE);
@@ -88,20 +98,40 @@ public class ViewActivity extends BaseActivity {
     } else {
       capture = normalContainer;
     }
-    CaptureViewUtil.captureView(capture, path)
-        .subscribe(new Action1<Boolean>() {
+    final ProgressDialog dialog = ProgressDialog.show(this, "", "加载中...");
+    Observable.zip(
+        userService.getDownloadLink(),
+        CaptureViewUtil.captureView(capture, path),
+        new Func2<JsonDataResponse<String>, Boolean, String>() {
           @Override
-          public void call(Boolean aBoolean) {
-            Timber.i("capture result %s", aBoolean);
+          public String call(JsonDataResponse<String> s, Boolean aBoolean) {
+            if (!TextUtils.isEmpty(s.getData()) && aBoolean) {
+              return s.getData();
+            }
+            return null;
+          }
+        }).filter(new Func1<String, Boolean>() {
+      @Override
+      public Boolean call(String link) {
+        return !TextUtils.isEmpty(link);
+      }
+    })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<String>() {
+          @Override
+          public void call(String link) {
+            dialog.dismiss();
             IntentUtil.shareLinkWithImage(
                 ViewActivity.this,
-                "jianshi.link.download",
+                link,
                 Uri.fromFile(new File(path)));
           }
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable throwable) {
-            Timber.e(throwable);
+            dialog.dismiss();
+            Timber.e(throwable, "share image");
             makeToast("图片制作失败！！！");
           }
         });

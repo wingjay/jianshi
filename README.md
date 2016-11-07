@@ -29,7 +29,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 # Contributor
 We build Android & Server together for JianShi.
-[wingjay](https://github.com/wingjay), [Panl Ray](https://github.com/Panl). 
+[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
 
 # Inspired By
 [《Producter》](http://producter.io/)

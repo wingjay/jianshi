@@ -32,4 +32,7 @@ public interface UserService {
 
   @POST("logs/sync")
   Observable<JsonDataResponse<JsonObject>> syncLog(@Body JsonObject jsonObject);
+
+  @GET("app/download_link")
+  Observable<JsonDataResponse<String>> getDownloadLink();
 }

@@ -17,6 +17,11 @@ def wwwhello(**kwargs):
     return "This is www layer for user"
 
 
+@app.route("/app/download_link", methods=['GET'])
+@mobile_request
+def app_download_link(**kwargs):
+    return 'http://fir.im/vd1r'
+
 @app.route("/test/token", methods=['GET', 'POST'])
 @mobile_request
 def test_token(user_id, **kwargs):
@@ -49,4 +54,3 @@ def get_home_poem(**kwargs):
         'image': images.images[image_index],
         'poem': poems.poems[poem_index]
     }
-
