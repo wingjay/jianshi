@@ -65,6 +65,7 @@ def hello():
 
 @app.route("/logging_test")
 def get():
+    logger.info('isDebug? %s', app.config['DEBUG'])
     logger.warning('Test logging  (%d apples)', 42)
     logger.error('An error occurred')
     logger.info('Info')
