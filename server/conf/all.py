@@ -6,4 +6,5 @@ DEBUG = True
 # user
 AUTH_TOKEN_EXPIRE_TIME = 86400 * 30 * 6
 
-
+# admin email for error report
+ADMIN_EMAILS = ['yinjiesh@126.com', 'panlei106@gmail.com']

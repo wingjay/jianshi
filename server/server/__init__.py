@@ -23,6 +23,16 @@ if app.config['DEBUG']:
 else:
     app.config.from_object("conf.prod")
 
+# send error email
+if not app.config['DEBUG']:
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler("smtp.126.com", app.config['EMAIL_ADDRESS'], app.config['ADMIN_EMAILS'],
+                               'JianShi server error!', (app.config['EMAIL_ADDRESS'], app.config['EMAIL_PASSWORD']))
+    mail_handler.setLevel(logging.ERROR)
+    app.logger.addHandler(mail_handler)
+
+
 # MUST under app = Flask(__name__)
 # If you want to use 'from server import app' in your py,
 # you must add one line as following
