@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 newest_version = {
-    'version_name': '1.9.2',
+    'version_name': '1.9.3',
     'desc': '2.0预览版',
     'link': 'http://fir.im/vd1r'
 }
