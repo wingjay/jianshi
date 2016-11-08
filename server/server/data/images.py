@@ -54,7 +54,7 @@ images = [
 
 
 def get_unsplash_url(index, width, height):
-    if index >= len(images):
+    if index >= len(images) or index < 0:
         index = random.randint(0, len(images) - 1)
     raw_url = images[index]
     width = str(width)

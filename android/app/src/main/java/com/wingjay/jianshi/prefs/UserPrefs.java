@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.wingjay.jianshi.BuildConfig;
-import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
 import com.wingjay.jianshi.bean.User;
@@ -51,17 +49,18 @@ public class UserPrefs extends BasePrefs {
     return getBoolean(KEY_HOME_IMAGE_POEM, false);
   }
 
-  private final static String KEY_LAST_FETCH_HOME_IMAGE_POEM_TIME = "key_last_fetch_home_image_poem_time";
+  private final static String KEY_NEXT_FETCH_HOME_IMAGE_POEM_TIME = "key_next_fetch_home_image_poem_time";
 
-  public void setLastFetchHomeImagePoemTime() {
-    setLong(KEY_LAST_FETCH_HOME_IMAGE_POEM_TIME, System.currentTimeMillis() / 1000);
+  public void setNextFetchHomeImagePoemTime(long nextFetchHomeImagePoemTime) {
+    if (nextFetchHomeImagePoemTime < (System.currentTimeMillis()/1000)
+        || nextFetchHomeImagePoemTime > (System.currentTimeMillis()/1000 + 60*60)) {
+      nextFetchHomeImagePoemTime = System.currentTimeMillis()/1000 + 60*60;
+    }
+    setLong(KEY_NEXT_FETCH_HOME_IMAGE_POEM_TIME, nextFetchHomeImagePoemTime);
   }
 
   public boolean canFetchNextHomeImagePoem() {
-    long timeGap = (BuildConfig.DEBUG ? Constants.DEBUG_FETCH_HOME_IMAGE_POEM_TIME_GAP
-        : Constants.FETCH_HOME_IMAGE_POEM_TIME_GAP);
-
-    return System.currentTimeMillis() / 1000 > timeGap + getLong(KEY_LAST_FETCH_HOME_IMAGE_POEM_TIME, 0);
+    return (System.currentTimeMillis() / 1000) >= getLong(KEY_NEXT_FETCH_HOME_IMAGE_POEM_TIME, 0);
   }
 
   private final static String KEY_LAST_HOME_IMAGE_POEM = "key_last_home_image_poem";

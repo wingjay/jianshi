@@ -5,9 +5,6 @@ package com.wingjay.jianshi;
  */
 public class Constants {
 
-  public final static long FETCH_HOME_IMAGE_POEM_TIME_GAP = 30 * 60;
-  public final static long DEBUG_FETCH_HOME_IMAGE_POEM_TIME_GAP = 30;
-
   public final static class RequestCode {
     public final static int REQUEST_CODE_VIEW_DIARY_FROM_LIST = 100;
     public final static int REQUEST_CODE_BG_COLOR_CHANGE = 200;

@@ -146,36 +146,43 @@ public class MainActivity extends BaseActivity {
       return;
     }
 
-    backgroundImage.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-      @Override
-      public void onGlobalLayout() {
-        backgroundImage.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+    if (backgroundImage.getWidth() == 0) {
+      backgroundImage.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+          backgroundImage.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+          loadImagePoem();
+        }
+      });
+    } else {
+      loadImagePoem();
+    }
+  }
 
-        userService.getImagePoem(backgroundImage.getWidth(), backgroundImage.getHeight())
-            .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
-            .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
-              @Override
-              public Boolean call(JsonDataResponse<ImagePoem> response) {
-                return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
-                    && (response.getData() != null);
-              }
-            })
-            .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
-              @Override
-              public void call(JsonDataResponse<ImagePoem> response) {
-                setImagePoem(response.getData());
-                userPrefs.setLastHomeImagePoem(response.getData());
-                userPrefs.setLastFetchHomeImagePoemTime();
-                Blaster.log(LoggingData.LOAD_IMAGE_EVENT);
-              }
-            }, new Action1<Throwable>() {
-              @Override
-              public void call(Throwable throwable) {
-                Timber.e(throwable, "getImagePoem() failure");
-              }
-            });
-      }
-    });
+  private void loadImagePoem() {
+    userService.getImagePoem(backgroundImage.getWidth(), backgroundImage.getHeight())
+        .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
+        .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
+          @Override
+          public Boolean call(JsonDataResponse<ImagePoem> response) {
+            return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
+                && (response.getData() != null);
+          }
+        })
+        .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
+          @Override
+          public void call(JsonDataResponse<ImagePoem> response) {
+            setImagePoem(response.getData());
+            userPrefs.setLastHomeImagePoem(response.getData());
+            userPrefs.setNextFetchHomeImagePoemTime(response.getData().getNextFetchTimeSec());
+            Blaster.log(LoggingData.LOAD_IMAGE_EVENT);
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+            Timber.e(throwable, "getImagePoem() failure");
+          }
+        });
   }
 
   private void setImagePoem(ImagePoem imagePoem) {

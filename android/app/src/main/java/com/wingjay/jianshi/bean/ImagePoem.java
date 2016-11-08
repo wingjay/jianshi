@@ -15,11 +15,18 @@ public class ImagePoem {
   @SerializedName("poem")
   private String poem;
 
+  @SerializedName("next_fetch_time")
+  private long nextFetchTime;
+
   public String getImageUrl() {
     return imageUrl;
   }
 
   public String getPoem() {
     return poem;
+  }
+
+  public long getNextFetchTimeSec() {
+    return nextFetchTime;
   }
 }

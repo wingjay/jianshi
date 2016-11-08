@@ -1,4 +1,4 @@
-import random
+import random, time
 
 from server import app
 from server.www.base import mobile_request, must_login
@@ -56,9 +56,12 @@ def get_home_poem(width=0, height=0, **kwargs):
     poem_index = random.randint(0, len(poems.poems) - 1)
 
     unsplash_image_url = images.get_unsplash_url(image_index, width, height)
+
+    next_fetch_time = int(time.time()) + app.config['HOME_IMAGE_POEM_FETCH_TIME_GAP']
     return {
         'image': unsplash_image_url,
-        'poem': poems.poems[poem_index]
+        'poem': poems.poems[poem_index],
+        'next_fetch_time': next_fetch_time
     }
 
 
