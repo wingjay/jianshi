@@ -24,4 +24,11 @@ public class LoggingData {
   public static final String BTN_CLK_SAVE_DIARY = "save_diary_btn_clk";
   public static final String BTN_CLK_LOGOUT = "logout_btn_clk";
   public static final String BTN_CLK_SHOW_HOME_IMAGE = "show_home_image_btn_clk";
+  public static final String BTN_CLK_TURN_ON_VERTICAL_TEXT = "turn_on_vertical_text_btn_clk";
+  public static final String BTN_CLK_TURN_OFF_VERTICAL_TEXT = "turn_off_vertical_text_btn_clk";
+  public static final String BTN_CLK_TURN_OFF_HOME_IMAGE = "turn_off_home_image_btn_clk";
+
+  //misc
+  public static final String LOAD_IMAGE_EVENT = "load_image_event";
+
 }

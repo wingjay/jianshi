@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 public interface UserService {
@@ -29,7 +30,7 @@ public interface UserService {
   Observable<JsonDataResponse<SyncModel>> sync(@Body JsonObject jsonObject);
 
   @GET("home/image_poem")
-  Observable<JsonDataResponse<ImagePoem>> getImagePoem();
+  Observable<JsonDataResponse<ImagePoem>> getImagePoem(@Query("width") int width, @Query("height") int height);
 
   @POST("logs/sync")
   Observable<JsonDataResponse<JsonObject>> syncLog(@Body JsonObject jsonObject);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -145,28 +146,36 @@ public class MainActivity extends BaseActivity {
       return;
     }
 
-    userService.getImagePoem()
-        .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
-        .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
-          @Override
-          public Boolean call(JsonDataResponse<ImagePoem> response) {
-            return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
-                && (response.getData() != null);
-          }
-        })
-        .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
-          @Override
-          public void call(JsonDataResponse<ImagePoem> response) {
-            setImagePoem(response.getData());
-            userPrefs.setLastHomeImagePoem(response.getData());
-            userPrefs.setLastFetchHomeImagePoemTime();
-          }
-        }, new Action1<Throwable>() {
-          @Override
-          public void call(Throwable throwable) {
-            Timber.e(throwable, "getImagePoem() failure");
-          }
-        });
+    backgroundImage.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+        backgroundImage.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+        userService.getImagePoem(backgroundImage.getWidth(), backgroundImage.getHeight())
+            .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
+            .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
+              @Override
+              public Boolean call(JsonDataResponse<ImagePoem> response) {
+                return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
+                    && (response.getData() != null);
+              }
+            })
+            .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
+              @Override
+              public void call(JsonDataResponse<ImagePoem> response) {
+                setImagePoem(response.getData());
+                userPrefs.setLastHomeImagePoem(response.getData());
+                userPrefs.setLastFetchHomeImagePoemTime();
+                Blaster.log(LoggingData.LOAD_IMAGE_EVENT);
+              }
+            }, new Action1<Throwable>() {
+              @Override
+              public void call(Throwable throwable) {
+                Timber.e(throwable, "getImagePoem() failure");
+              }
+            });
+      }
+    });
   }
 
   private void setImagePoem(ImagePoem imagePoem) {

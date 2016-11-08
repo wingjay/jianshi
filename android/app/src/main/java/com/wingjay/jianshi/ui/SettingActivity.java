@@ -81,14 +81,21 @@ public class SettingActivity extends BaseActivity {
   @OnCheckedChanged(R.id.vertical_write)
   void chooseVerticalWrite() {
     userPrefs.setVerticalWrite(verticalWrite.isChecked());
+    if (verticalWrite.isChecked()) {
+      Blaster.log(LoggingData.BTN_CLK_TURN_ON_VERTICAL_TEXT);
+    } else {
+      Blaster.log(LoggingData.BTN_CLK_TURN_OFF_VERTICAL_TEXT);
+    }
   }
 
   @OnCheckedChanged(R.id.home_image_poem_switch)
   void checkHomeImagePoem() {
+    userPrefs.setHomeImagePoem(homeImagePoemSwitch.isChecked());
     if (homeImagePoemSwitch.isChecked()) {
       Blaster.log(LoggingData.BTN_CLK_SHOW_HOME_IMAGE);
+    } else {
+      Blaster.log(LoggingData.BTN_CLK_TURN_OFF_HOME_IMAGE);
     }
-    userPrefs.setHomeImagePoem(homeImagePoemSwitch.isChecked());
   }
 
   @OnClick(R.id.version_upgrade)

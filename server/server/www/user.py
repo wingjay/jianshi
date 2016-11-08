@@ -48,11 +48,16 @@ def login(email, password, **kwargs):
 @app.route("/home/image_poem", methods=['GET'])
 @mobile_request
 @must_login
-def get_home_poem(**kwargs):
+def get_home_poem(width=0, height=0, **kwargs):
+    if width == 0 or height == 0:
+        width = 900
+        height = 1600
     image_index = random.randint(0, len(images.images) - 1)
     poem_index = random.randint(0, len(poems.poems) - 1)
+
+    unsplash_image_url = images.get_unsplash_url(image_index, width, height)
     return {
-        'image': images.images[image_index],
+        'image': unsplash_image_url,
         'poem': poems.poems[poem_index]
     }
 
