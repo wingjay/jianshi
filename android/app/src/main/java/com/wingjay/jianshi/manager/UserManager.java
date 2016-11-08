@@ -87,7 +87,7 @@ public class UserManager {
   }
 
   public void signup(final Context context, @NonNull String email, @NonNull String password) {
-    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.logining), "");
+    final ProgressDialog dialog = ProgressDialog.show(context, context.getString(R.string.signuping), "");
     userService.signup(email, password)
         .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
         .doOnTerminate(new Action0() {

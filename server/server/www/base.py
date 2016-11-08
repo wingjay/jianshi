@@ -52,6 +52,7 @@ def mobile_request(func):
                 'msg': err_msg,
             }
 
+        log_mobile_response(response)
         return jsonify(response)
 
     return wrapped
@@ -72,3 +73,8 @@ def log_mobile_request(funcname, args, kwargs):
         func: %s
         args: %s
         kwargs: %s""" % (funcname, pprint.pformat(args), pprint.pformat(kwargs)))
+
+
+def log_mobile_response(response):
+    logger.info("""Return mobile response:
+        response: %s""" % response)
