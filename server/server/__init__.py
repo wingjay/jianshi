@@ -48,11 +48,11 @@ path = current_dir + '/../logs/jianshi.log'
 if not os.path.exists(path):
     os.popen('cd ' + current_dir +'/.. ; mkdir logs' + '; cd ' + current_dir + '/../logs/' + ' ; touch jianshi.log')
 formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
-handler = RotatingFileHandler(current_dir + '/../logs/jianshi.log', maxBytes=10000, backupCount=1)
-handler.setLevel(logging.DEBUG)
+handler = RotatingFileHandler(current_dir + '/../logs/jianshi.log', maxBytes=10000, backupCount=5)
+handler.setLevel(logging.INFO)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
-app.logger.setLevel(logging.DEBUG)
+app.logger.setLevel(logging.INFO)
 
 
 logger = app.logger
@@ -67,6 +67,6 @@ def hello():
 def get():
     logger.info('isDebug? %s', app.config['DEBUG'])
     logger.warning('Test logging  (%d apples)', 42)
-    logger.error('An error occurred')
+    logger.error('[Ignored, it\'s testing email]An error occurred')
     logger.info('Info')
     return "get function works Jianshiasasdf"
