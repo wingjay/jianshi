@@ -28,7 +28,7 @@ Jianshi depends on Python & Flask.
 
 The server architecture is:
 
-- www layer: used to receive all http request, process parameters, and take this request to logic layer;
+- www layer: used to receive all http request, process parameters, and call logic layer api for furthure process;
 - logic layer: used to process heavy service logic, when there are database actions, it will call db layer;
 - db layer: used to wrap our database related actions.
 
@@ -47,9 +47,12 @@ The server architecture is:
 <img src="material/screenshots/shareImage.png" width = 800>
 
 # Development History 
-- __[2016/11/06] Configure aliyun server and deploy application by jenkins, install MySql, testing signup & data sync logic__
-- __[2016/10/30] Signup & Login UI new design; Screenshot & system Share; and other cool features__
-- __[2016/10/25] Data sync function between android and server; Improve server error handling function & config mechanism. [Server+Android]__
+
+I use my extra time for this project development, so the development process doesn't go very fast.
+
+- __[2016/11/06] Configure aliyun cloud server; Deploy application by jenkins; Setup Nginx & gunicorn; Finish unit-test for signup & data sync logic__
+- __[2016/10/30] Design for signup & login; Screenshot for share; Other cool features__
+- __[2016/10/25] Data sync between android and server; Improve server error handling function & config mechanism. [Server+Android]__
 - __[2016/09/03] User managment in server side and Signup & Login flow in Android side. [Server+Android]__
 - __[2016/08/25] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework. [Server]__
 - __[2016/08/20] Build server side framework. Using `LeanCloud` & `Python`. [Server]__
