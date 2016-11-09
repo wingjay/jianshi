@@ -1,4 +1,4 @@
-#  jianshi 简诗
+#  JianShi 简诗
 
 A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简诗. You can write poem in graceful & traditional Chinese style. It supports signup & login, data sync with server, offline data storage, screenshot share etc.
 
@@ -6,7 +6,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 [中文说明](https://github.com/wingjay/jianshi/blob/master/CN_README.md)
 
-# Technology I used
+# Technology JianShi used
 ### Android side
 
 Jianshi depends on the most popular Android libraries to build Stable and Clean structure.
