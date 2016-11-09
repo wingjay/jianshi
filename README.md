@@ -24,6 +24,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem ç®€è¯
 <img src="material/screenshots/6.png" width = 400>
 <img src="material/screenshots/8.png" width = 400>
 <img src="material/screenshots/Login.png" width = 400>
+<img src="material/screenshots/5.png" width = 400>
 <img src="material/screenshots/2.jpg" width = 600>
 <img src="material/screenshots/shareImage.png" width = 800>
 
