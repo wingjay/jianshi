@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Pair;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.bean.ShareContent;
 import com.wingjay.jianshi.db.service.DiaryService;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
@@ -21,10 +25,10 @@ import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 import com.wingjay.jianshi.ui.widget.MultipleRowTextView;
 import com.wingjay.jianshi.ui.widget.TextPointView;
-import com.wingjay.jianshi.util.CaptureViewUtil;
 import com.wingjay.jianshi.util.DisplayUtil;
 import com.wingjay.jianshi.util.IntentUtil;
 import com.wingjay.jianshi.util.LanguageUtil;
+import com.wingjay.jianshi.util.ScreenshotManager;
 
 import java.io.File;
 
@@ -32,9 +36,11 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -85,52 +91,61 @@ public class ViewActivity extends BaseActivity {
   @Inject
   UserService userService;
 
-  String downloadLink;
+  @Inject
+  ScreenshotManager screenshotManager;
 
   @OnClick(R.id.view_share)
   void share() {
     Blaster.log(LoggingData.BTN_CLK_SHARE_DIARY_IMAGE);
-    final String path = getExternalCacheDir() + "/temp.jpg";
-    final View capture;
-    if (verticalStyle) {
-      capture = container;
-    } else {
-      capture = normalContainer;
-    }
+
+    final View target = verticalStyle ? container : normalContainer;
     final ProgressDialog dialog = ProgressDialog.show(this, "", "加载中...");
-    userService.getDownloadLink()
-        .subscribeOn(Schedulers.io())
+    screenshotManager.shotScreen(target, "temp.jpg")
+        .observeOn(Schedulers.io())
+        .filter(new Func1<String, Boolean>() {
+          @Override
+          public Boolean call(String s) {
+            return !TextUtils.isEmpty(s);
+          }
+        })
+        .flatMap(new Func1<String, Observable<Pair<String, ShareContent>>>() {
+          @Override
+          public Observable<Pair<String, ShareContent>> call(String path) {
+            ShareContent shareContent = new ShareContent();
+            try {
+              JsonDataResponse<ShareContent> response = userService.getShareContent().toBlocking().first();
+              if (response.getRc() == Constants.ServerResultCode.RESULT_OK && response.getData() != null) {
+                shareContent = response.getData();
+              }
+            } catch (Exception e) {
+              Timber.e(e, "getShareContent() error");
+              return Observable.just(Pair.create(path, shareContent));
+            }
+            return Observable.just(Pair.create(path, shareContent));
+          }
+        })
         .observeOn(AndroidSchedulers.mainThread())
         .doOnTerminate(new Action0() {
           @Override
           public void call() {
             dialog.dismiss();
-            CaptureViewUtil.captureView(capture, path).subscribe(new Action1<Boolean>() {
-              @Override
-              public void call(Boolean aBoolean) {
-                IntentUtil.shareLinkWithImage(
-                    ViewActivity.this,
-                    downloadLink,
-                    Uri.fromFile(new File(path)));
-              }
-            }, new Action1<Throwable>() {
-              @Override
-              public void call(Throwable throwable) {
-                Timber.e(throwable, "share image");
-                makeToast("图片制作失败！！！");
-              }
-            });
           }
         })
-        .subscribe(new Action1<JsonDataResponse<String>>() {
+        .subscribe(new Action1<Pair<String, ShareContent>>() {
           @Override
-          public void call(JsonDataResponse<String> stringJsonDataResponse) {
-            downloadLink = stringJsonDataResponse.getData();
+          public void call(Pair<String, ShareContent> stringShareContentPair) {
+            if (!isUISafe()) {
+              return;
+            }
+            IntentUtil.shareLinkWithImage(ViewActivity.this,
+                stringShareContentPair.second,
+                Uri.fromFile(new File(stringShareContentPair.first)));
           }
         }, new Action1<Throwable>() {
           @Override
           public void call(Throwable throwable) {
-            Timber.e(throwable, "get download link");
+            makeToast(getString(R.string.share_failure));
+            Timber.e(throwable, "screenshot share failure");
           }
         });
   }

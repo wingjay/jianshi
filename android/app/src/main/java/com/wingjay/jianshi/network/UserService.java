@@ -2,6 +2,7 @@ package com.wingjay.jianshi.network;
 
 import com.google.gson.JsonObject;
 import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.bean.ShareContent;
 import com.wingjay.jianshi.bean.SyncModel;
 import com.wingjay.jianshi.bean.User;
 import com.wingjay.jianshi.bean.VersionUpgrade;
@@ -35,8 +36,8 @@ public interface UserService {
   @POST("logs/sync")
   Observable<JsonDataResponse<JsonObject>> syncLog(@Body JsonObject jsonObject);
 
-  @GET("app/download_link")
-  Observable<JsonDataResponse<String>> getDownloadLink();
+  @GET("app/share")
+  Observable<JsonDataResponse<ShareContent>> getShareContent();
 
   @GET("user/upgrade")
   Observable<JsonDataResponse<VersionUpgrade>> checkUpgrade();

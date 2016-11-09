@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.functions.Action1;
+import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -43,24 +44,27 @@ public class UpgradeManager {
   }
 
   public Observable<VersionUpgrade> checkUpgradeObservable() {
-    return userService.checkUpgrade()
-        .doOnError(new Action1<Throwable>() {
-          @Override
-          public void call(Throwable throwable) {
-            Timber.e(throwable, "check upgrade failure");
-          }
-        })
-        .flatMap(new Func1<JsonDataResponse<VersionUpgrade>, Observable<VersionUpgrade>>() {
-          @Override
-          public Observable<VersionUpgrade> call(JsonDataResponse<VersionUpgrade> response) {
-            if (response.getRc() == Constants.ServerResultCode.RESULT_OK) {
-              userPrefs.setVersionUpgrade(response.getData());
-              return Observable.just(response.getData());
-            }
-            return Observable.just(null);
-          }
-        })
-        .subscribeOn(Schedulers.io());
-
+    return Observable.defer(new Func0<Observable<VersionUpgrade>>() {
+      @Override
+      public Observable<VersionUpgrade> call() {
+        return userService.checkUpgrade()
+            .doOnError(new Action1<Throwable>() {
+              @Override
+              public void call(Throwable throwable) {
+                Timber.e(throwable, "check upgrade failure");
+              }
+            })
+            .flatMap(new Func1<JsonDataResponse<VersionUpgrade>, Observable<VersionUpgrade>>() {
+              @Override
+              public Observable<VersionUpgrade> call(JsonDataResponse<VersionUpgrade> response) {
+                if (response.getRc() == Constants.ServerResultCode.RESULT_OK) {
+                  userPrefs.setVersionUpgrade(response.getData());
+                  return Observable.just(response.getData());
+                }
+                return Observable.just(null);
+              }
+            });
+      }
+    }).subscribeOn(Schedulers.io());
   }
 }

@@ -3,7 +3,7 @@ import random, time
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
-from server.data import errors, images, poems, android_version
+from server.data import errors, images, poems, android_version, share
 from server.util import mathutil
 
 
@@ -22,6 +22,7 @@ def wwwhello(**kwargs):
 @mobile_request
 def app_download_link(**kwargs):
     return android_version.newest_version['link']
+
 
 @app.route("/test/token", methods=['GET', 'POST'])
 @mobile_request
@@ -72,3 +73,14 @@ def check_upgrade(version_name, **kwargs):
     if mathutil.version_gt(newest_version['version_name'], version_name):
         return newest_version
     return None
+
+
+@app.route("/app/share", methods=['GET'])
+@mobile_request
+def get_share_text(**kwargs):
+    link = android_version.newest_version['link']
+    share_text = share.share_text + link
+    return {
+        'link': link,
+        'share_text': share_text
+    }

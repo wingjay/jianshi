@@ -158,4 +158,8 @@
     <string name="network_error">你的网络连接不正常，请检查</string>
     <string name="server_error">服务器打个盹，请稍后再试</string>
     <!--network error end-->
+
+    <!--share-->
+    <string name="share_failure">分享失败</string>
+    <!--share error-->
 </resources>
