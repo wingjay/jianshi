@@ -3,7 +3,11 @@ import random, time
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
-from server.data import errors, images, poems, android_version, share
+import server.data.images
+import server.data.poems
+import server.data.android_version
+import server.data.share
+from server.data import errors
 from server.util import mathutil
 
 
@@ -21,7 +25,7 @@ def wwwhello(**kwargs):
 @app.route("/app/download_link", methods=['GET'])
 @mobile_request
 def app_download_link(**kwargs):
-    return android_version.newest_version['link']
+    return server.data.android_version.newest_version['link']
 
 
 @app.route("/test/token", methods=['GET', 'POST'])
@@ -53,15 +57,15 @@ def get_home_poem(width=0, height=0, **kwargs):
     if width == 0 or height == 0:
         width = 900
         height = 1600
-    image_index = random.randint(0, len(images.images) - 1)
-    poem_index = random.randint(0, len(poems.poems) - 1)
+    image_index = random.randint(0, len(server.data.images.images) - 1)
+    poem_index = random.randint(0, len(server.data.poems.poems) - 1)
 
-    unsplash_image_url = images.get_unsplash_url(image_index, width, height)
+    unsplash_image_url = server.data.images.get_unsplash_url(image_index, width, height)
 
     next_fetch_time = int(time.time()) + app.config['HOME_IMAGE_POEM_FETCH_TIME_GAP']
     return {
         'image': unsplash_image_url,
-        'poem': poems.poems[poem_index],
+        'poem': server.data.poems.poems[poem_index],
         'next_fetch_time': next_fetch_time
     }
 
@@ -69,7 +73,7 @@ def get_home_poem(width=0, height=0, **kwargs):
 @app.route("/user/upgrade", methods=['GET'])
 @mobile_request
 def check_upgrade(version_name, **kwargs):
-    newest_version = android_version.newest_version
+    newest_version = server.data.android_version.newest_version
     if mathutil.version_gt(newest_version['version_name'], version_name):
         return newest_version
     return None
@@ -78,8 +82,8 @@ def check_upgrade(version_name, **kwargs):
 @app.route("/app/share", methods=['GET'])
 @mobile_request
 def get_share_text(**kwargs):
-    link = android_version.newest_version['link']
-    share_text = share.share_text + link
+    link = server.data.android_version.newest_version['link']
+    share_text = server.data.share.share_text + link
     return {
         'link': link,
         'share_text': share_text
