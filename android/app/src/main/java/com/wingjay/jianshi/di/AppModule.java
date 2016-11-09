@@ -3,6 +3,11 @@ package com.wingjay.jianshi.di;
 import android.content.Context;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.raizlabs.android.dbflow.structure.ModelAdapter;
 import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.network.GlobalRequestInterceptor;
@@ -76,4 +81,23 @@ public class AppModule {
     return retrofit.create(UserService.class);
   }
 
+  @Provides
+  ExclusionStrategy provideExclusionStrategy() {
+    return new ExclusionStrategy() {
+      @Override
+      public boolean shouldSkipField(FieldAttributes f) {
+        return false;
+      }
+
+      @Override
+      public boolean shouldSkipClass(Class<?> clazz) {
+        return clazz.equals(ModelAdapter.class);
+      }
+    };
+  }
+
+  @Provides
+  Gson provideGson(ExclusionStrategy exclusionStrategy) {
+    return new GsonBuilder().setExclusionStrategies(exclusionStrategy).create();
+  }
 }

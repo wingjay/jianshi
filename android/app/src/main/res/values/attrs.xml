@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="RedPointView">
+    <declare-styleable name="TextPointView">
         <attr name="text" format="string"/>
         <attr name="redPointViewBgColor" format="color"/>
+        <attr name="textSize" format="dimension"/>
     </declare-styleable>
     <declare-styleable name="CustomizeTextView">
         <attr name="myTextViewFontFamily" format="string"/>

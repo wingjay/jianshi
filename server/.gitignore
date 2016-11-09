@@ -1,6 +1,14 @@
-jianshi.log
-instance/
 logs/
+instance/
+
+jianshi.log
+jianshi.log.1
+custom.log
+error.log
+conf/dev.py
+
+logs/
+
 *.log
 
 # Byte-compiled / optimized / DLL files
@@ -51,9 +59,6 @@ coverage.xml
 # Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
 
 # Sphinx documentation
 docs/_build/

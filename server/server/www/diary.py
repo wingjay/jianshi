@@ -1,5 +1,3 @@
-from flask import request, jsonify
-
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import diary as logic_diary
@@ -29,6 +27,6 @@ def update_diary(diary_id, **kwargs):
 @mobile_request
 @must_login
 def get_diary(diary_id, **kwargs):
-    return logic_diary.get_diary(kwargs['user_id'], diary_id)
+    return logic_diary.get_diary_by_id(kwargs['user_id'], diary_id)
 
 

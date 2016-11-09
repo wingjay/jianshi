@@ -2,9 +2,6 @@ package com.wingjay.jianshi.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Jay on 8/27/16.
- */
 public class User {
 
   @SerializedName("id")

@@ -1,125 +1,134 @@
 package com.wingjay.jianshi.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.util.PatternsCompat;
 import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.View;
 
-import com.wingjay.jianshi.JianshiConstant;
+import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.bean.User;
 import com.wingjay.jianshi.global.JianShiApplication;
-import com.wingjay.jianshi.network.JsonDataResponse;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.util.RxUtil;
+import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
+import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 
 import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import rx.Subscriber;
 
 /**
  * Signup Activity.
  */
 public class SignupActivity extends BaseActivity {
 
-  @InjectView(R.id.user_name)
-  EditText userNameEditText;
+  @InjectView(R.id.email)
+  CustomizeEditText userEmail;
 
-  @InjectView(R.id.user_password)
-  EditText userPasswordEditText;
+  @InjectView(R.id.password)
+  CustomizeEditText userPassword;
 
-  @InjectView(R.id.signup_button)
-  Button signupButton;
+  @InjectView(R.id.skip)
+  CustomizeTextView skip;
 
   @Inject
   UserService userService;
+
+  @Inject
+  UserManager userManager;
+
+  @Inject
+  UserPrefs userPrefs;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_signup);
     JianShiApplication.getAppComponent().inject(this);
-  }
 
-  @OnClick(R.id.signup_button)
-  void signUp() {
-    if (TextUtils.isEmpty(userNameEditText.getText())
-        || TextUtils.isEmpty(userPasswordEditText.getText())) {
-      makeToast("Name & password shouldn't be null");
+    if (userPrefs.getAuthToken() != null) {
+      startActivity(MainActivity.createIntent(this));
+      finish();
       return;
     }
-    userService.signup(userNameEditText.getText().toString(), userPasswordEditText.getText().toString())
-        .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
-        .subscribe(new Subscriber<JsonDataResponse<User>>() {
-          @Override
-          public void onCompleted() {
 
-          }
-
-          @Override
-          public void onError(Throwable e) {
-            makeToast("Please check your network status");
-          }
-
-          @Override
-          public void onNext(JsonDataResponse<User> userJsonDataResponse) {
-            if (userJsonDataResponse.getRc() == JianshiConstant.ServerResultCode.RESULT_OK) {
-              User user = userJsonDataResponse.getData();
-              if (user == null || user.getId() <= 0) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              } else if (TextUtils.isEmpty(user.getEncryptedToken())) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              }
-
-              UserPrefs userPrefs = new UserPrefs(SignupActivity.this);
-              userPrefs.setAuthToken(user.getEncryptedToken());
-              userPrefs.setUser(user);
-              makeToast("Welcome to JianShi, ENJOY!");
-            } else {
-              makeToast(userJsonDataResponse.getMsg());
-            }
-          }
-        });
+    if (BuildConfig.DEBUG) {
+      skip.setVisibility(View.VISIBLE);
+    } else {
+      skip.setVisibility(View.GONE);
+    }
+    Blaster.log(LoggingData.PAGE_IMP_SIGN_UP);
   }
 
-  @OnClick(R.id.login_button)
+  @OnClick(R.id.signup)
+  void signUp() {
+    Blaster.log(LoggingData.BTN_CLK_SIGN_UP);
+    if (!checkEmailPwdNonNull()) {
+      return;
+    }
+
+    if (getPassword().length() < 6) {
+      userPassword.setError(getString(R.string.password_length_must_bigger_than_6));
+      return;
+    }
+
+    userManager.signup(SignupActivity.this,
+        getEmailText(),
+        getPassword());
+  }
+
+  @OnClick(R.id.login)
   void login() {
-    userService.login(userNameEditText.getText().toString(), userPasswordEditText.getText().toString())
-        .compose(RxUtil.<JsonDataResponse<User>>normalSchedulers())
-        .subscribe(new Subscriber<JsonDataResponse<User>>() {
-          @Override
-          public void onCompleted() {
+    Blaster.log(LoggingData.BTN_CLK_LOGIN);
+    if (!checkEmailPwdNonNull()) {
+      return;
+    }
+    userManager.login(SignupActivity.this,
+        getEmailText(),
+        getPassword());
+  }
 
-          }
+  private boolean checkEmailPwdNonNull() {
+    if (TextUtils.isEmpty(getEmailText())) {
+      userEmail.setError(getString(R.string.email_should_not_be_null));
+      return false;
+    }
+    if (!PatternsCompat.EMAIL_ADDRESS.matcher(getEmailText()).matches()) {
+      userEmail.setError(getString(R.string.wrong_email_format));
+      return false;
+    }
+    if (TextUtils.isEmpty(getPassword())) {
+      userPassword.setError(getString(R.string.password_should_not_be_null));
+      return false;
+    }
 
-          @Override
-          public void onError(Throwable e) {
-            makeToast("Please check your network status");
-          }
+    return true;
+  }
 
-          @Override
-          public void onNext(JsonDataResponse<User> userJsonDataResponse) {
-            if (userJsonDataResponse.getRc() == JianshiConstant.ServerResultCode.RESULT_OK) {
-              User user = userJsonDataResponse.getData();
-              if (user == null || user.getId() <= 0) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              } else if (TextUtils.isEmpty(user.getEncryptedToken())) {
-                throw new RuntimeException(userJsonDataResponse.getMsg());
-              }
+  private String getEmailText() {
+    return userEmail.getText().toString().trim();
+  }
 
-              UserPrefs userPrefs = new UserPrefs(SignupActivity.this);
-              userPrefs.setAuthToken(user.getEncryptedToken());
-              userPrefs.setUser(user);
+  private String getPassword() {
+    return userPassword.getText().toString();
+  }
 
-              startActivity(MainActivity.createIntent(SignupActivity.this));
-            } else {
-              makeToast(userJsonDataResponse.getMsg());
-            }
-          }
-        });
+  @OnClick(R.id.skip)
+  void skip() {
+    startActivity(MainActivity.createIntent(SignupActivity.this));
+  }
+
+  public static Intent createIntent(Context context) {
+    Intent intent = new Intent(context, SignupActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK |
+        Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    return intent;
   }
 }

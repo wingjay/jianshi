@@ -4,30 +4,52 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.log.Blaster;
+import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.manager.UpgradeManager;
+import com.wingjay.jianshi.manager.UserManager;
+import com.wingjay.jianshi.network.JsonDataResponse;
+import com.wingjay.jianshi.network.UserService;
+import com.wingjay.jianshi.prefs.UserPrefs;
+import com.wingjay.jianshi.sync.SyncManager;
+import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.widget.DatePickDialogFragment;
 import com.wingjay.jianshi.ui.widget.DayChooser;
-import com.wingjay.jianshi.ui.widget.DayPickDialogFragment;
-import com.wingjay.jianshi.ui.widget.RedPointView;
+import com.wingjay.jianshi.ui.widget.TextPointView;
+import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
-import com.wingjay.jianshi.util.ConstantUtil;
-import com.wingjay.jianshi.util.DateUtil;
 import com.wingjay.jianshi.util.FullDateManager;
-import com.wingjay.jianshi.util.UpgradeUtil;
+import com.wingjay.jianshi.util.RxUtil;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
 
   private final static String YEAR = "year";
   private final static String MONTH = "month";
   private final static String DAY = "day";
+
+  @InjectView(R.id.background_image)
+  ImageView backgroundImage;
 
   @InjectView(R.id.year)
   VerticalTextView yearTextView;
@@ -39,13 +61,31 @@ public class MainActivity extends BaseActivity {
   VerticalTextView dayTextView;
 
   @InjectView(R.id.writer)
-  RedPointView writerView;
+  TextPointView writerView;
 
   @InjectView(R.id.reader)
-  RedPointView readerView;
+  TextPointView readerView;
 
   @InjectView(R.id.day_chooser)
   DayChooser dayChooser;
+
+  @InjectView(R.id.three_line_poem)
+  ThreeLinePoemView threeLinePoemView;
+
+  @Inject
+  SyncManager syncManager;
+
+  @Inject
+  UserService userService;
+
+  @Inject
+  UserManager userManager;
+
+  @Inject
+  UpgradeManager upgradeManager;
+
+  @Inject
+  UserPrefs userPrefs;
 
   private volatile int year, month, day;
 
@@ -55,6 +95,7 @@ public class MainActivity extends BaseActivity {
     JianShiApplication.getAppComponent().inject(MainActivity.this);
 
     setContentView(R.layout.activity_main);
+    setNeedRegister();
 
     if (savedInstanceState != null) {
       year = savedInstanceState.getInt(YEAR);
@@ -62,99 +103,127 @@ public class MainActivity extends BaseActivity {
       day = savedInstanceState.getInt(DAY);
     } else {
       setTodayAsFullDate();
-      UpgradeUtil.checkUpgrade(MainActivity.this);
+      upgradeManager.checkUpgrade();
     }
     updateFullDate();
 
     writerView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            DateTime current = new DateTime(year, month, day, 0, 0);
-            long dateSeconds = FullDateManager.getDateSeconds(current);
-            Intent i = EditActivity.createIntent(MainActivity.this, dateSeconds);
-            startActivity(i);
-        }
+      @Override
+      public void onClick(View v) {
+        Blaster.log(LoggingData.BTN_CLK_HOME_WRITE);
+        Intent i = new Intent(MainActivity.this, EditActivity.class);
+        startActivity(i);
+      }
     });
 
     readerView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, DiaryListActivity.class));
-        }
+      @Override
+      public void onClick(View v) {
+        Blaster.log(LoggingData.BTN_CLK_HOME_VIEW);
+        startActivity(new Intent(MainActivity.this, DiaryListActivity.class));
+      }
     });
 
-    dayChooser.setOnDayChooserClickListener(new DayChooser.OnDayChooserClickListener() {
+    Blaster.log(LoggingData.PAGE_IMP_HOME);
+    SyncService.syncImmediately(this);
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    setupImagePoemBackground();
+  }
+
+  private void setupImagePoemBackground() {
+    if (!userPrefs.getHomeImagePoemSetting()) {
+      setContainerBgColorFromPrefs();
+      return;
+    }
+
+    if (!userPrefs.canFetchNextHomeImagePoem() && userPrefs.getLastHomeImagePoem() != null) {
+      // use last imagePoem data
+      setImagePoem(userPrefs.getLastHomeImagePoem());
+      return;
+    }
+
+    if (backgroundImage.getWidth() == 0) {
+      backgroundImage.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
-        public void onDayChoose(int chooseDay) {
-            DayPickDialogFragment dayPickDialogFragment = new DayPickDialogFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt(DayPickDialogFragment.CHOOSE_DAY, chooseDay);
-            bundle.putInt(DayPickDialogFragment.CHOOSE_MONTH, month);
-            bundle.putInt(DayPickDialogFragment.CHOOSE_YEAR, year);
-            dayPickDialogFragment.setArguments(bundle);
-            dayPickDialogFragment.setOnDayChoosedListener(new DayPickDialogFragment.OnDayChoosedListener() {
-                @Override
-                public void onDayChoosed(DateTime chooseDate) {
-                    setDate(chooseDate);
-                    updateFullDate();
-                }
-            });
-            dayPickDialogFragment.show(getSupportFragmentManager(), null);
+        public void onGlobalLayout() {
+          backgroundImage.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+          loadImagePoem();
         }
-    });
+      });
+    } else {
+      loadImagePoem();
+    }
+  }
+
+  private void loadImagePoem() {
+    userService.getImagePoem(backgroundImage.getWidth(), backgroundImage.getHeight())
+        .compose(RxUtil.<JsonDataResponse<ImagePoem>>normalSchedulers())
+        .filter(new Func1<JsonDataResponse<ImagePoem>, Boolean>() {
+          @Override
+          public Boolean call(JsonDataResponse<ImagePoem> response) {
+            return (response.getRc() == Constants.ServerResultCode.RESULT_OK)
+                && (response.getData() != null);
+          }
+        })
+        .subscribe(new Action1<JsonDataResponse<ImagePoem>>() {
+          @Override
+          public void call(JsonDataResponse<ImagePoem> response) {
+            setImagePoem(response.getData());
+            userPrefs.setLastHomeImagePoem(response.getData());
+            userPrefs.setNextFetchHomeImagePoemTime(response.getData().getNextFetchTimeSec());
+            Blaster.log(LoggingData.LOAD_IMAGE_EVENT);
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+            Timber.e(throwable, "getImagePoem() failure");
+          }
+        });
+  }
+
+  private void setImagePoem(ImagePoem imagePoem) {
+    setContainerBgColor(R.color.transparent);
+    if (imagePoem == null) {
+      Picasso.with(this)
+          .load(R.mipmap.default_home_image)
+          .fit()
+          .centerCrop()
+          .into(backgroundImage);
+    } else {
+      Picasso.with(MainActivity.this)
+          .load(imagePoem.getImageUrl())
+          .placeholder(R.mipmap.default_home_image)
+          .fit()
+          .centerCrop()
+          .into(backgroundImage);
+      threeLinePoemView.setThreeLinePoem(imagePoem.getPoem());
+    }
   }
 
   @OnClick(R.id.setting)
   void toSettingsPage(View v) {
     Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-    startActivityForResult(intent, ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE);
+    startActivityForResult(intent, Constants.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE);
   }
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == ConstantUtil.REQUEST_CODE_BG_COLOR_CHANGE) {
-        if (resultCode == RESULT_OK) {
-            setContainerBgColorFromPrefs();
-        }
+    if (requestCode == Constants.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE) {
+      if (resultCode == RESULT_OK) {
+        setContainerBgColorFromPrefs();
+      }
     }
   }
 
-  @OnClick(R.id.day)
-  void chooseDay(View v) {
-    showDatePickDialog(DatePickDialogFragment.PICK_TYPE_DAY);
-  }
-
-  @OnClick(R.id.month)
-  void chooseMonth() {
-    showDatePickDialog(DatePickDialogFragment.PICK_TYPE_MONTH);
-  }
-
-  private void showDatePickDialog(int pickType) {
-    DatePickDialogFragment datePickDialogFragment = new DatePickDialogFragment();
-    Bundle bundle = new Bundle();
-    bundle.putInt(DatePickDialogFragment.CURRENT_DAY, day);
-    bundle.putInt(DatePickDialogFragment.CURRENT_MONTH, month);
-    bundle.putInt(DatePickDialogFragment.CURRENT_YEAR, year);
-    bundle.putInt(DatePickDialogFragment.PICK_TYPE, pickType);
-    datePickDialogFragment.setArguments(bundle);
-    datePickDialogFragment.setOnDateChoosedListener(new DatePickDialogFragment.OnDateChoosedListener() {
-        @Override
-        public void onDayChoosed(int mDay) {
-            day = mDay;
-            updateFullDate();
-        }
-
-        @Override
-        public void onMonthChoosed(int mMonth) {
-            month = mMonth;
-            if (!DateUtil.checkDayAndMonth(day, mMonth, year)) {
-                day = DateUtil.getLastDay(mMonth, year);
-            }
-            updateFullDate();
-        }
-    });
-    datePickDialogFragment.show(getSupportFragmentManager(), null);
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onEvent(InvalidUserTokenEvent event) {
+    makeToast(getString(R.string.invalid_token_force_logout));
+    userManager.logoutByInvalidToken(this);
   }
 
   private void setDate(DateTime date) {
@@ -189,5 +258,4 @@ public class MainActivity extends BaseActivity {
         Intent.FLAG_ACTIVITY_NO_ANIMATION);
     return intent;
   }
-
 }

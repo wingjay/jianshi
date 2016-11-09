@@ -44,6 +44,9 @@
     @butterknife.* <methods>;
 }
 
+-keep class **$$ViewInjector { *; }
+-keepnames class * { @butterknife.InjectView *;}
+
 # Platform calls Class.forName on types which do not exist on Android to determine platform.
 -dontnote retrofit2.Platform
 # Platform used when running on RoboVM on iOS. Will not be used at runtime.
@@ -118,3 +121,32 @@
 #
 # Note: Doesn't include Javascript console lines. See https://github.com/facebook/stetho/tree/master/stetho-js-rhino#proguard
 -keep class com.facebook.stetho.** { *; }
+
+#DBFlow
+-keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
+-keep class com.wingjay.jianshi.db.model.** { *; }
+
+
+#picasso
+-dontwarn com.squareup.okhttp.**
+
+## New rules for EventBus 3.0.x ##
+# http://greenrobot.org/eventbus/documentation/proguard/
+
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
+
+# Unstripable class
+-keep class * extends com.wingjay.jianshi.network.Unstripable {
+    *;
+}
+
+-keep class com.wingjay.jianshi.bean.** { *; }

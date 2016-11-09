@@ -1,3 +1,5 @@
+*.apk
+
 build/*
 
 .gradle/*

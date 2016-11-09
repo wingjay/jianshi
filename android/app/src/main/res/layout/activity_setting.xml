@@ -1,11 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/NormalBg"
-                android:id="@+id/layout_container"
-                android:orientation="vertical"
-                tools:context="com.wingjay.jianshi.ui.SettingActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/layout_container"
+              style="@style/NormalBg"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.wingjay.jianshi.ui.SettingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,33 +13,32 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:text="@string/user_setting"
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TitleTextStyle"
-            android:layout_marginBottom="@dimen/small_text_size"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/user_setting"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_border"
             android:orientation="vertical"
             >
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/normal_text_size"
-                >
+                android:background="@drawable/white_border"
+                android:padding="16dp">
 
-                <TextView
+                <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                    style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/vertical_reading"
                     android:layout_gravity="center_vertical"
-                    style="@style/TextStyle"
+                    android:text="@string/vertical_reading"
                     />
 
                 <android.support.v7.widget.SwitchCompat
@@ -52,22 +51,38 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/customize_bg_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/normal_text_size"
-                style="@style/PressableBg"
-                >
+                android:background="@drawable/white_border"
+                android:padding="16dp">
 
-                <TextView
+                <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                    style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/customize_background_color"
                     android:layout_gravity="center_vertical"
-                    style="@style/TextStyle"
+                    android:text="@string/turn_on_home_image_poem"
+                    />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/home_image_poem_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     />
 
             </FrameLayout>
+
+            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                android:id="@+id/customize_bg_color"
+                style="@style/ClickableTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_border"
+                android:padding="@dimen/margin_16"
+                android:text="@string/customize_background_color"/>
+
 
         </LinearLayout>
 
@@ -76,46 +91,87 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_18"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/normal_text_size"
         >
 
-        <TextView
-            android:text="@string/support_info"
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TitleTextStyle"
-            android:layout_marginBottom="@dimen/small_text_size"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/support_info"
             />
 
-        <LinearLayout
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/send_feedback"
+            style="@style/ClickableTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/white_border"
-            android:orientation="vertical"
-            >
+            android:padding="16dp"
+            android:text="@string/user_feedback"/>
 
-            <FrameLayout
-                android:id="@+id/send_feedback"
-                android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/version_upgrade"
+            style="@style/PressableBg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_border">
+
+            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+                android:id="@+id/version_upgrade_title"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/normal_text_size"
-                style="@style/PressableBg"
-                >
+                android:paddingTop="@dimen/margin_16"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_16"
+                android:text="@string/version_upgrade"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_feedback"
-                    style="@style/TextStyle"
-                    android:layout_gravity="center_vertical"
-                    />
+            <com.wingjay.jianshi.ui.widget.TextPointView
+                android:id="@+id/version_upgrade_warning"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_toRightOf="@+id/version_upgrade_title"
+                android:layout_toEndOf="@+id/version_upgrade_title"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+            />
 
-            </FrameLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_18"
+        android:orientation="vertical">
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            style="@style/TitleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/account_info"
+            />
+
+        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            android:id="@+id/logout"
+            style="@style/ClickableTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/white_border"
+            android:padding="16dp"
+            android:text="@string/logout"/>
+
+    </LinearLayout>
 
 </LinearLayout>

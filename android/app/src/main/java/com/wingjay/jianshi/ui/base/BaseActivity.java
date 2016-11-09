@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.ui.theme.BackgroundColorHelper;
+import com.wingjay.jianshi.global.JianShiApplication;
+import com.wingjay.jianshi.prefs.UserPrefs;
+
+import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -20,12 +24,22 @@ public class BaseActivity extends AppCompatActivity {
   protected boolean isVisible = false;
 
   protected View containerView;
-  protected String TAG = getClass().getSimpleName();
+  protected String TAG = getClass().getSimpleName() + ": %s";
+
+  private boolean isNeedRegister = false;
+
+  protected void setNeedRegister() {
+    this.isNeedRegister = true;
+  }
+
+  @Inject
+  UserPrefs userPrefs;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.i(TAG, "onCreate");
+    JianShiApplication.getAppComponent().inject(this);
+    Timber.d(TAG, "onCreate");
   }
 
   @Override
@@ -39,7 +53,7 @@ public class BaseActivity extends AppCompatActivity {
 
   protected void setContainerBgColorFromPrefs() {
     if (containerView != null) {
-      containerView.setBackgroundResource(BackgroundColorHelper.getBackgroundColorResFromPrefs(this));
+      containerView.setBackgroundResource(userPrefs.getBackgroundColor());
     }
   }
   protected void setContainerBgColor(int colorRes) {
@@ -49,35 +63,47 @@ public class BaseActivity extends AppCompatActivity {
   }
 
   @Override
+  protected void onRestart() {
+    super.onRestart();
+    Timber.d(TAG, "onRestart");
+  }
+
+  @Override
   protected void onStart() {
     super.onStart();
-    Log.i(TAG, "onStart");
+    Timber.d(TAG, "onStart");
+    if (isNeedRegister) {
+      EventBus.getDefault().register(this);
+    }
   }
 
   @Override
   protected void onResume() {
     super.onResume();
     isVisible = true;
-    Log.i(TAG, "onResume");
+    Timber.d(TAG, "onResume");
   }
 
   @Override
   protected void onPause() {
     super.onPause();
     isVisible = false;
-    Log.i(TAG, "onPause");
+    Timber.d(TAG, "onPause");
   }
 
   @Override
   protected void onStop() {
     super.onStop();
-    Log.i(TAG, "onStop");
+    Timber.d(TAG, "onStop");
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    Log.i(TAG, "onDestory");
+    Timber.d(TAG, "onDestroy");
   }
 
   public boolean isUISafe() {
