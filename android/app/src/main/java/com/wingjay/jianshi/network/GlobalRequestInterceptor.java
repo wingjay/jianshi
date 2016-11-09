@@ -49,7 +49,7 @@ public class GlobalRequestInterceptor implements Interceptor {
 
     Request.Builder newRequestBuilder = request.newBuilder()
         .addHeader("Request-Id", RequestUtils.generateRequestId());
-    
+
     if (!TextUtils.isEmpty(userPrefs.getAuthToken())) {
       newRequestBuilder.addHeader("Authorization", userPrefs.getAuthToken());
     }

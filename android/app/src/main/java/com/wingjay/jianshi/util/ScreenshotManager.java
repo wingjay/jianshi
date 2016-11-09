@@ -4,7 +4,6 @@ package com.wingjay.jianshi.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.View;
 
 import com.wingjay.jianshi.di.ForApplication;
@@ -46,7 +45,7 @@ public class ScreenshotManager {
             .flatMap(new Func1<Object, Observable<Bitmap>>() {
               @Override
               public Observable<Bitmap> call(Object o) {
-                Timber.i("CaptureView %s", Thread.currentThread().getName());
+                Timber.i("ScreenshotManager 1 %s", Thread.currentThread().getName());
                 View view = viewWeakReference.get();
                 if (view != null) {
                   int width = view.getWidth();
@@ -61,12 +60,14 @@ public class ScreenshotManager {
             .filter(new Func1<Bitmap, Boolean>() {
               @Override
               public Boolean call(Bitmap bitmap) {
+                Timber.i("ScreenshotManager 2 %s", Thread.currentThread().getName());
                 return bitmap != null && viewWeakReference.get() != null;
               }
             })
             .flatMap(new Func1<Bitmap, Observable<Bitmap>>() {
               @Override
               public Observable<Bitmap> call(Bitmap bitmap) {
+                Timber.i("ScreenshotManager 3 %s", Thread.currentThread().getName());
                 View view = viewWeakReference.get();
                 Canvas canvas = new Canvas(bitmap);
                 view.draw(canvas);
@@ -77,6 +78,7 @@ public class ScreenshotManager {
             .flatMap(new Func1<Bitmap, Observable<String>>() {
               @Override
               public Observable<String> call(Bitmap bitmap) {
+                Timber.i("ScreenshotManager 4 %s", Thread.currentThread().getName());
                 File imageFile = new File(path);
                 try {
                   FileOutputStream outputStream = new FileOutputStream(imageFile);

@@ -111,6 +111,7 @@ public class ViewActivity extends BaseActivity {
         .flatMap(new Func1<String, Observable<Pair<String, ShareContent>>>() {
           @Override
           public Observable<Pair<String, ShareContent>> call(String path) {
+            Timber.i("ViewActivity ScreenshotManager 1 %s", Thread.currentThread().getName());
             ShareContent shareContent = new ShareContent();
             try {
               JsonDataResponse<ShareContent> response = userService.getShareContent().toBlocking().first();
@@ -134,6 +135,7 @@ public class ViewActivity extends BaseActivity {
         .subscribe(new Action1<Pair<String, ShareContent>>() {
           @Override
           public void call(Pair<String, ShareContent> stringShareContentPair) {
+            Timber.i("ViewActivity ScreenshotManager 2 %s", Thread.currentThread().getName());
             if (!isUISafe()) {
               return;
             }
