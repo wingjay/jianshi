@@ -11,7 +11,7 @@ public class ShareContent {
   String link;
 
   @SerializedName("share_text")
-  String shareText = "回归文字的本质,回归初心.";
+  String shareText = "回归文字的本质，回归美好";
 
   public String getLink() {
     return link;

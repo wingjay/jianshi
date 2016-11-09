@@ -12,7 +12,7 @@
     <string name="title_activity_base">BaseActivity</string>
 
     <string name="logo_name">简诗</string>
-    <string name="logo_slogan">简单的小诗，简单的生活</string>
+    <string name="logo_slogan">回归文字的本质，回归美好</string>
     <string name="write">撰</string>
     <string name="read">阅</string>
     <string name="setting">置</string>
