@@ -60,5 +60,5 @@ def get_unsplash_url(index, width, height):
     raw_url = images[index]
     width = str(width)
     height = str(height)
-    modified_url = raw_url + '?w=' + width + '&h=' + height
+    modified_url = raw_url + '?fit=crop&w=' + width + '&h=' + height
     return modified_url

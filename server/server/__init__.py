@@ -48,7 +48,7 @@ path = current_dir + '/../logs/jianshi.log'
 if not os.path.exists(path):
     os.popen('cd ' + current_dir +'/.. ; mkdir logs' + '; cd ' + current_dir + '/../logs/' + ' ; touch jianshi.log')
 formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
-handler = RotatingFileHandler(current_dir + '/../logs/jianshi.log', maxBytes=10000, backupCount=5)
+handler = RotatingFileHandler(current_dir + '/../logs/jianshi.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.INFO)
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
