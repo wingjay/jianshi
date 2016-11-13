@@ -50,7 +50,9 @@ images = [
     'https://images.unsplash.com/photo-1470138831303-3e77dd49163e',
     'https://images.unsplash.com/photo-1428342109953-409d2876cdab',
     'https://images.unsplash.com/photo-1462204215829-29407c570832',
-    'https://images.unsplash.com/photo-1452850387937-f79e4c063cf2'
+    'https://images.unsplash.com/photo-1452850387937-f79e4c063cf2',
+    'https://images.unsplash.com/photo-1475260231698-62391846c9d5',
+    'https://images.unsplash.com/photo-1450740199001-78e928502994'
 ]
 
 
