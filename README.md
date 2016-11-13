@@ -39,12 +39,12 @@ The server architecture is:
 <img src="material/screenshots/with_phone/2.PNG" width = 400>
 <img src="material/screenshots/with_phone/3.PNG" width = 400>
 <img src="material/screenshots/with_phone/4.PNG" width = 400>
-<img src="material/screenshots/with_phone/6.PNG" width = 400>
+<img src="material/screenshots/with_phone/6.png" width = 400>
 <img src="material/screenshots/with_phone/7.PNG" width = 400>
 <img src="material/screenshots/with_phone/8.PNG" width = 400>
 <img src="material/screenshots/3.png" width = 400>
 
-<img src="material/screenshots/with_phone/5.PNG" width = 600>
+<img src="material/screenshots/with_phone/5.jpg" width = 600>
 <img src="material/screenshots/shareImage.png" width = 800>
 
 # Development History 
