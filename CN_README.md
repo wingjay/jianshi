@@ -2,6 +2,7 @@
 
 一款优雅的中国风Android App，包括Android端和Server端，支持登录注册，数据云端同步，离线数据存储和截屏分享等功能。
 
+[下载地址](http://fir.im/vd1r)
 
 # 技术
 ### Android
@@ -32,15 +33,17 @@
 
 # Android 界面
 
-<img src="material/screenshots/1.png" width = 400>
-<img src="material/screenshots/7.png" width = 400>
+<img src="material/screenshots/with_phone/1.PNG" width = 400>
+<img src="material/screenshots/with_phone/2.PNG" width = 400>
+<img src="material/screenshots/with_phone/3.PNG" width = 400>
+<img src="material/screenshots/with_phone/4.PNG" width = 400>
+<img src="material/screenshots/with_phone/7.PNG" width = 400>
+<img src="material/screenshots/with_phone/8.PNG" width = 400>
+
+<img src="material/screenshots/with_phone/6.png" width = 400>
 <img src="material/screenshots/3.png" width = 400>
-<img src="material/screenshots/4.png" width = 400>
-<img src="material/screenshots/6.png" width = 400>
-<img src="material/screenshots/8.png" width = 400>
-<img src="material/screenshots/Login.png" width = 400>
-<img src="material/screenshots/5.png" width = 400>
-<img src="material/screenshots/2.jpg" width = 600>
+
+<img src="material/screenshots/with_phone/5.jpg" width = 600>
 <img src="material/screenshots/shareImage.png" width = 800>
 
 # 开发历史 
