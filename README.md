@@ -5,6 +5,7 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 一款优雅的中国风Android App，包括Android端和Server端，支持登录注册，数据云端同步，离线数据存储和截屏分享等功能。
 
 [中文说明](https://github.com/wingjay/jianshi/blob/master/CN_README.md)
+
 [下载地址](http://fir.im/vd1r)
 
 # Technology JianShi used
