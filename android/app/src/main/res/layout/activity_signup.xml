@@ -76,7 +76,7 @@
             android:id="@+id/skip"
             style="@style/SignupTextView"
             android:layout_below="@+id/signup"
-            android:text="skip"
+            android:text="跳过（如未搭建后台）"
             android:visibility="gone"
             />
 
