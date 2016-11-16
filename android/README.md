@@ -1,47 +1,79 @@
-#  简诗
+#  JianShi 简诗
 
-A beautiful app 简诗 for recording anything in your life with traditional Chinese style.
+A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简诗. You can write poem in graceful & traditional Chinese style. It supports signup & login, data sync with server, offline data storage, screenshot share etc.
 
-# 博客
+一款优雅的中国风Android App，包括Android端和Server端，支持登录注册，数据云端同步，离线数据存储和截屏分享等功能。
 
+[中文说明](https://github.com/wingjay/jianshi/blob/master/CN_README.md)
+
+[下载地址](http://fir.im/vd1r)
+
+# Technology JianShi used
+### Android side
+
+Jianshi depends on the most popular Android libraries to build Stable and Clean structure.
+
+- Database:           `DBFlow` to manage sqlite database;
+- Network:            `OkHttp3` & `Retrofit2`, and `Stetho` to debug http requests;
+- Rx:                 `RxJava` & `RxAndroid`;
+- Dependency Inject:  `Dagger2`;
+- Logging:            `Timber`;
+- Image loading:      `Picasso`;
+- Crash monitor:      `Crashlytics`;
+- other:              `Eventbus`.
+
+Thanks [`Square`](https://github.com/square) for their great libraries.
+
+### Server side
+
+Jianshi depends on Python & Flask.
+
+The server architecture is:
+
+- www layer: used to receive all http request, process parameters, and call logic layer api for furthure process;
+- logic layer: used to process heavy service logic, when there are database actions, it will call db layer;
+- db layer: used to wrap our database related actions.
+
+
+# Android UI
+
+<img src="material/screenshots/with_phone/1.PNG" width = 400>
+<img src="material/screenshots/with_phone/2.PNG" width = 400>
+<img src="material/screenshots/with_phone/3.PNG" width = 400>
+<img src="material/screenshots/with_phone/4.PNG" width = 400>
+<img src="material/screenshots/with_phone/7.PNG" width = 400>
+<img src="material/screenshots/with_phone/8.PNG" width = 400>
+
+<img src="material/screenshots/with_phone/6.png" width = 400>
+<img src="material/screenshots/3.png" width = 400>
+
+<img src="material/screenshots/with_phone/5.jpg" width = 600>
+<img src="material/screenshots/shareImage.png" width = 800>
+
+# Chinese Blog for jianshi
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
 
-# 开发计划
-1. Integrate Dagger Retrofit2 OkHttp3 RxJava etc.   -> `Finished`
-2. Build server side framework. Using `LeanCloud` & `Python`  -> `OnGoing`
 
-# 推荐
-1. 2015.10.9 得到[36Kr NEXT](https://next.36kr.com/posts/20062) 推荐,感谢
-2. [稀土掘金 推荐](http://gold.xitu.io/entry/56209b63ddb2dd000aa2269e)
-3. [codekk推荐](http://p.codekk.com/detail/Android/wingjay/jianshi)
-4. [InfoQ Android开发周报](http://www.infoq.com/cn/news/2015/10/android-weekly-android6)
-4. [[稀土掘金日报] andriod开发新资源新干货](http://www.jianshu.com/p/db680cfa5e77)
-
-# 更新
-
-# 2015-10-11
-1. 新icon，New Icon;
-2. 自定义中国传统颜色作背景，User can customize background color with chinese traditional color;
-
-# 2015-10-07
-1. 更换主界面的日期选择为随时间变化的三行小诗；
-2. 支持自动检测更新；
-
-# 介绍
-![new icon](http://upload-images.jianshu.io/upload_images/281665-ed11aa9d8f7377a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![介绍页](http://upload-images.jianshu.io/upload_images/281665-b5c44e9042697e93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![主界面](http://upload-images.jianshu.io/upload_images/281665-f98e1cca5777b4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![支持`左右滑动`的竖排方式浏览](http://upload-images.jianshu.io/upload_images/281665-a59a0c3ae2e2af04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![支持`上下滑动`的横排方式浏览](http://upload-images.jianshu.io/upload_images/281665-c7ccd78dc26f20c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+# Contributor
+We build Android & Server together for JianShi.
+[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
 
 
-![设置界面](http://upload-images.jianshu.io/upload_images/281665-7e84e4a43d3f7e84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+# Development History 
 
-![old Icon](http://upload-images.jianshu.io/upload_images/281665-64ca40b35eb533c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+I use my extra time for this project development, so the development process doesn't go very fast.
 
-# 致谢
-[productor 一书及作者](http://producter.io/)
+- __[2016/11/06] Configure aliyun cloud server; Deploy application by jenkins; Setup Nginx & gunicorn; Finish unit-test for signup & data sync logic__
+- __[2016/10/30] Design for signup & login; Screenshot for share; Other cool features__
+- __[2016/10/25] Data sync between android and server; Improve server error handling function & config mechanism. [Server+Android]__
+- __[2016/09/03] User managment in server side and Signup & Login flow in Android side. [Server+Android]__
+- __[2016/08/25] Migrate from `LeanCloud` to `Apache + Mysql + wsgi + Flask` and build my own server framework. [Server]__
+- __[2016/08/20] Build server side framework. Using `LeanCloud` & `Python`. [Server]__
+- __[2016/08/18] Integrate Dagger Retrofit2 OkHttp3 RxJava etc. [Android]__
+
+
+# Inspired By
+[《Producter》](http://producter.io/)
+
+# License
+Apache

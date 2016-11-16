@@ -46,6 +46,14 @@
 <img src="material/screenshots/with_phone/5.jpg" width = 600>
 <img src="material/screenshots/shareImage.png" width = 800>
 
+
+# 中文博客介绍
+[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
+
+
+# 贡献者
+我们一起为 简诗 搭建 Android 和 Server：[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
+
 # 开发历史 
 项目的开发都是利用本人的业余时间，因此进度并没有太快。
 
@@ -57,14 +65,8 @@
 - __[2016/08/20] 着手搭建`python` `Flask`后台框架，并基于 `LeanCloud` 来进行部署。 [Server]__
 - __[2016/08/18] 在Android端集成 `Dagger` `Retrofit2` `OkHttp3` `RxJava`等库。 [Android]__
 
-
-# 中文博客介绍
-[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
-
-
-# 贡献者
-我们一起为 简诗 搭建 Android 和 Server：[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
-
 # 参考
 [《Producter》](http://producter.io/)
 
+# License
+Apache

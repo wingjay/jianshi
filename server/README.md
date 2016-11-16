@@ -2,7 +2,7 @@
 
 简诗 是一个包括移动端(Android)与服务端的完整项目，目前由我一人维护开发。
 
-当前目录为 简诗 的服务端代码，部署环境为Apache2.4 和 MySQL5.7，开发框架为Flask，开发语言为Python。
+当前目录为 简诗 的服务端代码，部署环境为 Nginx 和 MySQL5.7，阿里云服务器，开发框架为Flask，开发语言为Python。
 
 ## Change Log：
 - 2016/10/26: 改进server的logging和config机制。目前可以通过`tail -f server/server/logs/jianshi.log`来查看server的logging数据
@@ -12,3 +12,5 @@
 - 2016/08/15: 采用LeanCloud搭建环境，能够从在线服务器返回json结果。
 
 
+# License
+Apache

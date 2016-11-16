@@ -50,6 +50,15 @@ The server architecture is:
 <img src="material/screenshots/with_phone/5.jpg" width = 600>
 <img src="material/screenshots/shareImage.png" width = 800>
 
+# Chinese Blog for jianshi
+[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
+
+
+# Contributor
+We build Android & Server together for JianShi.
+[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
+
+
 # Development History 
 
 I use my extra time for this project development, so the development process doesn't go very fast.
@@ -63,14 +72,8 @@ I use my extra time for this project development, so the development process doe
 - __[2016/08/18] Integrate Dagger Retrofit2 OkHttp3 RxJava etc. [Android]__
 
 
-# Chinese Blog for jianshi
-
-[如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
-
-
-# Contributor
-We build Android & Server together for JianShi.
-[wingjay](https://github.com/wingjay), [RayPan](https://github.com/Panl). 
-
 # Inspired By
 [《Producter》](http://producter.io/)
+
+# License
+Apache
