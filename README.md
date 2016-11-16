@@ -6,6 +6,8 @@ A Full-Stack mobile app, including Android side & Server side, Simple-Poem 简�
 
 [中文说明](https://github.com/wingjay/jianshi/blob/master/CN_README.md)
 
+[下载地址](http://fir.im/vd1r)
+
 # Technology JianShi used
 ### Android side
 
