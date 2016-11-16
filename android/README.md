@@ -37,18 +37,18 @@ The server architecture is:
 
 # Android UI
 
-<img src="material/screenshots/with_phone/1.PNG" width = 400>
-<img src="material/screenshots/with_phone/2.PNG" width = 400>
-<img src="material/screenshots/with_phone/3.PNG" width = 400>
-<img src="material/screenshots/with_phone/4.PNG" width = 400>
-<img src="material/screenshots/with_phone/7.PNG" width = 400>
-<img src="material/screenshots/with_phone/8.PNG" width = 400>
+<img src="../material/screenshots/with_phone/1.PNG" width = 400>
+<img src="../material/screenshots/with_phone/2.PNG" width = 400>
+<img src="../material/screenshots/with_phone/3.PNG" width = 400>
+<img src="../material/screenshots/with_phone/4.PNG" width = 400>
+<img src="../material/screenshots/with_phone/7.PNG" width = 400>
+<img src="../material/screenshots/with_phone/8.PNG" width = 400>
 
-<img src="material/screenshots/with_phone/6.png" width = 400>
-<img src="material/screenshots/3.png" width = 400>
+<img src="../material/screenshots/with_phone/6.png" width = 400>
+<img src="../material/screenshots/3.png" width = 400>
 
-<img src="material/screenshots/with_phone/5.jpg" width = 600>
-<img src="material/screenshots/shareImage.png" width = 800>
+<img src="../material/screenshots/with_phone/5.jpg" width = 600>
+<img src="../material/screenshots/shareImage.png" width = 800>
 
 # Chinese Blog for jianshi
 [如何在一天之内完成一款具备cool属性的Android产品_简书](http://www.jianshu.com/p/cf496fc408b2)
