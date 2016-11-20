@@ -2,7 +2,11 @@
 
 一款优雅的中国风Android App，包括Android端和Server端，支持登录注册，数据云端同步，离线数据存储和截屏分享等功能。
 
-[下载地址](http://fir.im/vd1r)
+<a href="https://play.google.com/store/apps/details?id=com.wingjay.android.jianshi"><img alt="Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height=50px/></a>
+
+[下载地址: Fir.im](http://fir.im/vd1r)
+
+
 
 # 技术
 ### Android
