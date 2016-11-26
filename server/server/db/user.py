@@ -62,7 +62,7 @@ def create_user(email, password):
 
         conn.commit()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.UserCreateFailure()
     finally:
         conn.close()
@@ -83,7 +83,7 @@ def login(email, password):
             cursor.execute(sql, (str(email_hash)))
             _user = cursor.fetchone()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
     finally:
         conn.close()
         if not _user:
@@ -106,7 +106,7 @@ def delete_user(user_id):
 
         conn.commit()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.UserDeleteFailure()
     finally:
         conn.close()
@@ -123,7 +123,7 @@ def get_user(user_id, with_password=False):
             if not with_password:
                 user.pop('password')
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
     finally:
         conn.close()
         return user

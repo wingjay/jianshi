@@ -38,7 +38,7 @@ def create_diary(user_id, uuid, title, content, time_created=None):
             new_diary_id = cursor.lastrowid
         conn.commit()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbCreateError()
     finally:
         conn.close()
@@ -58,7 +58,7 @@ def get_diary_by_id(diary_id):
             result = cursor.fetchall()
             diary = result[0] if len(result) > 0 else None
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbReadError()
     finally:
         conn.close()
@@ -80,7 +80,7 @@ def get_diary_by_uuid(uuid, user_id):
             diary = result[0] if len(result) > 0 else None
             print 'diary: ', diary
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbReadError()
     finally:
         conn.close()
@@ -101,7 +101,7 @@ def get_diary_list_since_last_sync(user_id, last_sync_time):
             diary_list = cursor.fetchall()
             print diary_list
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbReadError()
     finally:
         conn.close()
@@ -124,7 +124,7 @@ def update_diary(user_id, uuid, title, content, time_modified=None):
         print 'update_diary result:', result
         conn.commit()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbUpdateError()
     finally:
         conn.close()
@@ -145,7 +145,7 @@ def delete_diary(user_id, uuid, time_removed=None):
             print result
         conn.commit()
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
         raise errors.DbDeleteError()
     finally:
         conn.close()
