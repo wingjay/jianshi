@@ -1,6 +1,6 @@
 ```
 ssh root@106.14.26.35   jianshiserver
-mkdir /home/test/wingjay-flask
+mkdir /home/test/wingjay-flask # or you can build jenkins first, and go to jianshi directory directly
 ```
 
 ```
@@ -13,17 +13,17 @@ sudo pip install --upgrade pip
 ## Enter virtualEnv to install python dependency
 
 ```
-cd /home/test/wingjay-flask
+cd /home/test/wingjay-flask (cd xxx/jianshi/server)
 virtualenv venv
 source venv/bin/activate # must enter venv to install python dependecy
 ```
 
 ```
-vim requirements.txt : Flask==0.10.1  gunicorn==19.6.0
+vim requirements.txt : Flask==0.10.1  gunicorn==19.6.0 ...
 pip install -r requirements.txt
 ```
 
-## Create sample app
+## Create sample app (No need if you already have jianshi server directory)
 
 ```
 /home/test/wingjay-flask
@@ -96,7 +96,7 @@ setgid  www-data
 
 env PATH=/var/lib/jenkins/workspace/jianshi/server/venv/bin
 chdir /var/lib/jenkins/workspace/jianshi/server/
-exec gunicorn --workers 3 --bind unix:jianshi.sock -m 007 wsgi
+exec gunicorn --workers 4 --bind unix:jianshi.sock -m 007 wsgi
 ```
 
 ```
@@ -112,9 +112,9 @@ sudo vim /etc/nginx/sites-available/jianshi
 ```
 server {
     listen 80;
-    server_name 106.14.26.35 jianshi.wingjay.com;
+    server_name 106.14.33.83 jianshi.wingjay.com;
 
-	access_log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/access.log;
+    access_log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/access.log;
     error_log /var/lib/jenkins/workspace/jianshi/server/logs/nginx/error.log;
     
     location / {
@@ -138,7 +138,7 @@ sudo nginx -t   # test for syntax errors
 sudo service nginx restart  # start nginx
 ```
 
-Done! http://106.14.26.35/
+Done! http://106.14.33.83/
 
 [How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-14-04)
 
@@ -152,6 +152,7 @@ Supervisor is a software that allows users to manage multiple processes, so we c
 
 ```
 sudo vim /etc/supervisor/conf.d/jianshi.conf
+
 [program:jianshi]
 command = /var/lib/jenkins/workspace/jianshi/server/venv/bin/gunicorn wsgi -w 4
 directory = /var/lib/jenkins/workspace/jianshi/server
@@ -184,7 +185,7 @@ Admin + yin
 
 - Create freeStyle jobs
 - General: Github project -> https://github.com/wingjay/jianshi/
-- Source Code Management: Git Repository URL -> https://github.com/wingjay/jianshi ; Branch -> */v2.0
+- Source Code Management: Git Repository URL -> https://github.com/wingjay/jianshi ; Branch -> */master
 - Build Triggers: Build when a change is pushed to GitHub; Poll SCM: H/30 * * * * (every 30 mins auto build)
 
 
@@ -232,7 +233,7 @@ sudo service mysql start
 ```
 Make mysql allow connections remotely
 1. enter mysql
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'thepassword' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'YourPassword' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 2. sudo vim /etc/mysql/my.cnf
 #bind-address = 127.0.0.1
@@ -241,7 +242,7 @@ FLUSH PRIVILEGES;
 
 ```
 In my own computer, i have two ways to connect mysql
-1. mysql -u root -p -h 106.14.26.35
+1. mysql -u root -p -h 106.14.33.83
 2. Sequel pro.
 ```
 
@@ -265,6 +266,7 @@ instance/config.py is not included in open source and stored sensentive data int
 # NOTICE!!! DEBUG Must be turn-on in prod env
 #DEBUG = False
 
+# NOTICE!!! Don't ever lost these keys, otherwise old user won't be able to login with false key
 # safety constant. The real key is stored in other config, which isn't included in this open-source repo
 DEFAULT_KEY = 'xxx'
 AUTH_TOKEN_ENCRYPT_KEY = 'xxx'
