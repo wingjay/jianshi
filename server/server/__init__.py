@@ -30,6 +30,18 @@ if not app.config['DEBUG']:
     mail_handler = SMTPHandler("smtp.126.com", app.config['EMAIL_ADDRESS'], app.config['ADMIN_EMAILS'],
                                'JianShi server error!', (app.config['EMAIL_ADDRESS'], app.config['EMAIL_PASSWORD']))
     mail_handler.setLevel(logging.ERROR)
+    from logging import Formatter
+    mail_handler.setFormatter(Formatter('''
+    Message type:       %(levelname)s
+    Location:           %(pathname)s:%(lineno)d
+    Module:             %(module)s
+    Function:           %(funcName)s
+    Time:               %(asctime)s
+
+    Message:
+
+    %(message)s
+    '''))
     app.logger.addHandler(mail_handler)
 
 
