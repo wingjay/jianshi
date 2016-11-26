@@ -5,14 +5,13 @@ mkdir /home/test/wingjay-flask
 
 ```
 sudo apt-get update
-sudo apt-get install python-pip python-dev nginx git supervisor
+sudo apt-get install python-pip python-dev nginx git supervisor python-virtualenv
 sudo pip install --upgrade pip 
 ```
 
 ## Enter virtualEnv to install python dependency
 
 ```
-sudo pip install --upgrade virtualenv 
 cd /home/test/wingjay-flask
 virtualenv venv
 source venv/bin/activate # must enter venv to install python dependecy
