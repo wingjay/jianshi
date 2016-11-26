@@ -44,7 +44,7 @@ def mobile_request(func):
             }
 
         except Exception as e:
-            logger.exception(e.message)
+            logger.exception(e.message) # logger will send email with this exception
             rc = getattr(e, 'rc', errors.UnknownError.rc)
             err_msg = getattr(e, 'msg', errors.UnknownError.msg)
             response = {
