@@ -5,7 +5,8 @@ mkdir /home/test/wingjay-flask
 
 ```
 sudo apt-get update
-sudo apt-get install python-pip python-dev nginx git supervisor python-virtualenv
+sudo apt-get upgrade
+sudo apt-get install python-pip python-dev nginx git supervisor python-virtualenv ipython
 sudo pip install --upgrade pip 
 ```
 
