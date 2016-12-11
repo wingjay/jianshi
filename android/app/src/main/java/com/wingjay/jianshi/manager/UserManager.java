@@ -169,7 +169,7 @@ public class UserManager {
                   dialogInterface.dismiss();
                 }
               });
-          builder.show();
+          builder.create().show();
         }
       });
     } else {
@@ -178,8 +178,7 @@ public class UserManager {
   }
 
   private void doLogout(final @NonNull Context context) {
-    userPrefs.clearAuthToken();
-    userPrefs.clearUser();
+    userPrefs.clear();
     SQLite.delete().from(PushData.class).execute();
     SQLite.delete().from(PushData.class).execute();
     context.startActivity(SignupActivity.createIntent(context));

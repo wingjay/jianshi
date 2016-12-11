@@ -13,7 +13,10 @@ package com.wingjay.jianshi.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Observable;
+import java.util.Set;
 
 /**
  * Created by wingjay on 10/4/15.
@@ -75,4 +78,36 @@ public class BasePrefs extends Observable {
     return preferences.getLong(key, defaultValue);
   }
 
+  protected Set<String> getStringSet(String key, Set<String> defaultValue) {
+    return preferences.getStringSet(key, defaultValue);
+  }
+
+  protected void setStringSet(String key, Set<String> value) {
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putStringSet(key, value);
+    editor.putLong("timeModified", System.currentTimeMillis());
+    editor.apply();
+  }
+
+  protected void appendToStringSet(String key, String value) {
+    Object set = this.getStringSet(key, (Set)null);
+    if(set == null) {
+      set = new HashSet();
+    }
+
+    HashSet newSet = new HashSet((Collection)set);
+    newSet.add(value);
+    this.setStringSet(key, newSet);
+  }
+
+  protected boolean hasValueInStringSet(String key, String value) {
+    Set set = this.getStringSet(key, (Set)null);
+    return set != null && set.contains(value);
+  }
+
+  public void clear() {
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.clear();
+    editor.apply();
+  }
 }

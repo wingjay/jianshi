@@ -158,4 +158,14 @@ public class UserPrefs extends BasePrefs {
     return gson.fromJson(versionUpgradeString, VersionUpgrade.class);
   }
 
+  private static final String NOTIFIED_NEW_VERSION_NAME = "key_notified_new_version_name";
+
+  public void addNotifiedNewVersionName(@NonNull VersionUpgrade versionUpgrade) {
+    appendToStringSet(NOTIFIED_NEW_VERSION_NAME, versionUpgrade.getVersionName());
+  }
+
+  public boolean isNewVersionNotified(@NonNull VersionUpgrade versionUpgrade) {
+    return hasValueInStringSet(NOTIFIED_NEW_VERSION_NAME, versionUpgrade.getVersionName());
+  }
+
 }

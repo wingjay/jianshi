@@ -11,8 +11,11 @@
 package com.wingjay.jianshi.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -21,10 +24,12 @@ import com.squareup.picasso.Picasso;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.bean.VersionUpgrade;
 import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
+import com.wingjay.jianshi.manager.FullDateManager;
 import com.wingjay.jianshi.manager.UpgradeManager;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.JsonDataResponse;
@@ -37,7 +42,6 @@ import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
-import com.wingjay.jianshi.manager.FullDateManager;
 import com.wingjay.jianshi.util.RxUtil;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -113,7 +117,7 @@ public class MainActivity extends BaseActivity {
       day = savedInstanceState.getInt(DAY);
     } else {
       setTodayAsFullDate();
-      upgradeManager.checkUpgrade();
+      tryNotifyUpgrade();
     }
     updateFullDate();
 
@@ -136,6 +140,51 @@ public class MainActivity extends BaseActivity {
 
     Blaster.log(LoggingData.PAGE_IMP_HOME);
     SyncService.syncImmediately(this);
+  }
+
+  private void tryNotifyUpgrade() {
+    upgradeManager.checkUpgradeObservable()
+        .compose(RxUtil.<VersionUpgrade>normalSchedulers())
+        .subscribe(new Action1<VersionUpgrade>() {
+      @Override
+      public void call(final VersionUpgrade versionUpgrade) {
+        if (!isUISafe()) {
+          return;
+        }
+        if (versionUpgrade != null && !userPrefs.isNewVersionNotified(versionUpgrade)) {
+          String upgradeInfo = getString(R.string.upgrade_info,
+              versionUpgrade.getVersionName(),
+              versionUpgrade.getDescription());
+          AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+          builder.setTitle(R.string.upgrade_title)
+              .setMessage(upgradeInfo)
+              .setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                  Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                      Uri.parse(versionUpgrade.getDownloadLink()));
+                  startActivity(browserIntent);
+                  userPrefs.addNotifiedNewVersionName(versionUpgrade);
+                }
+              })
+              .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                  makeToast(getString(R.string.go_to_setting_for_upgrading));
+                  dialogInterface.dismiss();
+                  userPrefs.addNotifiedNewVersionName(versionUpgrade);
+                }
+              });
+          builder.create().show();
+        }
+      }
+    }, new Action1<Throwable>() {
+      @Override
+      public void call(Throwable throwable) {
+        Timber.e(throwable, "check upgrade failure");
+      }
+    });
+
   }
 
   @Override

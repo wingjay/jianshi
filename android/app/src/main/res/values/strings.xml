@@ -74,6 +74,7 @@
     <string name="upgrade">获取新体验</string>
     <string name="cancel">下次咯</string>
     <string name="current_newest_verion">您已经是最新版本啦！</string>
+    <string name="go_to_setting_for_upgrading">记得去设置页面点击更新哦！</string>
     <!--upgrade end-->
 
     <string-array name="edit_content_hint_array">
