@@ -56,7 +56,7 @@ public class UserPrefs extends BasePrefs {
   }
 
   public boolean getHomeImagePoemSetting() {
-    return getBoolean(KEY_HOME_IMAGE_POEM, false);
+    return getBoolean(KEY_HOME_IMAGE_POEM, true);
   }
 
   private final static String KEY_NEXT_FETCH_HOME_IMAGE_POEM_TIME = "key_next_fetch_home_image_poem_time";
