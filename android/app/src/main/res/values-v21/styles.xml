@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by wingjay on 12/11/16 11:29 PM
+  ~ Copyright (c) 2016.  All rights reserved.
+  ~
+  ~ Last modified 12/11/16 11:29 PM
+  ~
+  ~ Reach me: https://github.com/wingjay
+  ~ Email: yinjiesh@126.com
+  -->
+
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+</resources>

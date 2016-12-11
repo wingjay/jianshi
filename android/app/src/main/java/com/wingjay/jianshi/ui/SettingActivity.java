@@ -187,8 +187,9 @@ public class SettingActivity extends BaseActivity {
         new BgColorPickDialogFragment.OnBackgroundColorChangedListener() {
           @Override
           public void onBackgroundColorChanged(int newColorRes) {
-            SettingActivity.this.setContainerBgColor(newColorRes);
             userPrefs.setBackgroundColor(newColorRes);
+            SettingActivity.this.setContainerBgColor(newColorRes);
+            SettingActivity.this.setStatusBarColorFromPrefs();
             setResult(RESULT_OK);
           }
         });

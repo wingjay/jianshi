@@ -11,11 +11,15 @@
 package com.wingjay.jianshi.ui.base;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.wingjay.jianshi.R;
@@ -65,7 +69,6 @@ public class BaseActivity extends AppCompatActivity {
     ButterKnife.inject(this);
 
     containerView = findViewById(R.id.layout_container);
-    setContainerBgColorFromPrefs();
   }
 
   protected void setContainerBgColorFromPrefs() {
@@ -73,6 +76,25 @@ public class BaseActivity extends AppCompatActivity {
       containerView.setBackgroundResource(userPrefs.getBackgroundColor());
     }
   }
+
+  protected void setStatusBarColorFromPrefs() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      Window window = getWindow();
+      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+      window.setStatusBarColor(ContextCompat.getColor(this, userPrefs.getBackgroundColor()));
+    }
+  }
+
+  protected void setDefaultStatusBarColor() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      Window window = getWindow();
+      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+      window.setStatusBarColor(ContextCompat.getColor(this, R.color.normal_bg));
+    }
+  }
+
   protected void setContainerBgColor(int colorRes) {
     if (containerView != null) {
       containerView.setBackgroundResource(colorRes);
@@ -89,6 +111,9 @@ public class BaseActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     Timber.d(TAG, "onStart");
+    setContainerBgColorFromPrefs();
+    setStatusBarColorFromPrefs();
+
     if (isNeedRegister) {
       EventBus.getDefault().register(this);
     }
