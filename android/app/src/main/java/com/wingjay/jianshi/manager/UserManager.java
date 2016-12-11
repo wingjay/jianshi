@@ -82,7 +82,8 @@ public class UserManager {
 
               context.startActivity(MainActivity.createIntent(context));
             } else {
-              Toast.makeText(context, context.getString(R.string.server_error),
+              Timber.e("login failure msg: %s", userJsonDataResponse.getMsg());
+              Toast.makeText(context, userJsonDataResponse.getMsg(),
                   Toast.LENGTH_SHORT).show();
             }
           }
@@ -121,8 +122,8 @@ public class UserManager {
               userPrefsLazy.get().setUser(user);
               context.startActivity(MainActivity.createIntent(context));
             } else {
-
-              Toast.makeText(context, context.getString(R.string.server_error),
+              Timber.e("signup failure msg: %s", userJsonDataResponse.getMsg());
+              Toast.makeText(context, userJsonDataResponse.getMsg(),
                   Toast.LENGTH_SHORT).show();
             }
           }
