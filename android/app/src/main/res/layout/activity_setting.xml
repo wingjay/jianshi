@@ -8,180 +8,186 @@
   ~ Email: yinjiesh@126.com
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/layout_container"
-              style="@style/NormalBg"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.wingjay.jianshi.ui.SettingActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layout_container"
+            style="@style/NormalBg"
+            android:scrollbars="none"
+            tools:context="com.wingjay.jianshi.ui.SettingActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            style="@style/TitleTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16"
-            android:text="@string/user_setting"
-            />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            >
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/white_border"
-                android:padding="16dp">
-
-                <TextView
-                    style="@style/TextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/vertical_reading"
-                    />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/vertical_write"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/white_border"
-                android:padding="16dp">
-
-                <TextView
-                    style="@style/TextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/turn_on_home_image_poem"
-                    />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/home_image_poem_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    />
-
-            </FrameLayout>
+        >
 
             <TextView
-                android:id="@+id/customize_bg_color"
+                style="@style/TitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:text="@string/user_setting"
+            />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+            >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_border"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/vertical_reading"
+                    />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/vertical_write"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                    />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_border"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/turn_on_home_image_poem"
+                    />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/home_image_poem_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                    />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/customize_bg_color"
+                    style="@style/ClickableTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/white_border"
+                    android:padding="@dimen/margin_16"
+                    android:text="@string/customize_background_color"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_18"
+            android:orientation="vertical"
+        >
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:text="@string/support_info"
+            />
+
+
+            <TextView
+                android:id="@+id/send_feedback"
                 style="@style/ClickableTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/white_border"
-                android:padding="@dimen/margin_16"
-                android:text="@string/customize_background_color"/>
+                android:padding="16dp"
+                android:text="@string/user_feedback"/>
 
+            <RelativeLayout
+                android:id="@+id/version_upgrade"
+                style="@style/PressableBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_border">
+
+                <TextView
+                    android:id="@+id/version_upgrade_title"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/margin_16"
+                    android:paddingLeft="@dimen/margin_16"
+                    android:paddingBottom="@dimen/margin_16"
+                    android:text="@string/version_upgrade"/>
+
+                <com.wingjay.jianshi.ui.widget.TextPointView
+                    android:id="@+id/version_upgrade_warning"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="@dimen/margin_8"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_toRightOf="@+id/version_upgrade_title"
+                    android:layout_toEndOf="@+id/version_upgrade_title"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_18"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:text="@string/account_info"
+            />
+
+            <TextView
+                android:id="@+id/logout"
+                style="@style/ClickableTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                android:text="@string/logout"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_18"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            style="@style/TitleTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16"
-            android:text="@string/support_info"
-            />
-
-
-        <TextView
-            android:id="@+id/send_feedback"
-            style="@style/ClickableTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/white_border"
-            android:padding="16dp"
-            android:text="@string/user_feedback"/>
-
-        <RelativeLayout
-            android:id="@+id/version_upgrade"
-            style="@style/PressableBg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/white_border">
-
-            <TextView
-                android:id="@+id/version_upgrade_title"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/margin_16"
-                android:paddingLeft="@dimen/margin_16"
-                android:paddingBottom="@dimen/margin_16"
-                android:text="@string/version_upgrade"/>
-
-            <com.wingjay.jianshi.ui.widget.TextPointView
-                android:id="@+id/version_upgrade_warning"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginLeft="@dimen/margin_8"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_toRightOf="@+id/version_upgrade_title"
-                android:layout_toEndOf="@+id/version_upgrade_title"
-                android:layout_centerVertical="true"
-                android:visibility="gone"
-                tools:visibility="visible"
-            />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_18"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/TitleTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16"
-            android:text="@string/account_info"
-            />
-
-        <TextView
-            android:id="@+id/logout"
-            style="@style/ClickableTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/white_border"
-            android:padding="16dp"
-            android:text="@string/logout"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
