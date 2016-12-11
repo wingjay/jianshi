@@ -15,7 +15,7 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.wingjay.jianshi.db.JianshiDatabase;
-import com.wingjay.jianshi.util.FullDateManager;
+import com.wingjay.jianshi.manager.FullDateManager;
 
 @Table(database = JianshiDatabase.class)
 public class Diary extends BaseModel{

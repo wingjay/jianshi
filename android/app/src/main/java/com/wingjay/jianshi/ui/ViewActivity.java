@@ -38,7 +38,7 @@ import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.util.DisplayUtil;
 import com.wingjay.jianshi.util.IntentUtil;
 import com.wingjay.jianshi.util.LanguageUtil;
-import com.wingjay.jianshi.util.ScreenshotManager;
+import com.wingjay.jianshi.manager.ScreenshotManager;
 
 import java.io.File;
 

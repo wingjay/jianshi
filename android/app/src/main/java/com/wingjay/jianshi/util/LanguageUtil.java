@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.wingjay.jianshi.R;
+import com.wingjay.jianshi.manager.FullDateManager;
 
 
 public class LanguageUtil {

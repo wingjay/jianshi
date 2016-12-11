@@ -37,7 +37,7 @@ import com.wingjay.jianshi.ui.widget.DayChooser;
 import com.wingjay.jianshi.ui.widget.TextPointView;
 import com.wingjay.jianshi.ui.widget.ThreeLinePoemView;
 import com.wingjay.jianshi.ui.widget.VerticalTextView;
-import com.wingjay.jianshi.util.FullDateManager;
+import com.wingjay.jianshi.manager.FullDateManager;
 import com.wingjay.jianshi.util.RxUtil;
 
 import org.greenrobot.eventbus.Subscribe;
