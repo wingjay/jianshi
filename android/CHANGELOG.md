@@ -1,3 +1,6 @@
+## 2.1
+- Misc items: login error message; stausbar color; font mechanism; upgrade dialog in home page
+
 ## 1.9.1
 - bugfix: screen black due to unknown horizonscrollview width in ViewPage
 - home image background transparent layer

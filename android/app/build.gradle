@@ -16,7 +16,7 @@ repositories {
 }
 
 def versionMajor = 2
-def versionMinor = 0
+def versionMinor = 1
 def versionPatch = 0
 
 def baseVersionCode = versionMajor * 100 + versionMinor * 10 + versionPatch
