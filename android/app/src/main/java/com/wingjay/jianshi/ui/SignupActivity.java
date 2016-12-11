@@ -77,12 +77,6 @@ public class SignupActivity extends BaseActivity {
     Blaster.log(LoggingData.PAGE_IMP_SIGN_UP);
   }
 
-  @Override
-  protected void onStart() {
-    super.onStart();
-    setDefaultStatusBarColor();
-  }
-
   @OnClick(R.id.signup)
   void signUp() {
     Blaster.log(LoggingData.BTN_CLK_SIGN_UP);

@@ -189,7 +189,6 @@ public class SettingActivity extends BaseActivity {
           public void onBackgroundColorChanged(int newColorRes) {
             userPrefs.setBackgroundColor(newColorRes);
             SettingActivity.this.setContainerBgColor(newColorRes);
-            SettingActivity.this.setStatusBarColorFromPrefs();
             setResult(RESULT_OK);
           }
         });

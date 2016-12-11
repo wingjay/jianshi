@@ -11,11 +11,9 @@
 package com.wingjay.jianshi.ui.base;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -61,6 +59,8 @@ public class BaseActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     JianShiApplication.getAppComponent().inject(this);
     Timber.d(TAG, "onCreate");
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
 
   @Override
@@ -74,24 +74,6 @@ public class BaseActivity extends AppCompatActivity {
   protected void setContainerBgColorFromPrefs() {
     if (containerView != null) {
       containerView.setBackgroundResource(userPrefs.getBackgroundColor());
-    }
-  }
-
-  protected void setStatusBarColorFromPrefs() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = getWindow();
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-      window.setStatusBarColor(ContextCompat.getColor(this, userPrefs.getBackgroundColor()));
-    }
-  }
-
-  protected void setDefaultStatusBarColor() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = getWindow();
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-      window.setStatusBarColor(ContextCompat.getColor(this, R.color.normal_bg));
     }
   }
 
@@ -112,7 +94,6 @@ public class BaseActivity extends AppCompatActivity {
     super.onStart();
     Timber.d(TAG, "onStart");
     setContainerBgColorFromPrefs();
-    setStatusBarColorFromPrefs();
 
     if (isNeedRegister) {
       EventBus.getDefault().register(this);
