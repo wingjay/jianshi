@@ -3,7 +3,7 @@
 
 newest_version = {
     'version_name': '2.1.0',
-    'desc': '不仅界面更加美美哒',
+    'desc': '界面更加美美哒',
     'link': 'http://fir.im/vd1r'
 }
 
