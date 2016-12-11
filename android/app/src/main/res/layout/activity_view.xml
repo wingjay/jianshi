@@ -30,13 +30,13 @@
             style="@style/NormalBgLeftRightPaddingWithoutColor"
             android:paddingTop="@dimen/activity_vertical_margin">
 
-            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            <TextView
                 android:id="@+id/view_title"
                 style="@style/EditTextTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+            <TextView
                 android:id="@+id/view_content"
                 style="@style/EditTextContentStyle"
                 android:layout_width="match_parent"

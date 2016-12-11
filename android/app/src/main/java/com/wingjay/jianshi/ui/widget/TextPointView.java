@@ -26,10 +26,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 import com.wingjay.jianshi.util.DisplayUtil;
 
 import java.util.Random;
+
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 /**
  * One Text on the circle background.
@@ -79,7 +80,7 @@ public class TextPointView extends FrameLayout {
         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     params.gravity = Gravity.CENTER;
     textView.setLayoutParams(params);
-    textView.setTypeface(FontFamilyFactory.getTypeface());
+    textView.setTypeface(TypefaceUtils.load(context.getAssets(), "fonts/jianshi_default.otf"));
     textView.setTextSize(textSize);
     textView.setTextColor(ContextCompat.getColor(context, R.color.white));
     textView.setText(singleText);

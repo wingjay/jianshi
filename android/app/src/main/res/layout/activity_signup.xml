@@ -33,7 +33,7 @@
         android:paddingTop="@dimen/margin_64"
         >
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:id="@+id/app_name"
             style="@style/SignupTextView"
             android:text="@string/app_name_broken"
@@ -41,7 +41,7 @@
             android:textSize="36sp"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:id="@+id/app_slogan"
             style="@style/SignupTextView"
             android:layout_below="@+id/app_name"
@@ -50,7 +50,7 @@
             android:textSize="14sp"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+        <EditText
             android:id="@+id/email"
             style="@style/SignupEditText"
             android:layout_below="@+id/app_slogan"
@@ -58,7 +58,7 @@
             android:hint="@string/email"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+        <EditText
             android:id="@+id/password"
             style="@style/SignupEditText"
             android:layout_below="@+id/email"
@@ -67,7 +67,7 @@
             android:inputType="textPassword"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:id="@+id/login"
             style="@style/SignupTextView"
             android:layout_below="@+id/password"
@@ -75,14 +75,14 @@
             android:textColor="@color/bright_red"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:id="@+id/signup"
             style="@style/SignupTextView"
             android:layout_below="@+id/login"
             android:text="@string/signup"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:id="@+id/skip"
             style="@style/SignupTextView"
             android:layout_below="@+id/signup"

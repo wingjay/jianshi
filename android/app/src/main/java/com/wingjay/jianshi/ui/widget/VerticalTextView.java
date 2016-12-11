@@ -14,12 +14,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 import com.wingjay.jianshi.util.DisplayUtil;
 
-public class VerticalTextView extends CustomizeTextView {
+public class VerticalTextView extends TextView {
 
   public VerticalTextView(Context context) {
     this(context, null);

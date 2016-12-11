@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.support.v4.util.PatternsCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.R;
@@ -26,8 +28,6 @@ import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.UserService;
 import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.ui.base.BaseActivity;
-import com.wingjay.jianshi.ui.widget.font.CustomizeEditText;
-import com.wingjay.jianshi.ui.widget.font.CustomizeTextView;
 
 import javax.inject.Inject;
 
@@ -40,13 +40,13 @@ import butterknife.OnClick;
 public class SignupActivity extends BaseActivity {
 
   @InjectView(R.id.email)
-  CustomizeEditText userEmail;
+  EditText userEmail;
 
   @InjectView(R.id.password)
-  CustomizeEditText userPassword;
+  EditText userPassword;
 
   @InjectView(R.id.skip)
-  CustomizeTextView skip;
+  TextView skip;
 
   @Inject
   UserService userService;

@@ -17,7 +17,7 @@
                 style="@style/NormalBgLeftRightPadding"
                 tools:context="com.wingjay.jianshi.ui.EditActivity">
 
-    <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+    <EditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:scrollbars="none"
         >
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeEditText
+        <EditText
             android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

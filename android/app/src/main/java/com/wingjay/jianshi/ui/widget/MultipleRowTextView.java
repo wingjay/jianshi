@@ -20,10 +20,10 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.wingjay.jianshi.R;
-import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 import com.wingjay.jianshi.util.DisplayUtil;
 
 import timber.log.Timber;
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 
 public class MultipleRowTextView extends View {
@@ -67,8 +67,7 @@ public class MultipleRowTextView extends View {
     } finally {
       typedArray.recycle();
     }
-    Typeface typeface = FontFamilyFactory.getTypeface();
-    setTypeface(typeface);
+    setTypeface(TypefaceUtils.load(context.getAssets(), "fonts/jianshi_default.otf"));
   }
 
   //设置文字

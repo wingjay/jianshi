@@ -25,7 +25,7 @@
         android:gravity="center"
         >
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:text="@string/logo_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textSize="@dimen/huge_text_size"
             />
 
-        <com.wingjay.jianshi.ui.widget.font.CustomizeTextView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextStyle"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="@dimen/margin_18"
             />
 
-        <com.wingjay.jianshi.ui.widget.TextPointView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

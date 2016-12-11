@@ -20,13 +20,14 @@ import com.facebook.stetho.Stetho;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.wingjay.jianshi.BuildConfig;
+import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.di.AppComponent;
 import com.wingjay.jianshi.di.AppModule;
 import com.wingjay.jianshi.di.DaggerAppComponent;
-import com.wingjay.jianshi.ui.widget.font.FontFamilyFactory;
 
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class JianShiApplication extends Application {
@@ -60,10 +61,15 @@ public class JianShiApplication extends Application {
     Fabric.with(fabric);
     Stetho.initializeWithDefaults(this);
     instance = this;
-    FontFamilyFactory.init(this).subscribe();
     FlowManager.init(new FlowConfig.Builder(this).openDatabasesOnInit(true).build());
 
     initLog();
+
+    CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+        .setDefaultFontPath("fonts/jianshi_default.otf")
+        .setFontAttrId(R.attr.fontPath)
+        .build()
+    );
   }
 
   private void initLog() {

@@ -15,12 +15,6 @@
         <attr name="redPointViewBgColor" format="color"/>
         <attr name="textSize" format="dimension"/>
     </declare-styleable>
-    <declare-styleable name="CustomizeTextView">
-        <attr name="myTextViewFontFamily" format="string"/>
-    </declare-styleable>
-    <declare-styleable name="CustomizeEditText">
-        <attr name="myEditTextFontFamily" format="string"/>
-    </declare-styleable>
     <declare-styleable name="MultipleRowTextView">
         <attr name="multiRowTextSize" format="dimension"/>
         <attr name="multiRowTextBold" format="boolean"/>
