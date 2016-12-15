@@ -57,10 +57,8 @@ def get_home_poem(width=0, height=0, **kwargs):
     if width == 0 or height == 0:
         width = 900
         height = 1600
-    image_index = random.randint(0, len(server.data.images.images) - 1)
     poem_index = random.randint(0, len(server.data.poems.poems) - 1)
-
-    unsplash_image_url = server.data.images.get_unsplash_url(image_index, width, height)
+    unsplash_image_url = server.data.images.get_unsplash_url(width, height)
 
     next_fetch_time = int(time.time()) + app.config['HOME_IMAGE_POEM_FETCH_TIME_GAP']
     return {
