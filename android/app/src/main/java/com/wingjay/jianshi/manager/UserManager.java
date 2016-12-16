@@ -22,6 +22,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.User;
+import com.wingjay.jianshi.db.model.Diary;
+import com.wingjay.jianshi.db.model.EventLog;
 import com.wingjay.jianshi.db.model.PushData;
 import com.wingjay.jianshi.network.JsonDataResponse;
 import com.wingjay.jianshi.network.UserService;
@@ -180,7 +182,8 @@ public class UserManager {
   private void doLogout(final @NonNull Context context) {
     userPrefs.clear();
     SQLite.delete().from(PushData.class).execute();
-    SQLite.delete().from(PushData.class).execute();
+    SQLite.delete().from(EventLog.class).execute();
+    SQLite.delete().from(Diary.class).execute();
     context.startActivity(SignupActivity.createIntent(context));
   }
 }
