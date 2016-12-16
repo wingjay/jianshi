@@ -1,3 +1,6 @@
+## 2.1.1
+clear database when logging out
+
 ## 2.1
 - Misc items: login error message; stausbar color; font mechanism; upgrade dialog in home page
 
