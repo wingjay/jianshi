@@ -134,7 +134,7 @@ candidates_1 = [
     'https://images.unsplash.com/12/green.jpg'
 ]
 
-jianshi_images = people + sports + christmas + winter
+jianshi_images = people + christmas + winter
 
 
 def get_unsplash_url(width, height):
