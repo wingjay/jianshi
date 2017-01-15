@@ -100,8 +100,9 @@ def get_share_text(**kwargs):
 @mobile_request
 def pay_developer(**kwargs):
     return {
-        'title': '打赏',
-        'message': '打赏一下开发者呗',
+        'title': '打赏开发者',
+        'message': '为了把简诗的美好带给大家,程序猿小哥花费了很多个人时间和精力进行开发,'
+                   '甚至自己掏钱购买服务器来为用户云备份日记,看程序猿小哥这么可怜,快来打赏杯咖啡吧,这样小哥更有动力去带给你更多美好哦.',
         'ali_pay_account': '18916376110',
         'wechat_pay_account': 'iam_wingjay',
         'time_gap_seconds': 2 * 86400
