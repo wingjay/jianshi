@@ -47,8 +47,8 @@ android {
       minifyEnabled false
       signingConfig signingConfigs.debug
       // Replace BASE_URL below with your self server url.
-      buildConfigField "String", "BASE_URL", '"http://localhost:80"'
-//      buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '/"'
+//      buildConfigField "String", "BASE_URL", '"http://localhost:80"'
+      buildConfigField "String", "BASE_URL", '"http://' + getLocalIp("en0") + ':' + port + '/"'
       applicationIdSuffix '.debug'
     }
   }

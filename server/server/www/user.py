@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import random, time
 
 from server import app
@@ -12,8 +15,13 @@ from server.util import mathutil
 
 
 @app.route("/index")
-def index(**kwargs):
+def index():
     return "index"
+
+
+@app.route("/ping")
+def ping():
+    return "pong"
 
 
 @app.route("/www/index")
@@ -85,4 +93,16 @@ def get_share_text(**kwargs):
     return {
         'link': link,
         'share_text': share_text
+    }
+
+
+@app.route("/pay/developer", methods=['GET'])
+@mobile_request
+def pay_developer(**kwargs):
+    return {
+        'title': '打赏',
+        'message': '打赏一下开发者呗',
+        'ali_pay_account': '18916376110',
+        'wechat_pay_account': 'iam_wingjay',
+        'time_gap_seconds': 2 * 86400
     }

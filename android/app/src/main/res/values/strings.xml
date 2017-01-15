@@ -66,6 +66,7 @@
     <string name="please_choose_day">请选择日期</string>
     <string name="please_choose_month">请选择月份</string>
     <string name="illegal_choose_date">你所选择的日期不合法</string>
+    <string name="current_version_code">当前：</string>
 
     <!--upgrade-->
     <string name="upgrade_title">小小的升级只为追求更好</string>
@@ -173,4 +174,13 @@
     <!--share-->
     <string name="share_failure">分享失败</string>
     <!--share error-->
+
+    <!--pay developer-->
+    <string name="copy_wechat_account">拷贝开发者微信账号</string>
+    <string name="copy_alipay_account">拷贝开发者支付宝账号</string>
+    <string name="refuse_pay">残忍拒绝</string>
+    <string name="pay_developer">打赏</string>
+    <string name="pay_developer_desc">赏开发者一杯咖啡呗</string>
+    <string name="copy_successfully">拷贝成功</string>
+
 </resources>

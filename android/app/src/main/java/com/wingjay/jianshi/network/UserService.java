@@ -12,6 +12,7 @@ package com.wingjay.jianshi.network;
 
 import com.google.gson.JsonObject;
 import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.bean.PayDeveloperDialogData;
 import com.wingjay.jianshi.bean.ShareContent;
 import com.wingjay.jianshi.bean.SyncModel;
 import com.wingjay.jianshi.bean.User;
@@ -51,4 +52,8 @@ public interface UserService {
 
   @GET("user/upgrade")
   Observable<JsonDataResponse<VersionUpgrade>> checkUpgrade();
+
+  @GET("pay/developer")
+  Observable<JsonDataResponse<PayDeveloperDialogData>> payDeveloper();
+
 }

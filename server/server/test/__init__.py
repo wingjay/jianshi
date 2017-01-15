@@ -1,4 +1,4 @@
-import server.db.init as base_db
+from server.db import init as base_db
 
 tables_name = {'Diary', 'User', 'EventLog'}
 

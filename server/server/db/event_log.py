@@ -4,7 +4,7 @@
 import pymysql
 import pymysql.cursors
 
-import server.db.init as base_db
+from server.db import init as base_db
 from server.data import errors
 from server import app
 

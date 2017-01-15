@@ -24,12 +24,14 @@ import com.squareup.picasso.Picasso;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
+import com.wingjay.jianshi.bean.PayDeveloperDialogData;
 import com.wingjay.jianshi.bean.VersionUpgrade;
 import com.wingjay.jianshi.events.InvalidUserTokenEvent;
 import com.wingjay.jianshi.global.JianShiApplication;
 import com.wingjay.jianshi.log.Blaster;
 import com.wingjay.jianshi.log.LoggingData;
 import com.wingjay.jianshi.manager.FullDateManager;
+import com.wingjay.jianshi.manager.PayDeveloperManager;
 import com.wingjay.jianshi.manager.UpgradeManager;
 import com.wingjay.jianshi.manager.UserManager;
 import com.wingjay.jianshi.network.JsonDataResponse;
@@ -52,6 +54,7 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import timber.log.Timber;
@@ -101,6 +104,9 @@ public class MainActivity extends BaseActivity {
   @Inject
   UserPrefs userPrefs;
 
+  @Inject
+  PayDeveloperManager payDeveloperManager;
+
   private volatile int year, month, day;
 
   @Override
@@ -118,6 +124,8 @@ public class MainActivity extends BaseActivity {
     } else {
       setTodayAsFullDate();
       tryNotifyUpgrade();
+
+      showPayDialog();
     }
     updateFullDate();
 
@@ -140,6 +148,26 @@ public class MainActivity extends BaseActivity {
 
     Blaster.log(LoggingData.PAGE_IMP_HOME);
     SyncService.syncImmediately(this);
+  }
+
+  private void showPayDialog() {
+    payDeveloperManager.getPayDeveloperDialogData()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<PayDeveloperDialogData>() {
+          @Override
+          public void call(final PayDeveloperDialogData payDeveloperDialogData) {
+            if (payDeveloperDialogData != null
+                && userPrefs.ableToShowPayDeveloperDialog(payDeveloperDialogData.getTimeGapSeconds())) {
+              payDeveloperManager.displayPayDeveloperDialog(MainActivity.this, payDeveloperDialogData);
+              userPrefs.savePayDeveloperDialogData(payDeveloperDialogData);
+            }
+          }
+        }, new Action1<Throwable>() {
+          @Override
+          public void call(Throwable throwable) {
+
+          }
+        });
   }
 
   private void tryNotifyUpgrade() {
