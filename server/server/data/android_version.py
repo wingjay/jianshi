@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 newest_version = {
-    'version_name': '2.1.0',
-    'desc': '界面更加美美哒',
+    'version_name': '2.2.0',
+    'desc': '修复了一些bug,更加好用啦',
     'link': 'http://fir.im/vd1r'
 }
 
