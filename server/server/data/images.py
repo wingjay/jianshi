@@ -47,6 +47,7 @@ people = [
     'https://images.unsplash.com/photo-1475595828126-ebeaf5e7b22e',
     'https://images.unsplash.com/photo-1476036896437-6a24b25e6e50',
     'https://images.unsplash.com/photo-1467911924913-a48e954914e1',
+    'https://images.unsplash.com/photo-1438978849647-a3503a63d760',
 
 ]
 
@@ -56,7 +57,6 @@ christmas = [
     'https://images.unsplash.com/photo-1481089584114-3f7354151e8a',
     'https://images.unsplash.com/photo-1480460673325-52897ac06af0',
     'https://images.unsplash.com/photo-1446814699583-d835df35a267',
-    'https://images.unsplash.com/photo-1480732149909-d4e710a0f81c',
     'https://images.unsplash.com/photo-1478293888741-aee4356f71c7',
     'https://images.unsplash.com/photo-1481481525014-91e77115eace',
     'https://images.unsplash.com/photo-1480413258216-ff003d179d65',
@@ -134,7 +134,25 @@ candidates_1 = [
     'https://images.unsplash.com/12/green.jpg'
 ]
 
-jianshi_images = people + christmas + winter
+new_year = [
+    'https://images.unsplash.com/photo-1482932542078-12df7104cc78',
+    'https://images.unsplash.com/photo-1482329833197-916d32bdae74',
+    'https://images.unsplash.com/photo-1479722842840-c0a823bd0cd6',
+    'https://images.unsplash.com/photo-1477915737647-b5246ee6de6f',
+    'https://images.unsplash.com/photo-1478401925243-937bbe0eb564',
+    'https://images.unsplash.com/photo-1437482184784-6d2e6d6e8844',
+    'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec',
+    'https://images.unsplash.com/photo-1467810563316-b5476525c0f9',
+    'https://images.unsplash.com/photo-1483489571097-0ca295ba3d08',
+    'https://images.unsplash.com/photo-1483122323774-39d65b99613f',
+    'https://images.unsplash.com/photo-1482433504097-a3cde62f7882',
+    'https://images.unsplash.com/photo-1482444624132-e31f63495df6',
+    'https://images.unsplash.com/photo-1482386383748-b78a9840bec9',
+    'https://images.unsplash.com/photo-1481653996425-4c3eba04d5e3',
+    'https://images.unsplash.com/photo-1480732149909-d4e710a0f81c',
+]
+
+jianshi_images = new_year
 
 
 def get_unsplash_url(width, height):
