@@ -152,7 +152,7 @@ new_year = [
     'https://images.unsplash.com/photo-1480732149909-d4e710a0f81c',
 ]
 
-jianshi_images = new_year
+jianshi_images = new_year + people
 
 
 def get_unsplash_url(width, height):
