@@ -157,7 +157,7 @@ love = [
     'https://images.unsplash.com/photo-1426543881949-cbd9a76740a4',
     'https://images.unsplash.com/photo-1480288628948-3a6487c469cf',
     'https://images.unsplash.com/photo-1459259191495-52eccde892c7',
-    'https://images.unsplash.com/photo-1475045386676-a66b44a0ff45'
+    'https://images.unsplash.com/photo-1475045386676-a66b44a0ff45',
     'https://images.unsplash.com/photo-1465711403138-162e171bb7e4',
     'https://images.unsplash.com/photo-1453175324447-6864b23ecf23',
     'https://images.unsplash.com/photo-1445098693232-134135a7ccfa',
