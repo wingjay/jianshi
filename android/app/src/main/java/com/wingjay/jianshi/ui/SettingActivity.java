@@ -166,7 +166,7 @@ public class SettingActivity extends BaseActivity {
                     startActivity(browserIntent);
                   }
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {
                   @Override
                   public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();

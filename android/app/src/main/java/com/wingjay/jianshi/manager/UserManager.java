@@ -93,7 +93,7 @@ public class UserManager {
           @Override
           public void call(Throwable e) {
             Timber.e(e, "login failure");
-            Toast.makeText(context, context.getString(R.string.network_error),
+            Toast.makeText(context, context.getString(R.string.server_request_error),
                 Toast.LENGTH_SHORT).show();
           }
         });
@@ -133,7 +133,7 @@ public class UserManager {
           @Override
           public void call(Throwable e) {
             Timber.e(e, "signup failure");
-            Toast.makeText(context, context.getString(R.string.network_error),
+            Toast.makeText(context, context.getString(R.string.server_request_error),
                 Toast.LENGTH_SHORT).show();
           }
         });

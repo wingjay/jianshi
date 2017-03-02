@@ -13,7 +13,7 @@ package com.wingjay.jianshi.ui.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -133,7 +133,19 @@ public class BaseActivity extends AppCompatActivity {
     return isVisible;
   }
 
-  protected void makeToast(@NonNull String content) {
-    Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
+  protected void makeToast(Context context, String content) {
+    Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
+  }
+
+  protected void makeToast(Context context, @StringRes int stringRes) {
+    Toast.makeText(context, stringRes, Toast.LENGTH_SHORT).show();
+  }
+
+  protected void makeToast(String content) {
+    makeToast(this, content);
+  }
+
+  protected void makeToast(@StringRes int stringRes) {
+    makeToast(this, stringRes);
   }
 }

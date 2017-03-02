@@ -56,4 +56,8 @@ public interface UserService {
   @GET("pay/developer")
   Observable<JsonDataResponse<PayDeveloperDialogData>> payDeveloper();
 
+  @FormUrlEncoded
+  @POST("user/forget_password")
+  Observable<JsonResponse> forgetPassword(@Field("email") String email);
+
 }
