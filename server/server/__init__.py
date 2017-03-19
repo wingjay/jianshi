@@ -52,6 +52,7 @@ import server.www
 import server.www.user
 import server.www.diary
 import server.www.sync
+import server.www.web
 import server.util.mailutils
 import server.db
 import server.test
