@@ -80,6 +80,18 @@ class EmailFormatWrong(Exception):
     no_warning_email = True
 
 
+class PasswordLengthMustBiggerThanSix(Exception):
+    rc = 1009
+    msg = "密码长度至少为六,呵呵"
+    no_warning_email = True
+
+
+class PasswordChangeError(Exception):
+    rc = 1010
+    msg = "抱歉密码修改失败,请重试"
+    no_warning_email = False
+
+
 # Diary related
 class InvalidUserIdDuringCreatingDiary(exceptions.Forbidden):
     rc = 2000

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import random, time
+import random, time, os, redis
+
+from flask import url_for
 
 from server import app
 from server.www.base import mobile_request, must_login
@@ -12,6 +14,8 @@ import server.data.android_version
 import server.data.share
 from server.data import errors
 from server.util import mathutil, mailutils
+
+redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 
 @app.route("/index")
@@ -112,6 +116,10 @@ def pay_developer(**kwargs):
 @app.route("/user/forget_password", methods=['POST'])
 @mobile_request
 def forget_password(email, **kwargs):
-    mailutils.send_email([email], '[简诗]密码更改邮件', None,
-                         '<h1>请点击下面的链接来更新密码</h1><br><h2><a href="http://www.baidu.com">http://www.baidu.com</a></h2>')
+    verification_code = os.urandom(24)
+    generate_link = url_for("update_password_page", email=email, verification_code=verification_code, _external=True)
+    email_content = '<h1>请点击下面的链接来更新密码</h1><br><h2>'
+    email_content += '<a href="' + generate_link + '"/>'
+    mailutils.send_email([email], '[简诗]密码更改邮件', None, email_content)
+    redis_client.set(email, verification_code)
     return '请前往邮箱更新密码.'

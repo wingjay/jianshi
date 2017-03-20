@@ -56,6 +56,10 @@ def create_auth_token(user_id):
     return safetyutils.encrypt_auth_token(user_id)
 
 
+def update_password(email, new_password):
+    db_user.update_password(email, new_password)
+
+
 def get_user_by_id(user_id):
     return db_user.get_user(user_id)
 
