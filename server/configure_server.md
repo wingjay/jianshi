@@ -1,5 +1,13 @@
+## Intro
+
+简诗 是一个包括移动端(Android)与服务端的完整项目，目前由我一人维护开发。
+
+当前目录为 简诗 的服务端代码，部署环境为 Nginx 和 MySQL5.7，阿里云服务器，开发框架为Flask，开发语言为Python。
+
+## Install
+
 ```
-ssh root@106.14.26.35   jianshiserver
+ssh root@106.14.26.35   jianshiserver # host: jianshi.wingjay.com
 mkdir /home/test/wingjay-flask # or you can build jenkins first, and go to jianshi directory directly
 ```
 
@@ -283,3 +291,6 @@ MYSQL_DB_NAME    = 'dbname'
 EMAIL_ADDRESS = 'email'
 EMAIL_PASSWORD = 'password' # client authorization code from mail.126.com
 ```
+
+## License
+Apache
