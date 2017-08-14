@@ -13,11 +13,11 @@ buildscript {
   }
 }
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'io.fabric'
 
 repositories {
   maven { url 'https://maven.fabric.io/public' }
+  google()
 }
 
 def versionMajor = 2
@@ -30,13 +30,13 @@ def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 def port = 80
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "24.0.1"
+  compileSdkVersion 26
+  buildToolsVersion '26.0.0'
 
   defaultConfig {
     applicationId "com.wingjay.android.jianshi"
     minSdkVersion 14
-    targetSdkVersion 25
+    targetSdkVersion 26
     versionCode baseVersionCode
     versionName "${baseVersionName}"
 
@@ -72,7 +72,7 @@ android {
   }
 }
 
-def supportLibVersion = '25.0.0'
+def supportLibVersion = '26.0.0-beta1'
 def dbflow_version = "3.1.1"
 
 dependencies {
@@ -81,12 +81,13 @@ dependencies {
   compile "com.android.support:recyclerview-v7:${supportLibVersion}"
   compile 'joda-time:joda-time:2.3'
   compile 'com.jakewharton:butterknife:6.0.0'
+  annotationProcessor 'com.jakewharton:butterknife:6.0.0'
   compile 'com.facebook.stetho:stetho:1.2.0'
   compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
     transitive = true;
   }
   // apt command comes from the android-apt plugin
-  apt 'com.google.dagger:dagger-compiler:2.5'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.5'
   compile 'com.google.dagger:dagger:2.5'
   provided 'javax.annotation:jsr250-api:1.0'
   //suqare
@@ -102,7 +103,7 @@ dependencies {
   // explicitly depend on RxJava's latest version for bug fixes and new features.
   compile 'io.reactivex:rxjava:1.1.6'
   //DBFlow
-  apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+  annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
   compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
   compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
   compile 'com.jakewharton.timber:timber:4.3.1'
