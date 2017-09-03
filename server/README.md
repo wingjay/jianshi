@@ -179,6 +179,8 @@ sudo supervisorctl start jianshi
 
 ## Install Jekins in ubuntu
 
+`http://jianshi.wingjay.com:8080/`
+
 [Doc](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu)
 
 ```
