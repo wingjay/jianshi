@@ -259,6 +259,7 @@ In my own computer, i have two ways to connect mysql
 ## Disk is Full? Always log file!
 1. use `df -h` & `du -h --max-depth=1` to check.
 2. `truncate youlogfile --size 0`
+3. Login jenkins web, Manage Jenkins -> System Log -> Log Levels (on the left), Add `javax.jmdns` as `off`
 
 ## Config
 1. Load config during init
