@@ -250,9 +250,13 @@ FLUSH PRIVILEGES;
 
 ```
 In my own computer, i have two ways to connect mysql
-1. mysql -u root -p -h 106.14.33.83
+1. mysql -u root -p -h 106.14.33.83 JianShisxxx
 2. Sequel pro.
 ```
+
+## Disk is Full? Always log file!
+1. use `df -h` & `du -h --max-depth=1` to check.
+2. `truncate youlogfile --size 0`
 
 ## Config
 1. Load config during init
