@@ -189,7 +189,7 @@ sudo apt-get install jenkins
 # Edit /etc/default/jenkins to change port
 ```
 
-Admin + yin
+ray pan lei
 
 - Create freeStyle jobs
 - General: Github project -> https://github.com/wingjay/jianshi/
