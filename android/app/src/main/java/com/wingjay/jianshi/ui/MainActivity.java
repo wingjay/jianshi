@@ -21,6 +21,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+import com.wingjay.jianshi.BuildConfig;
 import com.wingjay.jianshi.Constants;
 import com.wingjay.jianshi.R;
 import com.wingjay.jianshi.bean.ImagePoem;
@@ -83,6 +84,9 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.reader)
   TextPointView readerView;
 
+  @InjectView(R.id.debug)
+  TextPointView debugView;
+
   @InjectView(R.id.day_chooser)
   DayChooser dayChooser;
 
@@ -121,6 +125,7 @@ public class MainActivity extends BaseActivity {
 
     setContentView(R.layout.activity_main);
     setNeedRegister();
+    debugView.setVisibility(BuildConfig.DEBUG ? View.VISIBLE : View.GONE);
 
     if (savedInstanceState != null) {
       year = savedInstanceState.getInt(YEAR);

@@ -128,7 +128,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/margin_18"
                         app:text="测"
-                        />
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
