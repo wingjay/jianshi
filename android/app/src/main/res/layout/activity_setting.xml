@@ -10,16 +10,18 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/layout_container"
             style="@style/NormalBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:scrollbars="none"
             tools:context="com.wingjay.jianshi.ui.SettingActivity">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/pay_developer"
-            />
+                />
 
             <TextView
                 android:id="@+id/pay_developer_dialog"
@@ -50,9 +52,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="@dimen/margin_16"
-        >
+            android:orientation="vertical"
+            >
 
             <TextView
                 style="@style/TitleTextStyle"
@@ -60,13 +62,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/user_setting"
-            />
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-            >
+                >
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -80,14 +82,14 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="@string/vertical_reading"
-                    />
+                        />
 
                     <android.support.v7.widget.SwitchCompat
                         android:id="@+id/vertical_write"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                    />
+                        />
 
                 </FrameLayout>
 
@@ -103,14 +105,14 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="@string/turn_on_home_image_poem"
-                    />
+                        />
 
                     <android.support.v7.widget.SwitchCompat
                         android:id="@+id/home_image_poem_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                    />
+                        />
 
                 </FrameLayout>
 
@@ -134,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_18"
             android:orientation="vertical"
-        >
+            >
 
             <TextView
                 style="@style/TitleTextStyle"
@@ -142,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/support_info"
-            />
+                />
 
 
             <TextView
@@ -167,23 +169,23 @@
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/margin_16"
-                    android:paddingLeft="@dimen/margin_16"
                     android:paddingBottom="@dimen/margin_16"
+                    android:paddingLeft="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_16"
                     android:text="@string/version_upgrade"/>
 
                 <com.wingjay.jianshi.ui.widget.TextPointView
                     android:id="@+id/version_upgrade_warning"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_8"
                     android:layout_marginStart="@dimen/margin_8"
-                    android:layout_toRightOf="@+id/version_upgrade_title"
                     android:layout_toEndOf="@+id/version_upgrade_title"
-                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/version_upgrade_title"
                     android:visibility="gone"
                     tools:visibility="visible"
-                />
+                    />
 
             </RelativeLayout>
 
@@ -201,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/account_info"
-            />
+                />
 
             <TextView
                 android:id="@+id/logout"

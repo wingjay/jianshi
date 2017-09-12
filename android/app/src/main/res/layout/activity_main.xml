@@ -121,6 +121,14 @@
                         android:layout_marginTop="@dimen/margin_18"
                         app:text="@string/read"
                         />
+                    <com.wingjay.jianshi.ui.widget.TextPointView
+                        android:id="@+id/debug"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/margin_18"
+                        app:text="测"
+                        />
 
                 </LinearLayout>
 

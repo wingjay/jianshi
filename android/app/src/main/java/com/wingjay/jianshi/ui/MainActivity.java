@@ -109,6 +109,11 @@ public class MainActivity extends BaseActivity {
 
   private volatile int year, month, day;
 
+  @OnClick(R.id.debug)
+  void debug() {
+    startActivity(new Intent(this, DebugActivity.class));
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
