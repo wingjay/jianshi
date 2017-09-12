@@ -73,7 +73,7 @@
     <string name="checking_upgrade">升级检查中...</string>
     <string name="upgrade_info">新版本：%1$s； 更新信息：%2$s</string>
     <string name="upgrade">获取新体验</string>
-    <string name="cancel">下次咯</string>
+    <string name="next_time">下次咯</string>
     <string name="current_newest_verion">您已经是最新版本啦！</string>
     <string name="go_to_setting_for_upgrading">记得去设置页面点击更新哦！</string>
     <!--upgrade end-->
@@ -144,6 +144,7 @@
     <string name="login">登录</string>
     <string name="logining">登录中</string>
     <string name="signup">注册</string>
+    <string name="forget_password">忘记密码</string>
     <string name="signuping">注册中</string>
     <string name="login_failure">用户名密码不匹配</string>
     <string name="signup_failure">注册失败</string>
@@ -154,6 +155,10 @@
     <string name="logout_ing">注销中</string>
     <string name="logout_warning_with_data_not_sync">确定要注销？你还有数据未同步，现在登出可能导致数据丢失。</string>
     <string name="invalid_token_force_logout">你的身份信息已经过期，被强制登出</string>
+    <string name="please_enter_your_email">请输入你的邮箱</string>
+    <string name="send_email_for_updating_password">发送更新密码邮件</string>
+    <string name="cancel">取消</string>
+    <string name="success_send_password_changing_email">邮件发送成功，请前往邮箱更改密码</string>
     <!--account ends-->
 
     <!--logo-->
@@ -168,7 +173,7 @@
 
     <!--network error-->
     <string name="network_error">你的网络连接不正常，请检查</string>
-    <string name="server_error">服务器打个盹，请稍后再试</string>
+    <string name="server_request_error">请求出错，请检查输入信息，或者过会再试</string>
     <!--network error end-->
 
     <!--share-->

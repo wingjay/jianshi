@@ -52,6 +52,8 @@ import server.www
 import server.www.user
 import server.www.diary
 import server.www.sync
+import server.www.web
+import server.util.mailutils
 import server.db
 import server.test
 
@@ -66,6 +68,12 @@ handler.setFormatter(formatter)
 app.logger.addHandler(handler)
 app.logger.setLevel(logging.INFO)
 
+## Mail configure
+app.config['MAIL_SERVER'] = "smtp.126.com"
+app.config['MAIL_PORT'] = 25
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = app.config['EMAIL_ADDRESS']
+app.config['MAIL_PASSWORD'] = app.config['EMAIL_PASSWORD']
 
 logger = app.logger
 
@@ -82,3 +90,12 @@ def get():
     logger.error('[Ignored, it\'s testing email]An error occurred')
     logger.info('Info')
     return "get function works Jianshiasasdf"
+
+
+@app.route("/test_email")
+def send_email():
+    try:
+        server.util.mailutils.send_email(['ajsdsaf@126.com'], 'test 222', 'body part', '<h1>hhhhh</h1>')
+    except Exception as e:
+        logger.exception(e)
+    return 'Success'

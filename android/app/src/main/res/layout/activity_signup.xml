@@ -19,7 +19,6 @@
         android:layout_width="137dp"
         android:layout_height="307dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="-67dp"
         android:background="@drawable/jianshi_logo"/>
 
     <RelativeLayout
@@ -83,9 +82,15 @@
             />
 
         <TextView
-            android:id="@+id/skip"
+            android:id="@+id/forget_password"
             style="@style/SignupTextView"
             android:layout_below="@+id/signup"
+            android:text="@string/forget_password"/>
+
+        <TextView
+            android:id="@+id/skip"
+            style="@style/SignupTextView"
+            android:layout_below="@+id/forget_password"
             android:text="跳过（如未搭建后台）"
             android:visibility="gone"
             />

@@ -3,3 +3,5 @@ pycrypto==2.6.1
 validate_email==1.3
 gunicorn==19.6.0
 Flask==0.10.1
+flask-mail==0.9.1
+redis=2.10.5

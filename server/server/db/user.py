@@ -107,7 +107,28 @@ def delete_user(user_id):
         conn.commit()
     except Exception as e:
         logger.exception(e)
-        raise errors.UserDeleteFailure()
+        raise errors.UserDeleteFailure(e)
+    finally:
+        conn.close()
+
+
+def update_password(email, new_password):
+    """update password for existed email which must be verified first
+    Note: length of password must be at least 6.
+    """
+    if not new_password or len(new_password) < 6:
+        raise errors.PasswordLengthMustBiggerThanSix()
+    email_hash = abs(hash(email))
+    new_password = safetyutils.get_hash_password(new_password)
+    conn = base_db.get_conn(pymysql.cursors.DictCursor)
+    try:
+        with conn.cursor() as cursor:
+            sql = "update `User` set password = %s where `email_hash` = %s"
+            cursor.execute(sql, (str(new_password), str(email_hash)))
+        conn.commit()
+    except Exception as e:
+        logger.exception(e)
+        raise errors.PasswordChangeError(e)
     finally:
         conn.close()
 

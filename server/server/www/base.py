@@ -2,6 +2,7 @@ import functools
 import json
 import logging
 import pprint
+from werkzeug import exceptions
 
 from flask import request, jsonify, abort
 
@@ -44,7 +45,12 @@ def mobile_request(func):
             }
 
         except Exception as e:
-            logger.exception(e.message) # logger will send email with this exception
+            if isinstance(e, (exceptions.NotFound, exceptions.Forbidden,)):
+                abort(e.code)
+
+            no_warning_email = getattr(e, 'no_warning_email', False)
+            if not no_warning_email:
+                logger.exception(e) # logger will send email with this exception
             rc = getattr(e, 'rc', errors.UnknownError.rc)
             err_msg = getattr(e, 'msg', errors.UnknownError.msg)
             response = {
