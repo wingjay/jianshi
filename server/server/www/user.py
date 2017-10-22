@@ -15,6 +15,9 @@ import server.data.share
 from server.data import errors
 from server.util import mathutil
 
+@app.route("/change_password")
+def change_password():
+    return render_template("change_password.html", dev_name="KOBE", title="NBA")
 
 @app.route("/index")
 def index():
