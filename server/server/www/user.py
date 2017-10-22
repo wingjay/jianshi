@@ -3,6 +3,8 @@
 
 import random, time
 
+from flask import render_template
+
 from server import app
 from server.www.base import mobile_request, must_login
 from server.logic import user as logic_user
@@ -16,7 +18,7 @@ from server.util import mathutil
 
 @app.route("/index")
 def index():
-    return "index"
+    return render_template("./web/templates/index.html")
 
 
 @app.route("/ping")
