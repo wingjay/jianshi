@@ -18,7 +18,7 @@ from server.util import mathutil
 
 @app.route("/index")
 def index():
-    return render_template("./web/templates/index.html")
+    return render_template("index.html", dev_name="YinXuan", title="JianShi Web")
 
 
 @app.route("/ping")

@@ -1,10 +1,10 @@
-import os
 import logging
+import os
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask
 
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__, instance_relative_config=True, template_folder='./www/web/templates/')
 
 # create empty instance directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +50,7 @@ if not app.config['DEBUG']:
 # you must add one line as following
 import server.www
 import server.www.user
+import server.www.web.templates
 import server.www.diary
 import server.www.sync
 import server.db
