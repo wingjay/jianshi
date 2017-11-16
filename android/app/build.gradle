@@ -34,13 +34,13 @@ def baseVersionName = versionMajor + '.' + versionMinor + '.' + versionPatch
 def port = 80
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion '26.0.1'
+  compileSdkVersion 27
+  buildToolsVersion '26.0.2'
 
   defaultConfig {
     applicationId "com.wingjay.android.jianshi"
     minSdkVersion 14
-    targetSdkVersion 26
+    targetSdkVersion 27
     versionCode baseVersionCode
     versionName "${baseVersionName}"
 
@@ -76,7 +76,7 @@ android {
   }
 }
 
-def supportLibVersion = '26.0.2'
+def supportLibVersion = '27.0.1'
 def dbflow_version = "3.1.1"
 
 dependencies {
