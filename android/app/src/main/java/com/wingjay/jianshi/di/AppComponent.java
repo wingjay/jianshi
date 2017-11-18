@@ -14,7 +14,7 @@ import com.wingjay.jianshi.ui.DiaryListActivity;
 import com.wingjay.jianshi.ui.EditActivity;
 import com.wingjay.jianshi.ui.MainActivity;
 import com.wingjay.jianshi.ui.SettingActivity;
-import com.wingjay.jianshi.ui.SignupActivity;
+import com.wingjay.jianshi.ui.SignUpActivity;
 import com.wingjay.jianshi.ui.ViewActivity;
 import com.wingjay.jianshi.ui.base.BaseActivity;
 
@@ -31,7 +31,7 @@ public interface AppComponent extends MiscComponent{
 
   void inject(MainActivity obj);
 
-  void inject(SignupActivity obj);
+  void inject(SignUpActivity obj);
 
   void inject(DiaryListActivity obj);
 

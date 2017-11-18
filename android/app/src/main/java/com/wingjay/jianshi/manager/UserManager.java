@@ -31,7 +31,7 @@ import com.wingjay.jianshi.prefs.UserPrefs;
 import com.wingjay.jianshi.sync.SyncManager;
 import com.wingjay.jianshi.sync.SyncService;
 import com.wingjay.jianshi.ui.MainActivity;
-import com.wingjay.jianshi.ui.SignupActivity;
+import com.wingjay.jianshi.ui.SignUpActivity;
 import com.wingjay.jianshi.util.RxUtil;
 
 import javax.inject.Inject;
@@ -184,6 +184,6 @@ public class UserManager {
     SQLite.delete().from(PushData.class).execute();
     SQLite.delete().from(EventLog.class).execute();
     SQLite.delete().from(Diary.class).execute();
-    context.startActivity(SignupActivity.createIntent(context));
+    context.startActivity(SignUpActivity.Companion.createIntent(context));
   }
 }

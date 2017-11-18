@@ -25,9 +25,7 @@ import com.wingjay.jianshi.di.ForApplication;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-/**
- * Created by wingjay on 10/4/15.
- */
+
 public class UserPrefs extends BasePrefs {
 
   public final static String PREFS_NAME = "userPrefs";
@@ -192,6 +190,17 @@ public class UserPrefs extends BasePrefs {
 
   public void savePayDeveloperDialogData(PayDeveloperDialogData payDeveloperDialogData) {
     setString(PAY_DEVELOPER_DIALOG_INFO, gson.toJson(payDeveloperDialogData));
+  }
+
+
+  private static final String GUEST_USER = "guest_user";
+
+  public void setGuestUser() {
+    setBoolean(GUEST_USER, true);
+  }
+
+  public boolean isGuestUser() {
+    return getBoolean(GUEST_USER, false);
   }
 
 }

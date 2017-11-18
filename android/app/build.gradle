@@ -17,7 +17,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
 
 repositories {
   maven { url 'https://maven.fabric.io/public' }
@@ -85,15 +85,15 @@ dependencies {
   implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
   implementation 'joda-time:joda-time:2.3'
   implementation 'com.jakewharton:butterknife:6.0.0'
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
   annotationProcessor 'com.jakewharton:butterknife:6.0.0'
+  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  kapt 'com.jakewharton:butterknife:6.0.0'
   implementation 'com.facebook.stetho:stetho:1.2.0'
   implementation('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
     transitive = true
   }
-  // apt command comes from the android-apt plugin
-  annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
   implementation 'com.google.dagger:dagger:2.11'
+  kapt 'com.google.dagger:dagger-compiler:2.11'
   compileOnly 'javax.annotation:jsr250-api:1.0'
   //square
   implementation 'com.squareup.okhttp3:okhttp:3.4.1'
@@ -108,7 +108,7 @@ dependencies {
   // explicitly depend on RxJava's latest version for bug fixes and new features.
   implementation 'io.reactivex:rxjava:1.1.6'
   //DBFlow
-  annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+  kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
   implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
   implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
   implementation 'com.jakewharton.timber:timber:4.3.1'

@@ -58,7 +58,7 @@
             />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordEdit"
             style="@style/SignupEditText"
             android:layout_below="@+id/email"
             android:gravity="end"
@@ -69,7 +69,7 @@
         <TextView
             android:id="@+id/login"
             style="@style/SignupTextView"
-            android:layout_below="@+id/password"
+            android:layout_below="@+id/passwordEdit"
             android:text="@string/login"
             android:textColor="@color/bright_red"
             />
@@ -86,12 +86,17 @@
             style="@style/SignupTextView"
             android:layout_below="@+id/signup"
             android:text="@string/forget_password"/>
-
+        <TextView
+            android:id="@+id/guestUser"
+            style="@style/SignupTextView"
+            android:layout_below="@id/forget_password"
+            android:text="@string/guest"
+            android:textColor="@color/light_text_gb"/>
         <TextView
             android:id="@+id/skip"
             style="@style/SignupTextView"
-            android:layout_below="@+id/forget_password"
-            android:text="跳过（如未搭建后台）"
+            android:layout_below="@+id/guestUser"
+            android:text="@string/debug_skip"
             android:visibility="gone"
             />
 

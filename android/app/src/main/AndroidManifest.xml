@@ -65,7 +65,7 @@
             android:label="@string/title_activity_setting">
         </activity>
         <activity
-            android:name=".ui.SignupActivity"
+            android:name=".ui.SignUpActivity"
             android:exported="false"/>
 
         <service android:name=".sync.SyncService"/>

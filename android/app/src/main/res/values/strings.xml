@@ -187,5 +187,7 @@
     <string name="pay_developer">打赏</string>
     <string name="pay_developer_desc">赏开发者一杯咖啡呗</string>
     <string name="copy_successfully">拷贝成功</string>
+    <string name="guest">不想注册？</string>
+    <string name="debug_skip">跳过（如未搭建后台）</string>
 
 </resources>
