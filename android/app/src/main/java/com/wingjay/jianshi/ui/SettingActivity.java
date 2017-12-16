@@ -67,6 +67,9 @@ public class SettingActivity extends BaseActivity {
   @InjectView(R.id.version_upgrade_warning)
   View versionUpgradeWarning;
 
+  @InjectView(R.id.logout)
+  TextView logout;
+
   @Inject
   UserPrefs userPrefs;
 
@@ -97,6 +100,10 @@ public class SettingActivity extends BaseActivity {
     builder.setSpan(new RelativeSizeSpan(10f), length, builder.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     versionUgradeTitle.setText(builder.toString());
     setupUpgradeWarning();
+
+    if (userPrefs.isGuestUser()) {
+      logout.setText("注册/登录");
+    }
   }
 
   public void setupUpgradeWarning() {
@@ -226,7 +233,11 @@ public class SettingActivity extends BaseActivity {
 
   @OnClick(R.id.logout)
   void logout() {
-    Blaster.log(LoggingData.BTN_CLK_LOGOUT);
-    userManager.logout(this);
+    if (userPrefs.isGuestUser()) {
+      this.startActivity(new Intent(this, SignUpActivity.class));
+    } else {
+      Blaster.log(LoggingData.BTN_CLK_LOGOUT);
+      userManager.logout(this);
+    }
   }
 }
