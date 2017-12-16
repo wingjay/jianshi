@@ -179,6 +179,8 @@ sudo supervisorctl start jianshi
 
 ## Install Jekins in ubuntu
 
+`http://jianshi.wingjay.com:8080/`
+
 [Doc](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu)
 
 ```
@@ -189,7 +191,7 @@ sudo apt-get install jenkins
 # Edit /etc/default/jenkins to change port
 ```
 
-Admin + yin
+ray pan lei
 
 - Create freeStyle jobs
 - General: Github project -> https://github.com/wingjay/jianshi/
@@ -250,9 +252,14 @@ FLUSH PRIVILEGES;
 
 ```
 In my own computer, i have two ways to connect mysql
-1. mysql -u root -p -h 106.14.33.83
+1. mysql -u root -p -h 106.14.33.83 JianShisxxx
 2. Sequel pro.
 ```
+
+## Disk is Full? Always log file!
+1. use `df -h` & `du -h --max-depth=1` to check.
+2. `truncate youlogfile --size 0`
+3. Login jenkins web, Manage Jenkins -> System Log -> Log Levels (on the left), Add `javax.jmdns` as `off`
 
 ## Config
 1. Load config during init
