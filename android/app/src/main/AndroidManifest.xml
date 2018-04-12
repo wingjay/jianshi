@@ -60,11 +60,6 @@
             android:label="@string/title_activity_view">
         </activity>
         <activity
-            android:name=".ui.SettingActivity"
-            android:exported="false"
-            android:label="@string/title_activity_setting">
-        </activity>
-        <activity
             android:name=".ui.SignUpActivity"
             android:exported="false"/>
 

@@ -70,6 +70,9 @@ class SettingActivity : BaseActivity() {
     version_upgrade_title.text = builder.toString()
     initViews()
     setupUpgradeWarning()
+    if (userPrefs.isGuestUser) {
+      logout.text = "注册/登录"
+    }
   }
 
   private fun initViews() {
@@ -159,8 +162,12 @@ class SettingActivity : BaseActivity() {
     }
 
     logout.setOnClickListener {
-      Blaster.log(LoggingData.BTN_CLK_LOGOUT)
-      userManager.logout(this)
+      if (userPrefs.isGuestUser) {
+        this.startActivity(Intent(this, SignUpActivity::class.java))
+      } else {
+        Blaster.log(LoggingData.BTN_CLK_LOGOUT)
+        userManager.logout(this)
+      }
     }
   }
 

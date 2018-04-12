@@ -34,9 +34,7 @@ import kotlinx.android.synthetic.main.activity_signup.*
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 
-/**
- * Signup Activity.
- */
+
 class SignUpActivity : BaseActivity() {
 
   @Inject
@@ -80,13 +78,13 @@ class SignUpActivity : BaseActivity() {
 
   private fun guestLogin() {
     val builder = AlertDialog.Builder(this)
-    builder.setTitle("真的不想注册吗？")
-    builder.setMessage("不注册使用，数据仅能存在本机上，我们将无法为您同步数据，在您卸载重装或者更换设备的时候，您的记录将不会保留！！！")
-    builder.setPositiveButton("不注册", { _, _ ->
+    builder.setTitle(getString(R.string.register_title))
+    builder.setMessage(getString(R.string.register_message))
+    builder.setPositiveButton(getString(R.string.no_register), { _, _ ->
       userPrefs.setGuestUser()
       startActivity(MainActivity.createIntent(this))
     })
-    builder.setNegativeButton("还是注册吧", null)
+    builder.setNegativeButton(getString(R.string.register), null)
     builder.create().show()
   }
 
@@ -174,6 +172,7 @@ class SignUpActivity : BaseActivity() {
 
   companion object {
 
+    @JvmStatic
     fun createIntent(context: Context): Intent {
       val intent = Intent(context, SignUpActivity::class.java)
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK or

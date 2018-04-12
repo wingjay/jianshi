@@ -189,5 +189,9 @@
     <string name="copy_successfully">拷贝成功</string>
     <string name="guest">不想注册？</string>
     <string name="debug_skip">跳过（如未搭建后台）</string>
+    <string name="register_title">真的不想注册吗？</string>
+    <string name="register_message">不注册使用，数据仅能存在本机上，我们将无法为您同步数据，在您卸载重装或者更换设备的时候，您的记录将不会保留！！！</string>
+    <string name="no_register">不注册</string>
+    <string name="register">还是注册吧</string>
 
 </resources>
