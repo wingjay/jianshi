@@ -62,6 +62,7 @@
         <activity
             android:name=".ui.SignUpActivity"
             android:exported="false"/>
+        <activity android:name=".ui.SettingActivity"/>
 
         <service android:name=".sync.SyncService"/>
 
@@ -69,8 +70,17 @@
             android:name="io.fabric.ApiKey"
             android:value="a97c3efc76ce98af59ab9f8fa8b7c2ad7468f78c"/>
 
-        <activity android:name=".ui.DebugActivity">
-        </activity>
+        <activity android:name=".ui.DebugActivity"/>
+        
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

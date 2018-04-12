@@ -217,7 +217,7 @@ class MainActivity : BaseActivity() {
   }
 
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == Constants.RequestCode.REQUEST_CODE_BG_COLOR_CHANGE) {
       if (resultCode == Activity.RESULT_OK) {

@@ -14,11 +14,12 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.FileProvider
 import android.text.TextUtils
 import android.util.Pair
 import android.view.View
+import com.wingjay.jianshi.BuildConfig
 import com.wingjay.jianshi.Constants
 import com.wingjay.jianshi.R
 import com.wingjay.jianshi.bean.ShareContent
@@ -114,9 +115,13 @@ class ViewActivity : BaseActivity() {
             if (!isUISafe) {
               return@Action1
             }
+            val photoUri = FileProvider.getUriForFile(
+                this@ViewActivity,
+                BuildConfig.APPLICATION_ID + ".provider",
+                File(stringShareContentPair.first))
             IntentUtil.shareLinkWithImage(this@ViewActivity,
                 stringShareContentPair.second,
-                Uri.fromFile(File(stringShareContentPair.first)))
+                photoUri)
           }, Action1 { throwable ->
             makeToast(getString(R.string.share_failure))
             Timber.e(throwable, "screenshot share failure")
@@ -145,7 +150,7 @@ class ViewActivity : BaseActivity() {
     setVisibilityByVerticalStyle()
 
     if (verticalStyle) {
-      vertical_view_content.setText(titleString)
+      vertical_view_title.setText(titleString)
       vertical_view_content.setText(contentString)
       vertical_view_date.setText(contentDate)
       container.setBackgroundResource(userPrefs.backgroundColor)

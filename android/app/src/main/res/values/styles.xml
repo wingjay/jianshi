@@ -130,7 +130,7 @@
     </style>
 
     <style name="SignupEditText">
-        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_width">180dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">end|right</item>
         <item name="android:layout_alignParentEnd">true</item>
