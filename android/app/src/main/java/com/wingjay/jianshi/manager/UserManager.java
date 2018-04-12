@@ -82,7 +82,7 @@ public class UserManager {
               userPrefsLazy.get().setAuthToken(user.getEncryptedToken());
               userPrefsLazy.get().setUser(user);
 
-              context.startActivity(MainActivity.createIntent(context));
+              context.startActivity(MainActivity.Companion.createIntent(context));
             } else {
               Timber.e("login failure msg: %s", userJsonDataResponse.getMsg());
               Toast.makeText(context, userJsonDataResponse.getMsg(),
@@ -122,7 +122,7 @@ public class UserManager {
 
               userPrefsLazy.get().setAuthToken(user.getEncryptedToken());
               userPrefsLazy.get().setUser(user);
-              context.startActivity(MainActivity.createIntent(context));
+              context.startActivity(MainActivity.Companion.createIntent(context));
             } else {
               Timber.e("signup failure msg: %s", userJsonDataResponse.getMsg());
               Toast.makeText(context, userJsonDataResponse.getMsg(),

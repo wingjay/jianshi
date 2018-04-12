@@ -46,7 +46,7 @@ class SignUpActivity : BaseActivity() {
   lateinit var userManager: UserManager
 
   @Inject
-  lateinit var userPrefs: UserPrefs
+  override lateinit var userPrefs: UserPrefs
 
   private val emailText: String
     get() = email.text.toString().trim { it <= ' ' }
@@ -135,18 +135,18 @@ class SignUpActivity : BaseActivity() {
           .subscribe({ jsonResponse ->
             if (weakReference.get() != null && jsonResponse != null) {
               if (jsonResponse.rc == 0) {
-                makeToast(weakReference.get(), R.string.success_send_password_changing_email)
+                makeToast(weakReference.get()!!, R.string.success_send_password_changing_email)
               } else {
-                makeToast(weakReference.get(), jsonResponse.msg)
+                makeToast(weakReference.get()!!, jsonResponse.msg)
               }
             }
           }) {
             if (weakReference.get() != null) {
-              makeToast(weakReference.get(), R.string.server_request_error)
+              makeToast(weakReference.get()!!, R.string.server_request_error)
             }
           }
     })
-    builder.setNegativeButton(R.string.cancel) { dialog, which -> dialog.cancel() }
+    builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
 
     builder.show()
   }
