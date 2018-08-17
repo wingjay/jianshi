@@ -8,6 +8,12 @@
 
 ```
 ssh root@106.14.26.35   jianshiserver # host: jianshi.wingjay.com
+
+or
+
+paste public key to server
+ssh jianshi@106.14.26.35
+
 mkdir /home/test/wingjay-flask # or you can build jenkins first, and go to jianshi directory directly
 ```
 
